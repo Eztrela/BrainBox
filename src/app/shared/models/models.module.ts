@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Note } from './note';
+import { Note } from '../models';
 
 
 @NgModule({

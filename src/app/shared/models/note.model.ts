@@ -1,4 +1,5 @@
 export class Note {
+  /* Model class for MemoryBox notes */
 
   private _id:number;
   private _content:string;
