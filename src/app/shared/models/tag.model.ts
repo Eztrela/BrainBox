@@ -32,7 +32,7 @@ export class Tag {
     }
   
     toString(): string {
-      return `User ${this._id}
+      return `Tag ${this._id}
       , title:${this._title}
       , color: ${this._color}`;
     }
