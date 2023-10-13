@@ -11,8 +11,8 @@ import { Note } from '../models';
     CommonModule
   ],
   exports: [
-    Note,
-    User
+    User,
+    Note
   ]
 })
 export class ModelsModule { }
