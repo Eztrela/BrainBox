@@ -1,4 +1,4 @@
-import { Tag } from './tag.model';
+import { Tag } from '../models';
 
 describe('Tag', () => {
   it('should create an instance', () => {

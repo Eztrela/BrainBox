@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { User } from '../models/user.model';
-import { Tag } from '../models/tag.model';
+import { User } from '../models';
+import { Tag } from '../models';
 
 
 @NgModule({
