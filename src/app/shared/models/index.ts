@@ -1,4 +1,5 @@
 // models/index.ts
-export * from './user.model';
+export * from '../models/user.model';
+export * from '../models/tag.model';
 
 //ADD REMAINING MODELS BELOW
