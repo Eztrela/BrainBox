@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '../models';
 import { Task } from '../models';
+import { Tag } from '../models';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { Task } from '../models';
   ],
   exports: [
     User,
-    Task
+    Task,
+    Tag
   ]
 })
 export class ModelsModule { }
