@@ -35,7 +35,7 @@ export class MemoryBox {
     }
 
     removerTask(id: number) {
-      let idx = this._tasks.findIndex((t) => (t.id === id));
+      let idx = this.localizarTask(id);
       if (idx > 0) {
         return this._tasks.splice(idx, 1)[0];
       } else {
@@ -57,7 +57,7 @@ export class MemoryBox {
     }
 
     public removerNote(id: number) {
-      let idx = this._notes.findIndex((n) => (n.id === id));
+      let idx = this.localizarNote(id);
       if (idx > 0) {
         return this._notes.splice(idx, 1)[0];
       } else {
@@ -79,7 +79,7 @@ export class MemoryBox {
     }
 
     public removerTag(id: number) {
-      let idx = this._tags.findIndex((t) => (t.id === id));
+      let idx = this.localizarTag(id);
       if (idx > 0) {
         return this._tags.splice(idx, 1)[0];
       } else {
