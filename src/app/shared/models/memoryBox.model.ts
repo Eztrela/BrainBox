@@ -21,6 +21,72 @@ export class MemoryBox {
       this._tags = new Array<Tag>;
     }
 
+    inserirTask(task: Task) {
+      let idx = this.localizarTask(task.id);
+      if (idx < 0) {
+        this._tasks.push(task);
+      } else {
+        this._tasks[idx] = task;
+      }
+    }
+
+    localizarTask(id: number): number {
+      return this._tasks.findIndex((t:Task):boolean => (t.id === id));
+    }
+
+    removerTask(id: number) {
+      let idx = this._tasks.findIndex((t) => (t.id === id));
+      if (idx > 0) {
+        return this._tasks.splice(idx, 1)[0];
+      } else {
+      return false;
+      }
+    }
+
+    inserirNote(note: Note) {
+      let idx = this.localizarNote(note.id);
+      if (idx < 0) {
+        this._notes.push(note);
+      } else {
+        this._notes[idx] = note;
+      }
+    }
+
+    localizarNote(id: number): number {
+      return this._notes.findIndex((n:Note):boolean => (n.id === id));
+    }
+
+    public removerNote(id: number) {
+      let idx = this._notes.findIndex((n) => (n.id === id));
+      if (idx > 0) {
+        return this._notes.splice(idx, 1)[0];
+      } else {
+        return false;
+      }
+    }
+
+    inserirTag(tag: Tag) {
+      let idx = this.localizarTask(tag.id);
+      if (idx < 0) {
+        this._tags.push(tag);
+      } else {
+        this._tags[idx] = tag;
+      }
+    }
+
+    localizarTag(id: number): number {
+      return this._tags.findIndex((t:Tag):boolean => (t.id === id));
+    }
+
+    public removerTag(id: number) {
+      let idx = this._tags.findIndex((t) => (t.id === id));
+      if (idx > 0) {
+        return this._tags.splice(idx, 1)[0];
+      } else {
+        return false;
+      }
+    }
+
     get id():number {
       return this._id;
     }
