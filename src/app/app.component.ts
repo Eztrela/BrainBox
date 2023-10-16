@@ -37,15 +37,17 @@ export class AppComponent {
 
     let tag1 = new Tag(1, "title1", "#00000");
     let tag2 = new Tag(2, "title2", "#00000");
+    let tag3 = new Tag(3, "title3", "#00000");
 
     memorybox.inserirTag(tag1);
     memorybox.inserirTag(tag2);
+    memorybox.inserirTag(tag3);
 
     console.log(memorybox)
 
     console.log(memorybox.localizarTag(1));
     console.log(memorybox.localizarTag(123451));
-    console.log(this.memoryboxes[0].removerTag(1));
+    console.log(this.memoryboxes[0].removerTag(2));
 
     console.log(memorybox)
 
