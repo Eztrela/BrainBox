@@ -1,3 +1,6 @@
+import {Tag} from "./tag.model";
+import {MemoryBox} from "./memoryBox.model";
+
 export class User {
   /* Model class for User */
 
@@ -6,8 +9,8 @@ export class User {
   private _username: string;
   private _password: string;
   private _notifications: boolean;
-  private _memoryBoxes: Array<string>;
-  private _tags: Array<string>;
+  private _memoryBoxes: Array<MemoryBox>;
+  private _tags: Array<Tag>;
 
   constructor(id: number, email:string, username: string, password: string, notifications: boolean) {
     this._id = id;
@@ -15,8 +18,52 @@ export class User {
     this._username = username;
     this._password = password;
     this._notifications = notifications;
-    this._memoryBoxes = new Array<string>;
-    this._tags = new Array<string>;
+    this._memoryBoxes = new Array<MemoryBox>;
+    this._tags = new Array<Tag>;
+  }
+
+  inserirMemoryBox(memoryBox: MemoryBox) {
+    let idx = this.localizarMemoryBox(memoryBox.id);
+    if (idx < 0) {
+      this._memoryBoxes.push(memoryBox);
+    } else {
+      this._memoryBoxes[idx] = memoryBox;
+    }
+  }
+
+  localizarMemoryBox(id: number): number {
+    return this._memoryBoxes.findIndex((m:MemoryBox):boolean => (m.id === id));
+  }
+
+  public removerMemoryBox(id: number) {
+    let idx = this.localizarMemoryBox(id);
+    if (idx >= 0) {
+      return this._memoryBoxes.splice(idx, 1)[0];
+    } else {
+      return false;
+    }
+  }
+
+  inserirTag(tag: Tag) {
+    let idx = this.localizarTag(tag.id);
+    if (idx < 0) {
+      this._tags.push(tag);
+    } else {
+      this._tags[idx] = tag;
+    }
+  }
+
+  localizarTag(id: number): number {
+    return this._tags.findIndex((t:Tag):boolean => (t.id === id));
+  }
+
+  public removerTag(id: number) {
+    let idx = this.localizarTag(id);
+    if (idx >= 0) {
+      return this._tags.splice(idx, 1)[0];
+    } else {
+      return false;
+    }
   }
 
   get id():number {
@@ -39,11 +86,11 @@ export class User {
     return this._notifications;
   }
 
-  get memoryBoxes(): Array<string> {
+  get memoryBoxes(): Array<MemoryBox> {
     return this._memoryBoxes;
   }
 
-  get tags(): Array<string> {
+  get tags(): Array<Tag> {
     return this._tags;
   }
 

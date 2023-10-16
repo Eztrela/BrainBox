@@ -66,7 +66,7 @@ export class MemoryBox {
     }
 
     inserirTag(tag: Tag) {
-      let idx = this.localizarTask(tag.id);
+      let idx = this.localizarTag(tag.id);
       if (idx < 0) {
         this._tags.push(tag);
       } else {

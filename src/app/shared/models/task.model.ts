@@ -23,6 +23,29 @@ export class Task {
       this._tags = new Array<Tag>;
     }
 
+
+  inserirTag(tag: Tag) {
+    let idx = this.localizarTag(tag.id);
+    if (idx < 0) {
+      this._tags.push(tag);
+    } else {
+      this._tags[idx] = tag;
+    }
+  }
+
+  localizarTag(id: number): number {
+    return this._tags.findIndex((t:Tag):boolean => (t.id === id));
+  }
+
+  public removerTag(id: number) {
+    let idx = this.localizarTag(id);
+    if (idx >= 0) {
+      return this._tags.splice(idx, 1)[0];
+    } else {
+      return false;
+    }
+  }
+
     get id():number {
       return this._id;
     }
