@@ -10,7 +10,7 @@ export class TaskService {
   private _tasks: Array<Task>;
 
   constructor() {
-    this._tasks = TASkS
+    this._tasks = TASKS
   }
 
   listar():Array<Task> {
@@ -32,10 +32,12 @@ export class TaskService {
     }
 }*/
 
-  editar(id: number) {
+  editar(id: number, fieldName: string, fieldValue: number | string | Date) {
     let idx: number = this.localizar(id);
-    if (idx >= 0) {
-      this._tasks[idx] = false;
+    if (idx >= 0 && fieldName in Task) {
+      let task = this._tasks[idx];
+      (task as any).fieldName = fieldValue;
+      return true
     } else {
       return false
     }
