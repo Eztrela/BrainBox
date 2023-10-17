@@ -26,21 +26,16 @@ export class TaskService {
     }
   }
 
-  /*const handleUpdate = (fieldName: string, fieldValue: string | number) => {
-    if (fieldName in myObject) {
-        myObject = {...myObject, fieldName: fieldValue};
-    }
-}*/
-
   editar(id: number, fieldName: string, fieldValue: number | string | Date) {
     let idx: number = this.localizar(id);
-    if (idx >= 0 && fieldName in Task) {
-      let task = this._tasks[idx];
-      (task as any).fieldName = fieldValue;
-      return true
-    } else {
-      return false
-    }
+    if (idx < 0) return false;
+
+    let task = this._tasks[idx];
+    
+    if (!(fieldName in task)) return false;
+
+    (task as any)[fieldName] = fieldValue;
+    return true;
   }
 
   remover(id: number) {

@@ -52,6 +52,8 @@ export class AppComponent {
 
     console.log(this.taskService.listar());
     console.log(`${this.taskService.get(1)} \n ${this.taskService.get(2)}`)
+    console.log(this.taskService.editar(1, "title", "newTitle"));
+    console.log(`${this.taskService.get(1)}`)
     console.log(this.taskService.remover(2));
 
 
