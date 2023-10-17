@@ -13,6 +13,10 @@ export class TagService {
     this._tags = TAGS;
   }
 
+  generateID(): number{
+    return (this._tags.length > 0) ? this._tags[ this._tags.length -1].id + 1 : 1;
+  }
+
   listar():Array<Tag> {
     return this._tags;
   }

@@ -53,9 +53,11 @@ export class AppComponent {
     console.log(memorybox)
 
     /*TESTES DE TAG SERVICE*/
+    console.log(this.tagService.generateID());
     this.tagService.inserir(tag1);
     this.tagService.inserir(tag2);
     this.tagService.inserir(tag3);
+    console.log(this.tagService.generateID());
 
     console.log(this.tagService.listar());
     console.log(`${this.tagService.get(1)} \n ${this.tagService.get(2)}`)
