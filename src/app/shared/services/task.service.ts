@@ -43,7 +43,7 @@ export class TaskService {
 
   get(id: number): Task | false {
     let idx: number = this.localizar(id);
-    if (idx >= 0) throw new Error(`task de id ${id} não encontrada!`)
+    if (idx < 0) throw new Error(`task de id ${id} não encontrada!`)
     return this._tasks[idx];
   }
 
