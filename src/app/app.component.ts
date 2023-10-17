@@ -47,8 +47,10 @@ export class AppComponent {
     console.log(memorybox)
 
     /*TESTES DE TASKSERVICE*/
+    console.log(this.taskService.generateID());
     this.taskService.inserir(task1);
     this.taskService.inserir(task2);
+    console.log(this.taskService.generateID());
 
     console.log(this.taskService.listar());
     console.log(`${this.taskService.get(1)} \n ${this.taskService.get(2)}`)
