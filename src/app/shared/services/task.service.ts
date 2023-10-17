@@ -39,7 +39,6 @@ export class TaskService {
     }
 
     (task as any)[fieldName] = fieldValue;
-    return true;
   }
 
   remover(id: number) {
