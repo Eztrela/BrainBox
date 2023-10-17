@@ -19,20 +19,17 @@ export class TagService {
 
   inserir(tag: Tag) {
     let idx = this.localizar(tag.id);
-    if (idx < 0) {
-      this._tags.push(tag);
-    } else {
-      this._tags[idx] = tag;
-    }
+    if (idx >= 0) throw new Error(`tag de id ${tag.id} já existe!`);
+    this._tags.push(tag);
   }
 
   editar(id: number, fieldName: string, fieldValue: number | string | Date) {
     let idx: number = this.localizar(id);
-    if (idx < 0) return false;
+    if (idx < 0) throw new Error(`tag de id ${id} não encontrada!`);
 
     let task = this._tags[idx];
 
-    if (!(fieldName in task)) return false;
+    if (!(fieldName in task)) throw new Error(`atributo ${fieldName} inválido!`);
 
     (task as any)[fieldName] = fieldValue;
     return true;
@@ -40,20 +37,15 @@ export class TagService {
 
   remover(id: number) {
     let idx = this.localizar(id);
-    if (idx >= 0) {
-      return this._tags.splice(idx, 1)[0];
-    } else {
-      return false;
-    }
+    if (idx < 0) throw new Error(`tag de id ${id} não encontrada!`);
+    return this._tags.splice(idx, 1)[0];
   }
 
   get(id: number): Tag | false {
     let idx: number = this.localizar(id);
-    if (idx >= 0) {
-      return this._tags[idx];
-    } else {
-      return false;
-    }
+    if (idx >= 0) throw new Error(`tag de id ${id} não encontrada!`)
+    return this._tags[idx];
+
   }
 
   localizar(id: number): number {
