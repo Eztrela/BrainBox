@@ -43,7 +43,7 @@ export class TagService {
 
   get(id: number): Tag | false {
     let idx: number = this.localizar(id);
-    if (idx >= 0) throw new Error(`tag de id ${id} não encontrada!`)
+    if (idx < 0) throw new Error(`tag de id ${id} não encontrada!`)
     return this._tags[idx];
 
   }
