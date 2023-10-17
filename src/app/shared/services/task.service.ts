@@ -19,20 +19,17 @@ export class TaskService {
 
   inserir(task: Task) {
     let idx = this.localizar(task.id);
-    if (idx < 0) {
-      this._tasks.push(task);
-    } else {
-      this._tasks[idx] = task;
-    }
+    if (idx >= 0) throw new Error(`task de id ${task.id} já existe!`);
+    this._tasks.push(task);
   }
 
   editar(id: number, fieldName: string, fieldValue: number | string | Date) {
     let idx: number = this.localizar(id);
-    if (idx < 0) return false;
+    if (idx < 0) throw new Error(`task de id ${id} não encontrada!`);
 
     let task = this._tasks[idx];
 
-    if (!(fieldName in task)) return false;
+    if (!(fieldName in task)) throw new Error(`atributo ${fieldName} inválido!`);
 
     (task as any)[fieldName] = fieldValue;
     return true;
@@ -40,20 +37,14 @@ export class TaskService {
 
   remover(id: number) {
     let idx = this.localizar(id);
-    if (idx >= 0) {
-      return this._tasks.splice(idx, 1)[0];
-    } else {
-      return false;
-    }
+    if (idx < 0) throw new Error(`task de id ${id} não encontrada!`);
+    return this._tasks.splice(idx, 1)[0];
   }
 
   get(id: number): Task | false {
     let idx: number = this.localizar(id);
-    if (idx >= 0) {
-      return this._tasks[idx];
-    } else {
-      return false;
-    }
+    if (idx >= 0) throw new Error(`task de id ${id} não encontrada!`)
+    return this._tasks[idx];
   }
 
   localizar(id: number): number {
