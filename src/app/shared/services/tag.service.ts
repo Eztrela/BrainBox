@@ -27,11 +27,11 @@ export class TagService {
     let idx: number = this.localizar(id);
     if (idx < 0) throw new Error(`tag de id ${id} não encontrada!`);
 
-    let task = this._tags[idx];
+    let tag = this._tags[idx];
 
-    if (!(fieldName in task)) throw new Error(`atributo ${fieldName} inválido!`);
+    if (!(fieldName in tag)) throw new Error(`atributo ${fieldName} inválido!`);
 
-    (task as any)[fieldName] = fieldValue;
+    (tag as any)[fieldName] = fieldValue;
     return true;
   }
 
