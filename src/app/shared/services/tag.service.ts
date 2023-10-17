@@ -30,6 +30,9 @@ export class TagService {
     let tag = this._tags[idx];
 
     if (!(fieldName in tag)) throw new Error(`atributo ${fieldName} inválido!`);
+    if (typeof fieldValue !== typeof (tag as any)[fieldName]) {
+      throw new Error(`valor a ser atualizado é inválido! ${fieldValue}`);
+    }
 
     (tag as any)[fieldName] = fieldValue;
     return true;
