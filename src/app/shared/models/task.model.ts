@@ -12,6 +12,8 @@ export class Task {
     private _priority: number;
     private _tags: Array<Tag>;
 
+
+
     constructor(id: number, title:string, description: string, status: string, datetimeDue: Date, priority: number) {
       this._id = id;
       this._title = title;

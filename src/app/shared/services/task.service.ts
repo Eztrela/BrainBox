@@ -13,6 +13,10 @@ export class TaskService {
     this._tasks = TASKS
   }
 
+  gerarId() {
+    return this._tasks.length+1;
+  }
+
   listar():Array<Task> {
     return this._tasks;
   }
@@ -30,6 +34,9 @@ export class TaskService {
     let task = this._tasks[idx];
 
     if (!(fieldName in task)) throw new Error(`atributo ${fieldName} inválido!`);
+    if (typeof fieldValue !== typeof (task as any)[fieldName]) {
+      throw new Error(`valor a ser atualizado é inválido! ${fieldValue}`);
+    }
 
     (task as any)[fieldName] = fieldValue;
     return true;
