@@ -31,7 +31,7 @@ export class TaskService {
     if (idx < 0) return false;
 
     let task = this._tasks[idx];
-    
+
     if (!(fieldName in task)) return false;
 
     (task as any)[fieldName] = fieldValue;
