@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {MemoryBox, Note, Tag} from "./shared/models";
 import {Task} from "./shared/models";
+import {TagService} from "./shared/services/tag.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import {Task} from "./shared/models";
 export class AppComponent {
   title = 'brainbox'
   memoryboxes: Array<MemoryBox> = new Array<MemoryBox>();
-  constructor() {
+  constructor(private tagService: TagService) {
     let memorybox = new MemoryBox(1, "title")
 
     this.memoryboxes.push(memorybox);
@@ -51,6 +52,16 @@ export class AppComponent {
 
     console.log(memorybox)
 
+    /*TESTES DE TAG SERVICE*/
+    this.tagService.inserir(tag1);
+    this.tagService.inserir(tag2);
+    this.tagService.inserir(tag3);
+
+    console.log(this.tagService.listar());
+    console.log(`${this.tagService.get(1)} \n ${this.tagService.get(2)}`)
+    console.log(this.tagService.editar(1, "title", "newTitle"));
+    console.log(`${this.tagService.get(1)}`)
+    console.log(this.tagService.remover(2));
 
   }
 
