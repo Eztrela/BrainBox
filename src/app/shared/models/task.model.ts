@@ -27,12 +27,7 @@ export class Task {
 
 
   inserirTag(tag: Tag) {
-    let idx = this.localizarTag(tag.id);
-    if (idx < 0) {
-      this._tags.push(tag);
-    } else {
-      this._tags[idx] = tag;
-    }
+    this._tags.push(tag);
   }
 
   localizarTag(id: number): number {
@@ -41,11 +36,7 @@ export class Task {
 
   public removerTag(id: number) {
     let idx = this.localizarTag(id);
-    if (idx >= 0) {
-      return this._tags.splice(idx, 1)[0];
-    } else {
-      return false;
-    }
+    return this._tags.splice(idx, 1)[0];
   }
 
     get id():number {

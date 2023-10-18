@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Task } from '../models';
+import {Tag, Task} from '../models';
 import { TASKS } from "../models/TASKS";
 
 @Injectable({
@@ -55,6 +55,35 @@ export class TaskService {
 
   localizar(id: number): number {
     return this._tasks.findIndex((t:Task):boolean => (t.id === id));
+  }
+
+  inserirTag(id:number, tag: Tag) {
+    let idx: number = this.localizar(id);
+    if (idx < 0) throw new Error(`task de id ${id} não encontrada!`);
+
+    let task = this._tasks[idx];
+
+    if (task.localizarTag(tag.id) >= 0) throw new Error(`tag de id ${tag.id} já pertence a task!`)
+
+    task.inserirTag(tag);
+  }
+
+  localizarTag(idTask: number, idTag: number): number {
+    let idx: number = this.localizar(idTask);
+    if (idx < 0) throw new Error(`task de id ${idTask} não encontrada!`)
+
+    return this._tasks[idx].localizarTag(idTag);
+  }
+
+  removerTag(idTask: number, idTag: number): Tag {
+    let idx = this.localizar(idTask);
+    if (idx < 0) throw new Error(`task de id ${idTask} não encontrada!`)
+
+    let task = this._tasks[idx];
+
+    if (task.localizarTag(idTag) < 0) throw new Error(`tag de id ${idTag} não pertence à task!`)
+
+    return task.removerTag(idTag);
   }
 
 }
