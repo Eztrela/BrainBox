@@ -19,17 +19,15 @@ export class UserService {
 
   inserir(user: User) {
     let idx = this.localizar(user.id);
-    if (idx < 0) {
+    if (idx >= 0) throw new Error(`O usuário de id ${user.id} já existe`)
       this._users.push(user);
-    } else {
-      this._users[idx] = user;
-    }
+    
   }
 
   editar(id: number, fieldName: string, fieldValue: string ) {
     let idx: number = this.localizar(id);
     if (idx < 0) 
-      throw new Error(`O usuário de id ${id} não foi encontrado`)
+      throw new Error(`O usuário de id ${id} não existe`)
 
     let user = this._users[idx];
 
@@ -46,14 +44,14 @@ export class UserService {
   remover(id: number) {
     let idx = this.localizar(id);
     if (idx < 0) 
-      throw new Error(`O usuário de id ${id} não foi encontrado`)
+      throw new Error(`O usuário de id ${id} não existe`)
     return this._users.splice(idx, 1)[0];
   }
 
   get(id: number): User{
     let idx: number = this.localizar(id);
     if (idx < 0) 
-      throw new Error(`O usuário de id ${id} não foi encontrado`)
+      throw new Error(`O usuário de id ${id} não existe`)
     return this._users[idx];
   }
 
