@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {MemoryboxService} from "./shared/services/memorybox.service";
 import {MemoryBox, Note, Tag, User, Task} from "./shared/models";
+import { UserService } from './shared/services/user.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,11 +10,13 @@ import {MemoryBox, Note, Tag, User, Task} from "./shared/models";
 })
 export class AppComponent {
   title = 'brainbox';
-  constructor(private memoryBoxService: MemoryboxService) {
+
+  constructor(private memoryBoxService: MemoryboxService,private userService: UserService) {
+
 
     let user3 = new User(1, "pabo@email.com", "pabo", "######", false);
     let user2 = new User(2, "lucas@email.com", "lucas", "######", false);
-    let user1 = new User(1, "nato@email.com", "nato", "######", false);
+    let user1 = new User(3, "nato@email.com", "nato", "######", false);
 
     let memorybox1 = new MemoryBox(1, "Tal", user1);
     let memorybox2 = new MemoryBox(2, "Musculação", user2);
@@ -79,6 +83,12 @@ export class AppComponent {
       console.log((e as Error).message)
     }
 
+    console.log(this.userService.listar());
+    console.log(`${this.userService.get(1)} \n ${this.userService.get(2)}`);
+    console.log(this.userService.editar(1, "username", "newUsername"));
+    console.log(`${this.userService.get(1)}`);
+    console.log(this.userService.remover(2));
+    
 
 
   }
