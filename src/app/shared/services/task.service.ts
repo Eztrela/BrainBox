@@ -68,11 +68,14 @@ export class TaskService {
     task.inserirTag(tag);
   }
 
-  localizarTag(idTask: number, idTag: number): number {
-    let idx: number = this.localizar(idTask);
-    if (idx < 0) throw new Error(`task de id ${idTask} não encontrada!`)
+  getTag(idTask: number, idTag: number): Tag {
+    let idxTask: number = this.localizar(idTask);
+    if (idxTask < 0) throw new Error(`task de id ${idTask} não encontrada!`)
 
-    return this._tasks[idx].localizarTag(idTag);
+    let idxTag: number = this._tasks[idxTask].localizarTag(idTag);
+    if (idxTag < 0 ) throw new Error(`tag de id ${idTag} não pertence a task de id ${idTask}`)
+
+    return this._tasks[idxTask].tags[idxTag];
   }
 
   removerTag(idTask: number, idTag: number): Tag {
