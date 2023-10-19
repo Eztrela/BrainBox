@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import {MemoryBox, Note, Tag} from "./shared/models";
-import {Task} from "./shared/models";
 import {MemoryboxService} from "./shared/services/memorybox.service";
-
+import {MemoryBox, Note, Tag, User, Task} from "./shared/models";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,9 +9,14 @@ import {MemoryboxService} from "./shared/services/memorybox.service";
 export class AppComponent {
   title = 'brainbox';
   constructor(private memoryBoxService: MemoryboxService) {
-    let memorybox1 = new MemoryBox(1, "Tal")
-    let memorybox2 = new MemoryBox(2, "Musculação")
-    let memorybox3 = new MemoryBox(3, "Machine Learning")
+
+    let user3 = new User(1, "pabo@email.com", "pabo", "######", false);
+    let user2 = new User(2, "lucas@email.com", "lucas", "######", false);
+    let user1 = new User(1, "nato@email.com", "nato", "######", false);
+
+    let memorybox1 = new MemoryBox(1, "Tal", user1);
+    let memorybox2 = new MemoryBox(2, "Musculação", user2);
+    let memorybox3 = new MemoryBox(3, "Machine Learning", user3);
 
     let task1 = new Task(1, "Resumo Datawarehouses", "Lorem ipsum dolor sit amet, adipiscing enum", "new", new Date(2050, 10, 22), 3);
     let task2 = new Task(2, "Lavar louça", "Tá na cara", "new", new Date(2200, 10, 22), 1);

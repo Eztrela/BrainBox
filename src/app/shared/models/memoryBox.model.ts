@@ -1,19 +1,19 @@
-import {Tag} from "./tag.model";
-import {Note} from "./note.model";
-import {Task} from "./task.model";
+import {Tag, Note, Task, User} from "../models";
 
 export class MemoryBox {
     /* Model class for Task */
 
     private readonly _id: number;
+    private readonly _user: User;
     private _title: string;
     private _datetimeCreated: Date;
     private _tags: Array<Tag>;
     private _tasks: Array<Task>;
     private _notes: Array<Note>;
 
-    constructor(id: number, title:string) {
+    constructor(id: number, title:string, user:User) {
       this._id = id;
+      this._user = user;
       this._title = title;
       this._datetimeCreated = new Date();
       this._tasks = new Array<Task>;
@@ -64,6 +64,10 @@ export class MemoryBox {
       return this._id;
     }
 
+    get user():User {
+      return this._user;
+    }
+
     get title(): string {
       return this._title;
     }
@@ -90,6 +94,7 @@ export class MemoryBox {
 
     toString(): string {
       return `MemoryBox ${this._id}
+      , user: ${this._user.username}
       , title:${this._title}
       , created at: ${this._datetimeCreated}
       , taks: ${this._tasks}
