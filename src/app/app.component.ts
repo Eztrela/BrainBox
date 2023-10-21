@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import {MemoryBox, Note, Tag, User, Task} from "./shared/models";
-import {TagService} from "./shared/services/tag.service";
-import {MemoryboxService} from "./shared/services/memorybox.service";
+import { MemoryBox, Note, Tag, User, Task } from "./shared/models";
+import { TagService } from "./shared/services/tag.service";
+import { MemoryboxService } from "./shared/services/memorybox.service";
 import { UserService } from './shared/services/user.service';
+import { TaskService } from "./shared/services/task.service";
+
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,7 @@ import { UserService } from './shared/services/user.service';
 export class AppComponent {
   title = 'brainbox';
 
-  constructor(private memoryBoxService: MemoryboxService,private userService: UserService, private tagService: TagService) {
+  constructor(private memoryBoxService: MemoryboxService,private userService: UserService, private tagService: TagService, private taskService: TaskService) {
 
     let user3 = new User(1, "pabo@email.com", "pabo", "######", false);
     let user2 = new User(2, "lucas@email.com", "lucas", "######", false);
@@ -33,6 +35,49 @@ export class AppComponent {
     let tag1 = new Tag(1, "graduação", "#FF5733");
     let tag2 = new Tag(2, "self-care", "#4CFF33");
     let tag3 = new Tag(3, "estágio", "#33B2FF");
+    
+    /*TESTES DE TASKSERVICE*/
+    try {
+      /* Testando generateID */
+      console.log(this.taskService.generateID());
+      this.taskService.inserir(task1);
+      this.taskService.inserir(task2);
+      console.log(this.taskService.generateID());
+
+      /* Testando inserção e getter */
+      console.log(this.taskService.listar());
+      console.log(`${this.taskService.get(1)} \n ${this.taskService.get(2)}`)
+
+      /* Testando edição */
+      this.taskService.editar(1, "title", "Resumo BI");
+
+      /* Adicionar tags à task1 */
+      this.taskService.inserirTag(1, tag1);
+      this.taskService.inserirTag(1, tag2);
+      this.taskService.inserirTag(1, tag3);
+
+      /* Adicionar tags à task2 */
+      this.taskService.inserirTag(2, tag1);
+      this.taskService.inserirTag(2, tag2);
+
+      /* Localizar tags de task1 */
+      console.log(this.taskService.localizarTag(1, 1));
+      console.log(this.taskService.localizarTag(1, 2));
+      console.log(this.taskService.localizarTag(1, 3));
+
+      /* Remover tags de task1 */
+      console.log(this.taskService.removerTag(1, 1));
+      console.log(this.taskService.removerTag(1, 2));
+      console.log(this.taskService.localizarTag(1,1));
+
+      /* Averiguando mudanças em task1 */
+      console.log(`${this.taskService.get(1)}`)
+
+      /* Removendo task2 */
+      console.log(this.taskService.remover(2));
+      } catch (e) {
+        console.log((e as Error).message)
+    }
     
     /* Testes de memoryBoxService */
     try {
@@ -117,6 +162,7 @@ export class AppComponent {
 
       /* Remover tag 2*/
       console.log(this.tagService.remover(2));
+      
     } catch (e) {
       console.log((e as Error).message);
     }
