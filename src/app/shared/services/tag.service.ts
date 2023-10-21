@@ -48,7 +48,7 @@ export class TagService {
     return this._tags.splice(idx, 1)[0];
   }
 
-  get(id: number): Tag | false {
+  get(id: number): Tag {
     let idx: number = this.localizar(id);
     if (idx < 0) throw new Error(`tag de id ${id} não encontrada!`)
     return this._tags[idx];
