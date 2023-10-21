@@ -19,11 +19,9 @@ export class NoteService {
 
   inserir(note: Note) {
     let idx = this.localizar(note.id);
-    if (idx < 0) {
-      this._notes.push(note);
-    } else {
-      this._notes[idx] = note;
-    }
+    if (idx >= 0) throw new Error(`Anotação de id ${note.id} já existe`);
+    this._notes.push(note);
+    
   }
 
   editar(id: number, fieldName: string, fieldValue: number | string ) {
