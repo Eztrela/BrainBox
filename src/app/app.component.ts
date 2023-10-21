@@ -4,7 +4,7 @@ import { TagService } from "./shared/services/tag.service";
 import { MemoryboxService } from "./shared/services/memorybox.service";
 import { UserService } from './shared/services/user.service';
 import { TaskService } from "./shared/services/task.service";
-
+import { NoteService } from './shared/services/note.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,7 @@ import { TaskService } from "./shared/services/task.service";
 })
 export class AppComponent {
   title = 'brainbox';
-
-  constructor(private memoryBoxService: MemoryboxService,private userService: UserService, private tagService: TagService, private taskService: TaskService) {
+  constructor(private memoryBoxService: MemoryboxService,private userService: UserService, private tagService: TagService, private taskService: TaskService, private noteService: NoteService) {
 
     let user3 = new User(1, "pabo@email.com", "pabo", "######", false);
     let user2 = new User(2, "lucas@email.com", "lucas", "######", false);
@@ -61,14 +60,14 @@ export class AppComponent {
       this.taskService.inserirTag(2, tag2);
 
       /* Localizar tags de task1 */
-      console.log(this.taskService.localizarTag(1, 1));
-      console.log(this.taskService.localizarTag(1, 2));
-      console.log(this.taskService.localizarTag(1, 3));
+      console.log(this.taskService.localizar(1));
+      console.log(this.taskService.localizar(2));
+      console.log(this.taskService.localizar(3));
 
       /* Remover tags de task1 */
       console.log(this.taskService.removerTag(1, 1));
       console.log(this.taskService.removerTag(1, 2));
-      console.log(this.taskService.localizarTag(1,1));
+      console.log(this.taskService.localizar(1));
 
       /* Averiguando mudanças em task1 */
       console.log(`${this.taskService.get(1)}`)
@@ -143,7 +142,7 @@ export class AppComponent {
     }
     
 
-    /*TESTES DE TAG SERVICE*/
+    
     try {
       /* Geração de ID */
       console.log(this.tagService.generateID());
@@ -163,6 +162,21 @@ export class AppComponent {
       /* Remover tag 2*/
       console.log(this.tagService.remover(2));
       
+    } catch (e) {
+      console.log((e as Error).message);
+    }
+
+    /*TESTES DE NOTE SERVICE*/
+    try {
+      this.noteService.inserir(note1);
+      this.noteService.inserir(note2);
+
+      console.log(this.noteService.listar());
+      console.log(`${this.noteService.get(1)} \n ${this.noteService.get(2)}`);
+      console.log(this.noteService.editar(1, "content", "newContent"));
+      console.log(`${this.noteService.get(1)}`);
+      console.log(this.noteService.remover(2));
+      console.log(this.noteService.localizar(2));
     } catch (e) {
       console.log((e as Error).message);
     }
