@@ -16,8 +16,8 @@ export class AppComponent {
 
     this.memoryboxes.push(memorybox);
 
-    let task1 = new Task(1, "title1", "description", "new", new Date(2020, 10, 22), 3);
-    let task2 = new Task(2, "title2", "description", "new", new Date(2020, 10, 22), 3);
+    let task1 = new Task(1, "Resumo Datawarehouses", "Lorem ipsum dolor sit amet, adipiscing enum", "new", new Date(2050, 10, 22), 3);
+    let task2 = new Task(2, "Lavar louça", "Tá na cara", "new", new Date(2200, 10, 22), 1);
 
     memorybox.inserirTask(task1);
     memorybox.inserirTask(task2);
@@ -26,8 +26,8 @@ export class AppComponent {
     console.log(memorybox.localizarTask(123451));
     console.log(this.memoryboxes[0].removerTask(2));
 
-    let note1 = new Note(1, "content1");
-    let note2 = new Note(2, "content2");
+    let note1 = new Note(1, "Lorem ipsum");
+    let note2 = new Note(2, "Ipsum dolor");
 
     memorybox.inserirNote(note1);
     memorybox.inserirNote(note2);
@@ -36,9 +36,9 @@ export class AppComponent {
     console.log(memorybox.localizarNote(123451));
     console.log(this.memoryboxes[0].removerNote(2));
 
-    let tag1 = new Tag(1, "title1", "#00000");
-    let tag2 = new Tag(2, "title2", "#00000");
-    let tag3 = new Tag(3, "title3", "#00000");
+    let tag1 = new Tag(1, "graduação", "#FF5733");
+    let tag2 = new Tag(2, "self-care", "#4CFF33");
+    let tag3 = new Tag(3, "estágio", "#33B2FF");
 
     memorybox.inserirTag(tag1);
     memorybox.inserirTag(tag2);
@@ -53,17 +53,27 @@ export class AppComponent {
     console.log(memorybox)
 
     /*TESTES DE TAG SERVICE*/
-    console.log(this.tagService.generateID());
-    this.tagService.inserir(tag1);
-    this.tagService.inserir(tag2);
-    this.tagService.inserir(tag3);
-    console.log(this.tagService.generateID());
+    try {
+      /* Geração de ID */
+      console.log(this.tagService.generateID());
+      this.tagService.inserir(tag1);
+      this.tagService.inserir(tag2);
+      this.tagService.inserir(tag3);
+      console.log(this.tagService.generateID());
 
-    console.log(this.tagService.listar());
-    console.log(`${this.tagService.get(1)} \n ${this.tagService.get(2)}`)
-    console.log(this.tagService.editar(1, "title", "newTitle"));
-    console.log(`${this.tagService.get(1)}`)
-    console.log(this.tagService.remover(2));
+      /* Teste listagem e getters */
+      console.log(this.tagService.listar());
+      console.log(`${this.tagService.get(1)} \n ${this.tagService.get(2)}`)
+
+      /* Teste edição */
+      console.log(this.tagService.editar(1, "title", "newTitle"));
+      console.log(`${this.tagService.get(1)}`)
+
+      /* Remover tag 2*/
+      console.log(this.tagService.remover(2));
+    } catch (e) {
+      console.log((e as Error).message);
+    }
 
   }
 
