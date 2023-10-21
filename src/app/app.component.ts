@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {MemoryboxService} from "./shared/services/memorybox.service";
 import {MemoryBox, Note, Tag, User, Task} from "./shared/models";
+import {TagService} from "./shared/services/tag.service";
+import {MemoryboxService} from "./shared/services/memorybox.service";
 import { UserService } from './shared/services/user.service';
 
 @Component({
@@ -11,8 +12,7 @@ import { UserService } from './shared/services/user.service';
 export class AppComponent {
   title = 'brainbox';
 
-  constructor(private memoryBoxService: MemoryboxService,private userService: UserService) {
-
+  constructor(private memoryBoxService: MemoryboxService,private userService: UserService, private tagService: TagService) {
 
     let user3 = new User(1, "pabo@email.com", "pabo", "######", false);
     let user2 = new User(2, "lucas@email.com", "lucas", "######", false);
@@ -33,7 +33,7 @@ export class AppComponent {
     let tag1 = new Tag(1, "graduação", "#FF5733");
     let tag2 = new Tag(2, "self-care", "#4CFF33");
     let tag3 = new Tag(3, "estágio", "#33B2FF");
-
+    
     /* Testes de memoryBoxService */
     try {
       this.memoryBoxService.inserir(memorybox1);
@@ -82,14 +82,44 @@ export class AppComponent {
     } catch (e) {
       console.log((e as Error).message)
     }
-
-    console.log(this.userService.listar());
-    console.log(`${this.userService.get(1)} \n ${this.userService.get(2)}`);
-    console.log(this.userService.editar(1, "username", "newUsername"));
-    console.log(`${this.userService.get(1)}`);
-    console.log(this.userService.remover(2));
+    
+    /*TESTES DE USER SERVICE*/
+    try {
+      this.userService.inserir(user1);
+      this.userService.inserir(user2);
+      this.userService.inserir(user3);
+      console.log(this.userService.listar());
+      console.log(`${this.userService.get(1)} \n ${this.userService.get(2)}`);
+      console.log(this.userService.editar(1, "username", "newUsername"));
+      console.log(`${this.userService.get(1)}`);
+      console.log(this.userService.remover(2));
+    } catch (e) {
+      console.log((e as Error).message);
+    }
     
 
+    /*TESTES DE TAG SERVICE*/
+    try {
+      /* Geração de ID */
+      console.log(this.tagService.generateID());
+      this.tagService.inserir(tag1);
+      this.tagService.inserir(tag2);
+      this.tagService.inserir(tag3);
+      console.log(this.tagService.generateID());
+
+      /* Teste listagem e getters */
+      console.log(this.tagService.listar());
+      console.log(`${this.tagService.get(1)} \n ${this.tagService.get(2)}`)
+
+      /* Teste edição */
+      console.log(this.tagService.editar(1, "title", "newTitle"));
+      console.log(`${this.tagService.get(1)}`)
+
+      /* Remover tag 2*/
+      console.log(this.tagService.remover(2));
+    } catch (e) {
+      console.log((e as Error).message);
+    }
 
   }
 
