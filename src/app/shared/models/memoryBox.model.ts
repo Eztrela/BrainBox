@@ -1,19 +1,19 @@
-import {Tag} from "./tag.model";
-import {Note} from "./note.model";
-import {Task} from "./task.model";
+import {Tag, Note, Task, User} from "../models";
 
 export class MemoryBox {
     /* Model class for Task */
 
     private readonly _id: number;
+    private readonly _user: User;
     private _title: string;
     private _datetimeCreated: Date;
     private _tags: Array<Tag>;
     private _tasks: Array<Task>;
     private _notes: Array<Note>;
 
-    constructor(id: number, title:string) {
+    constructor(id: number, title:string, user:User) {
       this._id = id;
+      this._user = user;
       this._title = title;
       this._datetimeCreated = new Date();
       this._tasks = new Array<Task>;
@@ -22,12 +22,7 @@ export class MemoryBox {
     }
 
     inserirTask(task: Task) {
-      let idx = this.localizarTask(task.id);
-      if (idx < 0) {
-        this._tasks.push(task);
-      } else {
-        this._tasks[idx] = task;
-      }
+      this._tasks.push(task);
     }
 
     localizarTask(id: number): number {
@@ -36,20 +31,11 @@ export class MemoryBox {
 
     removerTask(id: number) {
       let idx = this.localizarTask(id);
-      if (idx >= 0) {
-        return this._tasks.splice(idx, 1)[0];
-      } else {
-      return false;
-      }
+      return this._tasks.splice(idx, 1)[0];
     }
 
     inserirNote(note: Note) {
-      let idx = this.localizarNote(note.id);
-      if (idx < 0) {
-        this._notes.push(note);
-      } else {
-        this._notes[idx] = note;
-      }
+      this._notes.push(note);
     }
 
     localizarNote(id: number): number {
@@ -58,20 +44,11 @@ export class MemoryBox {
 
     public removerNote(id: number) {
       let idx = this.localizarNote(id);
-      if (idx >= 0) {
-        return this._notes.splice(idx, 1)[0];
-      } else {
-        return false;
-      }
+      return this._notes.splice(idx, 1)[0];
     }
 
     inserirTag(tag: Tag) {
-      let idx = this.localizarTag(tag.id);
-      if (idx < 0) {
-        this._tags.push(tag);
-      } else {
-        this._tags[idx] = tag;
-      }
+      this._tags.push(tag);
     }
 
     localizarTag(id: number): number {
@@ -80,15 +57,15 @@ export class MemoryBox {
 
     public removerTag(id: number) {
       let idx = this.localizarTag(id);
-      if (idx >= 0) {
-        return this._tags.splice(idx, 1)[0];
-      } else {
-        return false;
-      }
+      return this._tags.splice(idx, 1)[0];
     }
 
     get id():number {
       return this._id;
+    }
+
+    get user():User {
+      return this._user;
     }
 
     get title(): string {
@@ -117,6 +94,7 @@ export class MemoryBox {
 
     toString(): string {
       return `MemoryBox ${this._id}
+      , user: ${this._user.username}
       , title:${this._title}
       , created at: ${this._datetimeCreated}
       , taks: ${this._tasks}

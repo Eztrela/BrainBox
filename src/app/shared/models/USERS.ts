@@ -1,1 +1,1 @@
-export const USUARIOS = [];
+export const USERS = [];
