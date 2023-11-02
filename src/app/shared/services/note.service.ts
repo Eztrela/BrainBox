@@ -3,6 +3,7 @@ import {Note} from '../models';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import { catchError } from "rxjs/operators";
+import {INote} from "../interfaces/inote";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,12 @@ export class NoteService {
 
   constructor(private httpClient: HttpClient) {}
 
-  create(data:Note): Observable<Note> {
+  create(note:Note): Observable<Note> {
     const url_resource: string = `${this._url}/${this._resource}`;
+    const data: INote = new class implements INote {
+      content: string = note.content;
+      id: number = note.id;
+    }
     return this.httpClient.post<Note>(
       url_resource,
       JSON.stringify(data),
