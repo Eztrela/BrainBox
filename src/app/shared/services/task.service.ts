@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Task, Tag} from '../models';
-import { TASKS } from "../models/TASKS";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable, Subscription} from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, Subscription } from "rxjs";
+import { PtaskPipe } from "../pipes/ptask.pipe";
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,10 @@ export class TaskService {
 
   create(data:Task): Observable<Task> {
     const url_resource: string = `${this._url}/${this._resource}`;
+    const task_pipe = new PtaskPipe();
     return this.httpClient.post<Task>(
       url_resource,
-      JSON.stringify(data),
+      JSON.stringify(task_pipe.transform(data)),
       this.httpOptions
     );
   }
