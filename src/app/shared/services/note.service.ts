@@ -47,7 +47,7 @@ export class NoteService {
 
   update(id:number, data:Note): Observable<Note> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
-    return this.httpClient.post<Note>(
+    return this.httpClient.put<Note>(
       url_resource,
       JSON.stringify(this._notePipe.transform(data)),
       this.httpOptions

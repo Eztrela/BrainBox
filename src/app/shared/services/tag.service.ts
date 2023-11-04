@@ -47,7 +47,7 @@ export class TagService {
 
   update(id:number, data:Tag): Observable<Tag> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
-    return this.httpClient.post<Tag>(
+    return this.httpClient.put<Tag>(
       url_resource,
       JSON.stringify(this._tagPipe.transform(data)),
       this.httpOptions

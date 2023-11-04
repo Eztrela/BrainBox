@@ -46,7 +46,7 @@ export class TaskService {
 
   update(id:number, data:Task): Observable<Task> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
-    return this.httpClient.post<Task>(
+    return this.httpClient.put<Task>(
       url_resource,
       JSON.stringify(this._taskPipe.transform(data)),
       this.httpOptions
