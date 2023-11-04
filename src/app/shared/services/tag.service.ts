@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Note, Tag} from "../models";
-import {TAGS} from "../models/TAGS";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import { Tag } from "../models";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { PtagPipe } from "../pipes/ptag.pipe";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class TagService {
 
   private _url = `http://localhost:3000`;
   private _resource: string = "tags";
+  private _tagPipe = new PtagPipe();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,41 +22,41 @@ export class TagService {
 
   constructor(private httpClient: HttpClient) {}
 
-  create(data:Note): Observable<Note> {
+  create(data:Tag): Observable<Tag> {
     const url_resource: string = `${this._url}/${this._resource}`;
-    return this.httpClient.post<Note>(
+    return this.httpClient.post<Tag>(
       url_resource,
-      JSON.stringify(data),
+      JSON.stringify(this._tagPipe.transform(data)),
       this.httpOptions
     );
   }
 
-  getById(id:number): Observable<Note> {
+  getById(id:number): Observable<Tag> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
-    return this.httpClient.get<Note>(
+    return this.httpClient.get<Tag>(
       url_resource
     );
   }
 
-  getAll(): Observable<Note[]> {
+  getAll(): Observable<Tag[]> {
     const url_resource: string = `${this._url}/${this._resource}`;
-    return this.httpClient.get<Note[]>(
+    return this.httpClient.get<Tag[]>(
       url_resource
     );
   }
 
-  update(id:number, data:Note): Observable<Note> {
+  update(id:number, data:Tag): Observable<Tag> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
-    return this.httpClient.post<Note>(
+    return this.httpClient.post<Tag>(
       url_resource,
-      JSON.stringify(data),
+      JSON.stringify(this._tagPipe.transform(data)),
       this.httpOptions
     );
   }
 
-  delete(id:number): Observable<Note> {
+  delete(id:number): Observable<Tag> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
-    return this.httpClient.delete<Note>(
+    return this.httpClient.delete<Tag>(
       url_resource
     );
   }

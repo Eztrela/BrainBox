@@ -11,6 +11,7 @@ export class TaskService {
 
   private _url = `http://localhost:3000`;
   private _resource: string = "tasks";
+  private _taskPipe = new PtaskPipe();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,10 +23,9 @@ export class TaskService {
 
   create(data:Task): Observable<Task> {
     const url_resource: string = `${this._url}/${this._resource}`;
-    const task_pipe = new PtaskPipe();
     return this.httpClient.post<Task>(
       url_resource,
-      JSON.stringify(task_pipe.transform(data)),
+      JSON.stringify(this._taskPipe.transform(data)),
       this.httpOptions
     );
   }
@@ -48,7 +48,7 @@ export class TaskService {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
     return this.httpClient.post<Task>(
       url_resource,
-      JSON.stringify(data),
+      JSON.stringify(this._taskPipe.transform(data)),
       this.httpOptions
     );
   }
@@ -58,6 +58,17 @@ export class TaskService {
     return this.httpClient.delete<Task>(
       url_resource
     );
+  }
+
+  getTag(idTask: number, idTag: number) {
+    return this.getById(idTag).subscribe((task: Task)=> {
+      if (task === undefined) throw new Error(`task de id ${idTag} não encontrada!`);
+
+      let idxTag: number = task.localizarTag(idTag);
+      if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a task de id ${idTask}`)
+
+      return task.tags[idxTag];
+    });
   }
 
   inserirTag(id:number, tag: Tag) {
@@ -71,26 +82,15 @@ export class TaskService {
 
   }
 
-  async getTag(idTask: number, idTag: number) {
-    return this.getById(idTag).subscribe((task: Task)=> {
+  removerTag(idTask: number, idTag: number) {
+    return this.getById(idTask).subscribe((task: Task) => {
       if (task === undefined) throw new Error(`task de id ${idTag} não encontrada!`);
 
       let idxTag: number = task.localizarTag(idTag);
       if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a task de id ${idTask}`)
 
-      return task.tags[idxTag];
+      return task.removerTag(idTag);
     });
   }
-/*
-  removerTag(idTask: number, idTag: number): Tag {
-    let idx = this.localizar(idTask);
-    if (idx < 0) throw new Error(`task de id ${idTask} não encontrada!`)
-
-    let task = this._tasks[idx];
-
-    if (task.localizarTag(idTag) < 0) throw new Error(`tag de id ${idTag} não pertence à task!`)
-
-    return task.removerTag(idTag);
-  }*/
 
 }

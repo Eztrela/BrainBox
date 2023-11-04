@@ -3,7 +3,6 @@ import {Note} from '../models';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import { catchError } from "rxjs/operators";
-import {INote} from "../interfaces/inote";
 import { PnotePipe } from "../pipes/pnote.pipe";
 
 @Injectable({
@@ -13,6 +12,7 @@ export class NoteService {
 
   private _url = `http://localhost:3000`;
   private _resource: string = "notes";
+  private _notePipe = new PnotePipe();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,10 +24,9 @@ export class NoteService {
 
   create(note:Note): Observable<Note> {
     const url_resource: string = `${this._url}/${this._resource}`;
-    const note_pipe = new PnotePipe();
     return this.httpClient.post<Note>(
       url_resource,
-      JSON.stringify(note_pipe.transform(note)),
+      JSON.stringify(this._notePipe.transform(note)),
       this.httpOptions
     );
   }
@@ -50,7 +49,7 @@ export class NoteService {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
     return this.httpClient.post<Note>(
       url_resource,
-      JSON.stringify(data),
+      JSON.stringify(this._notePipe.transform(data)),
       this.httpOptions
     );
   }
