@@ -12,11 +12,14 @@ import {MatInputModule} from "@angular/material/input";
 
 import {NavigationComponent} from "./navigation/navigation.component";
 import {ToolbarComponent} from "./toolbar/toolbar.component";
+import { MemoryboxListingComponent } from './memorybox-listing/memorybox-listing.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
     NavigationComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    MemoryboxListingComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import {ToolbarComponent} from "./toolbar/toolbar.component";
     MatButtonModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
   exports: [
     NavigationComponent,
