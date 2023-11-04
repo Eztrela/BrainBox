@@ -1,0 +1,26 @@
+.top-toolbar {
+  background: #30343F;
+}
+
+.create-memorybox-button {
+  margin-left: 2rem;
+}
+
+.search-input {
+  color: azure;
+  font-family: "Titillium Web", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 1.18rem;
+  text-align: center;
+  padding: 0.2rem;
+  margin-left: 2rem;
+
+
+  border-style: none;
+  border-radius: 5rem;
+  background: #1E1E24;
+  width: 43rem;
+  height: 2rem;
+}
