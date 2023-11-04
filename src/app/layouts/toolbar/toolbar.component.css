@@ -2,8 +2,14 @@
   background: #30343F;
 }
 
-.create-memorybox-button {
+.mat-mdc-unelevated-button {
   margin-left: 2rem;
+  font-family: "Titillium Web", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.18rem;
+  text-align: center;
 }
 
 .search-input {
