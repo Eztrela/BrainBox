@@ -24,8 +24,9 @@ export class AppComponent {
     let user1 = new User(3, "nato@email.com", "nato", "######", false);
 
     let memorybox1 = new MemoryBox(1, "Tal", user1);
-    let memorybox2 = new MemoryBox(2, "Musculação", user2);
-    let memorybox3 = new MemoryBox(3, "Machine Learning", user3);
+    let memorybox2 = new MemoryBox(2, "🦉 Business Intelligence", user2);
+    let memorybox3 = new MemoryBox(3, "️‍🏋️‍♂️ Musculação", user2)
+    let memorybox4 = new MemoryBox(4, "🤖 Machine Learning", user3);
 
     let task1 = new Task(1, "Resumo Datawarehouses", "Lorem ipsum dolor sit amet, adipiscing enum", "new", new Date(2050, 10, 22), 3);
     let task2 = new Task(2, "Lavar louça", "Tá na cara", "new", new Date(2200, 10, 22), 1);
@@ -95,11 +96,12 @@ export class AppComponent {
       this.memoryBoxService.inserir(memorybox1);
       this.memoryBoxService.inserir(memorybox2);
       this.memoryBoxService.inserir(memorybox3);
+      this.memoryBoxService.inserir(memorybox4);
 
       console.log(this.memoryBoxService.listar());
       console.log(this.memoryBoxService.get(2));
 
-      this.memoryBoxService.editar(1, "title", "PWEB1");
+      this.memoryBoxService.editar(1, "title", "🎨 Abstração de Código");
       console.log(this.memoryBoxService.get(1));
 
 
@@ -164,7 +166,6 @@ export class AppComponent {
     } catch (e) {
       console.log((e as Error).message);
     }
-
 
 
 

@@ -1,0 +1,37 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.sidenav-container {
+  background: #1E1E24;
+  color: azure;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 1.18rem;
+  padding: 1rem;
+}
+
+img {
+  margin-top: 1.22rem;
+  margin-left: 4.22rem;
+  margin-right: 4.22rem;
+}
+
+memorybox-list-item {
+  color: azure;
+}
+
+a {
+  color: azure;
+  text-decoration: none;
+}
+
+mat-divider {
+  background-color: azure;
+}

@@ -1,0 +1,22 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="sidenav-container" mode="side" opened>
+    <a href="/" class="sidenav-logo">
+      <img src="assets/img/brainbox.png" alt="brainbox-logo"/>
+    </a>
+
+    <mat-nav-list class="memorybox-list">
+
+      <div mat-subheader>MemoryBoxes</div>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item *ngFor="let memorybox of memoryboxes">
+        <div class="memorybox-list-item">
+          <a href="/"><b>•</b> {{memorybox.title}}</a>
+        </div>
+      </mat-list-item>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+</mat-sidenav-container>
