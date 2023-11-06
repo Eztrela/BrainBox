@@ -68,8 +68,8 @@ export class MemoryboxService {
   }
 
   getTag(idMemoryBox: number, idTag: number) {
-    return this.getById(idTag).subscribe((memoryBox: MemoryBox)=> {
-      if (memoryBox === undefined) throw new Error(`memoryBox de id ${idTag} não encontrada!`);
+    return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
+      if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
 
       let idxTag: number = memoryBox.localizarTag(idTag);
       if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a memoryBox de id ${idMemoryBox}`)
@@ -101,7 +101,7 @@ export class MemoryboxService {
   }
 
   getNote(idMemoryBox: number, idNote: number) {
-    return this.getById(idNote).subscribe((memoryBox: MemoryBox)=> {
+    return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
       if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
 
       let idxNote: number = memoryBox.localizarNote(idNote);
@@ -134,7 +134,7 @@ export class MemoryboxService {
   }
 
   getTask(idMemoryBox: number, idTask: number) {
-    return this.getById(idTask).subscribe((memoryBox: MemoryBox)=> {
+    return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
       if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
 
       let idxTask: number = memoryBox.localizarTask(idTask);
@@ -143,7 +143,6 @@ export class MemoryboxService {
       return memoryBox.tags[idxTask];
     });
   }
-
 
   inserirTask(idMemoryBox:number, task: Task) {
     this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
