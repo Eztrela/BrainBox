@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Note, Task} from "../shared/models";
 import {TaskService} from "../shared/services/task.service";
 import {NoteService} from "../shared/services/note.service";
@@ -8,7 +8,7 @@ import {NoteService} from "../shared/services/note.service";
   templateUrl: './listagemnotes.component.html',
   styleUrls: ['./listagemnotes.component.css']
 })
-export class ListagemnotesComponent {
+export class ListagemnotesComponent implements OnInit{
 
   notes: Note[] = [];
 

@@ -62,7 +62,7 @@ export class TaskService {
 
   getTag(idTask: number, idTag: number) {
     return this.getById(idTag).subscribe((task: Task)=> {
-      if (task === undefined) throw new Error(`task de id ${idTag} não encontrada!`);
+      if (task === undefined) throw new Error(`task de id ${idTask} não encontrada!`);
 
       let idxTag: number = task.localizarTag(idTag);
       if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a task de id ${idTask}`)

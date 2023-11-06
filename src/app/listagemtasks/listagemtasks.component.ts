@@ -6,7 +6,7 @@ import { TaskService } from "../shared/services/task.service";
   templateUrl: './listagemtasks.component.html',
   styleUrls: ['./listagemtasks.component.css']
 })
-export class ListagemtasksComponent {
+export class ListagemtasksComponent implements OnInit{
 
   tasks: Task[] = [];
 

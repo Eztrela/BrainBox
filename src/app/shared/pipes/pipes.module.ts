@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {PnotePipe} from "./pnote.pipe";
 import { PtaskPipe } from './ptask.pipe';
 import { PtagPipe } from './ptag.pipe';
+import { PuserPipe } from './puser.pipe';
+import { PmemoryboxPipe } from './pmemorybox.pipe'; 
 
 
 
@@ -10,12 +12,18 @@ import { PtagPipe } from './ptag.pipe';
   declarations: [
     PnotePipe,
     PtaskPipe,
-    PtagPipe
+    PtagPipe,
+    PuserPipe,
+    PmemoryboxPipe,
   ],
   imports: [
     CommonModule
   ], exports: [
-    PnotePipe
+    PnotePipe,
+    PtaskPipe,
+    PtagPipe,
+    PuserPipe,
+    PmemoryboxPipe
   ]
 })
 export class PipesModule { }

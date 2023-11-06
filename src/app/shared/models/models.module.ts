@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { User } from "../models";
 import { Note } from '../models';
 import { Task } from '../models';
-import { Tag } from '../models'
+import { Tag } from '../models';
+import { MemoryBox } from '../models';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { Tag } from '../models'
     User,
     Note,
     Task,
-    Tag
+    Tag,
+    MemoryBox
   ]
 })
 export class ModelsModule { }
