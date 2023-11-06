@@ -8,9 +8,14 @@ import { IUser } from "../interfaces/iuser";
 export class PuserPipe implements PipeTransform {
 
   transform(user: User): IUser {
-    return new class implements IUser{
-      
-    }
+    return new class implements IUser {
+      tags: Array<Tag> = user.tags;
+      memoryBoxes: Array<MemoryBox> = user.memoryBoxes;
+      notifications: boolean = user.notifications;
+      password: string = user.password;
+      username: string = user.username;
+      email: string = user.email;
+      id: number = user.id;
+    };
   }
-
 }
