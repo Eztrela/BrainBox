@@ -183,8 +183,8 @@ export class AppComponent {
       console.log(this.tagService.listar());
       console.log(`${this.tagService.get(1)} \n ${this.tagService.get(2)}`)
 
-      //Teste edição
-      console.log(this.tagService.editar(1, "title", "newTitle"));
+      /* Teste edição */
+      console.log(this.tagService.editar(1, "title", "Graduação"));
       console.log(`${this.tagService.get(1)}`)
 
       //Remover tag 2
@@ -203,7 +203,7 @@ export class AppComponent {
 
       console.log(this.noteService.listar());
       console.log(`${this.noteService.get(1)} \n ${this.noteService.get(2)}`);
-      console.log(this.noteService.editar(1, "content", "newContent"));
+      console.log(this.noteService.editar(1, "content", "https://www.udemy.com/course/clean-code-na-pratica/"));
       console.log(`${this.noteService.get(1)}`);
       console.log(this.noteService.remover(2));
       console.log(this.noteService.localizar(2));
