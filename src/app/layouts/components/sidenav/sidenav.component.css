@@ -1,0 +1,45 @@
+mat-sidenav-container {
+  font-family: "Titillium Web", sans-serif;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+mat-sidenav {
+  width: 17%;
+  background: #1e1e24;
+  color: azure;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 1.18rem;
+  padding: 1rem;
+}
+
+mat-sidenav-content {
+  width: 87%;
+}
+
+.page-content {
+  padding-top: 4rem;
+  padding-left: 5%;
+  padding-right: 10%;
+}
+
+img {
+  margin-top: 1.22rem;
+  margin-left: 4.22rem;
+  margin-right: 4.22rem;
+}
+
+a {
+  color: azure;
+  text-decoration: none;
+}
+
+mat-divider {
+  background-color: azure;
+}
