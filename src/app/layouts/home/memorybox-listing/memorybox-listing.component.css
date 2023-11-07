@@ -60,3 +60,7 @@ mat-divider {
 #memorybox-listing-header #header {
   padding-top: 1rem;
 }
+
+mat-divider {
+  background-color: #9593D9;
+}
