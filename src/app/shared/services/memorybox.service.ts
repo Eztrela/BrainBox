@@ -1,158 +1,172 @@
 import { Injectable } from '@angular/core';
-import {Task, Tag, Note, MemoryBox} from "../models";
-import {MEMORYBOXES} from "../models/MEMORYBOXES";
+
+import {MemoryBox, Tag, Note, Task} from "../models";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {Observable, throwError} from "rxjs";
+import { catchError } from "rxjs/operators";
+import { PmemoryboxPipe } from "../pipes/pmemorybox.pipe";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MemoryboxService {
 
-  private _memoryboxes: Array<MemoryBox>;
 
-  constructor() {
-    this._memoryboxes = MEMORYBOXES;
+  private _url = `http://localhost:3000`;
+  private _resource: string = "memoryboxes";
+  private _memoryboxPipe = new PmemoryboxPipe();
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+  // private _memoryboxes: Array<MemoryBox>;
+
+  constructor(private httpClient: HttpClient) {}
+
+
+  // generateID(): number{
+  //   return (this._memoryboxes.length > 0) ? this._memoryboxes[ this._memoryboxes.length -1].id + 1 : 1;
+  // }
+
+  create(memorybox:MemoryBox): Observable<MemoryBox> {
+    const url_resource: string = `${this._url}/${this._resource}`;
+    return this.httpClient.post<MemoryBox>(
+      url_resource,
+      JSON.stringify(this._memoryboxPipe.transform(memorybox)),
+      this.httpOptions
+    );
   }
 
-
-  generateID(): number{
-    return (this._memoryboxes.length > 0) ? this._memoryboxes[ this._memoryboxes.length -1].id + 1 : 1;
+  getById(id:number): Observable<MemoryBox> {
+    const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.get<MemoryBox>(
+      url_resource
+    );
   }
 
-  listar():Array<MemoryBox> {
-    return this._memoryboxes;
+  getAll(): Observable<MemoryBox[]> {
+    const url_resource: string = `${this._url}/${this._resource}`;
+    return this.httpClient.get<MemoryBox[]>(
+      url_resource
+    );
   }
 
-  inserir(memorybox: MemoryBox) {
-    let idx = this.localizar(memorybox.id);
-    if (idx >= 0) throw new Error(`memorybox de id ${memorybox.id} já existe!`);
-    this._memoryboxes.push(memorybox);
+  update(id:number, data:MemoryBox): Observable<MemoryBox> {
+    const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.put<MemoryBox>(
+      url_resource,
+      JSON.stringify(this._memoryboxPipe.transform(data)),
+      this.httpOptions
+    );
   }
 
-  editar(id: number, fieldName: string, fieldValue: number | string | Date) {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`memorybox de id ${id} não encontrada!`);
-
-    let task = this._memoryboxes[idx];
-
-    if (!(fieldName in task)) throw new Error(`atributo ${fieldName} inválido!`);
-    if (typeof fieldValue !== typeof (task as any)[fieldName]) {
-      throw new Error(`valor a ser atualizado é inválido! ${fieldValue}`);
-    }
-
-    (task as any)[fieldName] = fieldValue;
+  delete(id:number): Observable<MemoryBox> {
+    const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.delete<MemoryBox>(
+      url_resource
+    );
   }
 
-  remover(id: number) {
-    let idx = this.localizar(id);
-    if (idx < 0) throw new Error(`memorybox de id ${id} não encontrada!`);
-    return this._memoryboxes.splice(idx, 1)[0];
+  getTag(idMemoryBox: number, idTag: number) {
+    return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
+      if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
+
+      let idxTag: number = memoryBox.localizarTag(idTag);
+      if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a memoryBox de id ${idMemoryBox}`)
+
+      return memoryBox.tags[idxTag];
+    });
   }
 
-  get(id: number): MemoryBox {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`memorybox de id ${id} não encontrada!`)
-    return this._memoryboxes[idx];
+  inserirTag(idMemoryBox:number, tag: Tag) {
+    this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
+      if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
+      
+      if (memoryBox.localizarTag(tag.id) >= 0) throw new Error(`tag de id ${tag.id} já pertence a memoryBox!`)
+      
+      memoryBox.inserirTag(tag);
+    });
+    
+  }
+  
+  removerTag(idMemoryBox: number, idTag: number) {
+    return this.getById(idMemoryBox).subscribe((memoryBox:MemoryBox) => {
+      if (memoryBox === undefined) throw new Error(`memoryBox de id ${idTag} não encontrada!`);
+
+      let idxTag: number = memoryBox.localizarTag(idTag);
+      if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a memoryBox de id ${idMemoryBox}`)
+      
+      return memoryBox.removerTag(idTag);
+    });
   }
 
-  localizar(id: number): number {
-    return this._memoryboxes.findIndex((m:MemoryBox):boolean => (m.id === id));
+  getNote(idMemoryBox: number, idNote: number) {
+    return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
+      if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
+
+      let idxNote: number = memoryBox.localizarNote(idNote);
+      if (idxNote < 0) throw new Error(`note de id ${idNote} não pertence a memoryBox de id ${idMemoryBox}`)
+
+      return memoryBox.tags[idxNote];
+    });
   }
 
-  inserirTag(id:number, tag: Tag) {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`memorybox de id ${id} não encontrada!`);
-
-    let memorybox = this._memoryboxes[idx];
-
-    if (memorybox.localizarTag(tag.id) >= 0) throw new Error(`tag de id ${tag.id} já pertence a memorybox!`)
-
-    memorybox.inserirTag(tag);
+  inserirNote(idMemoryBox:number, note: Note) {
+    this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
+      if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
+      
+      if (memoryBox.localizarNote(note.id) >= 0) throw new Error(`note de id ${note.id} já pertence a memoryBox!`)
+      
+      memoryBox.inserirNote(note);
+    });
+    
   }
 
-  getTag(idMemoryBox: number, idTag: number): Tag {
-    let idxMemoryBox: number = this.localizar(idMemoryBox);
-    if (idxMemoryBox < 0) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`)
+  removerNote(idMemoryBox: number, idNote: number) {
+    return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox) => {
+      if (memoryBox === undefined) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`);
 
-    let idxTag: number = this._memoryboxes[idxMemoryBox].localizarTag(idTag);
-    if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a memorybox de id ${idMemoryBox}!`)
+      let idxNote: number = memoryBox.localizarNote(idNote);
+      if (idxNote < 0) throw new Error(`note de id ${idNote} não pertence a memorybox de id ${idMemoryBox}`)
 
-    return this._memoryboxes[idxMemoryBox].tags[idxTag];
+      return memoryBox.removerNote(idNote);
+    });
   }
 
-  removerTag(idMemoryBox: number, idTag: number): Tag {
-    let idx = this.localizar(idMemoryBox);
-    if (idx < 0) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`)
+  getTask(idMemoryBox: number, idTask: number) {
+    return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
+      if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
 
-    let memorybox = this._memoryboxes[idx];
+      let idxTask: number = memoryBox.localizarTask(idTask);
+      if (idxTask < 0) throw new Error(`note de id ${idTask} não pertence a memoryBox de id ${idMemoryBox}`)
 
-    if (memorybox.localizarTag(idTag) < 0) throw new Error(`tag de id ${idTag} não pertence à task!`)
-
-    return memorybox.removerTag(idTag);
+      return memoryBox.tags[idxTask];
+    });
   }
 
-  inserirTask(id:number, task: Task) {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`memorybox de id ${id} não encontrada!`);
-
-    let memorybox = this._memoryboxes[idx];
-
-    if (memorybox.localizarTask(task.id) >= 0) throw new Error(`task de id ${task.id} já pertence a memorybox!`)
-
-    memorybox.inserirTask(task);
+  inserirTask(idMemoryBox:number, task: Task) {
+    this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
+      if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
+      
+      if (memoryBox.localizarNote(task.id) >= 0) throw new Error(`task de id ${task.id} já pertence a memoryBox!`)
+      
+      memoryBox.inserirTask(task);
+    });
+    
   }
 
-  getTask(idMemoryBox: number, idTask: number): Task {
-    let idxMemoryBox: number = this.localizar(idMemoryBox);
-    if (idxMemoryBox < 0) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`)
+  removerTask(idMemoryBox: number, idTask: number) {
+    return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox) => {
+      if (memoryBox === undefined) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`);
 
-    let idxTask: number = this._memoryboxes[idxMemoryBox].localizarTask(idTask);
-    if (idxTask < 0) throw new Error(`task de id ${idTask} não pertence a memorybox de id ${idMemoryBox}!`)
+      let idxTask: number = memoryBox.localizarNote(idTask);
+      if (idxTask < 0) throw new Error(`note de id ${idTask} não pertence a memorybox de id ${idMemoryBox}`)
 
-    return this._memoryboxes[idxMemoryBox].tasks[idxTask];
+      return memoryBox.removerTask(idTask);
+    });
   }
-
-  removerTask(idMemoryBox: number, idTask: number): Task {
-    let idx = this.localizar(idMemoryBox);
-    if (idx < 0) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`)
-
-    let memorybox = this._memoryboxes[idx];
-
-    if (memorybox.localizarTask(idTask) < 0) throw new Error(`task de id ${idTask} não pertence à memorybox!`)
-
-    return memorybox.removerTask(idTask);
-  }
-
-  inserirNote(id:number, note: Note) {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`memorybox de id ${id} não encontrada!`);
-
-    let memorybox = this._memoryboxes[idx];
-
-    if (memorybox.localizarNote(note.id) >= 0) throw new Error(`note de id ${note.id} já pertence a memorybox!`)
-
-    memorybox.inserirNote(note);
-  }
-
-  getNote(idMemoryBox: number, idNote: number): Note {
-    let idxMemoryBox: number = this.localizar(idMemoryBox);
-    if (idxMemoryBox < 0) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`)
-
-    let idxNote: number = this._memoryboxes[idxMemoryBox].localizarNote(idNote);
-    if (idxNote < 0) throw new Error(`note de id ${idNote} não pertence a memorybox de id ${idMemoryBox}!`)
-
-    return this._memoryboxes[idxMemoryBox].notes[idxNote];
-  }
-
-  removerNote(idMemoryBox: number, idNote: number): Note {
-    let idx = this.localizar(idMemoryBox);
-    if (idx < 0) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`)
-
-    let memorybox = this._memoryboxes[idx];
-
-    if (memorybox.localizarNote(idNote) < 0) throw new Error(`note de id ${idNote} não pertence à memorybox!`)
-
-    return memorybox.removerNote(idNote);
-  }
-
-
+  
 }

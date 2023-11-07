@@ -1,0 +1,11 @@
+<div>
+  <h1>My Notes</h1>
+  <!--<button type="button" [routerLink]="/crud/create/">Create new product</button>-->
+
+  <mat-card *ngFor="let note of notes">
+    <mat-card-title>Note {{note.id}}</mat-card-title>
+    <mat-card-content>{{note.content}}</mat-card-content>
+    <!--<button type="button" [routerLink]="['/crud/update/', note.id]">Update</button>-->
+    <button mat-raised-button type="button" (click)="noteService.delete(note.id)">Remove</button>
+  </mat-card>
+</div>

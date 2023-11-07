@@ -1,4 +1,6 @@
-export class Note {
+import {INote} from "../interfaces/inote";
+
+export class Note implements INote {
   /* Model class for MemoryBox notes */
 
   private _id:number;

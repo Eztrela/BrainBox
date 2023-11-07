@@ -1,6 +1,7 @@
 import {Tag} from "./tag.model";
+import {ITask} from "../interfaces/itask";
 
-export class Task {
+export class Task implements ITask {
     /* Model class for Task */
 
     private readonly _id: number;
@@ -11,7 +12,6 @@ export class Task {
     private _datetimeDue: Date;
     private _priority: number;
     private _tags: Array<Tag>;
-
 
 
     constructor(id: number, title:string, description: string, status: string, datetimeDue: Date, priority: number) {

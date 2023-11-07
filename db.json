@@ -1,0 +1,20 @@
+{
+  "users": [],
+  "memoryBoxes": [],
+  "tags": [],
+  "tasks": [],
+  "notes": [
+    {
+      "content": "Lorem ipsum",
+      "id": 1
+    },
+    {
+      "content": "Ipsum dolor",
+      "id": 2
+    },
+    {
+      "content": "Sit amet",
+      "id": 3
+    }
+  ]
+}
