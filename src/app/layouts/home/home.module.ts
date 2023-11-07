@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import { HomeComponent } from './home.component';
 import {MemoryboxListingComponent} from "./memorybox-listing/memorybox-listing.component";
 import {MatSidenavModule} from "@angular/material/sidenav";
