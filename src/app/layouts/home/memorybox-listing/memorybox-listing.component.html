@@ -1,11 +1,27 @@
 <div mat-subheader>Suas Memory Boxes</div>
 <mat-divider></mat-divider>
 <mat-card *ngFor="let memorybox of memoryboxes">
-  <mat-card-title>
-    <a
-      mat-button
-      [routerLink]="['/memorybox/', memorybox.id]">
-      {{memorybox.title}}
-    </a>
-  </mat-card-title>
-</mat-card>
+  <ng-container id="memorybox-listing-container">
+    <mat-card *ngFor="let memorybox of memoryboxes"
+              class="memorybox-card">
+      <img mat-card-image src="https://static.vecteezy.com/system/resources/thumbnails/021/515/694/small/ai-artificial-intelligence-banner-design-illustration-vector.jpg" alt="Banner Photo">
+      <mat-card-title>{{memorybox.title}}</mat-card-title>
+      <mat-card-subtitle *ngFor="let tag of memorybox.tags">
+    <span [style.color] = "tag.color"
+          [style.font-size.rem] = "2">•</span>
+        <span>{{tag.title}}</span>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <mat-card-actions>
+          <button mat-button
+                  *ngFor="let task of memorybox.tasks">
+            {{task.title}}
+          </button>
+          <button mat-button
+                  *ngFor="let note of memorybox.notes">
+            {{note.content}}
+          </button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>

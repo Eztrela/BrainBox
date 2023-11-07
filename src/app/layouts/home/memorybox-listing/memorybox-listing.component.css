@@ -1,0 +1,16 @@
+#memorybox-listing-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.memorybox-card {
+  width: 15.45rem;
+  height: 17.45rem;
+  border-radius: 0.8rem;
+  background-color: #30343F;
+  color: azure;
+}
+
+.memorybox-card img {
+  height: 22rem;
+}
