@@ -8,13 +8,16 @@ import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
 import {ComponentsModule} from "../components/components.module";
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MemoryboxCardComponent } from './memorybox-listing/memorybox-card/memorybox-card.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    MemoryboxListingComponent
+    MemoryboxListingComponent,
+    MemoryboxCardComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +26,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCardModule,
     RouterLink,
     ComponentsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonModule,
   ],
   exports: [
     HomeComponent
