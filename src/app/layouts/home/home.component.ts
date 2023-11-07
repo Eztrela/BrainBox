@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.memoryBoxService.getAll().subscribe((arrayMemoryboxes:Array<MemoryBox>) => {
       this.memoryboxes = arrayMemoryboxes;
-      console.log(arrayMemoryboxes)
     });
   }
 }

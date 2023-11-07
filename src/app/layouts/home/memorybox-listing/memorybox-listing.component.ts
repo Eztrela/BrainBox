@@ -11,7 +11,6 @@ export class MemoryboxListingComponent implements OnInit {
   @Input() memoryboxes: Array<MemoryBox> = new Array<MemoryBox>();
 
   ngOnInit(): void {
-    console.log(this.memoryboxes);
   }
 
 }
