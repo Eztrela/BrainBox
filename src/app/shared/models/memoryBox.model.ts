@@ -4,29 +4,29 @@ export class MemoryBox {
     /* Model class for Task */
 
     private readonly _id: number;
-    private readonly _user: User;
+    private readonly _user: number;
     private _title: string;
     private _datetimeCreated: Date;
-    private _tags: Array<Tag>;
-    private _tasks: Array<Task>;
-    private _notes: Array<Note>;
+    private _tags: Array<number>;
+    private _tasks: Array<number>;
+    private _notes: Array<number>;
 
-    constructor(id: number, title:string, user:User) {
+    constructor(id: number, title:string, user:number) {
       this._id = id;
       this._user = user;
       this._title = title;
       this._datetimeCreated = new Date();
-      this._tasks = new Array<Task>;
-      this._notes = new Array<Note>;
-      this._tags = new Array<Tag>;
+      this._tasks = new Array<number>;
+      this._notes = new Array<number>;
+      this._tags = new Array<number>;
     }
 
-    inserirTask(task: Task) {
+    inserirTask(task: number) {
       this._tasks.push(task);
     }
 
     localizarTask(id: number): number {
-      return this._tasks.findIndex((t:Task):boolean => (t.id === id));
+      return this._tasks.findIndex((t:number):boolean => (t === id));
     }
 
     removerTask(id: number) {
@@ -34,12 +34,12 @@ export class MemoryBox {
       return this._tasks.splice(idx, 1)[0];
     }
 
-    inserirNote(note: Note) {
+    inserirNote(note: number) {
       this._notes.push(note);
     }
 
     localizarNote(id: number): number {
-      return this._notes.findIndex((n:Note):boolean => (n.id === id));
+      return this._notes.findIndex((n:number):boolean => (n === id));
     }
 
     public removerNote(id: number) {
@@ -47,12 +47,12 @@ export class MemoryBox {
       return this._notes.splice(idx, 1)[0];
     }
 
-    inserirTag(tag: Tag) {
+    inserirTag(tag: number) {
       this._tags.push(tag);
     }
 
     localizarTag(id: number): number {
-      return this._tags.findIndex((t:Tag):boolean => (t.id === id));
+      return this._tags.findIndex((t:number):boolean => (t === id));
     }
 
     public removerTag(id: number) {
@@ -64,7 +64,7 @@ export class MemoryBox {
       return this._id;
     }
 
-    get user():User {
+    get user(): number {
       return this._user;
     }
 
@@ -76,15 +76,15 @@ export class MemoryBox {
       return this._datetimeCreated;
     }
 
-    get tasks(): Array<Task> {
+    get tasks(): Array<number> {
       return this._tasks;
     }
 
-    get notes(): Array<Note> {
+    get notes(): Array<number> {
       return this._notes;
     }
 
-    get tags(): Array<Tag> {
+    get tags(): Array<number> {
         return this._tags;
     }
 
@@ -94,7 +94,7 @@ export class MemoryBox {
 
     toString(): string {
       return `MemoryBox ${this._id}
-      , user: ${this._user.username}
+      , user: ${this._user}
       , title:${this._title}
       , created at: ${this._datetimeCreated}
       , taks: ${this._tasks}
