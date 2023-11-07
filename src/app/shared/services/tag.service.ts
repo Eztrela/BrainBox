@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Tag} from "../models";
-import {TAGS} from "../models/TAGS";
+import { Tag } from "../models";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { PtagPipe } from "../pipes/ptag.pipe";
 
 @Injectable({
   providedIn: 'root'
@@ -8,54 +10,54 @@ import {TAGS} from "../models/TAGS";
 export class TagService {
   /* Class for handling tag CRUD logic */
 
-  private _tags: Array<Tag>;
-  constructor() {
-    this._tags = TAGS;
+  private _url = `http://localhost:3000`;
+  private _resource: string = "tags";
+  private _tagPipe = new PtagPipe();
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
   }
 
-  generateID(): number{
-    return (this._tags.length > 0) ? this._tags[ this._tags.length -1].id + 1 : 1;
+  constructor(private httpClient: HttpClient) {}
+
+  create(data:Tag): Observable<Tag> {
+    const url_resource: string = `${this._url}/${this._resource}`;
+    return this.httpClient.post<Tag>(
+      url_resource,
+      JSON.stringify(this._tagPipe.transform(data)),
+      this.httpOptions
+    );
   }
 
-  listar():Array<Tag> {
-    return this._tags;
+  getById(id:number): Observable<Tag> {
+    const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.get<Tag>(
+      url_resource
+    );
   }
 
-  inserir(tag: Tag) {
-    let idx = this.localizar(tag.id);
-    if (idx >= 0) throw new Error(`tag de id ${tag.id} já existe!`);
-    this._tags.push(tag);
+  getAll(): Observable<Tag[]> {
+    const url_resource: string = `${this._url}/${this._resource}`;
+    return this.httpClient.get<Tag[]>(
+      url_resource
+    );
   }
 
-  editar(id: number, fieldName: string, fieldValue: number | string | Date) {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`tag de id ${id} não encontrada!`);
-
-    let tag = this._tags[idx];
-
-    if (!(fieldName in tag)) throw new Error(`atributo ${fieldName} inválido!`);
-    if (typeof fieldValue !== typeof (tag as any)[fieldName]) {
-      throw new Error(`valor a ser atualizado é inválido! ${fieldValue}`);
-    }
-
-    (tag as any)[fieldName] = fieldValue;
-    return true;
+  update(id:number, data:Tag): Observable<Tag> {
+    const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.put<Tag>(
+      url_resource,
+      JSON.stringify(this._tagPipe.transform(data)),
+      this.httpOptions
+    );
   }
 
-  remover(id: number) {
-    let idx = this.localizar(id);
-    if (idx < 0) throw new Error(`tag de id ${id} não encontrada!`);
-    return this._tags.splice(idx, 1)[0];
-  }
-
-  get(id: number): Tag {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`tag de id ${id} não encontrada!`)
-    return this._tags[idx];
-
-  }
-
-  localizar(id: number): number {
-    return this._tags.findIndex((t:Tag):boolean => (t.id === id));
+  delete(id:number): Observable<Tag> {
+    const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.delete<Tag>(
+      url_resource
+    );
   }
 }

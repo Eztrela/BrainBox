@@ -1,92 +1,96 @@
 import { Injectable } from '@angular/core';
-import {Tag, Task} from '../models';
-import { TASKS } from "../models/TASKS";
+import {Task, Tag} from '../models';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, Subscription } from "rxjs";
+import { PtaskPipe } from "../pipes/ptask.pipe";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  private _tasks: Array<Task>;
+  private _url = `http://localhost:3000`;
+  private _resource: string = "tasks";
+  private _taskPipe = new PtaskPipe();
 
-  constructor() {
-    this._tasks = TASKS
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
   }
 
-  generateID(): number{
-    return (this._tasks.length > 0) ? this._tasks[ this._tasks.length -1].id + 1 : 1;
+  constructor(private httpClient: HttpClient) {}
+
+  create(data:Task): Observable<Task> {
+    const url_resource: string = `${this._url}/${this._resource}`;
+    return this.httpClient.post<Task>(
+      url_resource,
+      JSON.stringify(this._taskPipe.transform(data)),
+      this.httpOptions
+    );
   }
 
-  listar():Array<Task> {
-    return this._tasks;
+  getById(id:number): Observable<Task> {
+    const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.get<Task>(
+      url_resource
+    );
   }
 
-  inserir(task: Task) {
-    let idx = this.localizar(task.id);
-    if (idx >= 0) throw new Error(`task de id ${task.id} já existe!`);
-    this._tasks.push(task);
+  getAll(): Observable<Task[]> {
+    const url_resource: string = `${this._url}/${this._resource}`;
+    return this.httpClient.get<Task[]>(
+      url_resource
+    );
   }
 
-  editar(id: number, fieldName: string, fieldValue: number | string | Date) {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`task de id ${id} não encontrada!`);
-
-    let task = this._tasks[idx];
-
-    if (!(fieldName in task)) throw new Error(`atributo ${fieldName} inválido!`);
-    if (typeof fieldValue !== typeof (task as any)[fieldName]) {
-      throw new Error(`valor a ser atualizado é inválido! ${fieldValue}`);
-    }
-
-    (task as any)[fieldName] = fieldValue;
+  update(id:number, data:Task): Observable<Task> {
+    const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.put<Task>(
+      url_resource,
+      JSON.stringify(this._taskPipe.transform(data)),
+      this.httpOptions
+    );
   }
 
-  remover(id: number) {
-    let idx = this.localizar(id);
-    if (idx < 0) throw new Error(`task de id ${id} não encontrada!`);
-    return this._tasks.splice(idx, 1)[0];
+  delete(id:number): Observable<Task> {
+    const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.delete<Task>(
+      url_resource
+    );
   }
 
-  get(id: number): Task | false {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`task de id ${id} não encontrada!`)
-    return this._tasks[idx];
-  }
+  getTag(idTask: number, idTag: number) {
+    return this.getById(idTag).subscribe((task: Task)=> {
+      if (task === undefined) throw new Error(`task de id ${idTask} não encontrada!`);
 
-  localizar(id: number): number {
-    return this._tasks.findIndex((t:Task):boolean => (t.id === id));
+      let idxTag: number = task.localizarTag(idTag);
+      if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a task de id ${idTask}`)
+
+      return task.tags[idxTag];
+    });
   }
 
   inserirTag(id:number, tag: Tag) {
-    let idx: number = this.localizar(id);
-    if (idx < 0) throw new Error(`task de id ${id} não encontrada!`);
+    this.getById(id).subscribe((task: Task)=> {
+      if (task === undefined) throw new Error(`task de id ${id} não encontrada!`);
 
-    let task = this._tasks[idx];
+      if (task.localizarTag(tag.id) >= 0) throw new Error(`tag de id ${tag.id} já pertence a task!`)
 
-    if (task.localizarTag(tag.id) >= 0) throw new Error(`tag de id ${tag.id} já pertence a task!`)
+      task.inserirTag(tag);
+    });
 
-    task.inserirTag(tag);
   }
 
-  getTag(idTask: number, idTag: number): Tag {
-    let idxTask: number = this.localizar(idTask);
-    if (idxTask < 0) throw new Error(`task de id ${idTask} não encontrada!`)
+  removerTag(idTask: number, idTag: number) {
+    return this.getById(idTask).subscribe((task: Task) => {
+      if (task === undefined) throw new Error(`task de id ${idTag} não encontrada!`);
 
-    let idxTag: number = this._tasks[idxTask].localizarTag(idTag);
-    if (idxTag < 0 ) throw new Error(`tag de id ${idTag} não pertence a task de id ${idTask}`)
+      let idxTag: number = task.localizarTag(idTag);
+      if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a task de id ${idTask}`)
 
-    return this._tasks[idxTask].tags[idxTag];
-  }
-
-  removerTag(idTask: number, idTag: number): Tag {
-    let idx = this.localizar(idTask);
-    if (idx < 0) throw new Error(`task de id ${idTask} não encontrada!`)
-
-    let task = this._tasks[idx];
-
-    if (task.localizarTag(idTag) < 0) throw new Error(`tag de id ${idTag} não pertence à task!`)
-
-    return task.removerTag(idTag);
+      return task.removerTag(idTag);
+    });
   }
 
 }
