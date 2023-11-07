@@ -13,10 +13,12 @@ import { NoteService } from './shared/services/note.service';
 })
 export class AppComponent {
   title = 'brainbox';
+
   constructor() {
 
     /*
     private memoryBoxService: MemoryboxService,private userService: UserService, private tagService: TagService, private taskService: TaskService, private noteService: NoteService
+
     let user3 = new User(1, "pabo@email.com", "pabo", "######", false);
     let user2 = new User(2, "lucas@email.com", "lucas", "######", false);
     let user1 = new User(3, "nato@email.com", "nato", "######", false);
@@ -40,6 +42,7 @@ export class AppComponent {
     //TESTES DE TASKSERVICE
     try {
       //Testando generateID
+
       console.log(this.taskService.generateID());
       this.taskService.inserir(task1);
       this.taskService.inserir(task2);
@@ -53,6 +56,7 @@ export class AppComponent {
       this.taskService.editar(1, "title", "Resumo BI");
 
       //Adicionar tags à task1
+
       this.taskService.inserirTag(1, tag1);
       this.taskService.inserirTag(1, tag2);
       this.taskService.inserirTag(1, tag3);
@@ -62,25 +66,31 @@ export class AppComponent {
       this.taskService.inserirTag(2, tag2);
 
       //Localizar tags de task1
+
       console.log(this.taskService.localizar(1));
       console.log(this.taskService.localizar(2));
       console.log(this.taskService.localizar(3));
 
       //Remover tags de task1
+
       console.log(this.taskService.removerTag(1, 1));
       console.log(this.taskService.removerTag(1, 2));
       console.log(this.taskService.localizar(1));
+
 
       //Averiguando mudanças em task1
       console.log(`${this.taskService.get(1)}`)
 
       //Removendo task2
+
       console.log(this.taskService.remover(2));
       } catch (e) {
         console.log((e as Error).message)
     }
 
+
     //Testes de memoryBoxService
+
     try {
       this.memoryBoxService.inserir(memorybox1);
       this.memoryBoxService.inserir(memorybox2);
@@ -92,20 +102,26 @@ export class AppComponent {
       this.memoryBoxService.editar(1, "title", "PWEB1");
       console.log(this.memoryBoxService.get(1));
 
+
       //Inserção de tags
+
       this.memoryBoxService.inserirTag(1, tag1);
       this.memoryBoxService.inserirTag(1, tag2);
       this.memoryBoxService.inserirTag(1, tag3);
       this.memoryBoxService.inserirTag(2, tag2);
       this.memoryBoxService.inserirTag(3, tag3);
 
+
       //Inserção de tasks
+
       this.memoryBoxService.inserirTask(1, task1);
       this.memoryBoxService.inserirTask(1, task2);
       this.memoryBoxService.inserirTask(2, task2);
       this.memoryBoxService.inserirTask(3, task3);
 
+
       //Inserção de notes
+
       this.memoryBoxService.inserirNote(1, note1);
       this.memoryBoxService.inserirNote(1, note2);
       this.memoryBoxService.inserirNote(2, note2);
@@ -113,14 +129,18 @@ export class AppComponent {
 
       console.log(this.memoryBoxService.listar());
 
+
       //Remoção de elementos
+
       console.log(this.memoryBoxService.removerTag(1, 2));
       console.log(this.memoryBoxService.removerTag(1, 3));
       console.log(this.memoryBoxService.removerTask(1, 2));
       console.log(this.memoryBoxService.removerNote(1, 2));
       console.log(this.memoryBoxService.listar())
 
+
       //Getters de relacionamentos
+
       console.log(this.memoryBoxService.getTag(1, 1));
       console.log(this.memoryBoxService.getTask(2, 2));
       console.log(this.memoryBoxService.getNote(3, 3));
@@ -129,7 +149,9 @@ export class AppComponent {
       console.log((e as Error).message)
     }
 
+
     //TESTES DE USER SERVICE
+
     try {
       this.userService.inserir(user1);
       this.userService.inserir(user2);
@@ -145,13 +167,16 @@ export class AppComponent {
 
 
 
+
     try {
       //Geração de ID
+
       console.log(this.tagService.generateID());
       this.tagService.inserir(tag1);
       this.tagService.inserir(tag2);
       this.tagService.inserir(tag3);
       console.log(this.tagService.generateID());
+
 
       //Teste listagem e getters
       console.log(this.tagService.listar());
@@ -168,7 +193,9 @@ export class AppComponent {
       console.log((e as Error).message);
     }
 
+
     //TESTES DE NOTE SERVICE
+
     try {
       this.noteService.inserir(note1);
       this.noteService.inserir(note2);
@@ -183,7 +210,9 @@ export class AppComponent {
       console.log((e as Error).message);
     }
 
+
      */
+
 
   }
 

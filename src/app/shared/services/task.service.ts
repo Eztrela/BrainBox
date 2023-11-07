@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, Subscription } from "rxjs";
 import { PtaskPipe } from "../pipes/ptask.pipe";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -91,6 +92,9 @@ export class TaskService {
 
       return task.removerTag(idTag);
     });
+
+  generateID(): number{
+    return (this._tasks.length > 0) ? this._tasks[ this._tasks.length -1].id + 1 : 1;
   }
 
 }

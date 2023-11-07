@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { PtagPipe } from "../pipes/ptag.pipe";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -59,5 +60,9 @@ export class TagService {
     return this.httpClient.delete<Tag>(
       url_resource
     );
-  }
+
+//   generateID(): number{
+//     return (this._tags.length > 0) ? this._tags[ this._tags.length -1].id + 1 : 1;
+//   }
+
 }

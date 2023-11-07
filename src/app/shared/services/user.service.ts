@@ -91,6 +91,9 @@ export class UserService {
       
       return user.removerTag(idTag);
     });
+
+  generateID(): number{
+    return (this._users.length > 0) ? this._users[ this._users.length -1].id + 1 : 1;
   }
 
 }

@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
+
 import {Note} from '../models';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import { catchError } from "rxjs/operators";
 import { PnotePipe } from "../pipes/pnote.pipe";
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
+
 
   private _url = `http://localhost:3000`;
   private _resource: string = "notes";
@@ -59,6 +62,11 @@ export class NoteService {
     return this.httpClient.delete<Note>(
       url_resource
     );
-  }
+
+
+//   generateID(): number{
+//     return (this._notes.length > 0) ? this._notes[ this._notes.length -1].id + 1 : 1;
+
+//   }
 
 }
