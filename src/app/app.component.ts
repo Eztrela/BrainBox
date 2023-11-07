@@ -45,8 +45,8 @@ export class AppComponent {
       //Testando generateID
 
       // console.log(this.taskService.generateID());
-      this.taskService.create(task1);
-      this.taskService.create(task2);
+      this.taskService.create(task1).subscribe();
+      this.taskService.create(task2).subscribe();
       // console.log(this.taskService.generateID());
 
       //Testando inserção e getByIdter

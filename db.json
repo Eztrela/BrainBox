@@ -1,7 +1,46 @@
 {
   "users": [],
-  "memoryBoxes": [],
+  "memoryBoxes": [
+    {
+      "tags": [],
+      "notes": [],
+      "tasks": [],
+      "datetimeCreated": "2023-11-07T01:41:42.994Z",
+      "title": "Tal",
+      "user": {
+        "_id": 3,
+        "_email": "nato@email.com",
+        "_username": "nato",
+        "_password": "######",
+        "_notifications": false,
+        "_memoryBoxes": [],
+        "_tags": []
+      },
+      "id": 1
+    }
+  ],
   "tags": [],
-  "tasks": [],
+  "tasks": [
+    {
+      "datetimeCreated": "2023-11-07T01:40:38.339Z",
+      "datetimeDue": "2023-11-07T01:40:38.339Z",
+      "description": "Lorem ipsum dolor sit amet, adipiscing enum",
+      "priority": 3,
+      "status": "new",
+      "tags": [],
+      "title": "Resumo Datawarehouses",
+      "id": 1
+    },
+    {
+      "datetimeCreated": "2023-11-07T01:40:38.339Z",
+      "datetimeDue": "2023-11-07T01:40:38.339Z",
+      "description": "Tá na cara",
+      "priority": 1,
+      "status": "new",
+      "tags": [],
+      "title": "Lavar louça",
+      "id": 2
+    }
+  ],
   "notes": []
 }
