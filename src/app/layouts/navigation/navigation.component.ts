@@ -14,6 +14,9 @@ export class NavigationComponent {
   constructor(private memoryBoxService: MemoryboxService) {
   }
   ngOnInit() {
-    this.memoryboxes = this.memoryBoxService.listar();
+    this.memoryBoxService.getAll().subscribe((arrayMemoryboxes:Array<MemoryBox>) => {
+      this.memoryboxes = arrayMemoryboxes;
+      console.log(arrayMemoryboxes)
+    });
   }
 }

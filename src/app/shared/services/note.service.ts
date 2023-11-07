@@ -62,7 +62,7 @@ export class NoteService {
     return this.httpClient.delete<Note>(
       url_resource
     );
-
+  }
 
 //   generateID(): number{
 //     return (this._notes.length > 0) ? this._notes[ this._notes.length -1].id + 1 : 1;

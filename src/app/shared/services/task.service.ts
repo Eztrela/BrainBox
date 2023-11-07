@@ -92,9 +92,9 @@ export class TaskService {
 
       return task.removerTag(idTag);
     });
-
-  generateID(): number{
-    return (this._tasks.length > 0) ? this._tasks[ this._tasks.length -1].id + 1 : 1;
   }
+  // generateID(): number{
+  //   return (this._tasks.length > 0) ? this._tasks[ this._tasks.length -1].id + 1 : 1;
+  // }
 
 }
