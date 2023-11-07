@@ -2,72 +2,135 @@
   "users": [
     {
       "id": 1,
-      "email": "lucas@gmail.com",
-      "username": "lucas",
-      "password": "$$$$$",
-      "notifications": false
+      "email": "user1@example.com",
+      "username": "user1",
+      "password": "password1",
+      "notifications": true,
+      "memoryBoxes": [1],
+      "tags": [1, 2]
+    },
+    {
+      "id": 2,
+      "email": "user2@example.com",
+      "username": "user2",
+      "password": "password2",
+      "notifications": true,
+      "memoryBoxes": [2],
+      "tags": [3, 4]
     }
   ],
   "memoryBoxes": [
     {
-      "tags": [1, 2],
-      "notes": [1, 2, 3],
-      "tasks": [1, 2, 3],
-      "datetimeCreated": "2023-11-07T01:41:42.994Z",
-      "title": "🎨 Abstração de Código",
+      "id": 1,
       "user": 1,
-      "id": 1
+      "title": "Memory Box 1",
+      "datetimeCreated": "2023-11-07T12:00:00.000Z",
+      "tasks": [1, 2],
+      "notes": [1, 2],
+      "tags": [1, 2]
     },
     {
-      "tags": [2, 3],
-      "notes": [1, 2, 3],
-      "tasks": [1, 2, 3],
-      "datetimeCreated": "2023-11-07T01:41:42.994Z",
-      "title": "🦉 Business Intelligence",
-      "user": 1,
-      "id": 2
-    },
-    {
-      "tags": [3, 4],
-      "notes": [1, 2, 3],
-      "tasks": [1, 2, 3],
-      "datetimeCreated": "2023-11-07T01:41:42.994Z",
-      "title": "️‍🏋️‍♂️ Musculação",
-      "user": 1,
-      "id": 3
-    },
-    {
-      "tags": [1, 2],
-      "notes": [1, 2, 3],
-      "tasks": [1, 2, 3],
-      "datetimeCreated": "2023-11-07T01:41:42.994Z",
-      "title": "🤖 Machine Learning",
+      "id": 2,
       "user": 2,
-      "id": 4
+      "title": "Memory Box 2",
+      "datetimeCreated": "2023-11-07T13:00:00.000Z",
+      "tasks": [3, 4],
+      "notes": [3, 4],
+      "tags": [3, 4]
     }
   ],
-  "tags": [],
   "tasks": [
     {
-      "datetimeCreated": "2023-11-07T01:40:38.339Z",
-      "datetimeDue": "2023-11-07T01:40:38.339Z",
-      "description": "Lorem ipsum dolor sit amet, adipiscing enum",
-      "priority": 3,
-      "status": "new",
-      "tags": [],
-      "title": "Resumo Datawarehouses",
-      "id": 1
+      "id": 1,
+      "title": "Task 1",
+      "description": "Description for Task 1",
+      "status": "In Progress",
+      "datetimeCreated": "2023-11-07T14:00:00.000Z",
+      "datetimeDue": "2023-11-15T12:00:00.000Z",
+      "priority": 1,
+      "memoryBox": 1,
+      "tags": [1, 2]
     },
     {
-      "datetimeCreated": "2023-11-07T01:40:38.339Z",
-      "datetimeDue": "2023-11-07T01:40:38.339Z",
-      "description": "Tá na cara",
-      "priority": 1,
-      "status": "new",
-      "tags": [],
-      "title": "Lavar louça",
-      "id": 2
+      "id": 2,
+      "title": "Task 2",
+      "description": "Description for Task 2",
+      "status": "Completed",
+      "datetimeCreated": "2023-11-07T15:00:00.000Z",
+      "datetimeDue": "2023-11-20T14:00:00.000Z",
+      "priority": 2,
+      "memoryBox": 2,
+      "tags": [3, 4]
+    },
+    {
+      "id": 3,
+      "title": "Task 3",
+      "description": "Description for Task 3",
+      "status": "New",
+      "datetimeCreated": "2023-11-07T16:00:00.000Z",
+      "datetimeDue": "2023-11-10T16:00:00.000Z",
+      "priority": 3,
+      "memoryBox": 1,
+      "tags": [1, 3]
+    },
+    {
+      "id": 4,
+      "title": "Task 4",
+      "description": "Description for Task 4",
+      "status": "In Progress",
+      "datetimeCreated": "2023-11-07T17:00:00.000Z",
+      "datetimeDue": "2023-11-25T17:00:00.000Z",
+      "priority": 2,
+      "memoryBox": 2,
+      "tags": [2, 4]
     }
   ],
-  "notes": []
+  "notes": [
+    {
+      "id": 1,
+      "memoryBox": 1,
+      "content": "Note content 1"
+    },
+    {
+      "id": 2,
+      "memoryBox": 1,
+      "content": "Note content 2"
+    },
+    {
+      "id": 3,
+      "memoryBox": 2,
+      "content": "Note content 3"
+    },
+    {
+      "id": 4,
+      "memoryBox": 2,
+      "content": "Note content 4"
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "user": 1,
+      "title": "Tag 1",
+      "color": "#33B2FF"
+    },
+    {
+      "id": 2,
+      "user": 1,
+      "title": "Tag 2",
+      "color": "#64FF33"
+    },
+    {
+      "id": 3,
+      "user": 2,
+      "title": "Tag 3",
+      "color": "#FFFC33"
+    },
+    {
+      "id": 4,
+      "user": 2,
+      "title": "Tag 4",
+      "color": "#FF33F0"
+    }
+  ]
 }
