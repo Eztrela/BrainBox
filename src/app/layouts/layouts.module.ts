@@ -9,17 +9,12 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatInputModule} from "@angular/material/input";
-
-import {NavigationComponent} from "./navigation/navigation.component";
-import {ToolbarComponent} from "./toolbar/toolbar.component";
-import { MemoryboxListingComponent } from './memorybox-listing/memorybox-listing.component';
 import {MatCardModule} from "@angular/material/card";
+import {RouterLink} from "@angular/router";
+import {HomeModule} from "./home/home.module";
 
 @NgModule({
   declarations: [
-    NavigationComponent,
-    ToolbarComponent,
-    MemoryboxListingComponent
   ],
   imports: [
     CommonModule,
@@ -31,11 +26,10 @@ import {MatCardModule} from "@angular/material/card";
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    RouterLink
   ],
   exports: [
-    NavigationComponent,
-    ToolbarComponent
   ]
 })
 export class LayoutsModule { }

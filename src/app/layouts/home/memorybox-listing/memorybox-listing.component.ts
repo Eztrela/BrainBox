@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MemoryBox} from "../../shared/models";
+import {MemoryBox} from "../../../shared/models";
 
 @Component({
   selector: 'app-memorybox-listing',

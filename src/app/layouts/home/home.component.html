@@ -2,7 +2,7 @@
 
   <mat-sidenav class="sidenav-container" mode="side" opened>
     <a href="/" class="sidenav-logo">
-      <img src="assets/img/brainbox.svg" alt="brainbox-logo"/>
+      <img src="../../../assets/img/brainbox.svg" alt="brainbox-logo"/>
     </a>
 
     <mat-nav-list class="memorybox-list">
@@ -13,7 +13,7 @@
 
       <mat-list-item *ngFor="let memorybox of memoryboxes">
         <div class="memorybox-list-item">
-          <a href="/"><b>•</b> {{memorybox.title}}</a>
+          <a [routerLink]="['/memorybox/', memorybox.id]"><b>•</b> {{memorybox.title}}</a>
         </div>
       </mat-list-item>
 

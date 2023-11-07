@@ -1,22 +1,49 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": 1,
+      "email": "lucas@gmail.com",
+      "username": "lucas",
+      "password": "$$$$$",
+      "notifications": false
+    }
+  ],
   "memoryBoxes": [
     {
-      "tags": [],
-      "notes": [],
-      "tasks": [],
+      "tags": [1, 2],
+      "notes": [1, 2, 3],
+      "tasks": [1, 2, 3],
       "datetimeCreated": "2023-11-07T01:41:42.994Z",
-      "title": "Tal",
-      "user": {
-        "_id": 3,
-        "_email": "nato@email.com",
-        "_username": "nato",
-        "_password": "######",
-        "_notifications": false,
-        "_memoryBoxes": [],
-        "_tags": []
-      },
+      "title": "🎨 Abstração de Código",
+      "user": 1,
       "id": 1
+    },
+    {
+      "tags": [2, 3],
+      "notes": [1, 2, 3],
+      "tasks": [1, 2, 3],
+      "datetimeCreated": "2023-11-07T01:41:42.994Z",
+      "title": "🦉 Business Intelligence",
+      "user": 1,
+      "id": 2
+    },
+    {
+      "tags": [3, 4],
+      "notes": [1, 2, 3],
+      "tasks": [1, 2, 3],
+      "datetimeCreated": "2023-11-07T01:41:42.994Z",
+      "title": "️‍🏋️‍♂️ Musculação",
+      "user": 1,
+      "id": 3
+    },
+    {
+      "tags": [1, 2],
+      "notes": [1, 2, 3],
+      "tasks": [1, 2, 3],
+      "datetimeCreated": "2023-11-07T01:41:42.994Z",
+      "title": "🤖 Machine Learning",
+      "user": 2,
+      "id": 4
     }
   ],
   "tags": [],

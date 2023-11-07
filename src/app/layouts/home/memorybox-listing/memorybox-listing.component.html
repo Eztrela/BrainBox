@@ -1,0 +1,11 @@
+<div mat-subheader>Suas Memory Boxes</div>
+<mat-divider></mat-divider>
+<mat-card *ngFor="let memorybox of memoryboxes">
+  <mat-card-title>
+    <a
+      mat-button
+      [routerLink]="['/memorybox/', memorybox.id]">
+      {{memorybox.title}}
+    </a>
+  </mat-card-title>
+</mat-card>
