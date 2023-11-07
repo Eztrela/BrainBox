@@ -21,8 +21,11 @@
 
   </mat-sidenav>
 
-  <app-toolbar></app-toolbar>
+  <mat-sidenav-content>
+    <app-toolbar></app-toolbar>
 
-  <app-memorybox-listing [memoryboxes]="memoryboxes"></app-memorybox-listing>
+    <app-memorybox-listing [memoryboxes]="memoryboxes"></app-memorybox-listing>
+  </mat-sidenav-content>
+
 
 </mat-sidenav-container>
