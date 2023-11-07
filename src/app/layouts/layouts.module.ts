@@ -30,6 +30,7 @@ import {HomeModule} from "./home/home.module";
     RouterLink
   ],
   exports: [
+    HomeModule
   ]
 })
 export class LayoutsModule { }
