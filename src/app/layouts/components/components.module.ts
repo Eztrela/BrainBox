@@ -5,7 +5,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 
 
-
 @NgModule({
   declarations: [
     ToolbarComponent
@@ -13,7 +12,7 @@ import {MatButtonModule} from "@angular/material/button";
   imports: [
     CommonModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   exports: [
     ToolbarComponent

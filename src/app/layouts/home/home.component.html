@@ -1,24 +1,22 @@
 <mat-sidenav-container class="example-container">
-
   <mat-sidenav class="sidenav-container" mode="side" opened>
     <a href="/" class="sidenav-logo">
-      <img src="../../../assets/img/brainbox.svg" alt="brainbox-logo"/>
+      <img src="../../../assets/img/brainbox.svg" alt="brainbox-logo" />
     </a>
 
     <mat-nav-list class="memorybox-list">
-
       <div mat-subheader>Memory Boxes</div>
 
       <mat-divider></mat-divider>
 
       <mat-list-item *ngFor="let memorybox of memoryboxes">
         <div class="memorybox-list-item">
-          <a [routerLink]="['/memorybox/', memorybox.id]"><b>•</b> {{memorybox.title}}</a>
+          <a [routerLink]="['/memorybox/', memorybox.id]"
+            ><b>•</b> {{ memorybox.title }}</a
+          >
         </div>
       </mat-list-item>
-
     </mat-nav-list>
-
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -27,5 +25,9 @@
     <app-memorybox-listing [memoryboxes]="memoryboxes"></app-memorybox-listing>
   </mat-sidenav-content>
 
+<<<<<<< Updated upstream
 
+=======
+  <app-memorybox-listing [memoryboxes]="memoryboxes"></app-memorybox-listing>
+>>>>>>> Stashed changes
 </mat-sidenav-container>

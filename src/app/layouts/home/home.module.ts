@@ -7,6 +7,7 @@ import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
 import {ComponentsModule} from "../components/components.module";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -22,6 +23,7 @@ import {ComponentsModule} from "../components/components.module";
     MatCardModule,
     RouterLink,
     ComponentsModule,
+    FlexLayoutModule
   ],
   exports: [
     HomeComponent
