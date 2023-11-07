@@ -2,13 +2,14 @@
           [routerLink]="['/memorybox/', memorybox.id]">
   <img mat-card-image src="https://static.vecteezy.com/system/resources/thumbnails/021/515/694/small/ai-artificial-intelligence-banner-design-illustration-vector.jpg" alt="Banner Photo">
   <mat-card-title>{{memorybox.title}}</mat-card-title>
-  <mat-card-subtitle *ngFor="let tag of tags">
-    <span class="memorybox-tags">
-      <span [style.color] = "tag.color"
-            [style.font-size.rem] = "2">•</span><span>{{tag.title}}</span>
-    </span>
-
-  </mat-card-subtitle>
+  <div class="memorybox-tags">
+    <mat-card-subtitle *ngFor="let tag of tags">
+      <span class="memorybox-tag">
+        <span [style.color] = "tag.color"
+              [style.font-size.rem] = "1.4">•</span><span>{{tag.title}}</span>
+      </span>
+    </mat-card-subtitle>
+  </div>
   <mat-card-content>
     <mat-card-actions>
       <button mat-button

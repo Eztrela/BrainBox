@@ -10,3 +10,20 @@
 .memorybox-card img {
   height: 22rem;
 }
+
+.memorybox-tags {
+  display: flex;
+  flex-direction: row;
+}
+
+.memorybox-tag {
+  color: darkgray;
+  font-size: 0.9rem;
+}
+
+.memorybox-task {
+  background-color: #F2FDFF;
+  border-radius: 0.8rem;
+}
+
+
