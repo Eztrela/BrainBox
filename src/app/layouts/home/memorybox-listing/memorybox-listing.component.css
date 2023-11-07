@@ -2,3 +2,7 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+mat-divider {
+  background-color: #9593D9;
+}
