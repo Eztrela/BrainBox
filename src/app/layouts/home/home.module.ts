@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { HomeComponent } from './home.component';
 import {MemoryboxListingComponent} from "./memorybox-listing/memorybox-listing.component";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -10,6 +10,7 @@ import {ComponentsModule} from "../components/components.module";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MemoryboxCardComponent } from './memorybox-listing/memorybox-card/memorybox-card.component';
 import {MatButtonModule} from "@angular/material/button";
+import {CdkDrag, CdkDragPlaceholder, CdkDropList} from "@angular/cdk/drag-drop";
 
 
 
@@ -28,6 +29,10 @@ import {MatButtonModule} from "@angular/material/button";
     ComponentsModule,
     FlexLayoutModule,
     MatButtonModule,
+    CdkDrag,
+    CdkDropList,
+    CdkDragPlaceholder,
+    NgOptimizedImage,
   ],
   exports: [
     HomeComponent

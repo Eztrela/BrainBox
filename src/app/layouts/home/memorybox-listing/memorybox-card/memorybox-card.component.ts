@@ -4,6 +4,7 @@ import {TagService} from "../../../../shared/services/tag.service";
 import {TaskService} from "../../../../shared/services/task.service";
 import {NoteService} from "../../../../shared/services/note.service";
 import {forkJoin} from "rxjs";
+import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 
 @Component({
   selector: 'app-memorybox-card',
@@ -13,27 +14,29 @@ import {forkJoin} from "rxjs";
 export class MemoryboxCardComponent implements OnInit {
   @Input() memorybox: MemoryBox = new MemoryBox(0, "", 0);
 
-  public tasks: Array<Task> = new Array<Task>();
+  public task: Task = new Task(0, "", "", "", new Date(), 0);
   public tags: Array<Tag> = new Array<Tag>();
-  public notes: Array<Note> = new Array<Note>();
+  public note: Note = new Note(0, "");
+
+  public taskColor: string = "#D9D9D9";
 
   constructor(private taskService:TaskService, private tagService: TagService, private noteService: NoteService) {
   }
   ngOnInit() {
-    const taskRequests = this.memorybox.tasks.map(id => this.taskService.getById(Number(id)));
+    const taskRequests = this.taskService.getById(Number(this.memorybox.tasks[0]));
     const tagRequests = this.memorybox.tags.map(id => this.tagService.getById(Number(id)));
-    const noteRequests = this.memorybox.notes.map(id => this.noteService.getById(Number(id)));
+    const noteRequests = this.noteService.getById(Number(this.memorybox.notes[0]));
 
-    forkJoin([...taskRequests]).subscribe((taskResults: Task[]) => {
-      this.tasks = taskResults;
+    taskRequests.subscribe((taskResults: Task) => {
+      this.task = taskResults;
     });
 
     forkJoin([...tagRequests]).subscribe((tagResults: Tag[]) => {
       this.tags = tagResults;
     });
 
-    forkJoin([...noteRequests]).subscribe((noteResults: Note[]) => {
-      this.notes = noteResults;
+    noteRequests.subscribe((noteResults: Note) => {
+      this.note = noteResults;
     });
   }
 

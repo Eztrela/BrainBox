@@ -1,6 +1,9 @@
 #memorybox-listing-container {
+  padding-top: 1rem;
+  padding-left: 1.4rem;
   display: flex;
   flex-wrap: wrap;
+  gap: 1.4rem;
 }
 
 mat-divider {
