@@ -8,10 +8,12 @@ import {MemoryboxService} from "../../../shared/services/memorybox.service";
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-  @Input() memoryBoxes:Array<MemoryBox> = new Array<MemoryBox>();
-
+  public memoryBoxes:Array<MemoryBox> = new Array<MemoryBox>();
   constructor(private memoryBoxService: MemoryboxService) {
   }
   ngOnInit() {
+    this.memoryBoxService.getAll().subscribe((arrayMemoryBoxes:Array<MemoryBox>) => {
+      this.memoryBoxes = arrayMemoryBoxes;
+    });
   }
 }
