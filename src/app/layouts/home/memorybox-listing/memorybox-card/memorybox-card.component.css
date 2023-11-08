@@ -5,6 +5,15 @@
   background-color: #30343F;
   color: azure;
   cursor: pointer;
+  transition-duration: 0.13s;
+}
+
+.memorybox-card:hover {
+  background-color: #404556;
+}
+
+.memorybox-card:active {
+  background-color: #707A95;
 }
 
 .memorybox-banner {
