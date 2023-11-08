@@ -5,8 +5,8 @@
   <div class="memorybox-card-content">
   <mat-card-title>{{memorybox.title}}</mat-card-title>
   <div class="memorybox-tags">
-    <mat-card-subtitle>
-      <span *ngFor="let tag of tags" class="memorybox-tag">
+    <mat-card-subtitle *ngFor="let tag of tags">
+      <span class="memorybox-tag">
         <span [style.color] = "tag.color"
               [style.font-size.rem] = "1.4">•</span><span>{{tag.title}}</span>
       </span>
