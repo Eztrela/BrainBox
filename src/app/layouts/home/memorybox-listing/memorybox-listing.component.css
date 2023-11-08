@@ -50,6 +50,11 @@ mat-divider {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+.memorybox-card {
+  max-width: 15.45rem;
+  max-height: 17.45rem;
+}
+
 .placeholder {
   width: 15.45rem;
   height: 17.45rem;
