@@ -5,7 +5,7 @@
   <div class="memorybox-card-content">
   <mat-card-title>{{memorybox.title}}</mat-card-title>
   <div class="memorybox-tags">
-    <mat-card-subtitle *ngFor="let tag of tags">
+    <mat-card-subtitle *ngFor="let tag of memorybox.tags">
       <span class="memorybox-tag">
         <span [style.color] = "tag.color"
               [style.font-size.rem] = "1.4">•</span><span>{{tag.title}}</span>
@@ -14,10 +14,10 @@
   </div>
     <div class="memorybox-task">
       <span [style.color] = "taskColor"
-            [style.font-size.rem] = "1.4">•</span><span>{{task.title}}</span>
+            [style.font-size.rem] = "1.4">•</span><span>{{memorybox.tasks[0].title}}</span>
     </div>
     <div class="memorybox-note">
-      <span>{{note.content}}</span>
+      <span>{{memorybox.notes[0].content}}</span>
     </div>
   </div>
 </mat-card>
