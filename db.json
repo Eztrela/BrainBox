@@ -206,17 +206,17 @@
     {
       "id": 8,
       "memoryBox": 4,
-      "content": "Note: Add extra cheese to the pasta recipe."
+      "content": "Add extra cheese to the pasta recipe."
     },
     {
       "id": 9,
       "memoryBox": 4,
-      "content": "Note: Check for gluten-free options for the pasta."
+      "content": "Check for gluten-free options for the pasta."
     },
     {
       "id": 10,
       "memoryBox": 5,
-      "content": "Note: Create a workout schedule for the week."
+      "content": "Create a workout schedule for the week."
     }
   ],
   "tags": [
