@@ -25,7 +25,38 @@
       "user": 1,
       "title": "Personal Memories",
       "datetimeCreated": "2023-11-07T12:00:00.000Z",
-      "tasks": [1, 2, 3],
+      "tasks": [
+        {
+          "id": 1,
+          "title": "Plan vacation",
+          "description": "Research and plan a vacation trip.",
+          "status": "In Progress",
+          "datetimeCreated": "2023-11-12T08:00:00.000Z",
+          "datetimeDue": "2023-12-10T12:00:00.000Z",
+          "priority": 2,
+          "memoryBox": 1,
+          "tags": [1, 2, 3]
+        }, {
+          "id": 2,
+          "title": "Complete project report",
+          "description": "Finalize and submit the project report.",
+          "status": "Completed",
+          "datetimeCreated": "2023-11-09T15:30:00.000Z",
+          "datetimeDue": "2023-11-20T14:00:00.000Z",
+          "priority": 1,
+          "memoryBox": 1,
+          "tags": [2, 3]
+        }, {
+          "id": 3,
+          "title": "Buy birthday gift",
+          "description": "Purchase a birthday gift for a friend.",
+          "status": "New",
+          "datetimeCreated": "2023-11-14T11:00:00.000Z",
+          "datetimeDue": "2023-11-25T10:00:00.000Z",
+          "priority": 3,
+          "memoryBox": 1,
+          "tags": [1, 3]
+        }],
       "notes": [1, 2, 3],
       "tags": [1, 2, 3]
     },
@@ -34,7 +65,29 @@
       "user": 1,
       "title": "Work Projects",
       "datetimeCreated": "2023-11-08T10:30:00.000Z",
-      "tasks": [4, 5],
+      "tasks": [{
+        "id": 4,
+        "title": "Prepare presentation",
+        "description": "Create a presentation for the upcoming meeting.",
+        "status": "In Progress",
+        "datetimeCreated": "2023-11-11T09:30:00.000Z",
+        "datetimeDue": "2023-11-30T16:00:00.000Z",
+        "priority": 2,
+        "memoryBox": 2,
+        "tags": [4, 5]
+      },
+        {
+        "id": 5,
+        "title": "Update website content",
+        "description": "Make content updates on the company website.",
+        "status": "New",
+        "datetimeCreated": "2023-11-15T13:45:00.000Z",
+        "datetimeDue": "2023-11-28T18:30:00.000Z",
+        "priority": 2,
+        "memoryBox": 2,
+        "tags": [5]
+      }
+      ],
       "notes": [4, 5],
       "tags": [4, 5]
     },
@@ -43,7 +96,18 @@
       "user": 2,
       "title": "Travel Adventures",
       "datetimeCreated": "2023-11-10T15:15:00.000Z",
-      "tasks": [6],
+      "tasks": [
+        {
+        "id": 6,
+        "title": "Explore Paris",
+        "description": "Sightseeing and exploring the city of Paris.",
+        "status": "In Progress",
+        "datetimeCreated": "2023-11-18T10:00:00.000Z",
+        "datetimeDue": "2023-11-25T18:00:00.000Z",
+        "priority": 1,
+        "memoryBox": 3,
+        "tags": [6]
+      }],
       "notes": [6, 7],
       "tags": [6]
     },
@@ -52,7 +116,19 @@
       "user": 2,
       "title": "Recipe Collection",
       "datetimeCreated": "2023-11-15T17:30:00.000Z",
-      "tasks": [7],
+      "tasks": [
+        {
+        "id": 7,
+        "title": "Try new pasta recipe",
+        "description": "Experiment with a new pasta recipe for dinner.",
+        "status": "New",
+        "datetimeCreated": "2023-11-16T10:00:00.000Z",
+        "datetimeDue": "2023-11-18T18:00:00.000Z",
+        "priority": 2,
+        "memoryBox": 4,
+        "tags": [7, 8]
+      }
+      ],
       "notes": [8, 9],
       "tags": [7, 8]
     },
@@ -61,7 +137,27 @@
       "user": 1,
       "title": "Fitness Goals",
       "datetimeCreated": "2023-11-16T09:15:00.000Z",
-      "tasks": [8, 9],
+      "tasks": [{
+        "id": 8,
+        "title": "Morning workout",
+        "description": "Complete a 30-minute morning workout routine.",
+        "status": "In Progress",
+        "datetimeCreated": "2023-11-16T07:00:00.000Z",
+        "datetimeDue": "2023-11-18T08:00:00.000Z",
+        "priority": 1,
+        "memoryBox": 5,
+        "tags": [9]
+      }, {
+        "id": 9,
+        "title": "Grocery shopping",
+        "description": "Buy groceries for the week.",
+        "status": "New",
+        "datetimeCreated": "2023-11-16T13:00:00.000Z",
+        "datetimeDue": "2023-11-17T17:00:00.000Z",
+        "priority": 3,
+        "memoryBox": 5,
+        "tags": [10]
+      }],
       "notes": [10],
       "tags": [9, 10]
     }
