@@ -1,6 +1,6 @@
 <div mat-subheader>Suas Memory Boxes</div>
 <mat-divider></mat-divider>
 <div id="memorybox-listing-container" cdkDropList (cdkDropListDropped)="drop($event)">
-    <app-memorybox-card *ngFor="let memorybox of memoryboxes" [memorybox]="memorybox">
+    <app-memorybox-card *ngFor="let memorybox of memoryboxes" [memorybox]="memorybox" cdkDrag>
     </app-memorybox-card>
 </div>
