@@ -2,5 +2,6 @@
 <mat-divider></mat-divider>
 <div id="memorybox-listing-container" cdkDropList (cdkDropListDropped)="drop($event)">
     <app-memorybox-card *ngFor="let memorybox of memoryboxes" [memorybox]="memorybox" cdkDrag>
+    <div class="placeholder" *cdkDragPlaceholder></div>
     </app-memorybox-card>
 </div>
