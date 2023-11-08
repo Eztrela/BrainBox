@@ -1,7 +1,7 @@
 <mat-card class="memorybox-card"
           [routerLink]="['/memorybox/', memorybox.id]" cdkDragBoundary="#memorybox-listing-container" cdkDrag>
   <div *cdkDragPreview></div>
-  <img mat-card-image src="https://static.vecteezy.com/system/resources/thumbnails/021/515/694/small/ai-artificial-intelligence-banner-design-illustration-vector.jpg" alt="Banner Image">
+  <div class="memorybox-banner"></div>
   <div class="memorybox-card-content">
   <mat-card-title>{{memorybox.title}}</mat-card-title>
   <div class="memorybox-tags">
