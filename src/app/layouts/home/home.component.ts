@@ -11,6 +11,10 @@ export class HomeComponent implements OnInit {
   memoryboxes:Array<MemoryBox> = new Array<MemoryBox>();
   constructor(private memoryBoxService: MemoryboxService) {
   }
+
+  addItem(newItem: MemoryBox) {
+    this.memoryboxes.push(newItem);
+  }
   ngOnInit() {
     this.memoryBoxService.getAll().subscribe((arrayMemoryBoxes:Array<MemoryBox>) => {
       this.memoryboxes = arrayMemoryBoxes;

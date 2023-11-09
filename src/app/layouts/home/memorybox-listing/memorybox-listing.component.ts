@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MemoryBox} from "../../../shared/models";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateDialogComponent} from "./create-dialog/create-dialog.component";
@@ -14,10 +14,15 @@ import {PmemoryboxPipe} from "../../../shared/pipes/pmemorybox.pipe";
 export class MemoryboxListingComponent implements OnInit {
 
   @Input() memoryboxes: Array<MemoryBox> = new Array<MemoryBox>();
+  @Output() newItemEvent = new EventEmitter<MemoryBox>();
 
   constructor(private dialog: MatDialog, private memoryboxService:MemoryboxService) {}
 
   ngOnInit(): void {}
+
+  addNewItem(value: MemoryBox) {
+    this.newItemEvent.emit(value);
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(CreateDialogComponent, {
@@ -42,7 +47,7 @@ export class MemoryboxListingComponent implements OnInit {
           }
 
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
-            console.log(obj);
+            this.addNewItem(obj);
           });
         });
       }
