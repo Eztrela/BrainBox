@@ -30,6 +30,12 @@
   padding: 1rem;
 }
 
+.memorybox-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .memorybox-tags {
   display: flex;
   flex-direction: row;
