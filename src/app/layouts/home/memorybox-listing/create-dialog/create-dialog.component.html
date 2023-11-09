@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  <p>Insira o título da nova Memory Box</p>
+  <mat-form-field>
+    <mat-label>Título</mat-label>
+    <input matInput [(ngModel)]="memorybox.title">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="memorybox">Criar</button>
+</div>

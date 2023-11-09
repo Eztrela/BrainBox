@@ -12,7 +12,7 @@ import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvid
   styleUrls: ['./memorybox-card.component.css']
 })
 export class MemoryboxCardComponent implements OnInit {
-  @Input() memorybox: MemoryBox = new MemoryBox(0, "", new User(1,"","","",false));
+  @Input() memorybox: MemoryBox = new MemoryBox(0, "", 0);
 
   public taskColor: string = "#D9D9D9";
 

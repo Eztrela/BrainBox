@@ -1,7 +1,7 @@
 import { User, Tag, Task, Note } from "../models";
 export interface Imemorybox {
   id: number;
-  user: User;
+  user: number;
   title: string;
   datetimeCreated: Date;
   tasks: Array<Task>;

@@ -4,20 +4,26 @@
   <div class="memorybox-banner"></div>
   <div class="memorybox-card-content">
   <mat-card-title>{{memorybox.title}}</mat-card-title>
-  <div class="memorybox-tags">
-    <mat-card-subtitle *ngFor="let tag of memorybox.tags">
+  <div class="memorybox-tags"
+       *ngIf="memorybox.tags.length > 0">
+    <mat-card-subtitle
+      *ngFor="let tag of memorybox.tags">
       <span class="memorybox-tag">
-        <span [style.color] = "tag.color"
-              [style.font-size.rem] = "1.4">•</span><span>{{tag.title}}</span>
+        <span [style.color] = "tag.color" [style.font-size.rem] = "1.4">•</span>
+        <span>{{tag.title}}</span>
       </span>
     </mat-card-subtitle>
   </div>
-    <div class="memorybox-task">
-      <span [style.color] = "taskColor"
-            [style.font-size.rem] = "1.4">•</span><span>{{memorybox.tasks[0].title}}</span>
+    <div class="memorybox-task"
+         *ngIf="memorybox.tasks.length > 0">
+      <span [style.color] = "taskColor" [style.font-size.rem] = "1.4">•</span>
+      <span>{{memorybox.tasks[0].title}}</span>
     </div>
-    <div class="memorybox-note">
-      <span>{{memorybox.notes[0].content}}</span>
+    <div class="memorybox-note"
+         *ngIf="memorybox.notes.length > 0">
+      <span>
+        {{memorybox.notes[0].content}}
+      </span>
     </div>
   </div>
 </mat-card>

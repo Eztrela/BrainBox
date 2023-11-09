@@ -10,14 +10,19 @@ import {ComponentsModule} from "../components/components.module";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MemoryboxCardComponent } from './memorybox-listing/memorybox-card/memorybox-card.component';
 import {MatButtonModule} from "@angular/material/button";
-
+import {MatIconModule} from "@angular/material/icon";
+import { CreateDialogComponent } from './memorybox-listing/create-dialog/create-dialog.component';
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     MemoryboxListingComponent,
-    MemoryboxCardComponent
+    MemoryboxCardComponent,
+    CreateDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +34,10 @@ import {MatButtonModule} from "@angular/material/button";
     FlexLayoutModule,
     MatButtonModule,
     NgOptimizedImage,
+    MatIconModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
   ],
   exports: [
     HomeComponent

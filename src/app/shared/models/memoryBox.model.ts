@@ -4,14 +4,14 @@ export class MemoryBox {
   /* Model class for Task */
 
   private readonly _id: number;
-  private readonly _user: User;
+  private readonly _user: number;
   private _title: string;
   private _datetimeCreated: Date;
   private _tags: Array<Tag>;
   private _tasks: Array<Task>;
   private _notes: Array<Note>;
 
-  constructor(id: number, title:string, user:User) {
+  constructor(id: number, title:string, user:number) {
     this._id = id;
     this._user = user;
     this._title = title;
@@ -64,7 +64,7 @@ export class MemoryBox {
     return this._id;
   }
 
-  get user():User {
+  get user():number {
     return this._user;
   }
 
@@ -94,7 +94,7 @@ export class MemoryBox {
 
   toString(): string {
     return `MemoryBox ${this._id}
-      , user: ${this._user.username}
+      , user: ${this._user}
       , title:${this._title}
       , created at: ${this._datetimeCreated}
       , taks: ${this._tasks}
