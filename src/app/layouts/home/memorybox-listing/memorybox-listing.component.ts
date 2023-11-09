@@ -30,26 +30,14 @@ export class MemoryboxListingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((data:MemoryBox) => {
-      let memorybox: MemoryBox;
       if (data) {
-        this.memoryboxService.getAll().subscribe((res: MemoryBox[]) => {
-
-          // Check if there are existing MemoryBoxes
-          if (res && res.length > 0) {
-
-            // Find the maximum id in the existing MemoryBoxes
-            const maxId = Math.max(...res.map(box => box.id));
-            memorybox = new MemoryBox(maxId + 1, data.title, 0);
-          } else {
-
-            // If there are no existing MemoryBoxes, start with id 1
-            memorybox = new MemoryBox(1, data.title, 0);
-          }
-
+        this.memoryboxService.generateID().subscribe((id: number) => {
+          let memorybox = new MemoryBox(id, data.title, 0)
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
             this.addNewItem(obj);
           });
         });
+
       }
     });
   }
