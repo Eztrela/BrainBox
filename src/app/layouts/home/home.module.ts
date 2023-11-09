@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { HomeComponent } from './home.component';
 import {MemoryboxListingComponent} from "./memorybox-listing/memorybox-listing.component";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -8,13 +8,21 @@ import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
 import {ComponentsModule} from "../components/components.module";
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { MemoryboxCardComponent } from './memorybox-listing/memorybox-card/memorybox-card.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import { CreateDialogComponent } from './memorybox-listing/create-dialog/create-dialog.component';
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    MemoryboxListingComponent
+    MemoryboxListingComponent,
+    MemoryboxCardComponent,
+    CreateDialogComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +31,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCardModule,
     RouterLink,
     ComponentsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonModule,
+    NgOptimizedImage,
+    MatIconModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
   ],
   exports: [
     HomeComponent

@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from "@angular/common/http";
 import { LayoutsModule } from "./layouts/layouts.module";
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { LayoutsModule } from "./layouts/layouts.module";
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    LayoutsModule
+    LayoutsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

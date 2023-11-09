@@ -14,7 +14,7 @@ export class PmemoryboxPipe implements PipeTransform {
       tasks: Array<Task> = memoryBox.tasks;
       datetimeCreated: Date = memoryBox.datetimeCreated;
       title: string = memoryBox.title;
-      user: User = memoryBox.user;
+      user: number = memoryBox.user;
       id: number = memoryBox.id;
     };
   }

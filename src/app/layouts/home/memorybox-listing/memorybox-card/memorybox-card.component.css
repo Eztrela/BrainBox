@@ -1,0 +1,75 @@
+.memorybox-card {
+  width: 15.45rem;
+  height: 17.45rem;
+  border-radius: 0.8rem;
+  background-color: #30343F;
+  color: azure;
+  cursor: pointer;
+  transition-duration: 0.13s;
+  user-select: none;
+}
+
+.memorybox-card:hover {
+  background-color: #404556;
+}
+
+.memorybox-card:active {
+  background-color: #707A95;
+}
+
+.memorybox-banner {
+  border-radius: 0.63rem 0.63rem 0 0;
+  background: url("https://www.w3schools.com/css/img_forest.jpg");
+  width: 100%;
+  height: 43%;
+}
+
+.memorybox-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.memorybox-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.memorybox-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 0.24rem;
+}
+
+.memorybox-tag {
+  color: darkgray;
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+
+.memorybox-task {
+  line-height: 1.5rem;
+  padding-left: 0.7rem;
+  margin-bottom: 0.7rem;
+  background-color: #AEB0BF;
+  color: #30343F;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 0.8rem;
+}
+
+.memorybox-note {
+  line-height: 2rem;
+  padding-left: 0.8rem;
+  background-color: #1E1E24;
+  color: grey;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 0.4rem;
+}

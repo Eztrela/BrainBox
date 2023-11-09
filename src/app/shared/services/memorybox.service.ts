@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import {MemoryBox, Tag, Note, Task} from "../models";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
+import {map, max, Observable, throwError} from "rxjs";
 import { catchError } from "rxjs/operators";
 import { PmemoryboxPipe } from "../pipes/pmemorybox.pipe";
 
@@ -22,14 +22,22 @@ export class MemoryboxService {
       'Content-Type': 'application/json'
     })
   }
-  // private _memoryboxes: Array<MemoryBox>;
 
   constructor(private httpClient: HttpClient) {}
 
 
-  // generateID(): number{
-  //   return (this._memoryboxes.length > 0) ? this._memoryboxes[ this._memoryboxes.length -1].id + 1 : 1;
-  // }
+  generateID(): Observable<number> {
+    return this.getAll().pipe(
+      map((res: MemoryBox[]) => {
+        if (res && res.length > 0) {
+          const maxId = Math.max(...res.map(box => box.id));
+          return maxId + 1;
+        } else {
+          return 1;
+        }
+      })
+    );
+  }
 
   create(memorybox:MemoryBox): Observable<MemoryBox> {
     const url_resource: string = `${this._url}/${this._resource}`;
@@ -84,21 +92,21 @@ export class MemoryboxService {
   // inserirTag(idMemoryBox:number, tag: Tag) {
   //   this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
   //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
-      
+
   //     if (memoryBox.localizarTag(tag.id) >= 0) throw new Error(`tag de id ${tag.id} já pertence a memoryBox!`)
-      
+
   //     memoryBox.inserirTag(tag);
   //   });
-    
+
   // }
-  
+
   // removerTag(idMemoryBox: number, idTag: number) {
   //   return this.getById(idMemoryBox).subscribe((memoryBox:MemoryBox) => {
   //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idTag} não encontrada!`);
 
   //     let idxTag: number = memoryBox.localizarTag(idTag);
   //     if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a memoryBox de id ${idMemoryBox}`)
-      
+
   //     return memoryBox.removerTag(idTag);
   //   });
   // }
@@ -117,12 +125,12 @@ export class MemoryboxService {
   // inserirNote(idMemoryBox:number, note: Note) {
   //   this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
   //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
-      
+
   //     if (memoryBox.localizarNote(note.id) >= 0) throw new Error(`note de id ${note.id} já pertence a memoryBox!`)
-      
+
   //     memoryBox.inserirNote(note);
   //   });
-    
+
   // }
 
   // removerNote(idMemoryBox: number, idNote: number) {
@@ -150,12 +158,12 @@ export class MemoryboxService {
   // inserirTask(idMemoryBox:number, task: Task) {
   //   this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
   //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
-      
+
   //     if (memoryBox.localizarNote(task.id) >= 0) throw new Error(`task de id ${task.id} já pertence a memoryBox!`)
-      
+
   //     memoryBox.inserirTask(task);
   //   });
-    
+
   // }
 
   // removerTask(idMemoryBox: number, idTask: number) {
@@ -168,5 +176,5 @@ export class MemoryboxService {
   //     return memoryBox.removerTask(idTask);
   //   });
   // }
-  
+
 }

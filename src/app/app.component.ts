@@ -15,9 +15,8 @@ export class AppComponent {
   title = 'brainbox';
 
   constructor(private memoryBoxService: MemoryboxService,private userService: UserService, private tagService: TagService, private taskService: TaskService, private noteService: NoteService) {
-    
 
-    
+    /*
 
     let user3 = new User(1, "pabo@email.com", "pabo", "######", false);
     let user2 = new User(2, "lucas@email.com", "lucas", "######", false);
@@ -185,7 +184,7 @@ export class AppComponent {
       // console.log(this.tagService.getAll());
       // console.log(`${this.tagService.getById(1)} \n ${this.tagService.getById(2)}`)
 
-      /* Teste edição */
+      // Teste edição
       tag1.title = "Graduação"
       // console.log(this.tagService.update(1,tag1));
       // console.log(`${this.tagService.getById(1)}`)
@@ -213,7 +212,7 @@ export class AppComponent {
       // console.log(this.noteService.getById(2));
     } catch (e) {
       console.log((e as Error).message);
-    }
+    } */
 
   }
 
