@@ -12,6 +12,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
 import {HomeModule} from "./home/home.module";
+import { MemoryboxPageModule } from './memorybox-page/memorybox-page.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {HomeModule} from "./home/home.module";
     RouterLink
   ],
   exports: [
-    HomeModule
+    HomeModule,
+    MemoryboxPageModule
   ]
 })
 export class LayoutsModule { }

@@ -6,13 +6,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { ComponentsModule } from '../components/components.module';
-
+import { NoteListingComponent } from './note-listing/note-listing.component';
+import { MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
   declarations: [
     MemoryboxPageComponent,
-    TaskListingComponent
+    TaskListingComponent,
+    NoteListingComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,7 @@ import { ComponentsModule } from '../components/components.module';
     MatListModule,
     MatCardModule,
     ComponentsModule,
-
+    MatTableModule,
   ]
 })
 export class MemoryboxPageModule { }

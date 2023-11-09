@@ -1,0 +1,8 @@
+<div mat-header>Notes</div>
+<div fxLayout="row">
+  <mat-card *ngFor="let note of memorybox.notes">
+    <mat-card-title>
+      {{ note.content }}
+    </mat-card-title>
+  </mat-card>
+</div>
