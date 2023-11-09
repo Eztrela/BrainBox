@@ -1,8 +1,23 @@
 <div mat-header>Notes</div>
-<div fxLayout="row">
+<div class="task-notes">
   <mat-card *ngFor="let note of memorybox.notes">
-    <mat-card-title>
+    <mat-card-content>
       {{ note.content }}
-    </mat-card-title>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <button><mat-icon>add</mat-icon></button>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <button><mat-icon>add</mat-icon></button>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <button><mat-icon>add</mat-icon></button>
+    </mat-card-content>
   </mat-card>
 </div>

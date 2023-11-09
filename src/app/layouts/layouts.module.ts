@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from "@angular/forms";
 
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatIconModule} from "@angular/material/icon";
+import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
@@ -28,7 +28,8 @@ import { MemoryboxPageModule } from './memorybox-page/memorybox-page.module';
     MatAutocompleteModule,
     MatInputModule,
     MatCardModule,
-    RouterLink
+    RouterLink,
+    MatIconModule
   ],
   exports: [
     HomeModule,

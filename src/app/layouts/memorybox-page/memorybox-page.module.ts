@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { ComponentsModule } from '../components/components.module';
 import { NoteListingComponent } from './note-listing/note-listing.component';
 import { MatTableModule} from "@angular/material/table";
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MatTableModule} from "@angular/material/table";
     MatCardModule,
     ComponentsModule,
     MatTableModule,
+    MatIconModule
   ]
 })
 export class MemoryboxPageModule { }

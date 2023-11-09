@@ -1,16 +1,3 @@
-<div mat-header1>Tasks</div>
-<mat-card *ngFor="let task of memorybox.tasks">
-  <mat-card-title>
-    {{ task.title }}
-  </mat-card-title>
-  <mat-card-content>
-    {{ task.priority }}
-    {{ task.status }}
-    {{ task.id }}
-    {{ task.datetimeCreated }}
-  </mat-card-content>
-</mat-card>
-
 <table mat-table [dataSource]="memorybox.tasks" class="mat-elevation-z8">
   <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

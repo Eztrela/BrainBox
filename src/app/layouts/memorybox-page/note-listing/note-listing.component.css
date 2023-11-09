@@ -1,0 +1,43 @@
+.task-notes {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.task-notes mat-card {
+  height: 10rem;
+  width: 15.5rem;
+}
+
+mat-card {
+  background-color: rgba(124, 124, 149, 0.09);
+  transition-duration: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+mat-card:hover {
+  background-color: rgba(124, 124, 149, 0.22);
+}
+
+button {
+  border: none;
+  padding: none;
+  background: none;
+}
+
+mat-icon {
+  color: rgba(66, 66, 138, 0.86);
+  width: 4rem;
+  height: 4rem;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
