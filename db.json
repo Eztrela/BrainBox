@@ -6,8 +6,15 @@
       "username": "johndoe",
       "password": "password123",
       "notifications": true,
-      "memoryBoxes": [1, 2],
-      "tags": [1, 2, 3]
+      "memoryBoxes": [
+        1,
+        2
+      ],
+      "tags": [
+        1,
+        2,
+        3
+      ]
     },
     {
       "id": 2,
@@ -15,8 +22,13 @@
       "username": "janesmith",
       "password": "securepass",
       "notifications": false,
-      "memoryBoxes": [3],
-      "tags": [4, 5]
+      "memoryBoxes": [
+        3
+      ],
+      "tags": [
+        4,
+        5
+      ]
     }
   ],
   "memoryBoxes": [
@@ -35,8 +47,28 @@
           "datetimeDue": "2023-12-10T12:00:00.000Z",
           "priority": 2,
           "memoryBox": 1,
-          "tags": [1, 2, 3]
-        }, {
+          "tags": [
+            {
+              "id": 1,
+              "user": 1,
+              "title": "Personal",
+              "color": "#33B2FF"
+            },
+            {
+              "id": 2,
+              "user": 1,
+              "title": "Vacation",
+              "color": "#64FF33"
+            },
+            {
+              "id": 3,
+              "user": 1,
+              "title": "Gifts",
+              "color": "#FFFC33"
+            }
+          ]
+        },
+        {
           "id": 2,
           "title": "Complete project report",
           "description": "Finalize and submit the project report.",
@@ -45,8 +77,22 @@
           "datetimeDue": "2023-11-20T14:00:00.000Z",
           "priority": 1,
           "memoryBox": 1,
-          "tags": [2, 3]
-        }, {
+          "tags": [
+            {
+              "id": 2,
+              "user": 1,
+              "title": "Vacation",
+              "color": "#64FF33"
+            },
+            {
+              "id": 3,
+              "user": 1,
+              "title": "Gifts",
+              "color": "#FFFC33"
+            }
+          ]
+        },
+        {
           "id": 3,
           "title": "Buy birthday gift",
           "description": "Purchase a birthday gift for a friend.",
@@ -55,41 +101,135 @@
           "datetimeDue": "2023-11-25T10:00:00.000Z",
           "priority": 3,
           "memoryBox": 1,
-          "tags": [1, 3]
-        }],
-      "notes": [1, 2, 3],
-      "tags": [1, 2, 3]
+          "tags": [
+            {
+              "id": 1,
+              "user": 1,
+              "title": "Personal",
+              "color": "#33B2FF"
+            },
+            {
+              "id": 3,
+              "user": 1,
+              "title": "Gifts",
+              "color": "#FFFC33"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "id": 1,
+          "memoryBox": 1,
+          "content": "I need to buy a birthday gift for David's party next week."
+        },
+        {
+          "id": 2,
+          "memoryBox": 1,
+          "content": "Research vacation destinations and flight options."
+        },
+        {
+          "id": 3,
+          "memoryBox": 1,
+          "content": "Call Sarah about the upcoming project meeting."
+        }
+      ],
+      "tags": [
+        {
+          "id": 1,
+          "user": 1,
+          "title": "Personal",
+          "color": "#33B2FF"
+        },
+        {
+          "id": 2,
+          "user": 1,
+          "title": "Vacation",
+          "color": "#64FF33"
+        },
+        {
+          "id": 3,
+          "user": 1,
+          "title": "Gifts",
+          "color": "#FFFC33"
+        }
+      ]
     },
     {
       "id": 2,
       "user": 1,
       "title": "Work Projects",
       "datetimeCreated": "2023-11-08T10:30:00.000Z",
-      "tasks": [{
-        "id": 4,
-        "title": "Prepare presentation",
-        "description": "Create a presentation for the upcoming meeting.",
-        "status": "In Progress",
-        "datetimeCreated": "2023-11-11T09:30:00.000Z",
-        "datetimeDue": "2023-11-30T16:00:00.000Z",
-        "priority": 2,
-        "memoryBox": 2,
-        "tags": [4, 5]
-      },
+      "tasks": [
         {
-        "id": 5,
-        "title": "Update website content",
-        "description": "Make content updates on the company website.",
-        "status": "New",
-        "datetimeCreated": "2023-11-15T13:45:00.000Z",
-        "datetimeDue": "2023-11-28T18:30:00.000Z",
-        "priority": 2,
-        "memoryBox": 2,
-        "tags": [5]
-      }
+          "id": 4,
+          "title": "Prepare presentation",
+          "description": "Create a presentation for the upcoming meeting.",
+          "status": "In Progress",
+          "datetimeCreated": "2023-11-11T09:30:00.000Z",
+          "datetimeDue": "2023-11-30T16:00:00.000Z",
+          "priority": 2,
+          "memoryBox": 2,
+          "tags": [
+            {
+              "id": 4,
+              "user": 2,
+              "title": "Work",
+              "color": "#FF33F0"
+            },
+            {
+              "id": 5,
+              "user": 2,
+              "title": "Marketing",
+              "color": "#FFC233"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Update website content",
+          "description": "Make content updates on the company website.",
+          "status": "New",
+          "datetimeCreated": "2023-11-15T13:45:00.000Z",
+          "datetimeDue": "2023-11-28T18:30:00.000Z",
+          "priority": 2,
+          "memoryBox": 2,
+          "tags": [
+            {
+              "id": 5,
+              "user": 2,
+              "title": "Marketing",
+              "color": "#FFC233"
+            }
+          ]
+        }
       ],
-      "notes": [4, 5],
-      "tags": [4, 5]
+      "notes": [
+        {
+          "id": 4,
+          "memoryBox": 2,
+          "content": "Meeting agenda: Discuss the marketing strategy."
+        },
+        {
+          "id": 5,
+          "memoryBox": 2,
+          "content": "Update the product descriptions on the website."
+        }
+      ],
+      "tags": [
+        {
+          "id": 4,
+          "user": 2,
+          "title": "Work",
+          "color": "#FF33F0"
+        },
+        {
+          "id": 5,
+          "user": 2,
+          "title": "Marketing",
+          "color": "#FFC233"
+        }
+      ]
     },
     {
       "id": 3,
@@ -98,18 +238,44 @@
       "datetimeCreated": "2023-11-10T15:15:00.000Z",
       "tasks": [
         {
-        "id": 6,
-        "title": "Explore Paris",
-        "description": "Sightseeing and exploring the city of Paris.",
-        "status": "In Progress",
-        "datetimeCreated": "2023-11-18T10:00:00.000Z",
-        "datetimeDue": "2023-11-25T18:00:00.000Z",
-        "priority": 1,
-        "memoryBox": 3,
-        "tags": [6]
-      }],
-      "notes": [6, 7],
-      "tags": [6]
+          "id": 6,
+          "title": "Explore Paris",
+          "description": "Sightseeing and exploring the city of Paris.",
+          "status": "In Progress",
+          "datetimeCreated": "2023-11-18T10:00:00.000Z",
+          "datetimeDue": "2023-11-25T18:00:00.000Z",
+          "priority": 1,
+          "memoryBox": 3,
+          "tags": [
+            {
+              "id": 6,
+              "user": 2,
+              "title": "Travel",
+              "color": "#33FFFC"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "id": 6,
+          "memoryBox": 3,
+          "content": "Visited the Louvre Museum today. Amazing artwork!"
+        },
+        {
+          "id": 7,
+          "memoryBox": 3,
+          "content": "Tried a delicious croissant at a local bakery."
+        }
+      ],
+      "tags": [
+        {
+          "id": 6,
+          "user": 2,
+          "title": "Travel",
+          "color": "#33FFFC"
+        }
+      ]
     },
     {
       "id": 4,
@@ -118,48 +284,121 @@
       "datetimeCreated": "2023-11-15T17:30:00.000Z",
       "tasks": [
         {
-        "id": 7,
-        "title": "Try new pasta recipe",
-        "description": "Experiment with a new pasta recipe for dinner.",
-        "status": "New",
-        "datetimeCreated": "2023-11-16T10:00:00.000Z",
-        "datetimeDue": "2023-11-18T18:00:00.000Z",
-        "priority": 2,
-        "memoryBox": 4,
-        "tags": [7, 8]
-      }
+          "id": 7,
+          "title": "Try new pasta recipe",
+          "description": "Experiment with a new pasta recipe for dinner.",
+          "status": "New",
+          "datetimeCreated": "2023-11-16T10:00:00.000Z",
+          "datetimeDue": "2023-11-18T18:00:00.000Z",
+          "priority": 2,
+          "memoryBox": 4,
+          "tags": [
+            {
+              "id": 7,
+              "user": 2,
+              "title": "Recipes",
+              "color": "#FF99CC"
+            },
+            {
+              "id": 8,
+              "user": 2,
+              "title": "Cooking",
+              "color": "#FFD700"
+            }
+          ]
+        }
       ],
-      "notes": [8, 9],
-      "tags": [7, 8]
+      "notes": [
+        {
+          "id": 8,
+          "memoryBox": 4,
+          "content": "Add extra cheese to the pasta recipe."
+        },
+        {
+          "id": 9,
+          "memoryBox": 4,
+          "content": "Check for gluten-free options for the pasta."
+        }
+      ],
+      "tags": [
+        {
+          "id": 7,
+          "user": 2,
+          "title": "Recipes",
+          "color": "#FF99CC"
+        },
+        {
+          "id": 8,
+          "user": 2,
+          "title": "Cooking",
+          "color": "#FFD700"
+        }
+      ]
     },
     {
       "id": 5,
       "user": 1,
       "title": "Fitness Goals",
       "datetimeCreated": "2023-11-16T09:15:00.000Z",
-      "tasks": [{
-        "id": 8,
-        "title": "Morning workout",
-        "description": "Complete a 30-minute morning workout routine.",
-        "status": "In Progress",
-        "datetimeCreated": "2023-11-16T07:00:00.000Z",
-        "datetimeDue": "2023-11-18T08:00:00.000Z",
-        "priority": 1,
-        "memoryBox": 5,
-        "tags": [9]
-      }, {
-        "id": 9,
-        "title": "Grocery shopping",
-        "description": "Buy groceries for the week.",
-        "status": "New",
-        "datetimeCreated": "2023-11-16T13:00:00.000Z",
-        "datetimeDue": "2023-11-17T17:00:00.000Z",
-        "priority": 3,
-        "memoryBox": 5,
-        "tags": [10]
-      }],
-      "notes": [10],
-      "tags": [9, 10]
+      "tasks": [
+        {
+          "id": 8,
+          "title": "Morning workout",
+          "description": "Complete a 30-minute morning workout routine.",
+          "status": "In Progress",
+          "datetimeCreated": "2023-11-16T07:00:00.000Z",
+          "datetimeDue": "2023-11-18T08:00:00.000Z",
+          "priority": 1,
+          "memoryBox": 5,
+          "tags": [
+            {
+              "id": 9,
+              "user": 1,
+              "title": "Health",
+              "color": "#00CC99"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "title": "Grocery shopping",
+          "description": "Buy groceries for the week.",
+          "status": "New",
+          "datetimeCreated": "2023-11-16T13:00:00.000Z",
+          "datetimeDue": "2023-11-17T17:00:00.000Z",
+          "priority": 3,
+          "memoryBox": 5,
+          "tags": [
+            {
+              "id": 10,
+              "user": 1,
+              "title": "Fitness",
+              "color": "#FF8C00"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "id": 10,
+          "memoryBox": 5,
+          "content": "Create a workout schedule for the week."
+        }
+      ],
+      "tags": [
+        {
+          "id": 9,
+          "user": 1,
+          "title": "Health",
+          "color": "#00CC99"
+        },
+        {
+          "id": 10,
+          "user": 1,
+          "title": "Fitness",
+          "color": "#FF8C00"
+        }
+      ]
     }
   ],
   "tasks": [
@@ -172,7 +411,26 @@
       "datetimeDue": "2023-12-10T12:00:00.000Z",
       "priority": 2,
       "memoryBox": 1,
-      "tags": [1, 2, 3]
+      "tags": [
+        {
+          "id": 1,
+          "user": 1,
+          "title": "Personal",
+          "color": "#33B2FF"
+        },
+        {
+          "id": 2,
+          "user": 1,
+          "title": "Vacation",
+          "color": "#64FF33"
+        },
+        {
+          "id": 3,
+          "user": 1,
+          "title": "Gifts",
+          "color": "#FFFC33"
+        }
+      ]
     },
     {
       "id": 2,
@@ -183,7 +441,20 @@
       "datetimeDue": "2023-11-20T14:00:00.000Z",
       "priority": 1,
       "memoryBox": 1,
-      "tags": [2, 3]
+      "tags": [
+        {
+          "id": 2,
+          "user": 1,
+          "title": "Vacation",
+          "color": "#64FF33"
+        },
+        {
+          "id": 3,
+          "user": 1,
+          "title": "Gifts",
+          "color": "#FFFC33"
+        }
+      ]
     },
     {
       "id": 3,
@@ -194,7 +465,20 @@
       "datetimeDue": "2023-11-25T10:00:00.000Z",
       "priority": 3,
       "memoryBox": 1,
-      "tags": [1, 3]
+      "tags": [
+        {
+          "id": 1,
+          "user": 1,
+          "title": "Personal",
+          "color": "#33B2FF"
+        },
+        {
+          "id": 3,
+          "user": 1,
+          "title": "Gifts",
+          "color": "#FFFC33"
+        }
+      ]
     },
     {
       "id": 4,
@@ -205,7 +489,20 @@
       "datetimeDue": "2023-11-30T16:00:00.000Z",
       "priority": 2,
       "memoryBox": 2,
-      "tags": [4, 5]
+      "tags": [
+        {
+          "id": 4,
+          "user": 2,
+          "title": "Work",
+          "color": "#FF33F0"
+        },
+        {
+          "id": 5,
+          "user": 2,
+          "title": "Marketing",
+          "color": "#FFC233"
+        }
+      ]
     },
     {
       "id": 5,
@@ -216,7 +513,14 @@
       "datetimeDue": "2023-11-28T18:30:00.000Z",
       "priority": 2,
       "memoryBox": 2,
-      "tags": [5]
+      "tags": [
+        {
+          "id": 5,
+          "user": 2,
+          "title": "Marketing",
+          "color": "#FFC233"
+        }
+      ]
     },
     {
       "id": 6,
@@ -227,7 +531,14 @@
       "datetimeDue": "2023-11-25T18:00:00.000Z",
       "priority": 1,
       "memoryBox": 3,
-      "tags": [6]
+      "tags": [
+        {
+          "id": 6,
+          "user": 2,
+          "title": "Travel",
+          "color": "#33FFFC"
+        }
+      ]
     },
     {
       "id": 7,
@@ -238,7 +549,20 @@
       "datetimeDue": "2023-11-18T18:00:00.000Z",
       "priority": 2,
       "memoryBox": 4,
-      "tags": [7, 8]
+      "tags": [
+        {
+          "id": 7,
+          "user": 2,
+          "title": "Recipes",
+          "color": "#FF99CC"
+        },
+        {
+          "id": 8,
+          "user": 2,
+          "title": "Cooking",
+          "color": "#FFD700"
+        }
+      ]
     },
     {
       "id": 8,
@@ -249,7 +573,14 @@
       "datetimeDue": "2023-11-18T08:00:00.000Z",
       "priority": 1,
       "memoryBox": 5,
-      "tags": [9]
+      "tags": [
+        {
+          "id": 9,
+          "user": 1,
+          "title": "Health",
+          "color": "#00CC99"
+        }
+      ]
     },
     {
       "id": 9,
@@ -260,7 +591,14 @@
       "datetimeDue": "2023-11-17T17:00:00.000Z",
       "priority": 3,
       "memoryBox": 5,
-      "tags": [10]
+      "tags": [
+        {
+          "id": 10,
+          "user": 1,
+          "title": "Fitness",
+          "color": "#FF8C00"
+        }
+      ]
     }
   ],
   "notes": [
