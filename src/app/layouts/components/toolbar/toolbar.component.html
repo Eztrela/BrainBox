@@ -14,5 +14,5 @@
   </form>
 </mat-toolbar>
 <mat-autocomplete class="test" #auto="matAutocomplete">
-  <mat-option class='search-autocomplete' *ngFor="let memoryBox of memoryBoxes" [value]="memoryBox.title">{{memoryBox.title}}</mat-option>
+  <mat-option class='search-autocomplete' *ngFor="let memoryBox of filteredMemoryBoxes | async" [value]="memoryBox.title">{{memoryBox.title}}</mat-option>
 </mat-autocomplete>
