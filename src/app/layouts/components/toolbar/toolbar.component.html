@@ -13,13 +13,17 @@
 
   </form>
 </mat-toolbar>
-<mat-autocomplete class="test" #auto="matAutocomplete">
-  <mat-optgroup [label]="firstoption">
+<mat-autocomplete
+  class="{{CSSClasses}}"
+  #auto="matAutocomplete"
+  (opened)="onOpened()"
+  (closed)="onClosed()">
+  <mat-optgroup [label]="firstoption" class='search-autocomplete-options'>
     <mat-option
-      class='search-autocomplete'
+      class='search-autocomplete-options'
       *ngFor="let memoryBox of filteredMemoryBoxes | async"
       [value]="memoryBox.title">
-      <b>{{memoryBox.title}}</b>
+      {{memoryBox.title}}
     </mat-option>
   </mat-optgroup>
 </mat-autocomplete>
