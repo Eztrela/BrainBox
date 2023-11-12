@@ -2,6 +2,11 @@
   background: #30343F;
 }
 
+::ng-deep .mat-autocomplete-panel {
+  color: red;
+  border-radius: 5% !important;
+}
+
 .mat-mdc-unelevated-button {
   margin-left: 2rem;
   font-family: "Titillium Web", sans-serif;

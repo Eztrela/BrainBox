@@ -1,8 +1,13 @@
 <mat-toolbar class="top-toolbar">
-  <form class="search-form">
+  <form class="search-form" (ngSubmit)="onSubmit(pesquisaControl.value)">
     <input class="search-input"
            type="text"
-           placeholder="Pesquise por suas Memory Boxes ou tarefas aqui!">
+           placeholder="Pesquise por suas Memory Boxes ou tarefas aqui!"
+           [formControl]="pesquisaControl"
+           [matAutocomplete]="auto">
 
   </form>
 </mat-toolbar>
+<mat-autocomplete class="test" #auto="matAutocomplete">
+  <mat-option class='search-autocomplete' *ngFor="let memoryBox of memoryBoxes" [value]="memoryBox.title">{{memoryBox.title}}</mat-option>
+</mat-autocomplete>
