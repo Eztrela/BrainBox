@@ -1,5 +1,10 @@
 <mat-toolbar class="top-toolbar">
   <form class="search-form" (ngSubmit)="onSubmit(pesquisaControl.value)">
+    <button mat-icon-button class="search-button">
+      <mat-icon>
+        search
+      </mat-icon>
+    </button>
     <input class="search-input"
            type="text"
            placeholder="Pesquise por suas Memory Boxes ou tarefas aqui!"

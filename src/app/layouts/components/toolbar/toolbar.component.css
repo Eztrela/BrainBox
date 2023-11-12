@@ -2,9 +2,16 @@
   background: #30343F;
 }
 
-::ng-deep .mat-autocomplete-panel {
-  color: red;
-  border-radius: 5% !important;
+.search-button {
+  color: azure;
+  position: absolute;
+  left: 3rem;
+  top: 0.5rem;
+  cursor: pointer;
+}
+
+.search-autocomplete {
+  font-family: "Titillium Web", sans-serif;
 }
 
 .mat-mdc-unelevated-button {
@@ -34,4 +41,8 @@
   background: #1E1E24;
   width: 43rem;
   height: 2rem;
+}
+
+.search-input:focus {
+  border-radius: 1.8rem 1.8rem 0 0;
 }
