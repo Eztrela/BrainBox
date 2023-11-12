@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MemoryBox, Note, Tag, Task, User} from "../../../../shared/models";
 import {TagService} from "../../../../shared/services/tag.service";
-import {TaskService} from "../../../../shared/services/task.service";
-import {NoteService} from "../../../../shared/services/note.service";
 import {forkJoin} from "rxjs";
 import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 

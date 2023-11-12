@@ -8,5 +8,5 @@ export interface ITask {
   datetimeCreated: Date;
   datetimeDue: Date;
   priority: number;
-  tags: Array<Tag>;
+  tags: Array<number>;
 }

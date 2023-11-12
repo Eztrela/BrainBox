@@ -11,7 +11,7 @@ export class Task implements ITask {
     private _datetimeCreated: Date;
     private _datetimeDue: Date;
     private _priority: number;
-    private _tags: Array<Tag>;
+    private _tags: Array<number>;
 
 
     constructor(id: number, title:string, description: string, status: string, datetimeDue: Date, priority: number) {
@@ -22,16 +22,16 @@ export class Task implements ITask {
       this._datetimeCreated = new Date();
       this._datetimeDue = new Date();
       this._priority = priority;
-      this._tags = new Array<Tag>;
+      this._tags = new Array<number>;
     }
 
 
-  inserirTag(tag: Tag) {
+  inserirTag(tag: number) {
     this._tags.push(tag);
   }
 
   localizarTag(id: number): number {
-    return this._tags.findIndex((t:Tag):boolean => (t.id === id));
+    return this._tags.findIndex((t:number):boolean => (t === id));
   }
 
   public removerTag(id: number) {
@@ -67,7 +67,7 @@ export class Task implements ITask {
       return this._priority;
     }
 
-    get tags(): Array<Tag> {
+    get tags(): Array<number> {
         return this._tags;
     }
 
