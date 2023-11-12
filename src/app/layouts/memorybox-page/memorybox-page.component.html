@@ -1,5 +1,9 @@
 <app-sidenav>
   <h1>{{ memorybox.title }}</h1>
-  <app-task-listing [memorybox]="memorybox"></app-task-listing>
-  <app-note-listing [memorybox]="memorybox"></app-note-listing>
+  <ng-container *ngIf="memorybox.id > 0">
+    <app-task-listing [memorybox]="memorybox"></app-task-listing>
+  </ng-container>
+  <ng-container *ngIf="memorybox.id > 0">
+    <app-note-listing [memorybox]="memorybox"></app-note-listing>
+  </ng-container>
 </app-sidenav>

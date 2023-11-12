@@ -9,7 +9,7 @@ import {forkJoin, map} from "rxjs";
   styleUrls: ['./memorybox-card.component.css']
 })
 export class MemoryboxCardComponent implements OnInit {
-  @Input() memorybox: MemoryBox = new MemoryBox(0, "", new User(0,"","","",false));
+  @Input() memorybox: MemoryBox = new MemoryBox(0, "", 0);
 
   public taskColor: string = "#D9D9D9";
   public fillerColor: string = "#30343F";

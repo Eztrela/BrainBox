@@ -1,6 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { MemoryBox, Task, User } from 'src/app/shared/models';
-import {MatTableModule} from '@angular/material/table'
+import {MatTableDataSource, MatTableModule} from '@angular/material/table'
 import {TaskService} from "../../../shared/services/task.service";
 import {forkJoin} from "rxjs";
 
@@ -10,12 +10,12 @@ import {forkJoin} from "rxjs";
   styleUrls: ['./task-listing.component.css']
 })
 export class TaskListingComponent implements OnInit{
-  @Input() memorybox: MemoryBox = new MemoryBox(0,"",new User(0,"","","",false));
-
+  @Input() memorybox: MemoryBox = new MemoryBox(0,"",0);
+  public datasource: MatTableDataSource<Task> = new MatTableDataSource<Task>();
   constructor(){
   }
   
   ngOnInit(): void {
-  
+    this.datasource = new MatTableDataSource<Task>(this.memorybox.tasks);
   }
 }

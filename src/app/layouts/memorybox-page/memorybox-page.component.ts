@@ -12,7 +12,7 @@ import {Observable} from 'rxjs'
 })
 export class MemoryboxPageComponent implements OnInit {
   public id: number = 0;
-  public memorybox: MemoryBox = new MemoryBox(0,"",new User(0,"","","",false));
+  public memorybox: MemoryBox = new MemoryBox(0,"",0);
   public tasks:Array<Task> = new Array<Task>();
   public notes:Array<Note> = new Array<Note>();
   constructor(private route: ActivatedRoute, private memoryBoxService: MemoryboxService, private taskService: TaskService, private noteService:NoteService) {
