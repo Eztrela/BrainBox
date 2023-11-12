@@ -15,6 +15,7 @@ export class ToolbarComponent implements OnInit {
   @Input() memoryBoxes: Array<MemoryBox> = new Array<MemoryBox>();
   public filteredMemoryBoxes: Observable<MemoryBox[]> = new Observable<MemoryBox[]>();
   public pesquisaControl = new FormControl('');
+  firstoption: string = "Memory Boxes";
 
   constructor(private router: Router, private _snackbar: MatSnackBar) {
   }
