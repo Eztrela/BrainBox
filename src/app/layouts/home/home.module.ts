@@ -13,7 +13,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { CreateDialogComponent } from './memorybox-listing/create-dialog/create-dialog.component';
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 
 
@@ -24,21 +24,22 @@ import {MatDialogModule} from "@angular/material/dialog";
     MemoryboxCardComponent,
     CreateDialogComponent
   ],
-  imports: [
-    CommonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatCardModule,
-    RouterLink,
-    ComponentsModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    NgOptimizedImage,
-    MatIconModule,
-    MatInputModule,
-    FormsModule,
-    MatDialogModule,
-  ],
+    imports: [
+        CommonModule,
+        MatSidenavModule,
+        MatListModule,
+        MatCardModule,
+        RouterLink,
+        ComponentsModule,
+        FlexLayoutModule,
+        MatButtonModule,
+        NgOptimizedImage,
+        MatIconModule,
+        MatInputModule,
+        FormsModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+    ],
   exports: [
     HomeComponent
   ]

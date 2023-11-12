@@ -1,11 +1,13 @@
-<div mat-dialog-content>
+<div class="dialog-container" mat-dialog-content>
   <p>Insira o título da nova Memory Box</p>
   <mat-form-field>
     <mat-label>Título</mat-label>
-    <input matInput [(ngModel)]="memorybox.title">
+    <input class="title-input" matInput [formControl]="titleForm" required>
+    <mat-icon *ngIf="titleForm.value.length > 0" matIconSuffix>close</mat-icon>
+    <mat-error *ngIf="titleForm.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="memorybox">Criar</button>
+  <button class="cancel-button" mat-button (click)="onNoClick()">Cancelar</button>
+  <button class="confirm-button" mat-button [mat-dialog-close]="memorybox" [disabled]="titleForm.invalid">Criar</button>
 </div>

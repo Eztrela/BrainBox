@@ -43,7 +43,8 @@ export class ToolbarComponent implements OnInit {
       data: {
         message: `Memory Box ou Task ${title} não encontrada!`,
       },
-      panelClass: ['mat-warn']
+      panelClass: ['mat-warn'],
+      duration: 3000
     })
   }
 
