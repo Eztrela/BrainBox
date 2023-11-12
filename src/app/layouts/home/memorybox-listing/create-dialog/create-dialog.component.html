@@ -9,5 +9,5 @@
 </div>
 <div mat-dialog-actions>
   <button class="cancel-button" mat-button (click)="onNoClick()">Cancelar</button>
-  <button class="confirm-button" mat-button [mat-dialog-close]="memorybox" [disabled]="titleForm.invalid">Criar</button>
+  <button class="confirm-button" mat-button [mat-dialog-close]="titleForm.value" [disabled]="titleForm.invalid">Criar</button>
 </div>

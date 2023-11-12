@@ -32,10 +32,10 @@ export class MemoryboxListingComponent implements OnInit {
       panelClass: 'dialog-container'
     });
 
-    dialogRef.afterClosed().subscribe((data:MemoryBox) => {
-      if (data) {
+    dialogRef.afterClosed().subscribe((title:string) => {
+      if (title) {
         this.memoryboxService.generateID().subscribe((id: number) => {
-          let memorybox = new MemoryBox(id, data.title, 0)
+          let memorybox = new MemoryBox(id, title, 0)
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
             this.addNewItem(obj);
             this._snackbar.openFromComponent(SnackbarComponent, {
