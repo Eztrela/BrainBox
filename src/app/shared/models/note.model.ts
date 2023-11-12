@@ -3,15 +3,15 @@ import {INote} from "../interfaces/inote";
 export class Note{
   /* Model class for MemoryBox notes */
 
-  private _id:number|null=null;
+  private _id: number | undefined = undefined;
   private _content:string;
 
-  constructor(id:number |null=null, content:string) {
+  constructor(id:number, content:string) {
     this._id = id;
     this._content = content;
   }
 
-  get id():number|null {
+  get id():number | undefined {
     return this._id;
   }
 

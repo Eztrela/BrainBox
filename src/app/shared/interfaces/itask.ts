@@ -1,5 +1,3 @@
-import { Tag } from "../models";
-
 export interface ITask {
   id: number;
   title: string;

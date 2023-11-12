@@ -10,7 +10,7 @@ export class PnotePipe implements PipeTransform {
   transform(note: Note): INote {
     return new class implements INote {
       content: string = note.content;
-      id: number = note.id;
+      id: number = 0;
     };
   }
 

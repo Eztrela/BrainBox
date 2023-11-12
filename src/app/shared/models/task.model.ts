@@ -1,10 +1,7 @@
-import {Tag} from "./tag.model";
-import {ITask} from "../interfaces/itask";
-
-export class Task implements ITask {
+export class Task {
     /* Model class for Task */
 
-    private readonly _id: number;
+    private _id: number | undefined = undefined;
     private _title: string;
     private _description: string;
     private _status: string;
@@ -14,8 +11,7 @@ export class Task implements ITask {
     private _tags: Array<number>;
 
 
-    constructor(id: number, title:string, description: string, status: string, datetimeDue: Date, priority: number) {
-      this._id = id;
+    constructor(title:string, description: string, status: string, datetimeDue: Date, priority: number) {
       this._title = title;
       this._description = description;
       this._status = status;
@@ -39,9 +35,9 @@ export class Task implements ITask {
     return this._tags.splice(idx, 1)[0];
   }
 
-    get id():number {
+  get id (): number | undefined {
       return this._id;
-    }
+  }
 
     get title(): string {
       return this._title;
@@ -69,6 +65,10 @@ export class Task implements ITask {
 
     get tags(): Array<number> {
         return this._tags;
+    }
+
+    set id(id: number) {
+      this._id = id;
     }
 
     set title(title: string) {

@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MemoryBox, Note, Tag, Task, User} from "../../../../shared/models";
+import {MemoryBox, Tag} from "../../../../shared/models";
 import {TagService} from "../../../../shared/services/tag.service";
-import {forkJoin} from "rxjs";
-import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
+import {forkJoin, map} from "rxjs";
 
 @Component({
   selector: 'app-memorybox-card',
@@ -13,10 +12,19 @@ export class MemoryboxCardComponent implements OnInit {
   @Input() memorybox: MemoryBox = new MemoryBox(0, "", 0);
 
   public taskColor: string = "#D9D9D9";
+  public tags: Array<Tag> = new Array<Tag>();
 
-  constructor() {
+  constructor(private tagService: TagService) {
   }
   ngOnInit() {
+    const tagObservables = this.memorybox.tags.map(tagId => this.tagService.getById(tagId));
+    forkJoin(tagObservables).pipe(
+      // Filter out undefined values
+      map(tags => tags.filter(tag => !!tag))
+    ).subscribe((tags: Tag[]) => {
+      console.log(tags);
+      this.tags.push(...tags);
+    });
   }
 
 
