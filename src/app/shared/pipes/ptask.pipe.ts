@@ -14,9 +14,9 @@ export class PtaskPipe implements PipeTransform {
         description: string = task.description;
         priority: number = task.priority;
         status: string = task.status;
-        tags: Array<Tag> = task.tags;
+        tags: Array<number> = task.tags;
         title: string = task.title;
-        id: number = task.id;
+        id: number = 0;
       };
     }
 

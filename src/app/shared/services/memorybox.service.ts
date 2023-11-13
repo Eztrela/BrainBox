@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import {MemoryBox, Tag, Note, Task} from "../models";
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {map, max, Observable, throwError} from "rxjs";
+import { MemoryBox } from "../models";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import { map, max, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { PmemoryboxPipe } from "../pipes/pmemorybox.pipe";
 
