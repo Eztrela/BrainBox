@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {MemoryboxService} from "../../shared/services/memorybox.service";
-import {TaskService} from "../../shared/services/task.service";
 import {MemoryBox, Note, Task, User} from "../../shared/models";
-import { NoteService } from '../../shared/services/note.service';
 import {Observable} from 'rxjs'
 @Component({
   selector: 'app-memorybox-page',
@@ -15,7 +13,7 @@ export class MemoryboxPageComponent implements OnInit {
   public memorybox: MemoryBox = new MemoryBox(0,"",0);
   public tasks:Array<Task> = new Array<Task>();
   public notes:Array<Note> = new Array<Note>();
-  constructor(private route: ActivatedRoute, private memoryBoxService: MemoryboxService, private taskService: TaskService, private noteService:NoteService) {
+  constructor(private route: ActivatedRoute, private memoryBoxService: MemoryboxService) {
   }
   
   ngOnInit() {

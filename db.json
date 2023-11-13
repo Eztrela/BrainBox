@@ -6,8 +6,18 @@
       "username": "lifemanager",
       "password": "password123",
       "notifications": true,
-      "memoryBoxes": [1, 2, 3],
-      "tags": [1, 2, 3, 4, 5]
+      "memoryBoxes": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     }
   ],
   "memoryboxes": [
@@ -25,7 +35,10 @@
           "datetimeCreated": "2023-11-12T16:45:15.000Z",
           "datetimeDue": "2023-11-15T16:45:15.000Z",
           "priority": 1,
-          "tags": [1, 2]
+          "tags": [
+            1,
+            2
+          ]
         },
         {
           "id": 2,
@@ -35,7 +48,10 @@
           "datetimeCreated": "2023-11-12T16:45:15.000Z",
           "datetimeDue": "2023-11-20T16:45:15.000Z",
           "priority": 2,
-          "tags": [1, 2]
+          "tags": [
+            1,
+            2
+          ]
         }
       ],
       "notes": [
@@ -44,7 +60,10 @@
           "content": "Quantum mechanics is a fundamental theory in physics that provides a description of the physical properties of nature at the scale of atoms and subatomic particles."
         }
       ],
-      "tags": [1, 2]
+      "tags": [
+        1,
+        2
+      ]
     },
     {
       "id": 2,
@@ -60,7 +79,10 @@
           "datetimeCreated": "2023-11-12T16:45:15.000Z",
           "datetimeDue": "2023-11-13T07:00:00.000Z",
           "priority": 2,
-          "tags": [1, 4]
+          "tags": [
+            1,
+            4
+          ]
         },
         {
           "id": 2,
@@ -70,7 +92,10 @@
           "datetimeCreated": "2023-11-12T16:45:15.000Z",
           "datetimeDue": "2023-11-13T18:00:00.000Z",
           "priority": 3,
-          "tags": [1, 4]
+          "tags": [
+            1,
+            4
+          ]
         }
       ],
       "notes": [
@@ -79,7 +104,10 @@
           "content": "Regular exercise is important for maintaining good health."
         }
       ],
-      "tags": [1, 4]
+      "tags": [
+        1,
+        4
+      ]
     },
     {
       "id": 3,
@@ -95,7 +123,10 @@
           "datetimeCreated": "2023-11-12T16:45:15.000Z",
           "datetimeDue": "2023-11-19T16:45:15.000Z",
           "priority": 3,
-          "tags": [1, 5]
+          "tags": [
+            1,
+            5
+          ]
         },
         {
           "id": 2,
@@ -105,7 +136,10 @@
           "datetimeCreated": "2023-11-12T16:45:15.000Z",
           "datetimeDue": "2023-11-21T16:45:15.000Z",
           "priority": 4,
-          "tags": [1, 5]
+          "tags": [
+            1,
+            5
+          ]
         }
       ],
       "notes": [
@@ -114,7 +148,19 @@
           "content": "'Stairway to Heaven' is a song by the English rock band Led Zeppelin."
         }
       ],
-      "tags": [1, 5]
+      "tags": [
+        1,
+        5
+      ]
+    },
+    {
+      "tags": [],
+      "notes": [],
+      "tasks": [],
+      "datetimeCreated": "2023-11-13T01:02:37.547Z",
+      "title": "teste",
+      "user": 0,
+      "id": 4
     }
   ],
   "tags": [
