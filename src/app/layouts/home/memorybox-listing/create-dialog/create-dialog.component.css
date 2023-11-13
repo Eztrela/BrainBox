@@ -1,0 +1,14 @@
+::ng-deep .dialog-container {
+  & .mat-mdc-dialog-container  {
+    --mdc-dialog-container-color: #30343F!important;
+    border-radius: 4rem;
+    width: 20rem;
+    height: 20rem;
+  }
+  & p {
+    color: azure;
+  }
+}
+
+
+
