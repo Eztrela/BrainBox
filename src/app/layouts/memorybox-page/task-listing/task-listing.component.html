@@ -30,6 +30,25 @@
     <td mat-cell *matCellDef="let task">{{ task.priority }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="addTask">
+    <th mat-header-cell *matHeaderCellDef>
+      <button mat-button><mat-icon class="addButton">add</mat-icon></button>
+    </th>
+  </ng-container>
+
+  <ng-container matColumnDef="editRemove">
+    <td mat-cell class="editRemove-tasks" *matCellDef="let task">
+      <div>
+        <button mat-button>
+          <mat-icon class="editButton">edit</mat-icon>
+        </button>
+        <button mat-button (click)="deleteTask(task)">
+          <mat-icon class="deleteButton">delete</mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
+
   <ng-container matColumnDef="tags">
     <th mat-header-cell *matHeaderCellDef>Tags</th>
     <td mat-cell class="task-tags" *matCellDef="let task">
@@ -48,14 +67,23 @@
       'description',
       'status',
       'priority',
-      'tags'
+      'tags',
+      'addTask'
     ]"
   ></tr>
   <tr
     mat-row
     *matRowDef="
       let row;
-      columns: ['id', 'title', 'description', 'status', 'priority', 'tags']
+      columns: [
+        'id',
+        'title',
+        'description',
+        'status',
+        'priority',
+        'tags',
+        'editRemove'
+      ]
     "
   ></tr>
 </table>
