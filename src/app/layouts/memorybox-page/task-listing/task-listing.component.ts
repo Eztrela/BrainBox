@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { MemoryBox, Tag, Task, User } from 'src/app/shared/models';
 import { MatTableDataSource, MatTableModule} from '@angular/material/table'
 import { forkJoin, map } from "rxjs";
@@ -11,29 +11,46 @@ import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
   templateUrl: './task-listing.component.html',
   styleUrls: ['./task-listing.component.css']
 })
-export class TaskListingComponent implements OnInit{
+export class TaskListingComponent implements OnInit, OnChanges{
   @Input() memorybox: MemoryBox = new MemoryBox(0,"",0);
   public datasource: MatTableDataSource<ITask> = new MatTableDataSource<ITask>();
-  public tags: Array<Tag> = new Array<Tag>();
+  public tasks: Array<ITask> = new Array<ITask>();
   constructor(private tagService:TagService, private memoryBoxService: MemoryboxService){
   }
   
   ngOnInit(): void {
-    const tagObservables = this.memorybox.tags.map(tagId => this.tagService.getById(tagId));
-    forkJoin(tagObservables).subscribe((tags: Tag[]) => {
-      // console.log(tags);
-      this.tags.push(...tags);
+    const tagObservables = this.memorybox.tasks.map(task => {
+      for(let tag of task.tags){
+        this.tagService.getById(tag).subscribe((tag:Tag)=>(
+          task.tags.push(tag)
+          ));
+        }});
+        forkJoin(tagObservables).subscribe((tag: Tag) => {
+          // console.log(tags);
+          this.task.tags.push(tag);
+          this.tasks.push(task);
     });
     this.datasource = new MatTableDataSource<ITask>(this.memorybox.tasks);
   }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+      console.log(changes)
+  }
 
-  deleteTask(task: ITask){
-    const removedTask = this.memorybox.removerTask(task.id)
-    if(removedTask){
-      this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
-        this.memorybox = memoryBoxAtualizado;
-        this.datasource.data = [...this.memorybox.tasks]
-      })
-    }
+  deleteTask(taskARemover: ITask){
+    console.log(this.memorybox)
+    const idx = this.memorybox.tasks.findIndex((task)=>{
+      console.log(task.id === taskARemover.id)
+      return task.id === taskARemover.id
+    })
+    console.log(idx)
+    this.memorybox.tasks.splice(idx, 1)[0];
+    console.log(this.memorybox)
+    
+    this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
+      this.memorybox = memoryBoxAtualizado;
+      this.datasource.data = [...this.memorybox.tasks]
+    })
+    
   }
 }

@@ -33,10 +33,11 @@ export class MemoryBox {
   }
 
   localizarTask(id: number): number {
+    console.log('entrei aqui')
     return this._tasks.findIndex((t):boolean => (t.id === id));
   }
 
-  removerTask(id: number) {
+  public removerTask(id: number) {
     let idx = this.localizarTask(id);
     return this._tasks.splice(idx, 1)[0];
   }

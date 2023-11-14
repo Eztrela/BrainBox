@@ -21,6 +21,7 @@ export class MemoryboxPageComponent implements OnInit {
       this.id = Number(params.get('id'));
     })
     this.memoryBoxService.getById(this.id).subscribe((mymemorybox: any) => {
+      console.log('MemoryBox recebido:', mymemorybox);
       this.memorybox = mymemorybox;
     })
   }
