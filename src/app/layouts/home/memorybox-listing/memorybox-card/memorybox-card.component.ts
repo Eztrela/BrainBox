@@ -12,6 +12,7 @@ export class MemoryboxCardComponent implements OnInit {
   @Input() memorybox: MemoryBox = new MemoryBox(0, "", 0);
 
   public taskColor: string = "#D9D9D9";
+  public fillerColor: string = "#30343F";
   public tags: Array<Tag> = new Array<Tag>();
 
   constructor(private tagService: TagService) {
