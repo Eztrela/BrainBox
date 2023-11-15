@@ -6,6 +6,10 @@
   gap: 0.8rem;
 }
 
+#header {
+  color: #1E1E24;
+}
+
 mat-divider {
   background-color: #9593D9;
 }

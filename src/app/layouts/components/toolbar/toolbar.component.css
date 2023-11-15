@@ -2,6 +2,41 @@
   background: #30343F;
 }
 
+::ng-deep .search-autocomplete {
+  border-style: none;
+  border-color: azure;
+  border-radius: 0 0 1.2rem 1.2rem!important;
+  background-color: #1E1E24!important;
+  overflow: auto!important;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 1.2rem;
+    background-color: #1b1b1f;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #AEB0BF;
+  }
+}
+
+.search-button {
+  color: azure;
+  position: absolute;
+  left: 3rem;
+  top: 0.5rem;
+  cursor: pointer;
+}
+
+.search-autocomplete-options {
+  font-family: "Titillium Web", sans-serif;
+  color: azure;
+}
+
 .mat-mdc-unelevated-button {
   margin-left: 2rem;
   font-family: "Titillium Web", sans-serif;
@@ -29,4 +64,12 @@
   background: #1E1E24;
   width: 43rem;
   height: 2rem;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input-auto-open {
+  border-radius: 1.2rem 1.2rem 0 0;
 }

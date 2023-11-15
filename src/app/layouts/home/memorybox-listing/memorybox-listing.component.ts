@@ -5,6 +5,8 @@ import {CreateDialogComponent} from "./create-dialog/create-dialog.component";
 import {MemoryboxService} from "../../../shared/services/memorybox.service";
 import {forkJoin} from "rxjs";
 import {PmemoryboxPipe} from "../../../shared/pipes/pmemorybox.pipe";
+import {SnackbarComponent} from "../../components/snackbar/snackbar.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-memorybox-listing',
@@ -16,7 +18,7 @@ export class MemoryboxListingComponent implements OnInit {
   @Input() memoryboxes: Array<MemoryBox> = new Array<MemoryBox>();
   @Output() newItemEvent = new EventEmitter<MemoryBox>();
 
-  constructor(private dialog: MatDialog, private memoryboxService:MemoryboxService) {}
+  constructor(private dialog: MatDialog, private _snackbar: MatSnackBar, private memoryboxService:MemoryboxService) {}
 
   ngOnInit(): void {}
 
@@ -27,14 +29,22 @@ export class MemoryboxListingComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(CreateDialogComponent, {
       data: {},
+      panelClass: 'dialog-container'
     });
 
-    dialogRef.afterClosed().subscribe((data:MemoryBox) => {
-      if (data) {
+    dialogRef.afterClosed().subscribe((title:string) => {
+      if (title) {
         this.memoryboxService.generateID().subscribe((id: number) => {
-          let memorybox = new MemoryBox(id, data.title, 0)
+          let memorybox = new MemoryBox(id, title, 0)
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
             this.addNewItem(obj);
+            this._snackbar.openFromComponent(SnackbarComponent, {
+              data: {
+                message: `Memory Box "${obj.title}" criada com êxito!`,
+              },
+              panelClass: ['mat-primary'],
+              duration: 3000
+            })
           });
         });
 
