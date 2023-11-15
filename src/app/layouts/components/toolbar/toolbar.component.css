@@ -1,5 +1,6 @@
 .top-toolbar {
   background: #30343F;
+  z-index: 2;
 }
 
 ::ng-deep .search-autocomplete {
@@ -26,9 +27,9 @@
 
 .search-button {
   color: azure;
-  position: absolute;
-  left: 3rem;
-  top: 0.5rem;
+  position: relative;
+  top: 0.4rem;
+  left: 5rem;
   cursor: pointer;
 }
 
@@ -56,12 +57,15 @@
   line-height: 1.18rem;
   text-align: center;
   padding: 0.2rem;
-  margin-left: 2rem;
 
+  margin-bottom: 0.7rem;
+  margin-left: 2rem;
 
   border-style: none;
   border-radius: 5rem;
+
   background: #1E1E24;
+
   width: 43rem;
   height: 2rem;
 }
