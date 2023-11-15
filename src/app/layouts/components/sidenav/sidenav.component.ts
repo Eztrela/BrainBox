@@ -8,8 +8,13 @@ import {MemoryBox} from "../../../shared/models";
 })
 export class SidenavComponent implements OnInit {
   @Input() memoryBoxes:Array<MemoryBox> = new Array<MemoryBox>();
+  isCollapsed: boolean = false;
   constructor() {
   }
   ngOnInit() {
+  }
+
+  toggleMemoryBoxes() {
+    this.isCollapsed = !this.isCollapsed;
   }
 }
