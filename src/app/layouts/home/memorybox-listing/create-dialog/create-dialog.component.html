@@ -1,13 +1,18 @@
-<div class="dialog-container" mat-dialog-content>
-  <p>Insira o título da nova Memory Box</p>
-  <mat-form-field>
-    <mat-label>Título</mat-label>
-    <input class="title-input" matInput [formControl]="titleForm" required>
-    <mat-icon *ngIf="titleForm.value.length > 0" matIconSuffix>close</mat-icon>
-    <mat-error *ngIf="titleForm.invalid">{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button class="cancel-button" mat-button (click)="onNoClick()">Cancelar</button>
-  <button class="confirm-button" mat-button [mat-dialog-close]="titleForm.value" [disabled]="titleForm.invalid">Criar</button>
+<div class="dialog-container">
+  <div class="dialog-header">
+    <p>Insira o título da nova Memory Box</p>
+  </div>
+
+  <div class="dialog-form">
+    <mat-form-field appearance="outline" class="title-input">
+      <mat-label>Título</mat-label>
+      <input matInput [formControl]="titleForm" required>
+      <mat-error *ngIf="titleForm.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-buttons">
+    <button class="cancel-button" mat-stroked-button color="warn" (click)="onNoClick()">Cancelar</button>
+    <button class="confirm-button" mat-raised-button color="primary" [mat-dialog-close]="titleForm.value" [disabled]="titleForm.invalid">Criar</button>
+  </div>
 </div>
