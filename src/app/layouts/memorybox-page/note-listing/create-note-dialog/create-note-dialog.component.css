@@ -1,0 +1,73 @@
+::ng-deep .dialog-container {
+  & .mat-mdc-dialog-container  {
+    --mdc-dialog-container-color: transparent;
+    background-color: #30343F;
+    border-radius: 0.44rem;
+
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    width: 20rem;
+  }
+
+  & .dialog-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+  }
+
+  & .dialog-header {
+    color: azure;
+    text-align: center;
+  }
+
+  & .dialog-form {
+    padding: 2rem;
+  }
+
+  & .dialog-buttons {
+    align-self: center;
+    display: flex;
+    width: 52%;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  & .cancel-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .confirm-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .content-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1E1E24;
+    transition-duration: 0.4s;
+  }
+
+  & .content-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 2rem 1rem;
+  }
+}

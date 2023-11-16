@@ -11,7 +11,7 @@ import { Note } from 'src/app/shared/models';
 export class NoteCardComponent {
 
   public isEditing: boolean = false;
-  @Input() note: INote = new class implements INote { 
+  @Input() note: INote = new class implements INote {
     id = 0
     content = ""
   }
@@ -36,7 +36,17 @@ export class NoteCardComponent {
   }
 
   editNote() {
-    this.editEvent.emit(this.note)
+    this.note.content = this.contentForm.value;
+    this.editEvent.emit(this.note);
+    this.toggleEditNote();
+  }
+
+  getErrorMessage() {
+    if (this.contentForm.hasError('required')) {
+      return 'Você precisa fornecer algum conteúdo!';
+    } else if (this.contentForm.hasError('minlength')) {
+      return 'Anotação precisa ter no mínimo 4 carácteres!';
+    } else { return ''}
   }
 
 }

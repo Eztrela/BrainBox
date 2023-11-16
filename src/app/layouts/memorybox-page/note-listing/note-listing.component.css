@@ -1,45 +1,26 @@
-.task-notes {
+.memorybox-notes {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
+  gap: 0.8rem;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  padding-left: 1.4rem;
 }
 
-.task-notes mat-card {
-  height: 10rem;
-  width: 15.5rem;
-  max-width: auto;
-  max-height: auto;
-}
-
-mat-card {
-  background-color: rgba(124, 124, 149, 0.09);
-  transition-duration: 0.2s;
+#header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
-mat-card:hover {
-  background-color: rgba(124, 124, 149, 0.22);
+.add-note-button {
+  margin-left: 0.8rem;
+  color: azure;
 }
 
-button {
-  border: none;
-  padding: none;
-  background: none;
+#header {
+  color: #1E1E24;
 }
 
-mat-icon {
-  color: rgba(66, 66, 138, 0.86);
-  width: 4rem;
-  height: 4rem;
-  font-size: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+mat-divider {
+  background-color: #9593D9;
 }

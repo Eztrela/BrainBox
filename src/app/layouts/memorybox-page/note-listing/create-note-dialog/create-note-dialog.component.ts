@@ -31,9 +31,9 @@ export class CreateNoteDialogComponent {
 
   getErrorMessage() {
     if (this.contentForm.hasError('required')) {
-      return 'Você precisa fornecer um título!';
+      return 'Você precisa fornecer algum conteúdo!';
     } else if (this.contentForm.hasError('minlength')) {
-      return 'O título precisa ter no mínimo 4 carácteres!';
+      return 'Anotação precisa ter no mínimo 4 carácteres!';
     } else { return ''}
   }
 }

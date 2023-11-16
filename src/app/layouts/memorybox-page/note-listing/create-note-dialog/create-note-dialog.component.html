@@ -1,12 +1,17 @@
 <div class="dialog-container">
   <div class="dialog-header">
-    <p>Insira o título da Memory Box</p>
+    <p>Escreva sua anotação...</p>
   </div>
 
   <div class="dialog-form">
-    <mat-form-field appearance="outline" class="title-input">
-      <mat-label>Content</mat-label>
-      <textarea matInput [formControl]="contentForm" required></textarea>
+    <mat-form-field appearance="outline" class="content-input">
+      <mat-label>Conteúdo</mat-label>
+      <textarea matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                [formControl]="contentForm"
+                required>
+                </textarea>
       <mat-error *ngIf="contentForm.invalid">{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
   </div>
