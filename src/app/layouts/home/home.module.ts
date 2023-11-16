@@ -15,6 +15,7 @@ import { CreateDialogComponent } from './memorybox-listing/create-dialog/create-
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     HomeComponent,
     MemoryboxListingComponent,
     MemoryboxCardComponent,
-    CreateDialogComponent
+    CreateDialogComponent,
+    CalendarComponent
   ],
     imports: [
         CommonModule,
