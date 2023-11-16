@@ -6,7 +6,6 @@ import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { TagService } from 'src/app/shared/services/tag.service';
 import { CreateNoteDialogComponent } from './create-note-dialog/create-note-dialog.component';
 import { PnotePipe } from 'src/app/shared/pipes/pnote.pipe';
-import { EditNoteDialogComponent } from './edit-note-dialog/edit-note-dialog.component';
 
 @Component({
   selector: 'app-note-listing',
@@ -45,30 +44,6 @@ export class NoteListingComponent implements OnInit{
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
             this.notes = this.memorybox.notes;
           });   
-    }});
-  }
-  openEditNoteDialog(note: INote) {
-    const dialogRef = this.dialog.open(EditNoteDialogComponent, {
-      data: {
-        id: note.id,
-        content: note.content
-      },
-      panelClass: 'dialog-container'
-    });
-
-    dialogRef.afterClosed().subscribe((content:string) => {
-      if (content) {
-          let note = new Note(0, content)
-          const idx = this.memorybox.notes.findIndex((note)=>{
-            return note.id === note.id
-          })
-          this.memorybox.notes[idx] = (note as INote)
-          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-            this.notes = this.memorybox.notes;
-          });
-        
-
-      
     }});
   }
 

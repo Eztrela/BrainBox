@@ -1,20 +1,11 @@
 <div mat-header>Notes</div>
 <div class="task-notes">
-  <mat-card *ngFor="let note of notes">
-  <div class="note-buttons">
-      <button mat-icon-button (click)="deleteNote(note)">
-        <mat-icon>delete</mat-icon>
-      </button>
-      <button mat-icon-button (click)="openEditNoteDialog(note)">
-        <mat-icon>
-          edit
-        </mat-icon>
-      </button>
-  </div>
-  <mat-card-content class="note-content">
-      <p>{{ note.content }}</p>
-  </mat-card-content>
-  </mat-card>
+  <app-note-card 
+  *ngFor="let note of notes" 
+  [note]="note" 
+  (deleteEvent)="deleteNote($event)"
+  (editEvent)="editNote($event)">
+  </app-note-card>
   <mat-card class="placeholder">
     <mat-card-content>
       <button (click)="openAddNoteDialog()"><mat-icon>add</mat-icon></button>

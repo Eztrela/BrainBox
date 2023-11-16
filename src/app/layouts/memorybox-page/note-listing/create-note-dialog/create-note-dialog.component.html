@@ -1,28 +1,33 @@
 <div class="dialog-container">
-    <div class="dialog-header">
-      <p>Insira o título da Memory Box</p>
-    </div>
-  
-    <div class="dialog-form">
-      <mat-form-field appearance="outline" class="title-input">
-        <mat-label>Content</mat-label>
-        <input matInput [formControl]="contentForm" required />
-        <mat-error *ngIf="contentForm.invalid">{{ getErrorMessage() }}</mat-error>
-      </mat-form-field>
-    </div>
-  
-    <div class="dialog-buttons">
-      <button
-        class="cancel-button"
-        mat-stroked-button
-        color="warn"
-        (click)="onNoClick()"
-      >
-        Cancelar
-      </button>
-      <button class="confirm-button" mat-raised-button color="primary" [mat-dialog-close]="contentForm.value" [disabled]="contentForm.invalid">
-        Criar
-      </button>
-    </div>
+  <div class="dialog-header">
+    <p>Insira o título da Memory Box</p>
   </div>
-  
+
+  <div class="dialog-form">
+    <mat-form-field appearance="outline" class="title-input">
+      <mat-label>Content</mat-label>
+      <textarea matInput [formControl]="contentForm" required></textarea>
+      <mat-error *ngIf="contentForm.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-buttons">
+    <button
+      class="cancel-button"
+      mat-stroked-button
+      color="warn"
+      (click)="onNoClick()"
+    >
+      Cancelar
+    </button>
+    <button
+      class="confirm-button"
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="contentForm.value"
+      [disabled]="contentForm.invalid"
+    >
+      Criar
+    </button>
+  </div>
+</div>

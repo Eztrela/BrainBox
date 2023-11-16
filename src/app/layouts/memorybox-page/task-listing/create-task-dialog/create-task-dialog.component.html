@@ -8,6 +8,16 @@
       <mat-label>Título</mat-label>
       <input matInput [formControl]="titleForm" required />
       <mat-error *ngIf="titleForm.invalid">{{ getErrorMessage() }}</mat-error>
+      <input matInput [formControl]="descriptionForm" required />
+      <mat-error *ngIf="descriptionForm.invalid">{{
+        getErrorMessage()
+      }}</mat-error>
+      <input matInput [formControl]="statusForm" required />
+      <mat-error *ngIf="statusForm.invalid">{{ getErrorMessage() }}</mat-error>
+      <input matInput [formControl]="priorityForm" required />
+      <mat-error *ngIf="priorityForm.invalid">{{
+        getErrorMessage()
+      }}</mat-error>
     </mat-form-field>
   </div>
 
@@ -20,7 +30,13 @@
     >
       Cancelar
     </button>
-    <button class="confirm-button" mat-raised-button color="primary" [mat-dialog-close]="titleForm.value" [disabled]="titleForm.invalid">
+    <button
+      class="confirm-button"
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="titleForm.value"
+      [disabled]="titleForm.invalid"
+    >
       Criar
     </button>
   </div>

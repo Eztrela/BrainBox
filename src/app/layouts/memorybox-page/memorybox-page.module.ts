@@ -15,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateNoteDialogComponent } from './note-listing/create-note-dialog/create-note-dialog.component';
-import { EditNoteDialogComponent } from './note-listing/edit-note-dialog/edit-note-dialog.component';
+import { NoteCardComponent } from './note-listing/note-card/note-card.component';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { EditNoteDialogComponent } from './note-listing/edit-note-dialog/edit-no
     NoteListingComponent,
     CreateTaskDialogComponent,
     CreateNoteDialogComponent,
-    EditNoteDialogComponent
+    NoteCardComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +40,8 @@ import { EditNoteDialogComponent } from './note-listing/edit-note-dialog/edit-no
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonModule
   ]
 })
 export class MemoryboxPageModule { }

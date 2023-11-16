@@ -11,7 +11,7 @@ export class Task {
     private _tags: Array<number>;
 
 
-    constructor(title:string, description: string, status: string, datetimeDue: Date, priority: number) {
+    constructor(title:string, description: string, status: string, priority: number) {
       this._title = title;
       this._description = description;
       this._status = status;

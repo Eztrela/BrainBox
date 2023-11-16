@@ -1,0 +1,25 @@
+<mat-card >
+    <div class="note-buttons">
+        <button mat-icon-button (click)="deleteNote()">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleEditNote()">
+          <mat-icon>
+            edit
+          </mat-icon>
+        </button>
+    </div>
+    <mat-card-content class="note-content">
+        <div *ngIf="!isEditing;else editForm">
+            <span>{{ note.content }}</span>
+        </div>
+        <ng-template #editForm>
+            <mat-form-field>
+                <textarea matInput appearance="outline"
+                (submit)="editNote()" 
+                [formControl]="contentForm" 
+                required></textarea>
+            </mat-form-field>
+        </ng-template>
+    </mat-card-content>
+</mat-card>
