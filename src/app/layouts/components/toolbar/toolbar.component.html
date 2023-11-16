@@ -11,9 +11,20 @@
            placeholder="Pesquise por suas Memory Boxes ou tarefas aqui!"
            [formControl]="pesquisaControl"
            [matAutocomplete]="auto">
-
   </form>
-  <div></div>
+  <div>
+    <button mat-icon-button>
+      <mat-icon>
+        notifications_none
+      </mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>
+        person_outline
+      </mat-icon>
+    </button>
+  </div>
+  
 </mat-toolbar>
 <mat-autocomplete
   class="{{CSSClasses}}"
