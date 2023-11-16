@@ -32,7 +32,9 @@
 
   <ng-container matColumnDef="addTask">
     <th mat-header-cell *matHeaderCellDef>
-      <button mat-button><mat-icon class="addButton">add</mat-icon></button>
+      <button mat-button (click)="openDialog()">
+        <mat-icon class="addButton">add</mat-icon>
+      </button>
     </th>
   </ng-container>
 
@@ -51,7 +53,7 @@
 
   <ng-container matColumnDef="tags">
     <th mat-header-cell *matHeaderCellDef>Tags</th>
-    <td mat-cell class="task-tags" *matCellDef="let task;let i = index">
+    <td mat-cell class="task-tags" *matCellDef="let task; let i = index">
       <div *ngFor="let tag of task.tags">
         <span [style.color]="tag.color" [style.font-size.rem]="3">•</span>
       </div>
