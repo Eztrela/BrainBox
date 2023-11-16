@@ -1,4 +1,6 @@
-<mat-card class="note-container">
+<mat-card class="note-container"
+          cdkDrag
+          [cdkDragDisabled] = "isEditing">
     <div class="note-buttons">
         <button mat-icon-button (click)="deleteNote()">
           <mat-icon>delete</mat-icon>
