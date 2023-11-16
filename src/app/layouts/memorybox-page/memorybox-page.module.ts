@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateNoteDialogComponent } from './note-listing/create-note-dialog/create-note-dialog.component';
 import { NoteCardComponent } from './note-listing/note-card/note-card.component';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import {CdkDrag} from "@angular/cdk/drag-drop";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
     MatDialogModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    CdkDrag
   ]
 })
 export class MemoryboxPageModule { }

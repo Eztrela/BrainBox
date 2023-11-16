@@ -1,25 +1,37 @@
-<mat-card >
+<mat-card class="note-container">
     <div class="note-buttons">
         <button mat-icon-button (click)="deleteNote()">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-icon-button (click)="toggleEditNote()">
+        <button *ngIf="!isEditing;else confirmEdit" mat-icon-button (click)="toggleEditNote()">
           <mat-icon>
             edit
           </mat-icon>
         </button>
+        <ng-template #confirmEdit>
+          <button mat-icon-button [disabled]="contentForm.invalid" (click)="editNote()">
+            <mat-icon>
+              check
+            </mat-icon>
+          </button>
+        </ng-template>
     </div>
-    <mat-card-content class="note-content">
-        <div *ngIf="!isEditing;else editForm">
+    <mat-card-content class="note-content-container">
+        <div *ngIf="!isEditing;else editForm" class="note-content">
             <span>{{ note.content }}</span>
         </div>
         <ng-template #editForm>
-            <mat-form-field>
-                <textarea matInput appearance="outline"
-                (submit)="editNote()" 
-                [formControl]="contentForm" 
-                required></textarea>
+          <form>
+            <mat-form-field appearance="outline" class="content-input">
+                <textarea matInput
+                          cdkTextareaAutosize
+                          #autosize="cdkTextareaAutosize"
+                          [formControl]="contentForm"
+                          required>
+                </textarea>
+                <mat-error *ngIf="contentForm.invalid">{{ getErrorMessage() }}</mat-error>
             </mat-form-field>
+          </form>
         </ng-template>
     </mat-card-content>
 </mat-card>
