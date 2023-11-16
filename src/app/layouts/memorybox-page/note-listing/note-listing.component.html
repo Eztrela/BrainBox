@@ -1,15 +1,21 @@
 <div mat-header>Notes</div>
 <div class="task-notes">
   <mat-card *ngFor="let note of notes">
-    <mat-card-header>
-      <button (click)="deleteNote(note)">X</button>
-      <button (click)="openEditNoteDialog(note)">U</button>
-    </mat-card-header>
-    <mat-card-content>
-      {{ note.content }}
-    </mat-card-content>
+  <div class="note-buttons">
+      <button mat-icon-button (click)="deleteNote(note)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="openEditNoteDialog(note)">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
+  </div>
+  <mat-card-content class="note-content">
+      <p>{{ note.content }}</p>
+  </mat-card-content>
   </mat-card>
-  <mat-card>
+  <mat-card class="placeholder">
     <mat-card-content>
       <button (click)="openAddNoteDialog()"><mat-icon>add</mat-icon></button>
     </mat-card-content>

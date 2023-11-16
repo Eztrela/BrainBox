@@ -1,15 +1,21 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CreateNoteDialogComponent } from '../create-note-dialog/create-note-dialog.component';
 import { INote } from 'src/app/shared/interfaces/inote';
-import { MemoryBox, Note } from 'src/app/shared/models';
 
 @Component({
-  selector: 'app-create-note-dialog',
-  templateUrl: './create-note-dialog.component.html',
-  styleUrls: ['./create-note-dialog.component.css']
+  selector: 'app-edit-note-dialog',
+  templateUrl: './edit-note-dialog.component.html',
+  styleUrls: ['./edit-note-dialog.component.css']
 })
-export class CreateNoteDialogComponent {
+export class EditNoteDialogComponent {
+  public note: INote = new class implements INote(
+    {
+      id:number;
+    }
+  )
+  public id: number;
   public content: string;
   public contentForm = new FormControl();
 
@@ -22,6 +28,7 @@ export class CreateNoteDialogComponent {
   }
 
   constructor(public dialogRef: MatDialogRef<CreateNoteDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.id
     this.content = data.content;
   }
 
@@ -36,4 +43,5 @@ export class CreateNoteDialogComponent {
       return 'O título precisa ter no mínimo 4 carácteres!';
     } else { return ''}
   }
+
 }

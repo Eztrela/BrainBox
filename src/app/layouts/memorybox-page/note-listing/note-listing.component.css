@@ -10,6 +10,8 @@
 .task-notes mat-card {
   height: 10rem;
   width: 15.5rem;
+  max-width: auto;
+  max-height: auto;
 }
 
 mat-card {

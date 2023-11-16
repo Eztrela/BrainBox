@@ -6,6 +6,7 @@ import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { TagService } from 'src/app/shared/services/tag.service';
 import { CreateNoteDialogComponent } from './create-note-dialog/create-note-dialog.component';
 import { PnotePipe } from 'src/app/shared/pipes/pnote.pipe';
+import { EditNoteDialogComponent } from './edit-note-dialog/edit-note-dialog.component';
 
 @Component({
   selector: 'app-note-listing',
@@ -36,20 +37,22 @@ export class NoteListingComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe((content:string) => {
       if (content) {
-          let note = new Note(0, content)
-          this.memorybox.notes.push(note as INote)
+          let idx = this.memorybox.notes.length > 0 ? Math.max(...this.memorybox.notes.map(task => task.id)) + 1 : 1;
+          let note = this.notePipe.transform(new Note(idx, content))
+          note.id = idx
+          console.log(note)
+          this.memorybox.notes.push(note)
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-            console.log(obj.notes)
             this.notes = this.memorybox.notes;
-          });
-        
-
-      
+          });   
     }});
   }
   openEditNoteDialog(note: INote) {
-    const dialogRef = this.dialog.open(CreateNoteDialogComponent, {
-      data: {content: note.content},
+    const dialogRef = this.dialog.open(EditNoteDialogComponent, {
+      data: {
+        id: note.id,
+        content: note.content
+      },
       panelClass: 'dialog-container'
     });
 
@@ -57,12 +60,10 @@ export class NoteListingComponent implements OnInit{
       if (content) {
           let note = new Note(0, content)
           const idx = this.memorybox.notes.findIndex((note)=>{
-            console.log(note.id === note.id)
             return note.id === note.id
           })
           this.memorybox.notes[idx] = (note as INote)
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-            console.log(obj.notes)
             this.notes = this.memorybox.notes;
           });
         
@@ -74,14 +75,10 @@ export class NoteListingComponent implements OnInit{
   deleteNote(noteARemover: INote){
     console.log(this.memorybox)
     const idx = this.memorybox.notes.findIndex((note)=>{
-      console.log(note.id === noteARemover.id)
       return note.id === noteARemover.id
     })
-    console.log(idx)
     this.memorybox.notes.splice(idx, 1)[0];
-    console.log(this.memorybox)
-    
-    this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
+    this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((memoryBoxAtualizado:MemoryBox) =>{
       this.memorybox = memoryBoxAtualizado;
       this.notes = [...this.memorybox.notes]
     })

@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateNoteDialogComponent } from './note-listing/create-note-dialog/create-note-dialog.component';
+import { EditNoteDialogComponent } from './note-listing/edit-note-dialog/edit-note-dialog.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CreateNoteDialogComponent } from './note-listing/create-note-dialog/cre
     TaskListingComponent,
     NoteListingComponent,
     CreateTaskDialogComponent,
-    CreateNoteDialogComponent
+    CreateNoteDialogComponent,
+    EditNoteDialogComponent
   ],
   imports: [
     CommonModule,
