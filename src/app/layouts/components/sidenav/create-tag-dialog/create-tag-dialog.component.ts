@@ -16,12 +16,14 @@ export class CreateTagDialogComponent {
   public tagForm!: FormGroup;
 
   ngOnInit() {
+    const reg = '^#(?:[0-9a-fA-F]{3}){1,2}$';
     this.titleForm = new FormControl(this.tag.title, [
       Validators.required,
       Validators.minLength(4)
     ]);
     this.colorForm = new FormControl("#8073d1", [
-      Validators.required
+      Validators.required,
+      Validators.pattern(reg)
     ]);
     this.tagForm = new FormGroup({
       title: this.titleForm,
@@ -47,6 +49,8 @@ export class CreateTagDialogComponent {
   getColorErrorMessage() {
     if (this.colorForm.hasError('required')) {
       return 'Você precisa fornecer uma cor!';
+    } else if (this.colorForm.hasError('pattern')) {
+      return 'Cor precisa ser hexadecimal!';
     } else { return ''}
   }
 }
