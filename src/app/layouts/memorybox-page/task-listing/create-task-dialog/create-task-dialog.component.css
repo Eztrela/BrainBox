@@ -24,6 +24,9 @@
 
   & .dialog-form {
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   & .dialog-buttons {
@@ -54,7 +57,7 @@
     border-radius: 0.8rem;
   }
 
-  & .content-input {
+  & .title-input {
     color: azure;
     font-family: "Titillium Web", sans-serif;
     font-style: normal;
@@ -67,7 +70,46 @@
     transition-duration: 0.4s;
   }
 
-  & .content-input.ng-touched.ng-invalid {
+  & .description-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .status-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .priority-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .title-input.ng-touched.ng-invalid {
     padding: 1rem 1rem 2rem 1rem;
   }
 }
