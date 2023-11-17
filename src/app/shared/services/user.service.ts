@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User, Tag} from '../models';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
+import {Observable, throwError, map} from "rxjs";
 import { catchError } from "rxjs/operators";
 import { PuserPipe } from "../pipes/puser.pipe";
 
@@ -20,6 +20,19 @@ export class UserService {
     })
   }
   constructor(private httpClient: HttpClient) {}
+
+  generateID(): Observable<number> {
+    return this.getAll().pipe(
+      map((res: User[]) => {
+        if (res && res.length > 0) {
+          const maxId = Math.max(...res.map(user => user.id));
+          return maxId + 1;
+        } else {
+          return 1;
+        }
+      })
+    );
+  }
 
   create(user:User): Observable<User> {
     const url_resource: string = `${this._url}/${this._resource}`;
@@ -58,42 +71,6 @@ export class UserService {
     return this.httpClient.delete<User>(
       url_resource
     );
-  }
-
-  getTag(idUser: number, idTag: number) {
-    return this.getById(idTag).subscribe((user: User)=> {
-      if (user === undefined) throw new Error(`user de id ${idUser} não encontrada!`);
-
-      let idxTag: number = user.localizarTag(idTag);
-      if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a user de id ${idUser}`)
-
-      return user.tags[idxTag];
-    });
-  }
-
-  inserirTag(idUser:number, tag: Tag) {
-    this.getById(idUser).subscribe((user: User)=> {
-      if (user === undefined) throw new Error(`user de id ${idUser} não encontrada!`);
-      
-      if (user.localizarTag(tag.id) >= 0) throw new Error(`tag de id ${tag.id} já pertence a user!`)
-      
-      user.inserirTag(tag);
-    });
-    
-  }
-  
-  removerTag(idUser: number, idTag: number) {
-    return this.getById(idUser).subscribe((user:User) => {
-      if (user === undefined) throw new Error(`user de id ${idUser} não encontrada!`);
-
-      let idxTag: number = user.localizarTag(idTag);
-      if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a user de id ${idUser}`)
-      
-      return user.removerTag(idTag);
-    });
-
-  generateID(): number{
-    return (this._users.length > 0) ? this._users[ this._users.length -1].id + 1 : 1;
   }
 
 }

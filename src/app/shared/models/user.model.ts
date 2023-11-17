@@ -9,8 +9,8 @@ export class User {
   private _username: string;
   private _password: string;
   private _notifications: boolean;
-  private _memoryBoxes: Array<MemoryBox>;
-  private _tags: Array<Tag>;
+  private _memoryBoxes: Array<number>;
+  private _tags: Array<number>;
 
   constructor(id: number, email:string, username: string, password: string, notifications: boolean) {
     this._id = id;
@@ -18,12 +18,12 @@ export class User {
     this._username = username;
     this._password = password;
     this._notifications = notifications;
-    this._memoryBoxes = new Array<MemoryBox>;
-    this._tags = new Array<Tag>;
+    this._memoryBoxes = new Array<number>;
+    this._tags = new Array<number>;
   }
 
-  inserirMemoryBox(memoryBox: MemoryBox) {
-    let idx = this.localizarMemoryBox(memoryBox.id);
+  inserirMemoryBox(memoryBox: number) {
+    let idx = this.localizarMemoryBox(memoryBox);
     if (idx < 0) {
       this._memoryBoxes.push(memoryBox);
     } else {
@@ -32,7 +32,7 @@ export class User {
   }
 
   localizarMemoryBox(id: number): number {
-    return this._memoryBoxes.findIndex((m:MemoryBox):boolean => (m.id === id));
+    return this._memoryBoxes.findIndex((m:number):boolean => (m === id));
   }
 
   public removerMemoryBox(id: number) {
@@ -44,8 +44,8 @@ export class User {
     }
   }
 
-  inserirTag(tag: Tag) {
-    let idx = this.localizarTag(tag.id);
+  inserirTag(tag: number) {
+    let idx = this.localizarTag(tag);
     if (idx < 0) {
       this._tags.push(tag);
     } else {
@@ -54,7 +54,7 @@ export class User {
   }
 
   localizarTag(id: number): number {
-    return this._tags.findIndex((t:Tag):boolean => (t.id === id));
+    return this._tags.findIndex((t:number):boolean => (t === id));
   }
 
   public removerTag(id: number) {
@@ -86,11 +86,11 @@ export class User {
     return this._notifications;
   }
 
-  get memoryBoxes(): Array<MemoryBox> {
+  get memoryBoxes(): Array<number> {
     return this._memoryBoxes;
   }
 
-  get tags(): Array<Tag> {
+  get tags(): Array<number> {
     return this._tags;
   }
 

@@ -1,0 +1,117 @@
+mat-sidenav-container {
+  font-family: "Titillium Web", sans-serif;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+mat-sidenav {
+  width: 20%;
+  background: #1e1e24;
+  color: azure;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 1.18rem;
+  padding: 1rem;
+}
+
+.page-content {
+  padding-top: 4rem;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.sidenav-logo {
+  text-align: center;
+}
+
+.sidenav-logo button {
+  background-color: transparent;
+  border-style: none;
+}
+
+img {
+  margin-top: 1.22rem;
+  margin-left: 4.22rem;
+  margin-right: 4.22rem;
+}
+
+a {
+  color: azure;
+  text-decoration: none;
+}
+
+mat-divider {
+  background-color: azure;
+}
+
+.collapser {
+  position: relative;
+  padding: 0;
+  margin-left: 1rem;
+  line-height: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  border-style: none;
+  border-radius: 100rem;
+  color: azure;
+  transition-duration: 0.3s;
+}
+
+.collapser:hover {
+  cursor: pointer;
+  background-color: rgba(230, 235, 255, 0.12);
+}
+
+.collapser:active {
+  background-color: rgba(230, 235, 255, 0.45);
+}
+
+.hamburger-toggler {
+  padding: 0;
+  line-height: 0;
+  width: 3rem;
+  height: 3rem;
+  background-color: transparent;
+  border-style: none;
+  border-radius: 100rem;
+  color: azure;
+  transition-duration: 0.3s;
+}
+
+.hamburger-toggler:hover {
+  cursor: pointer;
+  background-color: rgba(230, 235, 255, 0.12);
+}
+
+.hamburger-toggler:active {
+  background-color: rgba(230, 235, 255, 0.45);
+}
+
+.tags-collapsable {
+  display: flex;
+  align-items: center;
+}
+
+.tags-header {
+  display: flex;
+  align-items: center;
+}
+
+.tag-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.tag-buttons {
+  margin-left: auto;
+}
+
+.add-tag-button {
+  margin-left: auto;
+}

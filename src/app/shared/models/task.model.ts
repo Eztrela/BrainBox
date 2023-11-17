@@ -1,37 +1,33 @@
-import {Tag} from "./tag.model";
-import {ITask} from "../interfaces/itask";
-
-export class Task implements ITask {
+export class Task {
     /* Model class for Task */
 
-    private readonly _id: number;
+    private _id: number | undefined = undefined;
     private _title: string;
     private _description: string;
     private _status: string;
     private _datetimeCreated: Date;
     private _datetimeDue: Date;
     private _priority: number;
-    private _tags: Array<Tag>;
+    private _tags: Array<number>;
 
 
-    constructor(id: number, title:string, description: string, status: string, datetimeDue: Date, priority: number) {
-      this._id = id;
+    constructor(title:string, description: string, status: string, priority: number) {
       this._title = title;
       this._description = description;
       this._status = status;
       this._datetimeCreated = new Date();
       this._datetimeDue = new Date();
       this._priority = priority;
-      this._tags = new Array<Tag>;
+      this._tags = new Array<number>;
     }
 
 
-  inserirTag(tag: Tag) {
+  inserirTag(tag: number) {
     this._tags.push(tag);
   }
 
   localizarTag(id: number): number {
-    return this._tags.findIndex((t:Tag):boolean => (t.id === id));
+    return this._tags.findIndex((t:number):boolean => (t === id));
   }
 
   public removerTag(id: number) {
@@ -39,9 +35,9 @@ export class Task implements ITask {
     return this._tags.splice(idx, 1)[0];
   }
 
-    get id():number {
+  get id (): number | undefined {
       return this._id;
-    }
+  }
 
     get title(): string {
       return this._title;
@@ -67,8 +63,12 @@ export class Task implements ITask {
       return this._priority;
     }
 
-    get tags(): Array<Tag> {
+    get tags(): Array<number> {
         return this._tags;
+    }
+
+    set id(id: number) {
+      this._id = id;
     }
 
     set title(title: string) {

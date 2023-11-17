@@ -1,0 +1,64 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <p>Insira o título da Memory Box</p>
+  </div>
+
+  <div class="dialog-form" [formGroup]="taskForm">
+    <mat-form-field appearance="outline" class="title-input">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" required />
+      <mat-error *ngIf="titleForm.invalid">{{getTitleErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="description-input">
+      <mat-label>Descrição</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        required
+        [cdkAutosizeMaxRows]="25"
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+      >
+      </textarea>
+      <mat-error *ngIf="descriptionForm.invalid">{{getDescriptionErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="status-input">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let s of status" [value]="s.value">
+          {{ s.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="priority-input">
+      <mat-label>Prioridade</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option
+          *ngFor="let priority of priorities"
+          [value]="priority.value">
+          {{ priority.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-buttons">
+    <button
+      class="cancel-button"
+      mat-stroked-button
+      color="warn"
+      (click)="onNoClick()"
+    >
+      Cancelar
+    </button>
+    <button
+      class="confirm-button"
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="taskForm.value"
+      [disabled]="taskForm.invalid"
+    >
+      Criar
+    </button>
+  </div>
+</div>

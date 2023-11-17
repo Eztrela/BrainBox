@@ -1,20 +1,187 @@
 {
-  "users": [],
-  "memoryBoxes": [],
-  "tags": [],
-  "tasks": [],
-  "notes": [
+  "users": [
     {
-      "content": "Lorem ipsum",
-      "id": 1
+      "id": 1,
+      "email": "student@example.com",
+      "username": "lifemanager",
+      "password": "password123",
+      "notifications": true,
+      "memoryBoxes": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "memoryboxes": [
+    {
+      "id": 1,
+      "user": 1,
+      "title": "Physics Study Materials",
+      "datetimeCreated": "2023-11-12T16:45:15.000Z",
+      "tasks": [
+        {
+          "id": 1,
+          "title": "Complete Physics Assignment",
+          "description": "Complete the assignment on Quantum Mechanics",
+          "status": "pending",
+          "datetimeCreated": "2023-11-12T16:45:15.000Z",
+          "datetimeDue": "2023-11-15T16:45:15.000Z",
+          "priority": 1,
+          "tags": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Read Research Paper",
+          "description": "Read the research paper on Quantum Computing",
+          "status": "pending",
+          "datetimeCreated": "2023-11-12T16:45:15.000Z",
+          "datetimeDue": "2023-11-20T16:45:15.000Z",
+          "priority": 2,
+          "tags": [
+            1,
+            2
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "id": 1,
+          "content": "Quantum mechanics is a fundamental theory in physics that provides a description of the physical properties of nature at the scale of atoms and subatomic particles."
+        }
+      ],
+      "tags": [
+        1,
+        2
+      ],
+      "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
     },
     {
-      "content": "Ipsum dolor",
-      "id": 2
+      "id": 2,
+      "user": 1,
+      "title": "Fitness Goals",
+      "datetimeCreated": "2023-11-12T16:45:15.000Z",
+      "tasks": [
+        {
+          "id": 1,
+          "title": "Morning Run",
+          "description": "Run for 30 minutes in the park",
+          "status": "pending",
+          "datetimeCreated": "2023-11-12T16:45:15.000Z",
+          "datetimeDue": "2023-11-13T07:00:00.000Z",
+          "priority": 2,
+          "tags": [
+            1,
+            4
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Attend Yoga Class",
+          "description": "Attend the yoga class at the local gym",
+          "status": "pending",
+          "datetimeCreated": "2023-11-12T16:45:15.000Z",
+          "datetimeDue": "2023-11-13T18:00:00.000Z",
+          "priority": 3,
+          "tags": [
+            1,
+            4
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "id": 1,
+          "content": "Regular exercise is important for maintaining good health."
+        }
+      ],
+      "tags": [
+        1,
+        4
+      ],
+      "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
     },
     {
-      "content": "Sit amet",
-      "id": 3
+      "id": 3,
+      "user": 1,
+      "title": "Guitar Practice",
+      "datetimeCreated": "2023-11-12T16:45:15.000Z",
+      "tasks": [
+        {
+          "id": 1,
+          "title": "Learn New Song",
+          "description": "Learn to play 'Stairway to Heaven' on the guitar",
+          "status": "pending",
+          "datetimeCreated": "2023-11-12T16:45:15.000Z",
+          "datetimeDue": "2023-11-19T16:45:15.000Z",
+          "priority": 3,
+          "tags": [
+            1,
+            5
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Practice New Song",
+          "description": "Practice the song 'Hotel California' on the guitar",
+          "status": "pending",
+          "datetimeCreated": "2023-11-12T16:45:15.000Z",
+          "datetimeDue": "2023-11-21T16:45:15.000Z",
+          "priority": 4,
+          "tags": [
+            1,
+            5
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "id": 1,
+          "content": "'Stairway to Heaven' is a song by the English rock band Led Zeppelin."
+        }
+      ],
+      "tags": [
+        1,
+        5
+      ],
+      "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "title": "Important",
+      "color": "#FF0000"
+    },
+    {
+      "id": 2,
+      "title": "Physics",
+      "color": "#0000FF"
+    },
+    {
+      "id": 3,
+      "title": "Math",
+      "color": "#008000"
+    },
+    {
+      "id": 4,
+      "title": "Fitness",
+      "color": "#FFA500"
+    },
+    {
+      "id": 5,
+      "title": "Music",
+      "color": "#800080"
     }
   ]
 }

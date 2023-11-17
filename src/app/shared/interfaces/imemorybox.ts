@@ -1,10 +1,12 @@
-import { User, Tag, Task, Note } from "../models";
+import { Task, Note } from "../models";
+import { INote } from "./inote";
+import { ITask } from "./itask";
 export interface Imemorybox {
-    id: number;
-    user: User;
-    title: string;
-    datetimeCreated: Date;
-    tasks: Array<Task>;
-    notes: Array<Note>;
-    tags: Array<Tag>;
+  id: number;
+  user: number;
+  title: string;
+  datetimeCreated: Date;
+  tasks: Array<ITask>;
+  notes: Array<INote>;
+  tags: Array<number>;
 }

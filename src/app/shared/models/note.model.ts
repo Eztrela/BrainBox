@@ -1,9 +1,9 @@
 import {INote} from "../interfaces/inote";
 
-export class Note implements INote {
+export class Note{
   /* Model class for MemoryBox notes */
 
-  private _id:number;
+  private _id: number | undefined = undefined;
   private _content:string;
 
   constructor(id:number, content:string) {
@@ -11,7 +11,7 @@ export class Note implements INote {
     this._content = content;
   }
 
-  get id():number {
+  get id():number | undefined {
     return this._id;
   }
 

@@ -1,0 +1,13 @@
+<div mat-subheader id="memorybox-listing-header">
+  <span id="header">Suas Memory Boxes</span>
+</div>
+<mat-divider></mat-divider>
+<div id="memorybox-listing-container">
+    <app-memorybox-card class="memorybox-card" *ngFor="let memorybox of memoryboxes" [memorybox]="memorybox">
+    </app-memorybox-card>
+    <div class="placeholder" (click)="openDialog()">
+      <button class="create-memorybox-button">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+</div>
