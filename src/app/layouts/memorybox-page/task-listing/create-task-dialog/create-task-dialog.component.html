@@ -3,22 +3,31 @@
     <p>Insira o título da Memory Box</p>
   </div>
 
-  <div class="dialog-form">
+  <div class="dialog-form" [formGroup]="taskForm">
     <mat-form-field appearance="outline" class="title-input">
       <mat-label>Título</mat-label>
-      <input matInput [formControl]="titleForm" required />
-      <mat-error *ngIf="titleForm.invalid">{{ getErrorMessage() }}</mat-error>
-      <input matInput [formControl]="descriptionForm" required />
-      <mat-error *ngIf="descriptionForm.invalid">{{
-        getErrorMessage()
-      }}</mat-error>
-      <input matInput [formControl]="statusForm" required />
-      <mat-error *ngIf="statusForm.invalid">{{ getErrorMessage() }}</mat-error>
-      <input matInput [formControl]="priorityForm" required />
-      <mat-error *ngIf="priorityForm.invalid">{{
-        getErrorMessage()
-      }}</mat-error>
+      <input mat-input formControlName="title" required />
+      <mat-error *ngIf="titleForm.invalid"></mat-error>
     </mat-form-field>
+    <mat-form-field appearance="outline" class="description-input">
+      <mat-label>Descrição</mat-label>
+      <input mat-input formControlName="descriptionForm" required />
+    </mat-form-field>
+    <!-- <mat-error *ngIf="descriptionForm.invalid">{{
+        getErrorMessage()
+      }}</mat-error> -->
+    <mat-form-field appearance="outline" class="status-input">
+      <mat-label>Status</mat-label>
+      <input mat-input formControlName="status" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="priority-input">
+      <!-- <mat-error *ngIf="statusForm.invalid">{{ getErrorMessage() }}</mat-error> -->
+      <mat-label>Prioridade</mat-label>
+      <input mat-input formControlName="priority" required />
+    </mat-form-field>
+    <!-- <mat-error *ngIf="priorityForm.invalid">{{
+        getErrorMessage()
+      }}</mat-error> -->
   </div>
 
   <div class="dialog-buttons">
@@ -34,8 +43,8 @@
       class="confirm-button"
       mat-raised-button
       color="primary"
-      [mat-dialog-close]="titleForm.value"
-      [disabled]="titleForm.invalid"
+      [mat-dialog-close]="taskForm.value"
+      [disabled]="taskForm.invalid"
     >
       Criar
     </button>

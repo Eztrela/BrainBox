@@ -43,7 +43,8 @@ import {CdkDrag} from "@angular/cdk/drag-drop";
     ReactiveFormsModule,
     MatFormFieldModule,
     MatButtonModule,
-    CdkDrag
+    CdkDrag,
+    ReactiveFormsModule,
   ]
 })
 export class MemoryboxPageModule { }
