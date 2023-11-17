@@ -1,4 +1,5 @@
 .memorybox-notes {
+  height: 45rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
