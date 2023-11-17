@@ -1,0 +1,39 @@
+<div class="note-dialog-container">
+  <div class="dialog-header">
+    <p>Escreva sua anotação...</p>
+  </div>
+
+  <div class="dialog-form">
+    <mat-form-field appearance="outline" class="content-input">
+      <mat-label>Conteúdo</mat-label>
+      <textarea matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                [cdkAutosizeMaxRows]="55"
+                [formControl]="contentForm"
+                required>
+                </textarea>
+      <mat-error *ngIf="contentForm.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-buttons">
+    <button
+      class="cancel-button"
+      mat-stroked-button
+      color="warn"
+      (click)="onNoClick()"
+    >
+      Cancelar
+    </button>
+    <button
+      class="confirm-button"
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="contentForm.value"
+      [disabled]="contentForm.invalid"
+    >
+      Criar
+    </button>
+  </div>
+</div>

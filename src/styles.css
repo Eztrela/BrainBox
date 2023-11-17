@@ -2,3 +2,20 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+  font-family: 'Titillium Web';
+  src: url("assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf");
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #30343f;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #AEB0BF;
+}

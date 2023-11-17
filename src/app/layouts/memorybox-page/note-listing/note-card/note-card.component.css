@@ -1,0 +1,39 @@
+.note-container {
+  width: 18rem;
+  border-radius: 0.8rem;
+  background-color: #404556;
+  display: flex;
+  justify-content: flex-start;
+  text-align: justify;
+  padding: 0.4rem;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
+}
+
+.note-content-container {
+  flex-grow: 1;
+}
+
+.note-content {
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 0.8rem;
+  background: #1E1E24;
+  overflow-wrap: break-word;
+}
+
+.content-input {
+  color: azure;
+  font-family: "Titillium Web", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.12rem;
+  text-align: center;
+  padding: 1rem 1rem 0 1rem;
+  border-radius: 0.8rem;
+  background: #1E1E24;
+  transition-duration: 0.4s;
+}
+
+.content-input.ng-touched.ng-invalid {
+  padding: 1rem 1rem 2rem 1rem;
+}

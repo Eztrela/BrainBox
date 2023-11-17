@@ -1,0 +1,66 @@
+#memorybox-listing-container {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  padding-left: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+#header {
+  color: #1E1E24;
+}
+
+mat-divider {
+  background-color: #9593D9;
+}
+
+.memorybox-card {
+  max-width: 15.45rem;
+  max-height: 17.45rem;
+  border-radius: 0.8rem;
+}
+
+.placeholder {
+  width: 15.45rem;
+  height: 17.45rem;
+  border-radius: 0.8rem;
+  background-color: rgba(124, 124, 149, 0.09);
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.placeholder:hover {
+  background-color: rgba(124, 124, 149, 0.22);
+}
+
+#memorybox-listing-header {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.create-memorybox-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.placeholder .create-memorybox-button .mat-icon {
+  color: rgba(66, 66, 138, 0.86);
+
+  width: 7rem;
+  height: 7rem;
+  font-size: 5rem;
+}
+
+#memorybox-listing-header #header {
+  padding-top: 1rem;
+}
+
+mat-divider {
+  background-color: #9593D9;
+}

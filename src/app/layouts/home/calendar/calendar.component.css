@@ -1,0 +1,17 @@
+#header {
+  color: #1E1E24;
+}
+
+mat-divider {
+  background-color: #9593D9;
+}
+
+#calendar-container {
+  padding-top: 1rem;
+  padding-left: 1.4rem;
+}
+
+.text {
+  font-weight: bold;
+  color: #1E1E24;
+}

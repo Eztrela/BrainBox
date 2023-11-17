@@ -1,0 +1,30 @@
+<div class="memorybox-dialog-container">
+
+  <div class="dialog-header">
+    <p>Insira o título da Memory Box</p>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="dialog-form" [formGroup]="memoryBoxForm">
+    <mat-form-field appearance="outline" class="title-input">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" required>
+      <mat-error *ngIf="titleForm.invalid">{{getTitleErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="banner-input">
+      <mat-label>Banner</mat-label>
+      <input matInput formControlName="banner">
+      <mat-error *ngIf="bannerForm.invalid">{{getBannerErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-buttons">
+    <button class="cancel-button" mat-stroked-button color="warn" (click)="onNoClick()">Cancelar</button>
+    <button class="confirm-button" mat-raised-button color="primary"
+            [mat-dialog-close]="memoryBoxForm.value"
+            [disabled]="memoryBoxForm.invalid">Criar</button>
+  </div>
+
+</div>

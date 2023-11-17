@@ -1,0 +1,42 @@
+<mat-toolbar class="top-toolbar">
+  <ng-content></ng-content>
+  <form class="search-form" (ngSubmit)="onSubmit(pesquisaControl.value)">
+    <button mat-icon-button class="search-button">
+      <mat-icon>
+        search
+      </mat-icon>
+    </button>
+    <input class="search-input"
+           type="text"
+           placeholder="Pesquise por suas Memory Boxes ou tarefas aqui!"
+           [formControl]="pesquisaControl"
+           [matAutocomplete]="auto">
+  </form>
+  <div>
+    <button mat-icon-button>
+      <mat-icon>
+        notifications_none
+      </mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>
+        person_outline
+      </mat-icon>
+    </button>
+  </div>
+
+</mat-toolbar>
+<mat-autocomplete
+  class="{{CSSClasses}}"
+  #auto="matAutocomplete"
+  (opened)="onOpened()"
+  (closed)="onClosed()">
+  <mat-optgroup [label]="firstoption" class='search-autocomplete-options'>
+    <mat-option
+      class='search-autocomplete-options'
+      *ngFor="let memoryBox of filteredMemoryBoxes | async"
+      [value]="memoryBox.title">
+      {{memoryBox.title}}
+    </mat-option>
+  </mat-optgroup>
+</mat-autocomplete>
