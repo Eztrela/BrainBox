@@ -23,7 +23,6 @@ export class MemoryboxCardComponent implements OnInit {
       // Filter out undefined values
       map(tags => tags.filter(tag => !!tag))
     ).subscribe((tags: Tag[]) => {
-      console.log(tags);
       this.tags.push(...tags);
     });
   }

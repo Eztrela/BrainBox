@@ -6,24 +6,25 @@
   <div class="dialog-form" [formGroup]="taskForm">
     <mat-form-field appearance="outline" class="title-input">
       <mat-label>Título</mat-label>
-      <input mat-input formControlName="title" required />
+      <input matInput formControlName="title" required />
       <mat-error *ngIf="titleForm.invalid"></mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="description-input">
       <mat-label>Descrição</mat-label>
-      <input mat-input formControlName="descriptionForm" required />
+      <textarea matInput formControlName="description" required>
+      </textarea>
     </mat-form-field>
     <!-- <mat-error *ngIf="descriptionForm.invalid">{{
         getErrorMessage()
       }}</mat-error> -->
     <mat-form-field appearance="outline" class="status-input">
       <mat-label>Status</mat-label>
-      <input mat-input formControlName="status" required />
+      <input matInput formControlName="status" required />
     </mat-form-field>
     <mat-form-field appearance="outline" class="priority-input">
       <!-- <mat-error *ngIf="statusForm.invalid">{{ getErrorMessage() }}</mat-error> -->
       <mat-label>Prioridade</mat-label>
-      <input mat-input formControlName="priority" required />
+      <input matInput formControlName="priority" required />
     </mat-form-field>
     <!-- <mat-error *ngIf="priorityForm.invalid">{{
         getErrorMessage()
