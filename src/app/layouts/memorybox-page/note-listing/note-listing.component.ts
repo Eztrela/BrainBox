@@ -13,7 +13,7 @@ import { PnotePipe } from 'src/app/shared/pipes/pnote.pipe';
   styleUrls: ['./note-listing.component.css'],
 })
 export class NoteListingComponent implements OnInit{
-  constructor(private dialog:MatDialog,private tagService:TagService, private memoryBoxService: MemoryboxService){
+  constructor(private dialog:MatDialog, private tagService:TagService, private memoryBoxService: MemoryboxService){
   }
   @Input() memorybox: MemoryBox = new MemoryBox(0,"",0);
   @Output() newItemEvent = new EventEmitter<INote>();

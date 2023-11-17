@@ -3,6 +3,7 @@ import { Tag } from "../models";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { PtagPipe } from "../pipes/ptag.pipe";
+import {ITag} from "../interfaces/itag";
 
 
 @Injectable({
@@ -23,9 +24,9 @@ export class TagService {
 
   constructor(private httpClient: HttpClient) {}
 
-  create(data:Tag): Observable<Tag> {
+  create(data:Tag): Observable<ITag> {
     const url_resource: string = `${this._url}/${this._resource}`;
-    return this.httpClient.post<Tag>(
+    return this.httpClient.post<ITag>(
       url_resource,
       JSON.stringify(this._tagPipe.transform(data)),
       this.httpOptions

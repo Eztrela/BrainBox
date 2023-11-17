@@ -1,0 +1,30 @@
+<div class="tag-dialog-container">
+
+    <div class="dialog-header">
+        <p>Insira o conteúdo da Tag</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="dialog-form" [formGroup]="tagForm">
+        <mat-form-field appearance="outline" class="title-input">
+            <mat-label>Título</mat-label>
+            <input matInput formControlName="title" required>
+            <mat-error *ngIf="titleForm.invalid">{{getTitleErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="color-input">
+            <mat-label>Cor</mat-label>
+            <input matInput formControlName="color">
+            <mat-error *ngIf="colorForm.invalid">{{getColorErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="dialog-buttons">
+        <button class="cancel-button" mat-stroked-button color="warn" (click)="onNoClick()">Cancelar</button>
+        <button class="confirm-button" mat-raised-button color="primary"
+                [mat-dialog-close]="tagForm.value"
+                [disabled]="tagForm.invalid">Criar</button>
+    </div>
+
+</div>
