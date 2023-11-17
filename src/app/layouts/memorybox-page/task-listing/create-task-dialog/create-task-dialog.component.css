@@ -112,4 +112,8 @@
   & .title-input.ng-touched.ng-invalid {
     padding: 1rem 1rem 2rem 1rem;
   }
+
+  & .description-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 2rem 1rem;
+  }
 }

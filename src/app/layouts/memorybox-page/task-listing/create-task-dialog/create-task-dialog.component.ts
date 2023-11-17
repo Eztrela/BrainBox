@@ -32,8 +32,14 @@ export class CreateTaskDialogComponent {
   ]
 
   ngOnInit() {
-    this.titleForm = new FormControl(this.task.title)
-    this.descriptionForm = new FormControl(this.task.description)
+    this.titleForm = new FormControl(this.task.title, [
+      Validators.required,
+      Validators.minLength(4)
+    ])
+    this.descriptionForm = new FormControl(this.task.description, [
+      Validators.required,
+      Validators.minLength(4)
+    ])
     this.statusForm = new FormControl(this.task.status)
     this.priorityForm = new FormControl(this.task.priority)
     this.taskForm = new FormGroup({
@@ -51,11 +57,19 @@ export class CreateTaskDialogComponent {
     this.dialogRef.close();
   }
 
-  getErrorMessage() {
+  getTitleErrorMessage() {
     if (this.titleForm.hasError('required')) {
       return 'Você precisa fornecer um título!';
     } else if (this.titleForm.hasError('minlength')) {
       return 'O título precisa ter no mínimo 4 carácteres!';
+    } else { return ''}
+  }
+
+  getDescriptionErrorMessage() {
+    if (this.descriptionForm.hasError('required')) {
+      return 'Você precisa fornecer alguma descrição!';
+    } else if (this.descriptionForm.hasError('minlength')) {
+      return 'Descrição precisa ter no mínimo 4 carácteres!';
     } else { return ''}
   }
 }
