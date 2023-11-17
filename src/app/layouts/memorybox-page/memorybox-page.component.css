@@ -1,0 +1,11 @@
+#memorybox-header {
+
+  display: flex;
+  align-items: center;
+
+  & h1 {
+    color: #1E1E24;
+    margin-right: 2rem;
+  }
+
+}

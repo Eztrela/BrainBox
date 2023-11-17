@@ -1,0 +1,31 @@
+.memorybox-notes {
+  min-height: 45rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  padding-left: 1.4rem;
+}
+
+#note-listing-header {
+  padding-top: 2.2rem;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+}
+
+.add-note-button {
+  margin-left: 0.8rem;
+  color: azure;
+}
+
+#header {
+  color: #1e1e24;
+}
+
+mat-divider {
+  background-color: #9593d9;
+}

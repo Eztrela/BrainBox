@@ -13,29 +13,37 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatIconModule} from "@angular/material/icon";
+import { CreateTagDialogComponent } from './sidenav/create-tag-dialog/create-tag-dialog.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
   declarations: [
     ToolbarComponent,
     SidenavComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    CreateTagDialogComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatListModule,
-    MatSidenavModule,
-    NgOptimizedImage,
-    RouterLink,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatSnackBarModule,
-    MatIconModule,
-  ],
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatListModule,
+        MatSidenavModule,
+        NgOptimizedImage,
+        RouterLink,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatSnackBarModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDialogModule,
+    ],
   exports: [
     ToolbarComponent,
     SidenavComponent

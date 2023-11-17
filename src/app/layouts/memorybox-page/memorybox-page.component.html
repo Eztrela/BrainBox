@@ -1,2 +1,42 @@
-<h1>{{memorybox.title}}</h1>
-<p>memorybox-page works! {{id}}</p>
+<app-sidenav>
+  <div id="memorybox-header">
+    <h1 *ngIf="!isEditing; else editForm">{{ memorybox.title }}</h1>
+    <ng-template #editForm>
+      <form>
+        <mat-form-field appearance="fill" class="title-input">
+                <textarea matInput
+                          cdkTextareaAutosize
+                          #autosize="cdkTextareaAutosize"
+                          [formControl]="titleForm"
+                          required>
+                </textarea>
+          <mat-error *ngIf="titleForm.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </form>
+    </ng-template>
+
+    <div class="note-buttons">
+      <button mat-icon-button color="warn" (click)="deleteMemoryBox()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button *ngIf="!isEditing;else confirmEdit" mat-icon-button color="primary" (click)="toggleEditMemoryBox()">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
+      <ng-template #confirmEdit>
+        <button mat-mini-fab color="primary" [disabled]="titleForm.invalid" (click)="editMemoryBox()">
+          <mat-icon>
+            check
+          </mat-icon>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+  <ng-container *ngIf="memorybox.id > 0">
+    <app-task-listing [memorybox]="memorybox"></app-task-listing>
+  </ng-container>
+  <ng-container *ngIf="memorybox.id > 0">
+    <app-note-listing [memorybox]="memorybox"></app-note-listing>
+  </ng-container>
+</app-sidenav>

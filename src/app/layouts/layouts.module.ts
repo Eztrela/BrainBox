@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from "@angular/forms";
 
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatIconModule} from "@angular/material/icon";
+import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
@@ -12,6 +12,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
 import {HomeModule} from "./home/home.module";
+import { MemoryboxPageModule } from './memorybox-page/memorybox-page.module';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,13 @@ import {HomeModule} from "./home/home.module";
     MatAutocompleteModule,
     MatInputModule,
     MatCardModule,
-    RouterLink
+    RouterLink,
+    MatIconModule,
+    MatSelectModule
   ],
   exports: [
+    HomeModule,
+    MemoryboxPageModule
   ]
 })
 export class LayoutsModule { }

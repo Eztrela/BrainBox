@@ -1,0 +1,16 @@
+<div mat-subheader id="note-listing-header">
+  <span id="header">Suas Notes
+    <button mat-mini-fab color="primary" class="add-note-button"(click)="openAddNoteDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </span>
+</div>
+<mat-divider></mat-divider>
+<div class="memorybox-notes">
+  <app-note-card
+  *ngFor="let note of notes"
+  [note]="note"
+  (deleteEvent)="deleteNote($event)"
+  (editEvent)="editNote($event)">
+  </app-note-card>
+</div>

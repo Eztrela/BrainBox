@@ -1,7 +1,7 @@
 <mat-card class="memorybox-card"
           [routerLink]="['/memorybox/', memorybox.id]">
   <div *cdkDragPreview></div>
-  <div class="memorybox-banner"></div>
+  <div class="memorybox-banner" [style.backgroundImage]="'url(' + memorybox.banner + ')'"></div>
   <div class="memorybox-card-content">
   <mat-card-title class="memorybox-title">{{memorybox.title}}</mat-card-title>
     <div class="memorybox-tags"

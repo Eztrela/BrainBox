@@ -29,13 +29,13 @@ export class MemoryboxListingComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(CreateDialogComponent, {
       data: {},
-      panelClass: 'dialog-container'
+      panelClass: 'memorybox-dialog-container'
     });
 
-    dialogRef.afterClosed().subscribe((title:string) => {
-      if (title) {
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
         this.memoryboxService.generateID().subscribe((id: number) => {
-          let memorybox = new MemoryBox(id, title, 0)
+          let memorybox = new MemoryBox(id, res.title, 0, res.banner)
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
             this.addNewItem(obj);
             this._snackbar.openFromComponent(SnackbarComponent, {
@@ -47,7 +47,6 @@ export class MemoryboxListingComponent implements OnInit {
             })
           });
         });
-
       }
     });
   }
