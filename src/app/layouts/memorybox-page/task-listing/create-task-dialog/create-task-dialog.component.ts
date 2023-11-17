@@ -17,6 +17,19 @@ export class CreateTaskDialogComponent {
   public statusForm = new FormControl();
   public priorityForm = new FormControl();
   public taskForm!: FormGroup;
+  public status = [
+    {value: 'new', viewValue: 'New'},
+    {value: 'In progress', viewValue: 'In Progress'},
+    {value: 'On hold', viewValue: 'On Hold'},
+    {value: 'Resolved', viewValue: 'Resolved'},
+    {value: 'Rejected', viewValue: 'Rejected'},
+  ];
+  public priorities = [
+    {value: '1', viewValue: 'Muito Baixa'},
+    {value: '2', viewValue: 'Baixa'},
+    {value: '3', viewValue: 'Média'},
+    {value: '4', viewValue: 'Alta'},
+  ]
 
   ngOnInit() {
     this.titleForm = new FormControl(this.task.title)

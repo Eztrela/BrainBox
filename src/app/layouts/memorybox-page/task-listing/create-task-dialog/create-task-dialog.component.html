@@ -11,7 +11,13 @@
     </mat-form-field>
     <mat-form-field appearance="outline" class="description-input">
       <mat-label>Descrição</mat-label>
-      <textarea matInput formControlName="description" required>
+      <textarea
+        matInput
+        formControlName="description"
+        required
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+      >
       </textarea>
     </mat-form-field>
     <!-- <mat-error *ngIf="descriptionForm.invalid">{{
@@ -19,12 +25,25 @@
       }}</mat-error> -->
     <mat-form-field appearance="outline" class="status-input">
       <mat-label>Status</mat-label>
-      <input matInput formControlName="status" required />
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let s of status" [value]="s.value">
+          {{ s.viewValue }}
+        </mat-option>
+      </mat-select>
+      <!-- <input matInput formControlName="status" required /> -->
     </mat-form-field>
     <mat-form-field appearance="outline" class="priority-input">
       <!-- <mat-error *ngIf="statusForm.invalid">{{ getErrorMessage() }}</mat-error> -->
       <mat-label>Prioridade</mat-label>
-      <input matInput formControlName="priority" required />
+      <mat-select formControlName="priority">
+        <mat-option
+          *ngFor="let priority of priorities"
+          [value]="priority.value"
+        >
+          {{ priority.viewValue }}
+        </mat-option>
+      </mat-select>
+      <!-- <input matInput formControlName="priority" required /> -->
     </mat-form-field>
     <!-- <mat-error *ngIf="priorityForm.invalid">{{
         getErrorMessage()

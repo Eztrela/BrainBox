@@ -13,6 +13,7 @@ import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
 import {HomeModule} from "./home/home.module";
 import { MemoryboxPageModule } from './memorybox-page/memorybox-page.module';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MemoryboxPageModule } from './memorybox-page/memorybox-page.module';
     MatInputModule,
     MatCardModule,
     RouterLink,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   exports: [
     HomeModule,
