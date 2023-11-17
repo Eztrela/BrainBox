@@ -14,8 +14,9 @@ export class MemoryBox {
   private _tags: Array<number>;
   private _tasks: Array<ITask>;
   private _notes: Array<INote>;
+  private _banner: string;
 
-  constructor(id: number, title:string, user:number) {
+  constructor(id: number, title:string, user:number, banner: string="https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg") {
     this._id = id;
     this._user = user;
     this._title = title;
@@ -23,6 +24,7 @@ export class MemoryBox {
     this._tasks = new Array<ITask>;
     this._notes = new Array<INote>;
     this._tags = new Array<number>;
+    this._banner = banner;
   }
 
   inserirTask(task: Task) {
@@ -99,6 +101,10 @@ export class MemoryBox {
     return this._tags;
   }
 
+  get banner(): string {
+    return this._banner;
+  }
+
   set title(title: string) {
     this._title = title;
   }
@@ -110,6 +116,7 @@ export class MemoryBox {
       , created at: ${this._datetimeCreated}
       , taks: ${this._tasks}
       , notes: ${this._notes}
-      , tags: ${this._tags}`;
+      , tags: ${this._tags}
+      , banner: ${this._banner}`;
   }
 }

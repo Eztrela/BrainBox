@@ -11,13 +11,14 @@ export class PmemoryboxPipe implements PipeTransform {
 
   transform(memoryBox: MemoryBox): Imemorybox {
     return new class implements Imemorybox {
-      tags: Array<number> = memoryBox.tags;
-      notes: Array<INote> = memoryBox.notes;
-      tasks: Array<ITask> = memoryBox.tasks;
-      datetimeCreated: Date = memoryBox.datetimeCreated;
-      title: string = memoryBox.title;
-      user: number = memoryBox.user;
       id: number = memoryBox.id;
+      user: number = memoryBox.user;
+      title: string = memoryBox.title;
+      datetimeCreated: Date = memoryBox.datetimeCreated;
+      tasks: Array<ITask> = memoryBox.tasks;
+      notes: Array<INote> = memoryBox.notes;
+      tags: Array<number> = memoryBox.tags;
+      banner: string = memoryBox.banner;
     };
   }
 

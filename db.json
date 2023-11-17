@@ -63,7 +63,8 @@
       "tags": [
         1,
         2
-      ]
+      ],
+      "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
     },
     {
       "id": 2,
@@ -107,7 +108,8 @@
       "tags": [
         1,
         4
-      ]
+      ],
+      "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
     },
     {
       "id": 3,
@@ -151,16 +153,8 @@
       "tags": [
         1,
         5
-      ]
-    },
-    {
-      "tags": [],
-      "notes": [],
-      "tasks": [],
-      "datetimeCreated": "2023-11-13T01:02:37.547Z",
-      "title": "teste",
-      "user": 0,
-      "id": 4
+      ],
+      "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
     }
   ],
   "tags": [

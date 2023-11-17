@@ -31,7 +31,7 @@ export class NoteListingComponent implements OnInit{
   openAddNoteDialog() {
     const dialogRef = this.dialog.open(CreateNoteDialogComponent, {
       data: {},
-      panelClass: 'dialog-container'
+      panelClass: 'note-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe((content:string) => {

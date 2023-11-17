@@ -1,4 +1,4 @@
-::ng-deep .dialog-container {
+::ng-deep .note-dialog-container {
   & .mat-mdc-dialog-container  {
     --mdc-dialog-container-color: transparent;
     background-color: #30343F;
@@ -11,7 +11,7 @@
     width: 20rem;
   }
 
-  & .dialog-container {
+  & .note-dialog-container {
     display: flex;
     flex-direction: column;
     overflow-y: hidden;

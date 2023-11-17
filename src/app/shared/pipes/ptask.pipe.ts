@@ -9,14 +9,14 @@ export class PtaskPipe implements PipeTransform {
 
   transform(task: Task): ITask {
       return new class implements ITask {
-        datetimeCreated: Date = task.datetimeCreated;
-        datetimeDue: Date = task.datetimeDue;
-        description: string = task.description;
-        priority: number = task.priority;
-        status: string = task.status;
-        tags: Array<number> = task.tags;
-        title: string = task.title;
         id: number = 0;
+        title: string = task.title;
+        tags: Array<number> = task.tags;
+        status: string = task.status;
+        priority: number = task.priority;
+        description: string = task.description;
+        datetimeDue: Date = task.datetimeDue;
+        datetimeCreated: Date = task.datetimeCreated;
       };
     }
 
