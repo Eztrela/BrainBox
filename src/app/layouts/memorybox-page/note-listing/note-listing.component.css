@@ -1,4 +1,5 @@
 .memorybox-notes {
+  min-height: 45rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
@@ -22,9 +23,9 @@
 }
 
 #header {
-  color: #1E1E24;
+  color: #1e1e24;
 }
 
 mat-divider {
-  background-color: #9593D9;
+  background-color: #9593d9;
 }

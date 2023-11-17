@@ -1,4 +1,9 @@
-<table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+<div mat-subheader id="task-listing-header">
+  <span id="header">Suas Tasks
+  </span>
+</div>
+<mat-divider></mat-divider>
+<table mat-table [dataSource]="datasource" class="mat-elevation-z8" id="task-table">
   <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
@@ -32,7 +37,7 @@
 
   <ng-container matColumnDef="addTask">
     <th mat-header-cell *matHeaderCellDef>
-      <button mat-button (click)="openDialog()">
+      <button mat-icon-button (click)="openDialog()">
         <mat-icon class="addButton">add</mat-icon>
       </button>
     </th>
@@ -41,10 +46,10 @@
   <ng-container matColumnDef="editRemove">
     <td mat-cell class="editRemove-tasks" *matCellDef="let task">
       <div>
-        <button mat-button>
+        <button mat-icon-button>
           <mat-icon class="editButton">edit</mat-icon>
         </button>
-        <button mat-button (click)="deleteTask(task)">
+        <button mat-icon-button (click)="deleteTask(task)">
           <mat-icon class="deleteButton">delete</mat-icon>
         </button>
       </div>

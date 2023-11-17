@@ -1,5 +1,6 @@
 <mat-card class="note-container"
           cdkDrag
+          cdkDragBoundary=".memorybox-notes"
           [cdkDragDisabled] = "isEditing">
     <div class="note-buttons">
         <button mat-icon-button (click)="deleteNote()">

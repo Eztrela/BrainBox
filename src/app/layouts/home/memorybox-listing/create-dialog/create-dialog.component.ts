@@ -32,7 +32,7 @@ export class CreateDialogComponent {
       Validators.required,
       Validators.minLength(4)
     ]);
-    this.bannerForm = new FormControl("", [
+    this.bannerForm = new FormControl("https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg", [
       this.urlValidator
     ]);
     this.memoryBoxForm = new FormGroup({

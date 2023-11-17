@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { MemoryBox} from 'src/app/shared/models';
+import { MemoryBox, Task} from 'src/app/shared/models';
 import { MatTableDataSource} from '@angular/material/table'
 import { forkJoin, map } from "rxjs";
 import { ITask } from 'src/app/shared/interfaces/itask';
@@ -7,6 +7,8 @@ import { TagService } from 'src/app/shared/services/tag.service';
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
+import { PtaskPipe } from 'src/app/shared/pipes/ptask.pipe';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-task-listing',
@@ -17,7 +19,8 @@ export class TaskListingComponent implements OnInit{
   @Input() memorybox: MemoryBox = new MemoryBox(0,"",0);
   public datasource: MatTableDataSource<ITask> = new MatTableDataSource<ITask>();
   public tasks: Array<ITask> = new Array<ITask>();
-  @Output() newItemEvent = new EventEmitter<MemoryBox>;
+  @Output() newItemEvent = new EventEmitter<ITask>();
+  public taskPipe = new PtaskPipe();
   constructor(private dialog:MatDialog, private tagService:TagService, private memoryBoxService: MemoryboxService){
   }
   
@@ -36,7 +39,7 @@ export class TaskListingComponent implements OnInit{
     this.datasource = new MatTableDataSource<ITask>(this.memorybox.tasks);
   }
   
-  addNewItem(value: MemoryBox) {
+  addNewItem(value: ITask) {
     this.newItemEvent.emit(value);
   }
 
@@ -46,22 +49,20 @@ export class TaskListingComponent implements OnInit{
       panelClass: 'dialog-container'
     });
 
-    dialogRef.afterClosed().subscribe((title:string) => {
-      if (title) {
-        this.memoryBoxService.generateID().subscribe((id: number) => {
-          let memorybox = new MemoryBox(id, title, 0)
-          this.memoryBoxService.create(memorybox).subscribe((obj: MemoryBox) => {
-            this.addNewItem(obj);
-            // this._snackbar.openFromComponent(SnackbarComponent, {
-            //   data: {
-            //     message: `Memory Box "${obj.title}" criada com êxito!`,
-            //   },
-            //   panelClass: ['mat-primary'],
-            //   duration: 3000
-            // })
+    dialogRef.afterClosed().subscribe((data) => {
+      console.log("Task:", data)
+      if (data) {
+          let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => task.id)) + 1 : 1;
+          let task = this.taskPipe.transform(new Task(data.title, data.description, data.status, data.priority))
+          task.id = idx;
+          console.log(task);
+          this.memorybox.tasks.push(task);
+          console.log(this.memorybox);
+          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
+            console.log("After ", obj)
+            this.memorybox = obj;
+            this.datasource.data = [...this.memorybox.tasks]
           });
-        });
-
       }
     });
   }
