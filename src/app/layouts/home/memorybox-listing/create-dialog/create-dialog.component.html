@@ -22,7 +22,9 @@
 
   <div class="dialog-buttons">
     <button class="cancel-button" mat-stroked-button color="warn" (click)="onNoClick()">Cancelar</button>
-    <button class="confirm-button" mat-raised-button color="primary" [mat-dialog-close]="memoryBoxForm.value" [disabled]="memoryBoxForm.invalid">Criar</button>
+    <button class="confirm-button" mat-raised-button color="primary"
+            [mat-dialog-close]="memoryBoxForm.value"
+            [disabled]="memoryBoxForm.invalid">Criar</button>
   </div>
 
 </div>
