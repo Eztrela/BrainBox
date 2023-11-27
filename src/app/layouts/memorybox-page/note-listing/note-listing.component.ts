@@ -5,7 +5,6 @@ import { MemoryBox, Note } from 'src/app/shared/models';
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { TagService } from 'src/app/shared/services/tag.service';
 import { CreateNoteDialogComponent } from './create-note-dialog/create-note-dialog.component';
-import {JsonPipe} from "@angular/common";
 import {JsonDTOPipe} from "../../../shared/pipes/jsondto.pipe";
 
 @Component({
