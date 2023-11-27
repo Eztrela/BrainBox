@@ -5,6 +5,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { map, max, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { PmemoryboxPipe } from "../pipes/pmemorybox.pipe";
+import {ITask} from "../interfaces/itask";
+import {TaskEvent} from "../interfaces/task-event";
 
 
 @Injectable({
@@ -61,6 +63,38 @@ export class MemoryboxService {
       url_resource
     );
   }
+
+  getAllTasks() {
+    return this.getAll().pipe(
+      map((res: MemoryBox[]) => {
+        let tasks: ITask[] = [];
+        for (let box of res) {
+          tasks = tasks.concat(box.tasks);
+        }
+        return tasks;
+      })
+    );
+  }
+
+  getAllTasksWithId(): Observable<TaskEvent[]> {
+    return this.getAll().pipe(
+      map((res: MemoryBox[]) => {
+        let tasksWithId: TaskEvent[] = [];
+
+        for (let box of res) {
+          for (let task of box.tasks) {
+            tasksWithId.push({
+              task: task,
+              idBox: box.id,
+            });
+          }
+        }
+
+        return tasksWithId;
+      })
+    );
+  }
+
 
   update(id:number, data:MemoryBox): Observable<MemoryBox> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;

@@ -7,11 +7,76 @@ mat-divider {
 }
 
 #calendar-container {
-  padding-top: 1rem;
-  padding-left: 1.4rem;
+  color: black;
+  padding: 1rem 1rem 6rem;
 }
 
 .text {
   font-weight: bold;
   color: #1E1E24;
+}
+
+::ng-deep .cal-month-view {
+  background-color: transparent;
+
+  & .cal-days {
+    border: none;
+  }
+
+  & .cal-cell-top {
+    transition-duration: 0.2s;
+  }
+
+  & .cal-cell-top:hover {
+    background-color: rgba(66, 66, 138, 0.16);
+  }
+
+  & .cal-cell-row:hover {
+    background-color: transparent;
+  }
+
+  & .cal-events {
+    margin: 0;
+    padding: 3px;
+  }
+
+  & .cal-events:hover {
+    transition-duration: 0.2s;
+    background-color: rgba(66, 66, 138, 0.36);
+  }
+
+  & .cal-day-badge {
+    background-color: rgba(66, 66, 138, 0.86);
+    color: azure;
+  }
+
+  .cal-day-cell.cal-today {
+    background-color: rgba(66, 66, 138, 0.10);
+  }
+}
+
+.month-manips-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+.month-manips {
+  position: relative;
+  padding: 0;
+  margin-left: 1rem;
+  line-height: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-style: none;
+  border-radius: 100rem;
+  color: #1b1b1f;
+  transition-duration: 0.3s;
+}
+
+.month-manips:hover {
+  cursor: pointer;
+  color: #9593d9;
 }

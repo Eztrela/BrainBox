@@ -16,6 +16,8 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import { CalendarComponent } from './calendar/calendar.component';
+import {CalendarModule, DateAdapter} from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { CalendarComponent } from './calendar/calendar.component';
         FormsModule,
         MatDialogModule,
         ReactiveFormsModule,
+        CalendarModule,
     ],
   exports: [
     HomeComponent

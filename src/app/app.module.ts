@@ -7,6 +7,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { LayoutsModule } from "./layouts/layouts.module";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import {CalendarModule, DateAdapter} from 'angular-calendar';
+import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     HttpClientModule,
     LayoutsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]
