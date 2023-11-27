@@ -1,14 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { MemoryBox, Task} from 'src/app/shared/models';
 import { MatTableDataSource} from '@angular/material/table'
-import { forkJoin, map } from "rxjs";
 import { ITask } from 'src/app/shared/interfaces/itask';
 import { TagService } from 'src/app/shared/services/tag.service';
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
-import { PtaskPipe } from 'src/app/shared/pipes/ptask.pipe';
 import { FormGroup } from '@angular/forms';
+import {JsonDTOPipe} from "../../../shared/pipes/jsondto.pipe";
 
 @Component({
   selector: 'app-task-listing',
@@ -17,29 +16,16 @@ import { FormGroup } from '@angular/forms';
 })
 export class TaskListingComponent implements OnInit{
   @Input() memorybox: MemoryBox = new MemoryBox(0,"",0);
-  public datasource: MatTableDataSource<ITask> = new MatTableDataSource<ITask>();
-  public tasks: Array<ITask> = new Array<ITask>();
-  @Output() newItemEvent = new EventEmitter<ITask>();
-  public taskPipe = new PtaskPipe();
+  public datasource: MatTableDataSource<Task> = new MatTableDataSource<Task>();
+  @Output() newItemEvent = new EventEmitter<Task>();
   constructor(private dialog:MatDialog, private tagService:TagService, private memoryBoxService: MemoryboxService){
   }
-  
+
   ngOnInit(): void {
-    // const tagObservables = this.memorybox.tasks.map(task => {
-    //   for(let tag of task.tags){
-    //     this.tagService.getById(tag).subscribe((tag:Tag)=>(
-    //       task.tags.push(tag)
-    //       ));
-    //     }});
-    //     forkJoin(tagObservables).subscribe((tag: Tag) => {
-    //       // console.log(tags);
-    //       this.task.tags.push(tag);
-    //       this.tasks.push(task);
-    // });
-    this.datasource = new MatTableDataSource<ITask>(this.memorybox.tasks);
+    this.datasource = new MatTableDataSource<Task>(this.memorybox.tasks);
   }
-  
-  addNewItem(value: ITask) {
+
+  addNewItem(value: Task) {
     this.newItemEvent.emit(value);
   }
 
@@ -52,8 +38,11 @@ export class TaskListingComponent implements OnInit{
     dialogRef.afterClosed().subscribe((data) => {
       console.log("Task:", data)
       if (data) {
-          let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => task.id)) + 1 : 1;
-          let task = this.taskPipe.transform(new Task(data.title, data.description, data.status, data.priority))
+        if (this.memorybox.tasks && this.memorybox.id) {
+          let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
+            return task.id ? task.id : 0
+          })) + 1 : 1;
+          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority})
           task.id = idx;
           console.log(task);
           this.memorybox.tasks.push(task);
@@ -61,26 +50,35 @@ export class TaskListingComponent implements OnInit{
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
             console.log("After ", obj)
             this.memorybox = obj;
-            this.datasource.data = [...this.memorybox.tasks]
+            this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
           });
+        }
       }
     });
   }
 
   deleteTask(taskARemover: ITask){
     console.log(this.memorybox)
-    const idx = this.memorybox.tasks.findIndex((task)=>{
-      console.log(task.id === taskARemover.id)
-      return task.id === taskARemover.id
-    })
-    console.log(idx)
-    this.memorybox.tasks.splice(idx, 1)[0];
-    console.log(this.memorybox)
-    
-    this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
-      this.memorybox = memoryBoxAtualizado;
-      this.datasource.data = [...this.memorybox.tasks]
-    })
-    
+    if (this.memorybox.tasks && this.memorybox.id) {
+
+      const idx = this.memorybox.tasks.findIndex((task)=>{
+        console.log(task.id === taskARemover.id)
+        return task.id === taskARemover.id
+      })
+
+      console.log(idx)
+      if (idx !== -1) {
+
+        this.memorybox.tasks.splice(idx, 1)[0];
+
+        console.log(this.memorybox)
+
+        this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
+          this.memorybox = memoryBoxAtualizado;
+          this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+        })
+      }
+
+    }
   }
 }

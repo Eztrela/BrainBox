@@ -5,7 +5,6 @@ import {
   CreateNoteDialogComponent
 } from "../../memorybox-page/note-listing/create-note-dialog/create-note-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {PtagPipe} from "../../../shared/pipes/ptag.pipe";
 import {CreateTagDialogComponent} from "./create-tag-dialog/create-tag-dialog.component";
 import {ITag} from "../../../shared/interfaces/itag";
 
@@ -16,10 +15,9 @@ import {ITag} from "../../../shared/interfaces/itag";
 })
 export class SidenavComponent implements OnInit {
   @Input() memoryBoxes:Array<MemoryBox> = new Array<MemoryBox>();
-  tags!: Array<ITag>;
+  tags!: Array<Tag>;
   isMemoryBoxesCollapsed: boolean = true;
   isTagsCollapsed: boolean = true;
-  private tagPipe = new PtagPipe();
   constructor(private dialog:MatDialog, private tagService: TagService) {
   }
   ngOnInit() {
@@ -36,7 +34,8 @@ export class SidenavComponent implements OnInit {
     this.isTagsCollapsed = !this.isTagsCollapsed;
   }
 
-  deleteTag(tagARemover: number) {
+  deleteTag(tagARemover: number | undefined) {
+    if (tagARemover) {
     const idx = this.tags.findIndex((tag)=> {
       return tag.id === tagARemover;
     })
@@ -45,6 +44,7 @@ export class SidenavComponent implements OnInit {
         console.log(obj);
         this.tags.splice(idx, 1);
       })
+    }
   }
 
   editTag() {
@@ -58,8 +58,10 @@ export class SidenavComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        let idx = this.tags.length > 0 ? Math.max(...this.tags.map(tag => tag.id)) + 1 : 1;
-        let tag = new Tag(idx, res.title, res.color);
+        let idx = this.tags.length > 0 ? Math.max(...this.tags.map(tag => {
+          return tag.id ? tag.id : 0
+        })) + 1 : 1;
+        let tag = new Tag(idx, {title: res.title, color: res.color});
         this.tagService.create(tag).subscribe((obj) => {
           this.tags.push(obj)
         });

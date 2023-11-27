@@ -4,6 +4,7 @@ import {MemoryboxService} from "../../shared/services/memorybox.service";
 import {MemoryBox, Note, Task, User} from "../../shared/models";
 import {Observable} from 'rxjs'
 import {FormControl, Validators} from "@angular/forms";
+import {Imemorybox} from "../../shared/interfaces/imemorybox";
 @Component({
   selector: 'app-memorybox-page',
   templateUrl: './memorybox-page.component.html',
@@ -11,7 +12,7 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class MemoryboxPageComponent implements OnInit {
   public id: number = 0;
-  public memorybox: MemoryBox = new MemoryBox(0,"",0);
+  public memorybox!: MemoryBox;
   public isEditing: boolean = false;
   public titleForm: FormControl = new FormControl();
   constructor(private router: Router,
@@ -36,16 +37,20 @@ export class MemoryboxPageComponent implements OnInit {
   }
 
   deleteMemoryBox() {
-    this.memoryBoxService.delete(this.memorybox.id).subscribe((res) => {
-      this.router.navigate(['/home']);
-    })
+    if (this.memorybox.id) {
+      this.memoryBoxService.delete(this.memorybox.id).subscribe((res) => {
+        this.router.navigate(['/home']);
+      })
+    }
   }
 
   editMemoryBox() {
-    this.memorybox.title = this.titleForm.value;
-    this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((res)=> {
-      this.toggleEditMemoryBox();
-    })
+    if (this.memorybox.id) {
+      this.memorybox.title = this.titleForm.value;
+      this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((res)=> {
+        this.toggleEditMemoryBox();
+      })
+    }
   }
 
   getErrorMessage() {

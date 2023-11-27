@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MemoryBox} from "../../shared/models";
 import {MemoryboxService} from "../../shared/services/memorybox.service";
+import {Imemorybox} from "../../shared/interfaces/imemorybox";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,7 +9,7 @@ import {MemoryboxService} from "../../shared/services/memorybox.service";
 })
 export class HomeComponent implements OnInit {
 
-  memoryboxes:Array<MemoryBox> = new Array<MemoryBox>();
+  memoryboxes:Array<Imemorybox> = new Array<Imemorybox>();
   constructor(private memoryBoxService: MemoryboxService) {
   }
 

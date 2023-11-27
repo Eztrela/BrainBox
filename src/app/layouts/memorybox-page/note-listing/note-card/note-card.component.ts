@@ -11,10 +11,8 @@ import { Note } from 'src/app/shared/models';
 export class NoteCardComponent {
 
   public isEditing: boolean = false;
-  @Input() note: INote = new class implements INote {
-    id = 0
-    content = ""
-  }
+  @Input() note: Note = new Note (0, {content: ""})
+
   @Output() deleteEvent = new EventEmitter();
   @Output() editEvent = new EventEmitter();
   public contentForm = new FormControl();
