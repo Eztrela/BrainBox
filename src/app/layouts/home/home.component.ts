@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MemoryBox} from "../../shared/models";
 import {MemoryboxService} from "../../shared/services/memorybox.service";
-import {Imemorybox} from "../../shared/interfaces/imemorybox";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,12 +8,17 @@ import {Imemorybox} from "../../shared/interfaces/imemorybox";
 })
 export class HomeComponent implements OnInit {
 
-  memoryboxes:Array<Imemorybox> = new Array<Imemorybox>();
+  memoryboxes:Array<MemoryBox> = new Array<MemoryBox>();
+  isMemoryBoxesCollapsed: boolean = true;
   constructor(private memoryBoxService: MemoryboxService) {
   }
 
   addItem(newItem: MemoryBox) {
     this.memoryboxes.push(newItem);
+  }
+
+  toggleMemoryBoxes() {
+    this.isMemoryBoxesCollapsed = !this.isMemoryBoxesCollapsed;
   }
   ngOnInit() {
     this.memoryBoxService.getAll().subscribe((arrayMemoryBoxes:Array<MemoryBox>) => {

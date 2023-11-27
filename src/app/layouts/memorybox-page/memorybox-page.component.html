@@ -1,5 +1,48 @@
 <app-sidenav>
-  <div id="memorybox-header">
+  <span slot="list">
+    <mat-nav-list class="tags-list">
+      <div mat-subheader class="tags-header">
+        <div class="tags-collapsable">
+          Tags
+          <button class="collapser"
+                  (click)="toggleTags()">
+            <mat-icon *ngIf="!isTagsCollapsed; else collapsedButton">
+              expand_more
+            </mat-icon>
+            <ng-template #collapsedButton>
+              <mat-icon>
+                chevron_right
+              </mat-icon>
+            </ng-template>
+          </button>
+        </div>
+        <button class="add-tag-button"
+                *ngIf="!isTagsCollapsed" (click)="openAddTagDialog()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <mat-divider *ngIf="!isTagsCollapsed"></mat-divider>
+
+      <div *ngIf="!isTagsCollapsed">
+        <mat-list-item *ngFor="let tag of memorybox.tags">
+          <div class="tag-list-item"><span><span [style.color]="tag.color"><b>•</b></span> {{ tag.title }}</span>
+            <div class="tag-buttons">
+              <button mat-icon-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button (click)="deleteTag(tag.id)" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+
+          </div>
+        </mat-list-item>
+      </div>
+    </mat-nav-list>
+  </span>
+  <span slot="content">
+    <div id="memorybox-header">
     <h1 *ngIf="!isEditing; else editForm">{{ memorybox.title }}</h1>
     <ng-template #editForm>
       <form>
@@ -39,4 +82,5 @@
   <ng-container *ngIf="memorybox.id > 0">
     <app-note-listing [memorybox]="memorybox"></app-note-listing>
   </ng-container>
+  </span>
 </app-sidenav>

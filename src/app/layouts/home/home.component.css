@@ -1,0 +1,46 @@
+.collapser {
+  position: relative;
+  padding: 0;
+  margin-left: 1rem;
+  line-height: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  border-style: none;
+  border-radius: 100rem;
+  color: azure;
+  transition-duration: 0.3s;
+}
+
+.collapser:hover {
+  cursor: pointer;
+  background-color: rgba(230, 235, 255, 0.12);
+}
+
+.collapser:active {
+  background-color: rgba(230, 235, 255, 0.45);
+}
+
+.memorybox-collapsable {
+  display: flex;
+  align-items: center;
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+}
+
+.memorybox-list a {
+  color: azure;
+  text-decoration: none;
+}
+
+mat-divider {
+  background-color: azure;
+}
+
+.memorybox-list-item {
+  display: flex;
+  align-items: center;
+}

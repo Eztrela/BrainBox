@@ -18,6 +18,7 @@ export class SidenavComponent implements OnInit {
   tags!: Array<Tag>;
   isMemoryBoxesCollapsed: boolean = true;
   isTagsCollapsed: boolean = true;
+  @Input() page!: string;
   constructor(private dialog:MatDialog, private tagService: TagService) {
   }
   ngOnInit() {
