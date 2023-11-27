@@ -5,37 +5,36 @@
 
 <div id="calendar-container">
 
-  <div class="row text-center">
-    <div class="col-md-4">
-      <div class="month-manips-container">
-        <div class="month-manips"
-          mwlCalendarPreviousView
-          [view]="view"
-          [(viewDate)]="viewDate">
-            <mat-icon>
-              chevron_left
-            </mat-icon>
-        </div>
-        <div
-          class="month-manips"
-          mwlCalendarToday
-          [(viewDate)]="viewDate"
-        >
-          <mat-icon>date_range</mat-icon>
-        </div>
-        <div
-          class="month-manips"
-          mwlCalendarNextView
-          [view]="view"
-          [(viewDate)]="viewDate"
-        >
-          <mat-icon>chevron_right</mat-icon>
-        </div>
-      </div>
-    </div>
+  <div class="calendar-header">
     <div>
       <h2>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h2>
     </div>
+    <div class="month-manips-container">
+      <div
+        class="month-manips"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate">
+        <mat-icon>
+          chevron_left
+        </mat-icon>
+      </div>
+      <div
+        class="month-manips"
+        mwlCalendarToday
+        [(viewDate)]="viewDate">
+        <mat-icon>date_range</mat-icon>
+      </div>
+      <div
+        class="month-manips"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </div>
+    </div>
+
   </div>
   <ng-template #loading>
     <div class="text-center">

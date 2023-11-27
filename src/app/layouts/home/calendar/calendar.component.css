@@ -80,3 +80,9 @@ mat-divider {
   cursor: pointer;
   color: #9593d9;
 }
+
+.calendar-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
