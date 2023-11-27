@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { MemoryBox } from "../models";
+import { MemoryBox, Task } from "../models";
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { map, max, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
+import {TaskEvent} from "../interfaces/task-event";
 
 
 @Injectable({
@@ -65,7 +66,7 @@ export class MemoryboxService {
   getAllTasks() {
     return this.getAll().pipe(
       map((res: MemoryBox[]) => {
-        let tasks: ITask[] = [];
+        let tasks: Task[] = [];
         for (let box of res) {
           tasks = tasks.concat(box.tasks);
         }

@@ -1,6 +1,6 @@
-import {ITask} from "./itask";
+import {Task} from "../models";
 
 export interface TaskEvent {
-  task: ITask;
+  task: Task;
   idBox: number;
 }
