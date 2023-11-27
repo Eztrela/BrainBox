@@ -40,38 +40,6 @@ img {
   margin-right: 4.22rem;
 }
 
-a {
-  color: azure;
-  text-decoration: none;
-}
-
-mat-divider {
-  background-color: azure;
-}
-
-.collapser {
-  position: relative;
-  padding: 0;
-  margin-left: 1rem;
-  line-height: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: transparent;
-  border-style: none;
-  border-radius: 100rem;
-  color: azure;
-  transition-duration: 0.3s;
-}
-
-.collapser:hover {
-  cursor: pointer;
-  background-color: rgba(230, 235, 255, 0.12);
-}
-
-.collapser:active {
-  background-color: rgba(230, 235, 255, 0.45);
-}
-
 .hamburger-toggler {
   padding: 0;
   line-height: 0;
@@ -91,27 +59,4 @@ mat-divider {
 
 .hamburger-toggler:active {
   background-color: rgba(230, 235, 255, 0.45);
-}
-
-.tags-collapsable {
-  display: flex;
-  align-items: center;
-}
-
-.tags-header {
-  display: flex;
-  align-items: center;
-}
-
-.tag-list-item {
-  display: flex;
-  align-items: center;
-}
-
-.tag-buttons {
-  margin-left: auto;
-}
-
-.add-tag-button {
-  margin-left: auto;
 }
