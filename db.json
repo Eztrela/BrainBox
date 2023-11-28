@@ -10,13 +10,6 @@
         1,
         2,
         3
-      ],
-      "tags": [
-        1,
-        2,
-        3,
-        4,
-        5
       ]
     }
   ],
@@ -61,8 +54,16 @@
         }
       ],
       "tags": [
-        1,
-        2
+        {
+          "id": 1,
+          "title": "Important",
+          "color": "#FF0000"
+        },
+        {
+          "id": 2,
+          "title": "Physics",
+          "color": "#0000FF"
+        }
       ],
       "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
     },
@@ -82,7 +83,7 @@
           "priority": 2,
           "tags": [
             1,
-            4
+            2
           ]
         },
         {
@@ -95,7 +96,7 @@
           "priority": 3,
           "tags": [
             1,
-            4
+            2
           ]
         }
       ],
@@ -106,8 +107,16 @@
         }
       ],
       "tags": [
-        1,
-        4
+        {
+          "id": 1,
+          "title": "Important",
+          "color": "#FF0000"
+        },
+        {
+          "id": 2,
+          "title": "Fitness",
+          "color": "#FFA500"
+        }
       ],
       "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
     },
@@ -127,7 +136,7 @@
           "priority": 3,
           "tags": [
             1,
-            5
+            2
           ]
         },
         {
@@ -140,7 +149,7 @@
           "priority": 4,
           "tags": [
             1,
-            5
+            2
           ]
         }
       ],
@@ -151,37 +160,18 @@
         }
       ],
       "tags": [
-        1,
-        5
+        {
+          "id": 1,
+          "title": "Important",
+          "color": "#FF0000"
+        },
+        {
+          "id": 2,
+          "title": "Music",
+          "color": "#800080"
+        }
       ],
       "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
-    }
-  ],
-  "tags": [
-    {
-      "id": 1,
-      "title": "Important",
-      "color": "#FF0000"
-    },
-    {
-      "id": 2,
-      "title": "Physics",
-      "color": "#0000FF"
-    },
-    {
-      "id": 3,
-      "title": "Math",
-      "color": "#008000"
-    },
-    {
-      "id": 4,
-      "title": "Fitness",
-      "color": "#FFA500"
-    },
-    {
-      "id": 5,
-      "title": "Music",
-      "color": "#800080"
     }
   ]
 }
