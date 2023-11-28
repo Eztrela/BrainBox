@@ -2,7 +2,7 @@
   width: 15.45rem;
   height: 17.45rem;
   border-radius: 0.8rem;
-  background-color: #30343F;
+  background-color: #30343f;
   color: azure;
   cursor: pointer;
   transition-duration: 0.13s;
@@ -14,7 +14,7 @@
 }
 
 .memorybox-card:active {
-  background-color: #707A95;
+  background-color: #707a95;
 }
 
 .memorybox-banner {
@@ -49,25 +49,35 @@
   color: darkgray;
   font-size: 0.9rem;
   margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  column-gap: 0.2rem;
 }
 
 .memorybox-task {
   line-height: 1.5rem;
   padding-left: 0.7rem;
   margin-bottom: 0.7rem;
-  background-color: #AEB0BF;
-  color: #30343F;
+  background-color: #aeb0bf;
+  color: #30343f;
   font-size: 1rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  column-gap: 0.2rem;
+}
+
+.memorybox-task-tag {
+  font-family: "Times New Roman", Times, serif;
 }
 
 .memorybox-note {
   line-height: 2rem;
   padding-left: 0.8rem;
-  background-color: #1E1E24;
+  background-color: #1e1e24;
   color: grey;
   font-size: 1rem;
   white-space: nowrap;

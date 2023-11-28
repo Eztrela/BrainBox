@@ -1,13 +1,11 @@
 #memorybox-header {
-
   display: flex;
   align-items: center;
 
   & h1 {
-    color: #1E1E24;
+    color: #1e1e24;
     margin-right: 2rem;
   }
-
 }
 
 .collapser {
@@ -47,9 +45,19 @@ mat-divider {
   align-items: center;
 }
 
+.tag-list {
+  display: flex;
+  align-items: center;
+}
+
 .tag-list-item {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+}
+
+.tag-list-item-color {
+  font-family: "Times New Roman", Times, serif;
 }
 
 .tag-buttons {

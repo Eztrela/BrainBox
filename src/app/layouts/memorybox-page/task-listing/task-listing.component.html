@@ -1,9 +1,13 @@
 <div mat-subheader id="task-listing-header">
-  <span id="header">Suas Tasks
-  </span>
+  <span id="header">Suas Tasks </span>
 </div>
 <mat-divider></mat-divider>
-<table mat-table [dataSource]="datasource" class="mat-elevation-z8" id="task-table">
+<table
+  mat-table
+  [dataSource]="datasource"
+  class="mat-elevation-z8"
+  id="task-table"
+>
   <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
@@ -58,9 +62,17 @@
 
   <ng-container matColumnDef="tags">
     <th mat-header-cell *matHeaderCellDef>Tags</th>
-    <td mat-cell class="task-tags" *matCellDef="let task; let i = index">
-      <div *ngFor="let tag of task.tags">
-        <span [style.color]="tag.color" [style.font-size.rem]="3">•</span>
+    <td
+      mat-cell
+      class="task-tags"
+      *matCellDef="let task; let i = index"
+    >
+      <div *ngFor="let tag_index of task.tags">
+        <div *ngFor="let tag of memorybox.tags">
+          <div *ngIf="tag.id === tag_index">
+            <span class="task-tags-item" [style.color]="tag.color" for memo>•</span>
+          </div>
+        </div>
       </div>
     </td>
   </ng-container>

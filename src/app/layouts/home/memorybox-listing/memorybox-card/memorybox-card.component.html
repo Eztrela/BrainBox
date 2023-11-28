@@ -8,7 +8,7 @@
          *ngIf="memorybox.tags.length > 0;else emptyTag">
       <mat-card-subtitle *ngFor="let tag of tags">
         <span class="memorybox-tag">
-          <span [style.color] = "tag.color" [style.font-size.rem] = "1.4">•</span>
+          <span [style.color] = "tag.color" [style.font-size.rem] = "1.4" class="memorybox-task-tag" [style.font-size.rem]="2">•</span>
           <span>{{tag.title}}</span>
         </span>
       </mat-card-subtitle>
@@ -22,7 +22,7 @@
     </ng-template>
     <div class="memorybox-task"
          *ngIf="memorybox.tasks.length > 0;else emptyTask">
-      <span [style.color] = "taskColor" [style.font-size.rem] = "1.4">•</span>
+      <span [style.color] = "taskColor" [style.font-size.rem] = "1.4" class="memorybox-task-tag" [style.font-size.rem]="2">•</span>
       <span>{{memorybox.tasks[0].title}}</span>
     </div>
     <ng-template #emptyTask>

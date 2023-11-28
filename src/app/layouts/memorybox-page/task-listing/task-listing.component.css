@@ -7,19 +7,23 @@ mat-divider {
   margin-bottom: 1rem;
 }
 
-.task-tags {
-  display: flex;
-  flex-direction: row;
-}
-
 #task-table {
-  --mat-table-background-color: #1E1E24;
+  --mat-table-background-color: #1e1e24;
   --mat-table-row-item-label-text-font: "Titillium Web", sans-serif;
   --mat-table-row-item-label-text-color: azure;
-  --mat-table-row-item-label-text-size: 1.10rem;
+  --mat-table-row-item-label-text-size: 1.1rem;
 }
 
 :host ::ng-deep .mat-cell {
   background-color: #f5f5f5;
   color: #333;
+}
+
+.task-tags {
+  display: flex;
+  flex-direction: row;
+}
+
+.task-tags-item {
+  font-family: "Times New Roman", Times, serif;
 }
