@@ -40,7 +40,7 @@ export class NoteListingComponent implements OnInit{
           let idx = this.memorybox.notes.length > 0 ? Math.max(...this.memorybox.notes.map(task => {
             return task.id ? task.id : 0;
           })) + 1 : 1;
-          let note = new Note(idx, content)
+          let note = new Note(idx, {content:content})
           note.id = idx
           this.memorybox.notes.push(note)
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {

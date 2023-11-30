@@ -11,8 +11,8 @@ import { MemoryBox, Tag, Task } from 'src/app/shared/models';
   styleUrls: ['./create-task-dialog.component.css']
 })
 export class CreateTaskDialogComponent {
-  @Input() memorybox: MemoryBox = new MemoryBox(0,"",0);
   public task:Task = new Task(0,{})
+  // public memorybox:MemoryBox;
   public titleForm = new FormControl();
   public descriptionForm = new FormControl();
   public statusForm = new FormControl();
@@ -35,7 +35,6 @@ export class CreateTaskDialogComponent {
   ]
 
   ngOnInit() {
-    this.tags = this.memorybox.tags? this.memorybox.tags : [];
     console.log(this.tags)
     this.titleForm = new FormControl(this.task.title, [
       Validators.required,
@@ -57,7 +56,8 @@ export class CreateTaskDialogComponent {
     })
   }
 
-  constructor(public dialogRef: MatDialogRef<CreateTaskDialogComponent>) {
+  constructor(public dialogRef: MatDialogRef<CreateTaskDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.tags = data.memorybox.tags
   }
 
   onNoClick() {

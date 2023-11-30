@@ -10,7 +10,7 @@ export class Task {
     public datetimeCreated: Date;
     public datetimeDue: Date;
     public priority: number;
-    public tags: Array<Tag>;
+    public tags: Array<Number>;
 
 
     constructor(id:number, task: any = {}) {
@@ -21,7 +21,7 @@ export class Task {
       this.datetimeCreated = new Date();
       this.datetimeDue = task.datetimeDue;
       this.priority = task.priority
-      this.tags = new Array<Tag>;
+      this.tags = task.tags;
     }
 
     toString(): string {

@@ -1,5 +1,5 @@
 <app-sidenav>
-  <span slot="list">
+  <span slot="list" *ngIf="memorybox">
     <mat-nav-list class="tags-list">
       <div mat-subheader class="tags-header">
         <div class="tags-collapsable">
@@ -49,7 +49,7 @@
       </div>
     </mat-nav-list>
   </span>
-  <span slot="content">
+  <span slot="content" *ngIf="memorybox">
     <div id="memorybox-header">
       <h1 *ngIf="!isEditing; else editForm">{{ memorybox.title }}</h1>
       <ng-template #editForm>
@@ -94,10 +94,10 @@
         </ng-template>
       </div>
     </div>
-    <ng-container *ngIf="memorybox.id > 0">
+    <ng-container>
       <app-task-listing [memorybox]="memorybox"></app-task-listing>
     </ng-container>
-    <ng-container *ngIf="memorybox.id > 0">
+    <ng-container>
       <app-note-listing [memorybox]="memorybox"></app-note-listing>
     </ng-container>
   </span>

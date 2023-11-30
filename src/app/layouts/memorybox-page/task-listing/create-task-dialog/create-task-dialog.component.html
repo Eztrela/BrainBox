@@ -47,8 +47,8 @@
     </mat-form-field>
     <mat-form-field appearance="outline" class="tags-input">
       <mat-label>Tags</mat-label>
-      <mat-select formControlName="priority">
-        <mat-option *ngFor="let tag of tags" [value]="tag.id">
+      <mat-select formControlName="tags">
+        <mat-option *ngFor="let tag of tags" [value]="[tag.id]">
           {{ tag.title }}
         </mat-option>
       </mat-select>

@@ -12,7 +12,7 @@ import {CreateTagDialogComponent} from "../components/sidenav/create-tag-dialog/
   styleUrls: ['./memorybox-page.component.css']
 })
 export class MemoryboxPageComponent implements OnInit {
-  public id: number = 0;
+  public id!: number;
   public memorybox!: MemoryBox;
   public isEditing: boolean = false;
   public titleForm: FormControl = new FormControl();
@@ -24,13 +24,13 @@ export class MemoryboxPageComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = Number(params.get('id'));
-    })
-    this.memoryBoxService.getById(this.id).subscribe((mymemorybox: any) => {
-      this.memorybox = mymemorybox;
-      this.titleForm = new FormControl(this.memorybox.title, [
-        Validators.required,
-        Validators.minLength(4)
-      ]);
+      this.memoryBoxService.getById(this.id).subscribe((mymemorybox: any) => {
+        this.memorybox = mymemorybox;
+        this.titleForm = new FormControl(this.memorybox.title, [
+          Validators.required,
+          Validators.minLength(4)
+        ]);
+      })
     })
   }
 

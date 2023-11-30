@@ -31,7 +31,7 @@ export class TaskListingComponent implements OnInit{
 
   openDialog() {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
-      data: {},
+      data: {memorybox: this.memorybox},
       panelClass: 'dialog-container'
     });
 
@@ -42,7 +42,7 @@ export class TaskListingComponent implements OnInit{
           let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
             return task.id ? task.id : 0
           })) + 1 : 1;
-          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority})
+          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags})
           task.id = idx;
           console.log(task);
           this.memorybox.tasks.push(task);
