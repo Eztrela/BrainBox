@@ -19,6 +19,7 @@ import { NoteCardComponent } from './note-listing/note-card/note-card.component'
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import {CdkDrag} from "@angular/cdk/drag-drop";
 import {MatSelectModule} from '@angular/material/select';
+import { EditTaskDialogComponent } from './task-listing/edit-task-dialog/edit-task-dialog.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {MatSelectModule} from '@angular/material/select';
     NoteListingComponent,
     CreateTaskDialogComponent,
     CreateNoteDialogComponent,
-    NoteCardComponent
+    NoteCardComponent,
+    EditTaskDialogComponent
   ],
   imports: [
     CommonModule,

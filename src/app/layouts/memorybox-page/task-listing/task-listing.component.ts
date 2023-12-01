@@ -6,6 +6,7 @@ import { TagService } from 'src/app/shared/services/tag.service';
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
+import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
 import { FormGroup } from '@angular/forms';
 import {JsonDTOPipe} from "../../../shared/pipes/jsondto.pipe";
 
@@ -29,7 +30,7 @@ export class TaskListingComponent implements OnInit{
     this.newItemEvent.emit(value);
   }
 
-  openDialog() {
+  opencreateDialog() {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
       data: {memorybox: this.memorybox},
       panelClass: 'dialog-container'
@@ -46,6 +47,35 @@ export class TaskListingComponent implements OnInit{
           task.id = idx;
           console.log(task);
           this.memorybox.tasks.push(task);
+          console.log(this.memorybox);
+          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
+            console.log("After ", obj)
+            this.memorybox = obj;
+            this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+          });
+        }
+      }
+    });
+  }
+
+  openeditDialog(task: Task) {
+    const dialogRef = this.dialog.open(EditTaskDialogComponent, {
+      data: {memorybox: this.memorybox,task: task},
+      panelClass: 'dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      console.log("EDITANDOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+      console.log("Task:", data)
+      if (data) {
+        if (this.memorybox.tasks && this.memorybox.id) {
+          let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
+            return task.id ? task.id : 0
+          })) + 1 : 1;
+          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags})
+          task.id = idx;
+          console.log(task);
+          this.memorybox.tasks[idx-1] = task;
           console.log(this.memorybox);
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
             console.log("After ", obj)

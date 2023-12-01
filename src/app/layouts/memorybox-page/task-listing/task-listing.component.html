@@ -41,7 +41,7 @@
 
   <ng-container matColumnDef="addTask">
     <th mat-header-cell *matHeaderCellDef>
-      <button mat-icon-button (click)="openDialog()">
+      <button mat-icon-button (click)="opencreateDialog()">
         <mat-icon class="addButton">add</mat-icon>
       </button>
     </th>
@@ -50,7 +50,7 @@
   <ng-container matColumnDef="editRemove">
     <td mat-cell class="editRemove-tasks" *matCellDef="let task">
       <div>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="openeditDialog(task)">
           <mat-icon class="editButton">edit</mat-icon>
         </button>
         <button mat-icon-button (click)="deleteTask(task)">
