@@ -37,10 +37,10 @@
               {{ tag.title }}</span
             >
             <div class="tag-buttons">
-              <button mat-icon-button>
+              <button mat-icon-button (click)="openEditTagDialog(tag)">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button (click)="deleteTag(tag.id)" mat-icon-button>
+              <button (click)="deleteTag(tag)" mat-icon-button>
                 <mat-icon>delete</mat-icon>
               </button>
             </div>

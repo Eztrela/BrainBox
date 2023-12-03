@@ -8,7 +8,6 @@ export class User {
   public email: string;
   public username: string;
   public password: string;
-  public notifications: boolean;
   public memoryBoxes: Array<number>;
 
   constructor(id: number, user: any = {}) {
@@ -16,7 +15,6 @@ export class User {
     this.email = user.email;
     this.username = user.username;
     this.password = user.password;
-    this.notifications = user.notifications;
     this.memoryBoxes = new Array<number>;
   }
 
@@ -24,7 +22,6 @@ export class User {
     return `User ${this.id}
     , email:${this.email}
     , username: ${this.username}
-    , has notifications: ${this.notifications}
     , memoryBoxes: ${this.memoryBoxes}`;
   }
 }
