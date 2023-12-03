@@ -71,8 +71,9 @@ export class TaskListingComponent implements OnInit{
         if (this.memorybox.tasks && this.memorybox.id) {
           let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
             return task.id ? task.id : 0
-          })) + 1 : 1;
+          })): 1;
           let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags})
+          console.log("Index",idx)
           task.id = idx;
           console.log(task);
           this.memorybox.tasks[idx-1] = task;
