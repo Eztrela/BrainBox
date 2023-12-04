@@ -119,21 +119,22 @@ export class MemoryboxPageComponent implements OnInit {
         }
       });
   }
-  openEditTagDialog(tag: ITag) {
+  openEditTagDialog(tagAEditar: ITag) {
     const dialogRef = this.dialog.open(EditTagDialogComponent, {
-      data:{tag: tag},
+      data:{tag: tagAEditar},
       panelClass: 'dialog-container'
    });
      
       dialogRef.afterClosed().subscribe((data) => {
         if (data) {
+          console.log(data)
           if (this.memorybox.tags && this.memorybox.id) {
-            let idx = this.memorybox.tags.length > 0 ? Math.max(...this.memorybox.tags.map(tag => {
-              return tag.id ? tag.id : 0
-            })): 1;
+            let idx = this.memorybox.tags.findIndex((tag)=>{
+              return tag.id === tagAEditar.id
+            })
             let tag = new Tag(0, {title: data.title, color : data.color})
-            tag.id = idx;
-            this.memorybox.tags[idx-1] = tag;
+            tag.id = idx + 1;
+            this.memorybox.tags[idx] = tag;
             this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
               this.memorybox = obj;
             });

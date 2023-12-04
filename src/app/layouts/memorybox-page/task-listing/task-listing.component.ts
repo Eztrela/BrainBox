@@ -54,21 +54,21 @@ export class TaskListingComponent implements OnInit{
     });
   }
 
-  openeditDialog(task: Task) {
+  openeditDialog(taskAEditar: Task) {
     const dialogRef = this.dialog.open(EditTaskDialogComponent, {
-      data: {memorybox: this.memorybox,task: task},
+      data: {memorybox: this.memorybox,task: taskAEditar},
       panelClass: 'dialog-container'
     });
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
         if (this.memorybox.tasks && this.memorybox.id) {
-          let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
-            return task.id ? task.id : 0
-          })): 1;
+          let idx = this.memorybox.tasks.findIndex((task)=>{
+            return task.id === taskAEditar.id
+          })
           let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags})
-          task.id = idx;
-          this.memorybox.tasks[idx-1] = task;
+          task.id = idx+1;
+          this.memorybox.tasks[idx] = task;
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
             this.memorybox = obj;
             this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
