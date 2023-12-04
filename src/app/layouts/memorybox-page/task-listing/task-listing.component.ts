@@ -38,11 +38,12 @@ export class TaskListingComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
+        console.log(data)
         if (this.memorybox.tasks && this.memorybox.id) {
           let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
             return task.id ? task.id : 0
           })) + 1 : 1;
-          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags})
+          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
           task.id = idx;
           this.memorybox.tasks.push(task);
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
@@ -66,7 +67,7 @@ export class TaskListingComponent implements OnInit{
           let idx = this.memorybox.tasks.findIndex((task)=>{
             return task.id === taskAEditar.id
           })
-          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags})
+          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
           task.id = idx+1;
           this.memorybox.tasks[idx] = task;
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {

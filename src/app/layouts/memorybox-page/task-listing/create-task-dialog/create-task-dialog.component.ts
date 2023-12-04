@@ -18,10 +18,11 @@ export class CreateTaskDialogComponent {
   public statusForm = new FormControl();
   public priorityForm = new FormControl();
   public tagsForm = new FormControl();
+  public dueDateForm = new FormControl();
   public taskForm!: FormGroup;
   public tags: Array<Tag> = new Array<Tag>();
   public status = [
-    {value: 'new', viewValue: 'New'},
+    {value: 'New', viewValue: 'New'},
     {value: 'In progress', viewValue: 'In Progress'},
     {value: 'On hold', viewValue: 'On Hold'},
     {value: 'Resolved', viewValue: 'Resolved'},
@@ -47,12 +48,14 @@ export class CreateTaskDialogComponent {
     this.statusForm = new FormControl(this.task.status)
     this.priorityForm = new FormControl(this.task.priority)
     this.tagsForm = new FormControl(this.tags)
+    this.dueDateForm = new FormControl(this.task.datetimeDue);
     this.taskForm = new FormGroup({
       title: this.titleForm,
       description: this.descriptionForm,
       status: this.statusForm,
       priority: this.priorityForm,
-      tags: this.tagsForm
+      tags: this.tagsForm,
+      datetimeDue: this.dueDateForm
     })
   }
 

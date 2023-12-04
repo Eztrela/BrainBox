@@ -18,6 +18,7 @@ export class EditTaskDialogComponent {
   public statusForm = new FormControl();
   public priorityForm = new FormControl();
   public tagsForm = new FormControl();
+  public dueDateForm = new FormControl();
   public taskForm!: FormGroup;
   public task_status: string = "";
   public tags: Array<Tag> = new Array<Tag>();
@@ -47,13 +48,15 @@ export class EditTaskDialogComponent {
     this.statusForm = new FormControl(this.task.status)
     this.priorityForm = new FormControl(this.task.priority)
     this.tagsForm = new FormControl(this.tags)
-    this.task_status = this.task.status;
+    this.statusForm = new FormControl(this.task.status);
+    this.dueDateForm = new FormControl(this.task.datetimeDue);
     this.taskForm = new FormGroup({
       title: this.titleForm,
       description: this.descriptionForm,
       status: this.statusForm,
       priority: this.priorityForm,
-      tags: this.tagsForm
+      tags: this.tagsForm,
+      datetimeDue: this.dueDateForm
     })
   }
 

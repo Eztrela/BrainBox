@@ -1,40 +1,62 @@
-<mat-card class="memorybox-card"
-          [routerLink]="['/memorybox/', memorybox.id]">
+<mat-card class="memorybox-card" [routerLink]="['/memorybox/', memorybox.id]">
   <div *cdkDragPreview></div>
-  <div class="memorybox-banner" [style.backgroundImage]="'url(' + memorybox.banner + ')'"></div>
+  <div
+    class="memorybox-banner"
+    [style.backgroundImage]="'url(' + memorybox.banner + ')'"
+  ></div>
   <div class="memorybox-card-content">
-  <mat-card-title class="memorybox-title">{{memorybox.title}}</mat-card-title>
-    <div class="memorybox-tags"
-         *ngIf="memorybox.tags.length > 0;else emptyTag">
-      <mat-card-subtitle *ngFor="let tag of tags">
+    <mat-card-title class="memorybox-title">{{
+      memorybox.title
+    }}</mat-card-title>
+    <div
+      class="memorybox-tags"
+      *ngIf="memorybox.tags.length > 0; else emptyTag"
+    >
+      <mat-card-subtitle *ngFor="let tag of tags.slice(0, 2)">
         <span class="memorybox-tag">
-          <span [style.color] = "tag.color" [style.font-size.rem] = "1.4" class="memorybox-task-tag" [style.font-size.rem]="2">•</span>
-          <span>{{tag.title}}</span>
+          <span
+            [style.color]="tag.color"
+            [style.font-size.rem]="1.4"
+            class="memorybox-task-tag"
+            [style.font-size.rem]="2"
+            >•</span
+          >
+          <span>{{ tag.title }}</span>
         </span>
       </mat-card-subtitle>
     </div>
     <ng-template #emptyTag>
       <div class="memorybox-tags">
         <span class="memorybox-tag">
-          <span [style.color]="fillerColor" [style.font-size.rem] = "1.4">_</span>
+          <span [style.color]="fillerColor" [style.font-size.rem]="1.4">_</span>
         </span>
       </div>
     </ng-template>
-    <div class="memorybox-task"
-         *ngIf="memorybox.tasks.length > 0;else emptyTask">
-      <span [style.color] = "taskColor" [style.font-size.rem] = "1.4" class="memorybox-task-tag" [style.font-size.rem]="2">•</span>
-      <span>{{memorybox.tasks[0].title}}</span>
+    <div
+      class="memorybox-task"
+      *ngIf="memorybox.tasks.length > 0; else emptyTask"
+    >
+      <span
+        [style.color]="taskColor"
+        [style.font-size.rem]="1.4"
+        class="memorybox-task-tag"
+        [style.font-size.rem]="2"
+        >•</span
+      >
+      <span>{{ memorybox.tasks[0].title }}</span>
     </div>
     <ng-template #emptyTask>
       <div class="memorybox-task">
-          <span [style.color] = "taskColor" [style.font-size.rem] = "1.4">•</span>
-          <span>Não possui tasks...</span>
+        <span [style.color]="taskColor" [style.font-size.rem]="1.4">•</span>
+        <span>Não possui tasks...</span>
       </div>
     </ng-template>
-    <div class="memorybox-note"
-         *ngIf="memorybox.notes.length > 0; else emptyNote">
+    <div
+      class="memorybox-note"
+      *ngIf="memorybox.notes.length > 0; else emptyNote"
+    >
       <span>
-        {{memorybox.notes[0].content}}
+        {{ memorybox.notes[0].content }}
       </span>
     </div>
     <ng-template #emptyNote>

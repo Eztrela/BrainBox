@@ -28,7 +28,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline" class="status-input">
       <mat-label>Status</mat-label>
-      <mat-select formControlName="status" >
+      <mat-select formControlName="status">
         <mat-option *ngFor="let s of status" [value]="s.value">
           {{ s.viewValue }}
         </mat-option>
@@ -44,6 +44,12 @@
           {{ priority.viewValue }}
         </mat-option>
       </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="date-input">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="datetimeDue" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="outline" class="tags-input">
       <mat-label>Tags</mat-label>
