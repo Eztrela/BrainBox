@@ -74,20 +74,16 @@ export class MemoryboxPageComponent implements OnInit {
   }
 
   deleteTag(tagARemover: ITag) {
-    console.log("Tag a remover", tagARemover)
     if (this.memorybox.tags && this.memorybox.id) {
 
       const idx = this.memorybox.tags.findIndex((tag)=>{
-        console.log(tag.id === tagARemover.id)
         return tag.id === tagARemover.id
       })
 
-      console.log(idx)
       if (idx !== -1) {
 
         this.memorybox.tags.splice(idx, 1)[0];
 
-        console.log(this.memorybox)
 
         this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
           this.memorybox = memoryBoxAtualizado;
@@ -108,7 +104,6 @@ export class MemoryboxPageComponent implements OnInit {
    });
      
       dialogRef.afterClosed().subscribe((data) => {
-        console.log("Tag:", data)
         if (data) {
           if (this.memorybox.tags && this.memorybox.id) {
             let idx = this.memorybox.tags.length > 0 ? Math.max(...this.memorybox.tags.map(tag => {
@@ -116,11 +111,8 @@ export class MemoryboxPageComponent implements OnInit {
             })) + 1 : 1;
             let tag = new Tag(0, {title: data.title, color : data.color})
             tag.id = idx;
-            console.log(tag);
             this.memorybox.tags.push(tag);
-            console.log(this.memorybox);
             this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-              console.log("After ", obj)
               this.memorybox = obj;
             });
           }
@@ -134,7 +126,6 @@ export class MemoryboxPageComponent implements OnInit {
    });
      
       dialogRef.afterClosed().subscribe((data) => {
-        console.log("Tag:", data)
         if (data) {
           if (this.memorybox.tags && this.memorybox.id) {
             let idx = this.memorybox.tags.length > 0 ? Math.max(...this.memorybox.tags.map(tag => {
@@ -142,11 +133,8 @@ export class MemoryboxPageComponent implements OnInit {
             })): 1;
             let tag = new Tag(0, {title: data.title, color : data.color})
             tag.id = idx;
-            console.log(tag);
             this.memorybox.tags[idx-1] = tag;
-            console.log(this.memorybox);
             this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-              console.log("After ", obj)
               this.memorybox = obj;
             });
           }

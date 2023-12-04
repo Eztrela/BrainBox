@@ -37,7 +37,6 @@ export class TaskListingComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      console.log("Task:", data)
       if (data) {
         if (this.memorybox.tasks && this.memorybox.id) {
           let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
@@ -45,11 +44,8 @@ export class TaskListingComponent implements OnInit{
           })) + 1 : 1;
           let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags})
           task.id = idx;
-          console.log(task);
           this.memorybox.tasks.push(task);
-          console.log(this.memorybox);
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-            console.log("After ", obj)
             this.memorybox = obj;
             this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
           });
@@ -65,21 +61,15 @@ export class TaskListingComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      console.log("EDITANDOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-      console.log("Task:", data)
       if (data) {
         if (this.memorybox.tasks && this.memorybox.id) {
           let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
             return task.id ? task.id : 0
           })): 1;
           let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags})
-          console.log("Index",idx)
           task.id = idx;
-          console.log(task);
           this.memorybox.tasks[idx-1] = task;
-          console.log(this.memorybox);
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-            console.log("After ", obj)
             this.memorybox = obj;
             this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
           });
@@ -89,20 +79,16 @@ export class TaskListingComponent implements OnInit{
   }
 
   deleteTask(taskARemover: ITask){
-    console.log(this.memorybox)
     if (this.memorybox.tasks && this.memorybox.id) {
 
       const idx = this.memorybox.tasks.findIndex((task)=>{
-        console.log(task.id === taskARemover.id)
         return task.id === taskARemover.id
       })
 
-      console.log(idx)
       if (idx !== -1) {
 
         this.memorybox.tasks.splice(idx, 1)[0];
 
-        console.log(this.memorybox)
 
         this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
           this.memorybox = memoryBoxAtualizado;
