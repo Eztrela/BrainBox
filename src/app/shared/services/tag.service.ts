@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Tag } from "../models";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { PtagPipe } from "../pipes/ptag.pipe";
-import {ITag} from "../interfaces/itag";
 
 
 @Injectable({
@@ -14,7 +12,6 @@ export class TagService {
 
   private _url = `http://localhost:3000`;
   private _resource: string = "tags";
-  private _tagPipe = new PtagPipe();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,11 +21,11 @@ export class TagService {
 
   constructor(private httpClient: HttpClient) {}
 
-  create(data:Tag): Observable<ITag> {
+  create(data:Tag): Observable<Tag> {
     const url_resource: string = `${this._url}/${this._resource}`;
-    return this.httpClient.post<ITag>(
+    return this.httpClient.post<Tag>(
       url_resource,
-      JSON.stringify(this._tagPipe.transform(data)),
+      JSON.stringify(data),
       this.httpOptions
     );
   }
@@ -51,7 +48,7 @@ export class TagService {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
     return this.httpClient.put<Tag>(
       url_resource,
-      JSON.stringify(this._tagPipe.transform(data)),
+      JSON.stringify(data),
       this.httpOptions
     );
   }
@@ -62,8 +59,4 @@ export class TagService {
       url_resource
     );
   }
-//   generateID(): number{
-//     return (this._tags.length > 0) ? this._tags[ this._tags.length -1].id + 1 : 1;
-//   }
-
 }

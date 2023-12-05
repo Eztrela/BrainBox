@@ -53,7 +53,9 @@ export class ToolbarComponent implements OnInit {
   private _filter(value: string): MemoryBox[] {
     const filterValue = value.toLowerCase();
 
-    return this.memoryBoxes.filter(memoryBox => memoryBox.title.toLowerCase().includes(filterValue));
+    return this.memoryBoxes.filter(memoryBox => {
+      return memoryBox.title ? memoryBox.title.toLowerCase().includes(filterValue) : false;
+    });
   }
 
 }

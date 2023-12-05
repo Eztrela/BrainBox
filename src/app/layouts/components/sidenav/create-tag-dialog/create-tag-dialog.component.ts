@@ -9,7 +9,7 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./create-tag-dialog.component.css']
 })
 export class CreateTagDialogComponent {
-  tag: Tag = new Tag(0,"", "");
+  tag: Tag = new Tag(0,{});
 
   public titleForm = new FormControl();
   public colorForm = new FormControl();

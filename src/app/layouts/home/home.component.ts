@@ -9,11 +9,16 @@ import {MemoryboxService} from "../../shared/services/memorybox.service";
 export class HomeComponent implements OnInit {
 
   memoryboxes:Array<MemoryBox> = new Array<MemoryBox>();
+  isMemoryBoxesCollapsed: boolean = true;
   constructor(private memoryBoxService: MemoryboxService) {
   }
 
   addItem(newItem: MemoryBox) {
     this.memoryboxes.push(newItem);
+  }
+
+  toggleMemoryBoxes() {
+    this.isMemoryBoxesCollapsed = !this.isMemoryBoxesCollapsed;
   }
   ngOnInit() {
     this.memoryBoxService.getAll().subscribe((arrayMemoryBoxes:Array<MemoryBox>) => {

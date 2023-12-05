@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MemoryBox, Tag} from "../../../../shared/models";
-import {TagService} from "../../../../shared/services/tag.service";
-import {forkJoin, map} from "rxjs";
+import {JsonDTOPipe} from "../../../../shared/pipes/jsondto.pipe";
 
 @Component({
   selector: 'app-memorybox-card',
@@ -9,22 +8,20 @@ import {forkJoin, map} from "rxjs";
   styleUrls: ['./memorybox-card.component.css']
 })
 export class MemoryboxCardComponent implements OnInit {
-  @Input() memorybox: MemoryBox = new MemoryBox(0, "", 0);
+  @Input() memorybox: MemoryBox = new MemoryBox(0, "", {});
 
   public taskColor: string = "#D9D9D9";
   public fillerColor: string = "#30343F";
   public tags: Array<Tag> = new Array<Tag>();
 
-  constructor(private tagService: TagService) {
+  constructor() {
   }
   ngOnInit() {
-    const tagObservables = this.memorybox.tags.map(tagId => this.tagService.getById(tagId));
-    forkJoin(tagObservables).pipe(
-      // Filter out undefined values
-      map(tags => tags.filter(tag => !!tag))
-    ).subscribe((tags: Tag[]) => {
-      this.tags.push(...tags);
-    });
+    if (this.memorybox.tags) {
+      this.memorybox.tags.map(tag => {
+        this.tags.push(tag);
+      });
+    }
   }
 
 

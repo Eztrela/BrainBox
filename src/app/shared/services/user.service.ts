@@ -3,7 +3,6 @@ import {User, Tag} from '../models';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError, map} from "rxjs";
 import { catchError } from "rxjs/operators";
-import { PuserPipe } from "../pipes/puser.pipe";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,6 @@ export class UserService {
 
   private _url = `http://localhost:3000`;
   private _resource: string = "users";
-  private _userPipe = new PuserPipe();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -25,7 +23,9 @@ export class UserService {
     return this.getAll().pipe(
       map((res: User[]) => {
         if (res && res.length > 0) {
-          const maxId = Math.max(...res.map(user => user.id));
+          const maxId = Math.max(...res.map(user => {
+            return user.id ? user.id : 0
+          }));
           return maxId + 1;
         } else {
           return 1;
@@ -38,7 +38,7 @@ export class UserService {
     const url_resource: string = `${this._url}/${this._resource}`;
     return this.httpClient.post<User>(
       url_resource,
-      JSON.stringify(this._userPipe.transform(user)),
+      JSON.stringify(user),
       this.httpOptions
     );
   }
@@ -61,7 +61,7 @@ export class UserService {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
     return this.httpClient.put<User>(
       url_resource,
-      JSON.stringify(this._userPipe.transform(data)),
+      JSON.stringify(data),
       this.httpOptions
     );
   }

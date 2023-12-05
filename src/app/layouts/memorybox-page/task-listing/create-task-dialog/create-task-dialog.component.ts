@@ -11,7 +11,7 @@ import { MemoryBox, Task } from 'src/app/shared/models';
   styleUrls: ['./create-task-dialog.component.css']
 })
 export class CreateTaskDialogComponent {
-  public task:Task = new Task("","","",0)
+  public task:Task = new Task(0,{})
   public titleForm = new FormControl();
   public descriptionForm = new FormControl();
   public statusForm = new FormControl();

@@ -9,8 +9,6 @@ import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from "
   styleUrls: ['./create-dialog.component.css']
 })
 export class CreateDialogComponent {
-  memorybox: MemoryBox = new MemoryBox( 0,"", 0);
-
   public titleForm = new FormControl();
   public bannerForm = new FormControl();
   public memoryBoxForm!: FormGroup;
@@ -28,7 +26,7 @@ export class CreateDialogComponent {
   }
 
   ngOnInit() {
-    this.titleForm = new FormControl(this.memorybox.title, [
+    this.titleForm = new FormControl('', [
       Validators.required,
       Validators.minLength(4)
     ]);

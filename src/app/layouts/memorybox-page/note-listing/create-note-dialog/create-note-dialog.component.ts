@@ -1,8 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { INote } from 'src/app/shared/interfaces/inote';
-import { MemoryBox, Note } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-create-note-dialog',

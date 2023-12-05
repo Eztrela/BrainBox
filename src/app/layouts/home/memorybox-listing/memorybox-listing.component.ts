@@ -3,8 +3,6 @@ import {MemoryBox} from "../../../shared/models";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateDialogComponent} from "./create-dialog/create-dialog.component";
 import {MemoryboxService} from "../../../shared/services/memorybox.service";
-import {forkJoin} from "rxjs";
-import {PmemoryboxPipe} from "../../../shared/pipes/pmemorybox.pipe";
 import {SnackbarComponent} from "../../components/snackbar/snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -35,7 +33,7 @@ export class MemoryboxListingComponent implements OnInit {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         this.memoryboxService.generateID().subscribe((id: number) => {
-          let memorybox = new MemoryBox(id, res.title, 0, res.banner)
+          let memorybox = new MemoryBox(id, res.banner, {title: res.title})
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
             this.addNewItem(obj);
             this._snackbar.openFromComponent(SnackbarComponent, {

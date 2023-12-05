@@ -8,75 +8,7 @@
         <img ngSrc="assets/img/brainbox.svg" alt="brainbox-logo" height="100" width="100" priority=""/>
       </a>
     </div>
-
-
-    <mat-nav-list class="memorybox-list">
-      <div mat-subheader>Memory Boxes
-        <button class="collapser"
-                (click)="toggleMemoryBoxes()">
-          <mat-icon *ngIf="!isMemoryBoxesCollapsed; else collapsedButton">
-            expand_more
-          </mat-icon>
-          <ng-template #collapsedButton>
-            <mat-icon>
-              chevron_right
-            </mat-icon>
-          </ng-template>
-        </button>
-      </div>
-
-      <mat-divider *ngIf="!isMemoryBoxesCollapsed"></mat-divider>
-
-      <div *ngIf="!isMemoryBoxesCollapsed">
-        <mat-list-item *ngFor="let memorybox of memoryBoxes">
-          <div class="memorybox-list-item">
-            <a [routerLink]="['/memorybox/', memorybox.id]">
-              <b>•</b> {{ memorybox.title }}</a>
-          </div>
-        </mat-list-item>
-      </div>
-    </mat-nav-list>
-
-    <mat-nav-list class="tags-list">
-      <div mat-subheader class="tags-header">
-        <div class="tags-collapsable">
-          Tags
-          <button class="collapser"
-                  (click)="toggleTags()">
-            <mat-icon *ngIf="!isTagsCollapsed; else collapsedButton">
-              expand_more
-            </mat-icon>
-            <ng-template #collapsedButton>
-              <mat-icon>
-                chevron_right
-              </mat-icon>
-            </ng-template>
-          </button>
-        </div>
-        <button class="add-tag-button" mat-icon-button
-                *ngIf="!isTagsCollapsed" (click)="openAddTagDialog()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-
-      <mat-divider *ngIf="!isTagsCollapsed"></mat-divider>
-
-      <div *ngIf="!isTagsCollapsed">
-        <mat-list-item *ngFor="let tag of tags">
-          <div class="tag-list-item"><span><span [style.color]="tag.color"><b>•</b></span> {{ tag.title }}</span>
-            <div class="tag-buttons">
-              <button mat-icon-button>
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button (click)="deleteTag(tag.id)" mat-icon-button>
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
-
-          </div>
-        </mat-list-item>
-      </div>
-    </mat-nav-list>
+    <ng-content select="[slot=list]"></ng-content>
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -88,7 +20,7 @@
       </button>
     </app-toolbar>
     <div class="page-content">
-      <ng-content></ng-content>
+      <ng-content select="[slot=content]"></ng-content>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

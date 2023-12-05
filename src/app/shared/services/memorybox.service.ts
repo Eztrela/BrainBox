@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { MemoryBox } from "../models";
+import { MemoryBox, Task } from "../models";
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { map, max, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { PmemoryboxPipe } from "../pipes/pmemorybox.pipe";
-import {ITask} from "../interfaces/itask";
 import {TaskEvent} from "../interfaces/task-event";
 
 
@@ -17,7 +15,6 @@ export class MemoryboxService {
 
   private _url = `http://localhost:3000`;
   private _resource: string = "memoryBoxes";
-  private _memoryboxPipe = new PmemoryboxPipe();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -32,7 +29,9 @@ export class MemoryboxService {
     return this.getAll().pipe(
       map((res: MemoryBox[]) => {
         if (res && res.length > 0) {
-          const maxId = Math.max(...res.map(box => box.id));
+          const maxId = Math.max(...res.map(box => {
+            return box.id ? box.id : 0
+          }));
           return maxId + 1;
         } else {
           return 1;
@@ -45,7 +44,7 @@ export class MemoryboxService {
     const url_resource: string = `${this._url}/${this._resource}`;
     return this.httpClient.post<MemoryBox>(
       url_resource,
-      JSON.stringify(this._memoryboxPipe.transform(memorybox)),
+      JSON.stringify(memorybox),
       this.httpOptions
     );
   }
@@ -67,7 +66,7 @@ export class MemoryboxService {
   getAllTasks() {
     return this.getAll().pipe(
       map((res: MemoryBox[]) => {
-        let tasks: ITask[] = [];
+        let tasks: Task[] = [];
         for (let box of res) {
           tasks = tasks.concat(box.tasks);
         }
@@ -100,7 +99,7 @@ export class MemoryboxService {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
     return this.httpClient.put<MemoryBox>(
       url_resource,
-      JSON.stringify(this._memoryboxPipe.transform(data)),
+      JSON.stringify(data),
       this.httpOptions
     );
   }
@@ -111,104 +110,4 @@ export class MemoryboxService {
       url_resource
     );
   }
-
-  // getTag(idMemoryBox: number, idTag: number) {
-  //   return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
-  //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
-
-  //     let idxTag: number = memoryBox.localizarTag(idTag);
-  //     if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a memoryBox de id ${idMemoryBox}`)
-
-  //     return memoryBox.tags[idxTag];
-  //   });
-  // }
-
-  // inserirTag(idMemoryBox:number, tag: Tag) {
-  //   this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
-  //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
-
-  //     if (memoryBox.localizarTag(tag.id) >= 0) throw new Error(`tag de id ${tag.id} já pertence a memoryBox!`)
-
-  //     memoryBox.inserirTag(tag);
-  //   });
-
-  // }
-
-  // removerTag(idMemoryBox: number, idTag: number) {
-  //   return this.getById(idMemoryBox).subscribe((memoryBox:MemoryBox) => {
-  //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idTag} não encontrada!`);
-
-  //     let idxTag: number = memoryBox.localizarTag(idTag);
-  //     if (idxTag < 0) throw new Error(`tag de id ${idTag} não pertence a memoryBox de id ${idMemoryBox}`)
-
-  //     return memoryBox.removerTag(idTag);
-  //   });
-  // }
-
-  // getNote(idMemoryBox: number, idNote: number) {
-  //   return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
-  //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
-
-  //     let idxNote: number = memoryBox.localizarNote(idNote);
-  //     if (idxNote < 0) throw new Error(`note de id ${idNote} não pertence a memoryBox de id ${idMemoryBox}`)
-
-  //     return memoryBox.tags[idxNote];
-  //   });
-  // }
-
-  // inserirNote(idMemoryBox:number, note: Note) {
-  //   this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
-  //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
-
-  //     if (memoryBox.localizarNote(note.id) >= 0) throw new Error(`note de id ${note.id} já pertence a memoryBox!`)
-
-  //     memoryBox.inserirNote(note);
-  //   });
-
-  // }
-
-  // removerNote(idMemoryBox: number, idNote: number) {
-  //   return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox) => {
-  //     if (memoryBox === undefined) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`);
-
-  //     let idxNote: number = memoryBox.localizarNote(idNote);
-  //     if (idxNote < 0) throw new Error(`note de id ${idNote} não pertence a memorybox de id ${idMemoryBox}`)
-
-  //     return memoryBox.removerNote(idNote);
-  //   });
-  // }
-
-  // getTask(idMemoryBox: number, idTask: number) {
-  //   return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
-  //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
-
-  //     let idxTask: number = memoryBox.localizarTask(idTask);
-  //     if (idxTask < 0) throw new Error(`note de id ${idTask} não pertence a memoryBox de id ${idMemoryBox}`)
-
-  //     return memoryBox.tags[idxTask];
-  //   });
-  // }
-
-  // inserirTask(idMemoryBox:number, task: Task) {
-  //   this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox)=> {
-  //     if (memoryBox === undefined) throw new Error(`memoryBox de id ${idMemoryBox} não encontrada!`);
-
-  //     if (memoryBox.localizarNote(task.id) >= 0) throw new Error(`task de id ${task.id} já pertence a memoryBox!`)
-
-  //     memoryBox.inserirTask(task);
-  //   });
-
-  // }
-
-  // removerTask(idMemoryBox: number, idTask: number) {
-  //   return this.getById(idMemoryBox).subscribe((memoryBox: MemoryBox) => {
-  //     if (memoryBox === undefined) throw new Error(`memorybox de id ${idMemoryBox} não encontrada!`);
-
-  //     let idxTask: number = memoryBox.localizarNote(idTask);
-  //     if (idxTask < 0) throw new Error(`note de id ${idTask} não pertence a memorybox de id ${idMemoryBox}`)
-
-  //     return memoryBox.removerTask(idTask);
-  //   });
-  // }
-
 }

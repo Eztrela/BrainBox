@@ -1,4 +1,37 @@
 <app-sidenav [memoryBoxes]="memoryboxes">
-  <app-memorybox-listing [memoryboxes]="memoryboxes" (newItemEvent)="addItem($event)"></app-memorybox-listing>
-  <app-calendar></app-calendar>
+  <span slot="list">
+    <mat-nav-list class="memorybox-list">
+      <div mat-subheader class="list-header">
+        <div class="memorybox-collapsable">
+          Memory Boxes
+          <button class="collapser"
+                (click)="toggleMemoryBoxes()">
+            <mat-icon *ngIf="!isMemoryBoxesCollapsed; else collapsedButton">
+              expand_more
+            </mat-icon>
+            <ng-template #collapsedButton>
+              <mat-icon>
+                chevron_right
+              </mat-icon>
+            </ng-template>
+          </button>
+        </div>
+      </div>
+
+      <mat-divider *ngIf="!isMemoryBoxesCollapsed"></mat-divider>
+
+      <div *ngIf="!isMemoryBoxesCollapsed">
+        <mat-list-item *ngFor="let memorybox of memoryboxes">
+          <div class="memorybox-list-item">
+            <a [routerLink]="['/memorybox/', memorybox.id]">
+              <b>•</b> {{ memorybox.title }}</a>
+          </div>
+        </mat-list-item>
+      </div>
+    </mat-nav-list>
+  </span>
+  <span slot="content">
+    <app-memorybox-listing [memoryboxes]="memoryboxes" (newItemEvent)="addItem($event)"></app-memorybox-listing>
+    <app-calendar></app-calendar>
+  </span>
 </app-sidenav>
