@@ -172,6 +172,53 @@
         }
       ],
       "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
+    },
+    {
+      "banner": "https://assets.nintendo.com/image/upload/v1681238674/Microsites/zelda-tears-of-the-kingdom/videos/posters/totk_microsite_officialtrailer3_1304xj47am",
+      "id": 4,
+      "title": "Tears of the Kingdom",
+      "datetimeCreated": "2023-12-05T01:58:38.458Z",
+      "tasks": [
+        {
+          "id": 1,
+          "title": "Explore The sky",
+          "description": "Mysterious floating islands have suddenly appeared in the skies above Hyrule. Link must use his newly-acquired abilities to navigate the islands and unlock the secrets they hold.",
+          "status": "In progress",
+          "datetimeCreated": "2023-12-05T02:01:17.463Z",
+          "datetimeDue": "2023-12-18T03:00:00.000Z",
+          "priority": "3",
+          "tags": [
+            3
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "id": 1,
+          "content": "An epic adventure awaits in the Legend of Zelda: Tears of the Kingdom game, only on the Nintendo Switch system."
+        },
+        {
+          "id": 2,
+          "content": "In this sequel to the Legend of Zelda: Breath of the Wild game, you’ll decide your own path through the sprawling landscapes of Hyrule and the mysterious islands floating in the vast skies above. Can you harness the power of Link’s new abilities to fight back against the malevolent forces that threaten the kingdom?"
+        }
+      ],
+      "tags": [
+        {
+          "id": 2,
+          "title": "Games",
+          "color": "#80ffff"
+        },
+        {
+          "id": 3,
+          "title": "Sky Islands",
+          "color": "#8ff3d1"
+        },
+        {
+          "id": 4,
+          "title": "Zonai",
+          "color": "#ffffd1"
+        }
+      ]
     }
   ]
 }
