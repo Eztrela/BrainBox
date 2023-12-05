@@ -208,6 +208,30 @@
           "tags": [
             1
           ]
+        },
+        {
+          "id": 4,
+          "title": "Learn G / Sol Chromatic Scale",
+          "description": "Memorize where the circle of natural fifths lies in the G / Sol chord",
+          "status": "New",
+          "datetimeCreated": "2023-12-05T14:35:29.171Z",
+          "datetimeDue": "2023-12-04T03:00:00.000Z",
+          "priority": "4",
+          "tags": [
+            1
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Learn C / Dó Chromatic Scale",
+          "description": "Research where the C Chromatic Scale lies in the fretboard!!",
+          "status": "New",
+          "datetimeCreated": "2023-12-05T14:35:11.321Z",
+          "datetimeDue": "2023-12-19T03:00:00.000Z",
+          "priority": "3",
+          "tags": [
+            2
+          ]
         }
       ],
       "notes": [
@@ -229,6 +253,11 @@
           "id": 1,
           "title": "Fundamentals",
           "color": "#e3b766"
+        },
+        {
+          "id": 2,
+          "title": "Advanced",
+          "color": "#f54275"
         }
       ]
     }
