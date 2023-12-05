@@ -1,4 +1,4 @@
-::ng-deep .tag-dialog-container {
+::ng-deep .dialog-container {
     & .mat-mdc-dialog-container  {
         --mdc-dialog-container-color: transparent;
         background-color: #30343F;
@@ -8,11 +8,11 @@
         font-style: normal;
         font-weight: 400;
         font-size: 1.12rem;
-        width: 20rem;
-        height: 28rem;
+        width: 27rem;
+        height: 29rem;
     }
 
-    & .tag-dialog-container {
+    & .dialog-container {
         display: flex;
         flex-direction: column;
     }

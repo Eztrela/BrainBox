@@ -54,7 +54,7 @@
       <h1 *ngIf="!isEditing; else editForm">{{ memorybox.title }}</h1>
       <ng-template #editForm>
         <form>
-          <mat-form-field appearance="fill" class="title-input">
+          <mat-form-field appearance="outline" class="title-input">
             <textarea
               matInput
               cdkTextareaAutosize

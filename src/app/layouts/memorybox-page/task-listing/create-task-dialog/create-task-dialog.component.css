@@ -8,7 +8,8 @@
     font-style: normal;
     font-weight: 400;
     font-size: 1.12rem;
-    width: 20rem;
+    height: 47rem;
+    width: 27rem;
   }
 
   & .dialog-container {
@@ -109,8 +110,34 @@
     transition-duration: 0.4s;
   }
 
+  & .date-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .tags-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
   & .title-input.ng-touched.ng-invalid {
-    padding: 1rem 1rem 2rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
   }
 
   & .description-input.ng-touched.ng-invalid {
