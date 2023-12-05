@@ -75,21 +75,23 @@ export class MemoryboxService {
     );
   }
 
-  getAllTasksWithId(): Observable<TaskEvent[]> {
+  getAllTasksWithColor(): Observable<TaskEvent[]> {
     return this.getAll().pipe(
       map((res: MemoryBox[]) => {
-        let tasksWithId: TaskEvent[] = [];
+        let tasksWithColor: TaskEvent[] = [];
 
         for (let box of res) {
           for (let task of box.tasks) {
-            tasksWithId.push({
+            const matchingTag = box.tags.find(tag => tag.id === task.tags[0]);
+            const tagColor = matchingTag ? matchingTag.color : '#9593D9';
+            tasksWithColor.push({
               task: task,
               idBox: box.id,
+              color: tagColor
             });
           }
         }
-
-        return tasksWithId;
+        return tasksWithColor;
       })
     );
   }
