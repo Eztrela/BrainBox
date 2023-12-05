@@ -23,6 +23,11 @@ mat-divider {
   display: inline-flex;
 }
 
+.task-description {
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
 .editRemove-buttons {
   display: inline-flex;
 }
