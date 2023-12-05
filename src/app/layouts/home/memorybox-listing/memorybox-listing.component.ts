@@ -5,6 +5,7 @@ import {CreateDialogComponent} from "./create-dialog/create-dialog.component";
 import {MemoryboxService} from "../../../shared/services/memorybox.service";
 import {SnackbarComponent} from "../../components/snackbar/snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
 
 @Component({
   selector: 'app-memorybox-listing',
@@ -16,7 +17,7 @@ export class MemoryboxListingComponent implements OnInit {
   @Input() memoryboxes: Array<MemoryBox> = new Array<MemoryBox>();
   @Output() newItemEvent = new EventEmitter<MemoryBox>();
 
-  constructor(private dialog: MatDialog, private _snackbar: MatSnackBar, private memoryboxService:MemoryboxService) {}
+  constructor(private dialog: MatDialog, private _snackbar: MatSnackBar, private memoryboxService:MemoryboxFirestoreService) {}
 
   ngOnInit(): void {}
 

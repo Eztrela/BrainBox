@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MemoryBox} from "../../shared/models";
 import {MemoryboxService} from "../../shared/services/memorybox.service";
+import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   memoryboxes:Array<MemoryBox> = new Array<MemoryBox>();
   isMemoryBoxesCollapsed: boolean = true;
-  constructor(private memoryBoxService: MemoryboxService) {
+  constructor(private memoryBoxService: MemoryboxFirestoreService) {
   }
 
   addItem(newItem: MemoryBox) {
