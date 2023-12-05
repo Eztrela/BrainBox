@@ -69,19 +69,21 @@
 
   <ng-container matColumnDef="tags">
     <th mat-header-cell *matHeaderCellDef>Tags</th>
-    <td mat-cell class="task-tags" *matCellDef="let task; let i = index">
-      <div *ngFor="let tag_index of task.tags">
-        <div *ngFor="let tag of memorybox.tags">
-          <div *ngIf="tag.id === tag_index">
-            <span
-              class="task-tags-item"
-              [style.color]="tag.color"
-              [style.font-size.rem]="3"
-              >•</span
-            >
+    <td mat-cell *matCellDef="let task; let i = index">
+      <div class="task-tags">
+        <div *ngFor="let tag_index of task.tags">
+          <div *ngFor="let tag of memorybox.tags">
+            <div *ngIf="tag.id === tag_index">
+              <span
+                class="task-tags-item"
+                [style.color]="tag.color"
+                [style.font-size.rem]="3"
+              >•</span>
+            </div>
           </div>
         </div>
       </div>
+
     </td>
   </ng-container>
   <!-- Status Column -->

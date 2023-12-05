@@ -20,8 +20,7 @@ mat-divider {
 }
 
 .task-tags {
-  display: flex;
-  flex-direction: row;
+  display: inline-flex;
 }
 
 .task-tags-item {
