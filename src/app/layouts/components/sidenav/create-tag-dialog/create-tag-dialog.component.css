@@ -9,7 +9,7 @@
         font-weight: 400;
         font-size: 1.12rem;
         width: 27rem;
-        height: 29rem;
+        height: 28rem;
     }
 
     & .dialog-container {
@@ -87,6 +87,6 @@
     }
 
     & .color-input.ng-touched.ng-invalid {
-        padding: 1rem 1rem 2rem 1rem;
+        padding: 1rem 1rem 1rem 1rem;
     }
 }

@@ -1,7 +1,7 @@
 <div class="dialog-container">
 
     <div class="dialog-header">
-        <p>Insira o conteúdo da Tag</p>
+        <p>Editar <i [style.color]="tag.color">{{tag.title}}</i></p>
     </div>
 
     <mat-divider></mat-divider>
@@ -24,7 +24,7 @@
         <button class="cancel-button" mat-stroked-button color="warn" (click)="onNoClick()">Cancelar</button>
         <button class="confirm-button" mat-raised-button color="primary"
                 [mat-dialog-close]="tagForm.value"
-                [disabled]="tagForm.invalid">Criar</button>
+                [disabled]="tagForm.invalid">Confirmar</button>
     </div>
 
 </div>

@@ -1,7 +1,9 @@
 <div class="dialog-container">
   <div class="dialog-header">
-    <p>Insira o título da Memory Box</p>
+    <p>Editar <i>{{task.title}}</i></p>
   </div>
+
+  <mat-divider></mat-divider>
 
   <div class="dialog-form" [formGroup]="taskForm">
     <mat-form-field appearance="outline" class="title-input">
@@ -52,7 +54,7 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="outline" class="tags-input">
-      <mat-label>Tags</mat-label>
+      <mat-label>Tag</mat-label>
       <mat-select formControlName="tags">
         <mat-option *ngFor="let tag of tags" [value]="[tag.id]">
           {{ tag.title }}
@@ -77,7 +79,7 @@
       [mat-dialog-close]="taskForm.value"
       [disabled]="taskForm.invalid"
     >
-      Criar
+      Confirmar
     </button>
   </div>
 </div>

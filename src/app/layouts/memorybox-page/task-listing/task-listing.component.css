@@ -23,6 +23,10 @@ mat-divider {
   display: inline-flex;
 }
 
+.editRemove-buttons {
+  display: inline-flex;
+}
+
 .task-tags-item {
   font-family: "Times New Roman", Times, serif;
 }
