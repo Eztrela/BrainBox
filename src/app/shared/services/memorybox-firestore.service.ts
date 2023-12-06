@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { MemoryBox } from '../models';
+import { TaskEvent } from '../interfaces/task-event';
 import { from, map, max, Observable, switchMap } from "rxjs";
 
 @Injectable({
@@ -20,8 +21,6 @@ export class MemoryboxFirestoreService {
   }
 
   create(memorybox: MemoryBox): Observable<MemoryBox> {
-    console.log(memorybox);
-    delete memorybox.id;
     return from(this.colecaoMemoryboxes.add(Object.assign({}, memorybox))).pipe(
       switchMap(docRef => {
         // Após a criação do documento, você pode obter os dados do Kit a partir do DocumentReference
@@ -46,6 +45,30 @@ export class MemoryboxFirestoreService {
     }
     }));
   }
+
+  getAllTasksWithColor(): Observable<TaskEvent[]> {
+    return this.getAll().pipe(
+      map((res: MemoryBox[]) => {
+        let tasksWithColor: TaskEvent[] = [];
+
+        for (let box of res) {
+          for (let task of box.tasks) {
+              const matchingTag = box.tags.find(tag => tag.id === task.tags[0]);
+              const tagColor = matchingTag ? matchingTag.color : '#9593D9';
+
+              tasksWithColor.push({
+                task: task,
+                idBox: box.id!,
+                color: tagColor
+              });
+          }
+        }
+
+        return tasksWithColor;
+      })
+    );
+  }
+
 
   delete(id: string): Observable<void> {
     return from(this.colecaoMemoryboxes.doc(id).delete());

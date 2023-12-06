@@ -19,6 +19,7 @@ import {ITask} from "../../../shared/interfaces/itask";
 import {TaskEvent} from "../../../shared/interfaces/task-event";
 import {Router} from "@angular/router";
 import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
+import {DatePipe} from "@angular/common";
 
 
 
@@ -35,7 +36,8 @@ function getTimezoneOffsetString(date: Date): string {
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ['./calendar.component.css'],
+  providers: [DatePipe]
 })
 export class CalendarComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
@@ -46,30 +48,29 @@ export class CalendarComponent implements OnInit {
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private memoryboxService: MemoryboxFirestoreService, private router:Router) {}
+  constructor(private memoryboxService: MemoryboxFirestoreService, private router:Router, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.fetchEvents();
   }
-
   fetchEvents(): void {
 
-    // this.events$ = this.memoryboxService.getAllTasksWithColor().pipe(
-    //   map((taskEvents: TaskEvent[]) =>
-    //     taskEvents.map((event: TaskEvent) => ({
-    //       title: event.task.title,
-    //       start: new Date(event.task.datetimeDue),
-    //       color: {
-    //         primary: event.color,
-    //         secondary: 'rgba(124, 124, 149, 0.22)'
-    //       },
-    //       allDay: true,
-    //       meta: {
-    //         taskEvent: { task: event.task, idBox: event.idBox, color: event.color },
-    //       },
-    //     }))
-    //   )
-    // );
+    this.events$ = this.memoryboxService.getAllTasksWithColor().pipe(
+      map((taskEvents: TaskEvent[]) =>
+        taskEvents.map((event: TaskEvent) => ({
+          title: event.task.title,
+           start: new Date((event.task.datetimeDue as any).seconds * 1000),
+           color: {
+             primary: event.color,
+             secondary: 'rgba(124, 124, 149, 0.22)'
+           },
+           allDay: true,
+           meta: {
+             taskEvent: { task: event.task, idBox: event.idBox, color: event.color },
+           },
+         }))
+       )
+     );
   }
 
   dayClicked({

@@ -37,7 +37,6 @@ export class MemoryboxPageComponent implements OnInit {
           Validators.required,
           Validators.minLength(4)
         ]);
-        console.log(this.memorybox);
       })
     })
   }
