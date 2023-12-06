@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ITag } from 'src/app/shared/interfaces/itag';
 import { EditTagDialogComponent } from '../components/sidenav/edit-tag-dialog/edit-tag-dialog.component';
 
+
 @Component({
   selector: 'app-memorybox-page',
   templateUrl: './memorybox-page.component.html',
@@ -92,7 +93,7 @@ export class MemoryboxPageComponent implements OnInit {
 
     }
   }
-  
+
 
   editTag() {
   }

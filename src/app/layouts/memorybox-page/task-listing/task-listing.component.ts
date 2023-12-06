@@ -38,7 +38,6 @@ export class TaskListingComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        console.log(data)
         if (this.memorybox.tasks && this.memorybox.id) {
           let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
             return task.id ? task.id : 0
@@ -89,7 +88,6 @@ export class TaskListingComponent implements OnInit{
       if (idx !== -1) {
 
         this.memorybox.tasks.splice(idx, 1)[0];
-
 
         this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
           this.memorybox = memoryBoxAtualizado;

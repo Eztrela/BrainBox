@@ -12,7 +12,6 @@ import { MemoryBox, Tag, Task } from 'src/app/shared/models';
 })
 export class CreateTaskDialogComponent {
   public task:Task = new Task(0,{})
-  // public memorybox:MemoryBox;
   public titleForm = new FormControl();
   public descriptionForm = new FormControl();
   public statusForm = new FormControl();

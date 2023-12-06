@@ -13,6 +13,7 @@ export class Task {
     public tags: Array<Number>;
 
 
+
     constructor(id:number, task: any = {}) {
         this.id = id;
       this.title = task.title;
@@ -20,8 +21,9 @@ export class Task {
       this.status = task.status;
       this.datetimeCreated = new Date();
       this.datetimeDue = task.datetimeDue;
-      this.priority = task.priority
+      this.priority = task.priority;
       this.tags = task.tags;
+
     }
 
     toString(): string {
