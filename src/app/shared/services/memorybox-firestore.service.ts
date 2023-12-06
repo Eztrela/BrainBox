@@ -21,7 +21,6 @@ export class MemoryboxFirestoreService {
 
   create(memorybox: MemoryBox): Observable<MemoryBox> {
     console.log(memorybox);
-    //@ts-ignore
     delete memorybox.id;
     return from(this.colecaoMemoryboxes.add(Object.assign({}, memorybox))).pipe(
       switchMap(docRef => {
@@ -41,7 +40,7 @@ export class MemoryboxFirestoreService {
       const data = document.data()
 
       if (data) {
-        return new MemoryBox(id,data.banner, data);
+        return data;
     } else {
         throw new Error('MemoryBox not found'); // ou retorne um valor padrão, dependendo da lógica desejada
     }
