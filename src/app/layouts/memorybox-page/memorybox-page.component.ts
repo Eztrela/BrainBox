@@ -9,6 +9,7 @@ import {CreateTagDialogComponent} from "../components/sidenav/create-tag-dialog/
 import { MatDialog } from '@angular/material/dialog';
 import { ITag } from 'src/app/shared/interfaces/itag';
 import { EditTagDialogComponent } from '../components/sidenav/edit-tag-dialog/edit-tag-dialog.component';
+import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
 
 
 @Component({
@@ -17,19 +18,19 @@ import { EditTagDialogComponent } from '../components/sidenav/edit-tag-dialog/ed
   styleUrls: ['./memorybox-page.component.css']
 })
 export class MemoryboxPageComponent implements OnInit {
-  public id!: number;
+  public id!: string;
   public memorybox!: MemoryBox;
   public isEditing: boolean = false;
   public titleForm: FormControl = new FormControl();
   public isTagsCollapsed: boolean = false;
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private memoryBoxService: MemoryboxService,
+              private memoryBoxService: MemoryboxFirestoreService,
               private dialog:MatDialog) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = Number(params.get('id'));
+      this.id = String(params.get('id'));
       this.memoryBoxService.getById(this.id).subscribe((mymemorybox: any) => {
         this.memorybox = mymemorybox;
         this.titleForm = new FormControl(this.memorybox.title, [

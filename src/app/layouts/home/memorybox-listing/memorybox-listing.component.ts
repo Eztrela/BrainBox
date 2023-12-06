@@ -33,10 +33,9 @@ export class MemoryboxListingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        this.memoryboxService.generateID().subscribe((id: number) => {
-          let memorybox = new MemoryBox(id, res.banner, {title: res.title})
+          let memorybox = new MemoryBox(res.banner, {title: res.title, user: 1})
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
-            this.addNewItem(obj);
+            // this.addNewItem(obj);
             this._snackbar.openFromComponent(SnackbarComponent, {
               data: {
                 message: `Memory Box "${obj.title}" criada com êxito!`,
@@ -45,7 +44,6 @@ export class MemoryboxListingComponent implements OnInit {
               duration: 3000
             })
           });
-        });
       }
     });
   }

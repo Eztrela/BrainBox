@@ -3,7 +3,7 @@ import {Note, Tag, Task} from "../models";
 export class MemoryBox {
   /* Model class for Task */
 
-  public id: number;
+  public id?: string;
   public user: number;
   public title: string;
   public datetimeCreated: Date;
@@ -12,8 +12,8 @@ export class MemoryBox {
   public notes: Array<Note>;
   public banner: string = "";
 
-  constructor(id: number, banner?: string, memorybox: any = {}) {
-    this.id = id;
+  constructor(banner?: string, memorybox: any = {}) {
+    this.id = memorybox.id;
     this.user = memorybox.user;
     this.title = memorybox.title;
     this.datetimeCreated = new Date();
