@@ -31,12 +31,12 @@ export class MemoryboxFirestoreService {
       new MemoryBox(id, document.data())));
   }
 
-  delete(memorybox: MemoryBox): Observable<any> {
-    return from(this.colecaoMemoryboxes.doc(memorybox.id).delete());
+  delete(id: string): Observable<any> {
+    return from(this.colecaoMemoryboxes.doc(id).delete());
   }
 
-  update(memorybox: MemoryBox): Observable<void> {
-    return from(this.colecaoMemoryboxes.doc(memorybox.id).update({...memorybox}));
+  update(id: string, memorybox: MemoryBox): Observable<any> {
+    return from(this.colecaoMemoryboxes.doc(id).update({...memorybox}));
   }
 
 
