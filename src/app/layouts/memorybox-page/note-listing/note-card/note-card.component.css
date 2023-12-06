@@ -19,6 +19,7 @@
   border-radius: 0.8rem;
   background: #1E1E24;
   overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .content-input {

@@ -1,6 +1,6 @@
 <div class="dialog-container">
   <div class="dialog-header">
-    <p>Insira o título da nova Task</p>
+    <p>Editar <i>{{task.title}}</i></p>
   </div>
 
   <mat-divider></mat-divider>
@@ -79,7 +79,7 @@
       [mat-dialog-close]="taskForm.value"
       [disabled]="taskForm.invalid"
     >
-      Criar
+      Confirmar
     </button>
   </div>
 </div>

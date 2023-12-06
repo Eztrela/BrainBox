@@ -6,6 +6,7 @@ import { TagService } from 'src/app/shared/services/tag.service';
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
+import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
 import { FormGroup } from '@angular/forms';
 import {JsonDTOPipe} from "../../../shared/pipes/jsondto.pipe";
 
@@ -29,26 +30,46 @@ export class TaskListingComponent implements OnInit{
     this.newItemEvent.emit(value);
   }
 
-  openDialog() {
+  opencreateDialog() {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
-      data: {},
+      data: {memorybox: this.memorybox},
       panelClass: 'dialog-container'
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      console.log("Task:", data)
       if (data) {
         if (this.memorybox.tasks && this.memorybox.id) {
           let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
             return task.id ? task.id : 0
           })) + 1 : 1;
-          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority})
+          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
           task.id = idx;
-          console.log(task);
           this.memorybox.tasks.push(task);
-          console.log(this.memorybox);
           this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-            console.log("After ", obj)
+            this.memorybox = obj;
+            this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+          });
+        }
+      }
+    });
+  }
+
+  openeditDialog(taskAEditar: Task) {
+    const dialogRef = this.dialog.open(EditTaskDialogComponent, {
+      data: {memorybox: this.memorybox,task: taskAEditar},
+      panelClass: 'dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        if (this.memorybox.tasks && this.memorybox.id) {
+          let idx = this.memorybox.tasks.findIndex((task)=>{
+            return task.id === taskAEditar.id
+          })
+          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
+          task.id = idx+1;
+          this.memorybox.tasks[idx] = task;
+          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
             this.memorybox = obj;
             this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
           });
@@ -58,20 +79,15 @@ export class TaskListingComponent implements OnInit{
   }
 
   deleteTask(taskARemover: ITask){
-    console.log(this.memorybox)
     if (this.memorybox.tasks && this.memorybox.id) {
 
       const idx = this.memorybox.tasks.findIndex((task)=>{
-        console.log(task.id === taskARemover.id)
         return task.id === taskARemover.id
       })
 
-      console.log(idx)
       if (idx !== -1) {
 
         this.memorybox.tasks.splice(idx, 1)[0];
-
-        console.log(this.memorybox)
 
         this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
           this.memorybox = memoryBoxAtualizado;

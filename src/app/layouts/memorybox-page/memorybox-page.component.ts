@@ -6,31 +6,37 @@ import {Observable} from 'rxjs'
 import {FormControl, Validators} from "@angular/forms";
 import {Imemorybox} from "../../shared/interfaces/imemorybox";
 import {CreateTagDialogComponent} from "../components/sidenav/create-tag-dialog/create-tag-dialog.component";
+import { MatDialog } from '@angular/material/dialog';
+import { ITag } from 'src/app/shared/interfaces/itag';
+import { EditTagDialogComponent } from '../components/sidenav/edit-tag-dialog/edit-tag-dialog.component';
+
+
 @Component({
   selector: 'app-memorybox-page',
   templateUrl: './memorybox-page.component.html',
   styleUrls: ['./memorybox-page.component.css']
 })
 export class MemoryboxPageComponent implements OnInit {
-  public id: number = 0;
+  public id!: number;
   public memorybox!: MemoryBox;
   public isEditing: boolean = false;
   public titleForm: FormControl = new FormControl();
   public isTagsCollapsed: boolean = false;
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private memoryBoxService: MemoryboxService) { }
+              private memoryBoxService: MemoryboxService,
+              private dialog:MatDialog) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = Number(params.get('id'));
-    })
-    this.memoryBoxService.getById(this.id).subscribe((mymemorybox: any) => {
-      this.memorybox = mymemorybox;
-      this.titleForm = new FormControl(this.memorybox.title, [
-        Validators.required,
-        Validators.minLength(4)
-      ]);
+      this.memoryBoxService.getById(this.id).subscribe((mymemorybox: any) => {
+        this.memorybox = mymemorybox;
+        this.titleForm = new FormControl(this.memorybox.title, [
+          Validators.required,
+          Validators.minLength(4)
+        ]);
+      })
     })
   }
 
@@ -68,12 +74,73 @@ export class MemoryboxPageComponent implements OnInit {
     this.isTagsCollapsed = !this.isTagsCollapsed;
   }
 
-  deleteTag(tagARemover: number | undefined) {
+  deleteTag(tagARemover: ITag) {
+    if (this.memorybox.tags && this.memorybox.id) {
+
+      const idx = this.memorybox.tags.findIndex((tag)=>{
+        return tag.id === tagARemover.id
+      })
+
+      if (idx !== -1) {
+
+        this.memorybox.tags.splice(idx, 1)[0];
+
+
+        this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
+          this.memorybox = memoryBoxAtualizado;
+        })
+      }
+
+    }
   }
+
 
   editTag() {
   }
 
   openAddTagDialog() {
+    const dialogRef = this.dialog.open(CreateTagDialogComponent, {
+      data:{},
+      panelClass: 'dialog-container'
+   });
+     
+      dialogRef.afterClosed().subscribe((data) => {
+        if (data) {
+          if (this.memorybox.tags && this.memorybox.id) {
+            let idx = this.memorybox.tags.length > 0 ? Math.max(...this.memorybox.tags.map(tag => {
+              return tag.id ? tag.id : 0
+            })) + 1 : 1;
+            let tag = new Tag(0, {title: data.title, color : data.color})
+            tag.id = idx;
+            this.memorybox.tags.push(tag);
+            this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
+              this.memorybox = obj;
+            });
+          }
+        }
+      });
+  }
+  openEditTagDialog(tagAEditar: ITag) {
+    const dialogRef = this.dialog.open(EditTagDialogComponent, {
+      data:{tag: tagAEditar},
+      panelClass: 'dialog-container'
+   });
+     
+      dialogRef.afterClosed().subscribe((data) => {
+        if (data) {
+          console.log(data)
+          if (this.memorybox.tags && this.memorybox.id) {
+            let idx = this.memorybox.tags.findIndex((tag)=>{
+              return tag.id === tagAEditar.id
+            })
+            let tag = new Tag(0, {title: data.title, color : data.color})
+            tag.id = idx + 1;
+            this.memorybox.tags[idx] = tag;
+            this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
+              this.memorybox = obj;
+            });
+          }
+        }
+      });
   }
 }

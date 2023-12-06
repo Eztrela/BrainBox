@@ -17,6 +17,7 @@ import { CreateTagDialogComponent } from './sidenav/create-tag-dialog/create-tag
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
+import { EditTagDialogComponent } from './sidenav/edit-tag-dialog/edit-tag-dialog.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     ToolbarComponent,
     SidenavComponent,
     SnackbarComponent,
-    CreateTagDialogComponent
+    CreateTagDialogComponent,
+    EditTagDialogComponent
   ],
     imports: [
         CommonModule,

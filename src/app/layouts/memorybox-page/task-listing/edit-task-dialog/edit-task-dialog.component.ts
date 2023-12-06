@@ -6,12 +6,13 @@ import { ITask } from 'src/app/shared/interfaces/itask';
 import { MemoryBox, Tag, Task } from 'src/app/shared/models';
 
 @Component({
-  selector: 'app-create-task-dialog',
-  templateUrl: './create-task-dialog.component.html',
-  styleUrls: ['./create-task-dialog.component.css']
+  selector: 'app-edit-task-dialog',
+  templateUrl: './edit-task-dialog.component.html',
+  styleUrls: ['./edit-task-dialog.component.css']
 })
-export class CreateTaskDialogComponent {
-  public task:Task = new Task(0,{})
+export class EditTaskDialogComponent {
+  public task:Task;
+  // public memorybox:MemoryBox;
   public titleForm = new FormControl();
   public descriptionForm = new FormControl();
   public statusForm = new FormControl();
@@ -19,6 +20,7 @@ export class CreateTaskDialogComponent {
   public tagsForm = new FormControl();
   public dueDateForm = new FormControl();
   public taskForm!: FormGroup;
+  public task_status: string = "";
   public tags: Array<Tag> = new Array<Tag>();
   public status = [
     {value: 'New', viewValue: 'New'},
@@ -35,7 +37,6 @@ export class CreateTaskDialogComponent {
   ]
 
   ngOnInit() {
-    console.log(this.tags)
     this.titleForm = new FormControl(this.task.title, [
       Validators.required,
       Validators.minLength(4)
@@ -47,6 +48,7 @@ export class CreateTaskDialogComponent {
     this.statusForm = new FormControl(this.task.status)
     this.priorityForm = new FormControl(this.task.priority)
     this.tagsForm = new FormControl(this.tags)
+    this.statusForm = new FormControl(this.task.status);
     this.dueDateForm = new FormControl(this.task.datetimeDue);
     this.taskForm = new FormGroup({
       title: this.titleForm,
@@ -58,8 +60,9 @@ export class CreateTaskDialogComponent {
     })
   }
 
-  constructor(public dialogRef: MatDialogRef<CreateTaskDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(public dialogRef: MatDialogRef<EditTaskDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.tags = data.memorybox.tags
+    this.task = data.task;
   }
 
   onNoClick() {

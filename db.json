@@ -121,34 +121,115 @@
       "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
     },
     {
-      "id": 3,
-      "user": 1,
-      "title": "Guitar Practice",
-      "datetimeCreated": "2023-11-12T16:45:15.000Z",
+      "banner": "https://assets.nintendo.com/image/upload/v1681238674/Microsites/zelda-tears-of-the-kingdom/videos/posters/totk_microsite_officialtrailer3_1304xj47am",
+      "id": 4,
+      "title": "Tears of the Kingdom",
+      "datetimeCreated": "2023-12-05T01:58:38.458Z",
       "tasks": [
         {
           "id": 1,
-          "title": "Learn New Song",
-          "description": "Learn to play 'Stairway to Heaven' on the guitar",
-          "status": "pending",
-          "datetimeCreated": "2023-11-12T16:45:15.000Z",
-          "datetimeDue": "2023-11-19T16:45:15.000Z",
-          "priority": 3,
+          "title": "Explore The sky",
+          "description": "Mysterious floating islands have suddenly appeared in the skies above Hyrule. Link must use his newly-acquired abilities to navigate the islands and unlock the secrets they hold.",
+          "status": "In progress",
+          "datetimeCreated": "2023-12-05T02:01:17.463Z",
+          "datetimeDue": "2023-12-18T03:00:00.000Z",
+          "priority": "3",
           "tags": [
-            1,
-            2
+            3
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "id": 1,
+          "content": "An epic adventure awaits in the Legend of Zelda: Tears of the Kingdom game, only on the Nintendo Switch system."
+        },
+        {
+          "id": 2,
+          "content": "In this sequel to the Legend of Zelda: Breath of the Wild game, you’ll decide your own path through the sprawling landscapes of Hyrule and the mysterious islands floating in the vast skies above. Can you harness the power of Link’s new abilities to fight back against the malevolent forces that threaten the kingdom?"
+        }
+      ],
+      "tags": [
+        {
+          "id": 2,
+          "title": "Games",
+          "color": "#80ffff"
+        },
+        {
+          "id": 3,
+          "title": "Sky Islands",
+          "color": "#8ff3d1"
+        },
+        {
+          "id": 4,
+          "title": "Zonai",
+          "color": "#ffffd1"
+        }
+      ]
+    },
+    {
+      "banner": "https://static.wixstatic.com/media/b8614b_654a4ffa242e48f5a85d2694a75e147e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+      "id": 5,
+      "title": "Guitar Practice",
+      "datetimeCreated": "2023-12-05T14:04:30.082Z",
+      "tasks": [
+        {
+          "id": 1,
+          "title": "Learn E / Mi Chromatic Scale",
+          "description": "Memorize where the circle of natural fifths lies in the E / Mi chord",
+          "status": "In progress",
+          "datetimeCreated": "2023-12-05T14:10:26.226Z",
+          "datetimeDue": "2023-12-20T03:00:00.000Z",
+          "priority": "4",
+          "tags": [
+            1
           ]
         },
         {
           "id": 2,
-          "title": "Practice New Song",
-          "description": "Practice the song 'Hotel California' on the guitar",
-          "status": "pending",
-          "datetimeCreated": "2023-11-12T16:45:15.000Z",
-          "datetimeDue": "2023-11-21T16:45:15.000Z",
-          "priority": 4,
+          "title": "Learn A / Lá Chromatic Scale",
+          "description": " Memorize where the circle of natural fifths lies in the A/ Lá chord ",
+          "status": "In progress",
+          "datetimeCreated": "2023-12-05T14:16:58.201Z",
+          "datetimeDue": "2023-12-20T03:00:00.000Z",
+          "priority": "4",
           "tags": [
-            1,
+            1
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Learn D / Ré Chromatic Scale",
+          "description": "Memorize where the circle of natural fifths lies in the D / Ré chord",
+          "status": "In progress",
+          "datetimeCreated": "2023-12-05T14:24:11.296Z",
+          "datetimeDue": "2023-12-13T03:00:00.000Z",
+          "priority": "4",
+          "tags": [
+            1
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Learn G / Sol Chromatic Scale",
+          "description": "Memorize where the circle of natural fifths lies in the G / Sol chord",
+          "status": "New",
+          "datetimeCreated": "2023-12-05T14:35:29.171Z",
+          "datetimeDue": "2023-12-04T03:00:00.000Z",
+          "priority": "4",
+          "tags": [
+            1
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Learn C / Dó Chromatic Scale",
+          "description": "Research where the C Chromatic Scale lies in the fretboard!!",
+          "status": "New",
+          "datetimeCreated": "2023-12-05T14:35:11.321Z",
+          "datetimeDue": "2023-12-19T03:00:00.000Z",
+          "priority": "3",
+          "tags": [
             2
           ]
         }
@@ -156,22 +237,29 @@
       "notes": [
         {
           "id": 1,
-          "content": "'Stairway to Heaven' is a song by the English rock band Led Zeppelin."
+          "content": "Fretboard Map for E / Mi's circle of natural fifths :\n\n01-3-5-78-10-12"
+        },
+        {
+          "id": 2,
+          "content": "Fretboard Map for A / Lá's circle of natural fifths :\n\n0-23-5-78-10-12"
+        },
+        {
+          "id": 3,
+          "content": "Fretboard Map for D / Ré's circle of natural fifths :\n\n0-23-5-7-910-12"
         }
       ],
       "tags": [
         {
           "id": 1,
-          "title": "Important",
-          "color": "#FF0000"
+          "title": "Fundamentals",
+          "color": "#e3b766"
         },
         {
           "id": 2,
-          "title": "Music",
-          "color": "#800080"
+          "title": "Advanced",
+          "color": "#f54275"
         }
-      ],
-      "banner": "https://img.freepik.com/free-vector/gradient-abstract-purple-color-background-design_343694-2875.jpg"
+      ]
     }
   ]
 }

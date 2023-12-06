@@ -52,43 +52,19 @@ export class CalendarComponent implements OnInit {
   }
 
   fetchEvents(): void {
-    const getStart: any = {
-      month: startOfMonth,
-      week: startOfWeek,
-      day: startOfDay,
-    }[this.view];
 
-    const getEnd: any = {
-      month: endOfMonth,
-      week: endOfWeek,
-      day: endOfDay,
-    }[this.view];
-
-    const params = new HttpParams()
-      .set(
-        'primary_release_date.gte',
-        format(getStart(this.viewDate), 'yyyy-MM-dd')
-      )
-      .set(
-        'primary_release_date.lte',
-        format(getEnd(this.viewDate), 'yyyy-MM-dd')
-      )
-      .set('api_key', '0ec33936a68018857d727958dca1424f');
-
-    const color = {
-      primary: '#9593D9',
-      secondary: 'rgba(124, 124, 149, 0.22)',
-    };
-
-    this.events$ = this.memoryboxService.getAllTasksWithId().pipe(
+    this.events$ = this.memoryboxService.getAllTasksWithColor().pipe(
       map((taskEvents: TaskEvent[]) =>
         taskEvents.map((event: TaskEvent) => ({
           title: event.task.title,
           start: new Date(event.task.datetimeDue),
-          color: color,
+          color: {
+            primary: event.color,
+            secondary: 'rgba(124, 124, 149, 0.22)'
+          },
           allDay: true,
           meta: {
-            taskEvent: { task: event.task, idBox: event.idBox },
+            taskEvent: { task: event.task, idBox: event.idBox, color: event.color },
           },
         }))
       )
@@ -104,7 +80,7 @@ export class CalendarComponent implements OnInit {
   }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen) ||
         events.length === 0
       ) {
         this.activeDayIsOpen = false;

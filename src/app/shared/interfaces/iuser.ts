@@ -3,7 +3,5 @@ export interface IUser {
     email: string;
     username: string;
     password: string;
-    notifications: boolean;
     memoryBoxes: Array<number>;
-    tags: Array<number>;
 }

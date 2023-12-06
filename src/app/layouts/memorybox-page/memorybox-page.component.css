@@ -1,13 +1,107 @@
 #memorybox-header {
-
   display: flex;
   align-items: center;
 
   & h1 {
-    color: #1E1E24;
+    color: #1e1e24;
     margin-right: 2rem;
   }
+}
 
+.collapser {
+  position: relative;
+  padding: 0;
+  margin-left: 1rem;
+  line-height: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  border-style: none;
+  border-radius: 100rem;
+  color: azure;
+  transition-duration: 0.3s;
+}
+
+.collapser:hover {
+  cursor: pointer;
+  background-color: rgba(230, 235, 255, 0.12);
+}
+
+.collapser:active {
+  background-color: rgba(230, 235, 255, 0.45);
+}
+
+mat-divider {
+  background-color: azure;
+}
+
+.tags-collapsable {
+  display: flex;
+  align-items: center;
+}
+
+.tags-header {
+  display: flex;
+  align-items: center;
+}
+
+.tag-list {
+  display: flex;
+  align-items: center;
+}
+
+.tag-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tag-list-item-color {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.tag-buttons {
+  margin-left: auto;
+}
+
+.add-tag-button {
+  margin-left: auto;
+  position: relative;
+  padding: 0;
+  line-height: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  border-style: none;
+  border-radius: 100rem;
+  color: azure;
+  transition-duration: 0.3s;
+}
+
+.add-tag-button:hover {
+  cursor: pointer;
+  background-color: rgba(230, 235, 255, 0.12);
+}
+
+.add-tag-button:active {
+  background-color: rgba(230, 235, 255, 0.45);
+}
+
+.title-input {
+  color: azure;
+  font-family: "Titillium Web", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.12rem;
+  text-align: center;
+  padding: 1rem 1rem 0 1rem;
+  border-radius: 0.8rem;
+  background: #1e1e24;
+  transition-duration: 0.4s;
+}
+
+.title-input.ng-touched.ng-invalid {
+  padding: 1rem 1rem 2rem 1rem;
 }
 
 .collapser {
