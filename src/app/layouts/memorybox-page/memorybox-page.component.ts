@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {MemoryboxService} from "../../shared/services/memorybox.service";
-import {MemoryBox, Note, Tag, Task, User} from "../../shared/models";
-import {Observable} from 'rxjs'
+import {MemoryBox, Tag} from "../../shared/models";
 import {FormControl, Validators} from "@angular/forms";
-import {Imemorybox} from "../../shared/interfaces/imemorybox";
 import {CreateTagDialogComponent} from "../components/sidenav/create-tag-dialog/create-tag-dialog.component";
 import { MatDialog } from '@angular/material/dialog';
 import { ITag } from 'src/app/shared/interfaces/itag';

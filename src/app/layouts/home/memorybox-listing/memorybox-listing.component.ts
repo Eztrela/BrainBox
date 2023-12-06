@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MemoryBox} from "../../../shared/models";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateDialogComponent} from "./create-dialog/create-dialog.component";
-import {MemoryboxService} from "../../../shared/services/memorybox.service";
 import {SnackbarComponent} from "../../components/snackbar/snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';

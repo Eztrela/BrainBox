@@ -14,7 +14,6 @@ import {
   format,
 } from 'date-fns';
 import { Observable } from 'rxjs';
-import {MemoryboxService} from "../../../shared/services/memorybox.service";
 import {ITask} from "../../../shared/interfaces/itask";
 import {TaskEvent} from "../../../shared/interfaces/task-event";
 import {Router} from "@angular/router";
