@@ -55,7 +55,8 @@ export class MemoryboxFirestoreService {
     const updatedMemoryBox = {
       ...memorybox,
       notes: memorybox.notes.map(note => ({ ...note })),
-      tasks: memorybox.tasks.map(task => ({ ...task}))
+      tasks: memorybox.tasks.map(task => ({ ...task})),
+      tags: memorybox.tags.map(tag => ({ ...tag})),
     };
     return from(this.colecaoMemoryboxes.doc(id).update({...updatedMemoryBox}));
   }
