@@ -12,8 +12,8 @@ export class MemoryBox {
   public notes: Array<Note>;
   public banner: string = "";
 
-  constructor(banner?: string, memorybox: any = {}) {
-    this.id = memorybox.id;
+  constructor(id: string,banner?: string, memorybox: any = {}) {
+    this.id = id;
     this.user = memorybox.user;
     this.title = memorybox.title;
     this.datetimeCreated = new Date();

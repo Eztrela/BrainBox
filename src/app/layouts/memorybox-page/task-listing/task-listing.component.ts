@@ -9,6 +9,7 @@ import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dial
 import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
 import { FormGroup } from '@angular/forms';
 import {JsonDTOPipe} from "../../../shared/pipes/jsondto.pipe";
+import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
 
 @Component({
   selector: 'app-task-listing',
@@ -16,10 +17,10 @@ import {JsonDTOPipe} from "../../../shared/pipes/jsondto.pipe";
   styleUrls: ['./task-listing.component.css']
 })
 export class TaskListingComponent implements OnInit{
-  @Input() memorybox: MemoryBox = new MemoryBox(0,"",0);
+  @Input() memorybox: MemoryBox = new MemoryBox("0","",0);
   public datasource: MatTableDataSource<Task> = new MatTableDataSource<Task>();
   @Output() newItemEvent = new EventEmitter<Task>();
-  constructor(private dialog:MatDialog, private tagService:TagService, private memoryBoxService: MemoryboxService){
+  constructor(private dialog:MatDialog, private tagService:TagService, private memoryBoxService: MemoryboxFirestoreService){
   }
 
   ngOnInit(): void {

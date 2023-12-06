@@ -25,20 +25,20 @@ export class MemoryboxService {
   constructor(private httpClient: HttpClient) {}
 
 
-  generateID(): Observable<number> {
-    return this.getAll().pipe(
-      map((res: MemoryBox[]) => {
-        if (res && res.length > 0) {
-          const maxId = Math.max(...res.map(box => {
-            return box.id ? box.id : 0
-          }));
-          return maxId + 1;
-        } else {
-          return 1;
-        }
-      })
-    );
-  }
+  // generateID(): Observable<number> {
+  //   return this.getAll().pipe(
+  //     map((res: MemoryBox[]) => {
+  //       if (res && res.length > 0) {
+  //         const maxId = Math.max(...res.map(box => {
+  //           return box.id ? box.id : 0
+  //         }));
+  //         return maxId + 1;
+  //       } else {
+  //         return 1;
+  //       }
+  //     })
+  //   );
+  // }
 
   create(memorybox:MemoryBox): Observable<MemoryBox> {
     const url_resource: string = `${this._url}/${this._resource}`;
@@ -75,26 +75,26 @@ export class MemoryboxService {
     );
   }
 
-  getAllTasksWithColor(): Observable<TaskEvent[]> {
-    return this.getAll().pipe(
-      map((res: MemoryBox[]) => {
-        let tasksWithColor: TaskEvent[] = [];
+  // getAllTasksWithColor(): Observable<TaskEvent[]> {
+  //   return this.getAll().pipe(
+  //     map((res: MemoryBox[]) => {
+  //       let tasksWithColor: TaskEvent[] = [];
 
-        for (let box of res) {
-          for (let task of box.tasks) {
-            const matchingTag = box.tags.find(tag => tag.id === task.tags[0]);
-            const tagColor = matchingTag ? matchingTag.color : '#9593D9';
-            tasksWithColor.push({
-              task: task,
-              idBox: box.id,
-              color: tagColor
-            });
-          }
-        }
-        return tasksWithColor;
-      })
-    );
-  }
+  //       for (let box of res) {
+  //         for (let task of box.tasks) {
+  //           const matchingTag = box.tags.find(tag => tag.id === task.tags[0]);
+  //           const tagColor = matchingTag ? matchingTag.color : '#9593D9';
+  //           tasksWithColor.push({
+  //             task: task,
+  //             idBox: box.id,
+  //             color: tagColor
+  //           });
+  //         }
+  //       }
+  //       return tasksWithColor;
+  //     })
+  //   );
+  // }
 
 
   update(id:number, data:MemoryBox): Observable<MemoryBox> {

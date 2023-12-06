@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { MemoryBox } from '../models';
-import { from, map, max, Observable } from "rxjs";
+import { from, map, max, Observable, switchMap } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +21,31 @@ export class MemoryboxFirestoreService {
 
   create(memorybox: MemoryBox): Observable<MemoryBox> {
     console.log(memorybox);
-    delete memorybox.id;
     //@ts-ignore
-    return from(this.colecaoMemoryboxes.add(Object.assign({}, memorybox)))
+    delete memorybox.id;
+    return from(this.colecaoMemoryboxes.add(Object.assign({}, memorybox))).pipe(
+      switchMap(docRef => {
+        // Após a criação do documento, você pode obter os dados do Kit a partir do DocumentReference
+        return this.colecaoMemoryboxes.doc(docRef.id).get().pipe(
+          map(doc => {
+            // Certifique-se de ajustar conforme a estrutura real do seu objeto Kit
+            return doc.data() as MemoryBox;
+          })
+        );
+      })
+    );
   }
 
   getById(id: string): Observable<MemoryBox> {
-    return this.colecaoMemoryboxes.doc(id).get().pipe(map(document =>
-      new MemoryBox(id, document.data())));
+    return this.colecaoMemoryboxes.doc(id).get().pipe(map(document =>{
+      const data = document.data()
+
+      if (data) {
+        return new MemoryBox(id,data.banner, data);
+    } else {
+        throw new Error('MemoryBox not found'); // ou retorne um valor padrão, dependendo da lógica desejada
+    }
+    }));
   }
 
   delete(id: string): Observable<any> {
@@ -36,6 +53,7 @@ export class MemoryboxFirestoreService {
   }
 
   update(id: string, memorybox: MemoryBox): Observable<any> {
+    console.log(memorybox)
     return from(this.colecaoMemoryboxes.doc(id).update({...memorybox}));
   }
 

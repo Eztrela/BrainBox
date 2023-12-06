@@ -8,7 +8,7 @@ import {JsonDTOPipe} from "../../../../shared/pipes/jsondto.pipe";
   styleUrls: ['./memorybox-card.component.css']
 })
 export class MemoryboxCardComponent implements OnInit {
-  @Input() memorybox: MemoryBox = new MemoryBox(0, "", {});
+  @Input() memorybox: MemoryBox = new MemoryBox("0", "", {});
 
   public taskColor: string = "#D9D9D9";
   public fillerColor: string = "#30343F";

@@ -6,6 +6,7 @@ import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { TagService } from 'src/app/shared/services/tag.service';
 import { CreateNoteDialogComponent } from './create-note-dialog/create-note-dialog.component';
 import {JsonDTOPipe} from "../../../shared/pipes/jsondto.pipe";
+import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
 
 @Component({
   selector: 'app-note-listing',
@@ -13,9 +14,9 @@ import {JsonDTOPipe} from "../../../shared/pipes/jsondto.pipe";
   styleUrls: ['./note-listing.component.css'],
 })
 export class NoteListingComponent implements OnInit{
-  constructor(private dialog:MatDialog, private tagService:TagService, private memoryBoxService: MemoryboxService){
+  constructor(private dialog:MatDialog, private tagService:TagService, private memoryBoxService: MemoryboxFirestoreService){
   }
-  @Input() memorybox: MemoryBox = new MemoryBox(0,"",0);
+  @Input() memorybox: MemoryBox = new MemoryBox("0","",0);
   @Output() newItemEvent = new EventEmitter<Note>();
   public notes: Array<Note> = new Array<Note>();
   public notePipe = new JsonDTOPipe();

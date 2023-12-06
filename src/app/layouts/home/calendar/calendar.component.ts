@@ -18,6 +18,7 @@ import {MemoryboxService} from "../../../shared/services/memorybox.service";
 import {ITask} from "../../../shared/interfaces/itask";
 import {TaskEvent} from "../../../shared/interfaces/task-event";
 import {Router} from "@angular/router";
+import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
 
 
 
@@ -45,7 +46,7 @@ export class CalendarComponent implements OnInit {
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private memoryboxService: MemoryboxService, private router:Router) {}
+  constructor(private memoryboxService: MemoryboxFirestoreService, private router:Router) {}
 
   ngOnInit(): void {
     this.fetchEvents();
@@ -53,22 +54,22 @@ export class CalendarComponent implements OnInit {
 
   fetchEvents(): void {
 
-    this.events$ = this.memoryboxService.getAllTasksWithColor().pipe(
-      map((taskEvents: TaskEvent[]) =>
-        taskEvents.map((event: TaskEvent) => ({
-          title: event.task.title,
-          start: new Date(event.task.datetimeDue),
-          color: {
-            primary: event.color,
-            secondary: 'rgba(124, 124, 149, 0.22)'
-          },
-          allDay: true,
-          meta: {
-            taskEvent: { task: event.task, idBox: event.idBox, color: event.color },
-          },
-        }))
-      )
-    );
+    // this.events$ = this.memoryboxService.getAllTasksWithColor().pipe(
+    //   map((taskEvents: TaskEvent[]) =>
+    //     taskEvents.map((event: TaskEvent) => ({
+    //       title: event.task.title,
+    //       start: new Date(event.task.datetimeDue),
+    //       color: {
+    //         primary: event.color,
+    //         secondary: 'rgba(124, 124, 149, 0.22)'
+    //       },
+    //       allDay: true,
+    //       meta: {
+    //         taskEvent: { task: event.task, idBox: event.idBox, color: event.color },
+    //       },
+    //     }))
+    //   )
+    // );
   }
 
   dayClicked({
