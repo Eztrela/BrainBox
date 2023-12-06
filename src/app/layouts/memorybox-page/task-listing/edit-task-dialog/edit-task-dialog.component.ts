@@ -37,6 +37,9 @@ export class EditTaskDialogComponent {
   ]
 
   ngOnInit() {
+    const dueTimestamp: any = this.task.datetimeDue;
+    const dueDateObject = new Date(dueTimestamp.seconds * 1000);
+
     this.titleForm = new FormControl(this.task.title, [
       Validators.required,
       Validators.minLength(4)
@@ -49,7 +52,7 @@ export class EditTaskDialogComponent {
     this.priorityForm = new FormControl(this.task.priority)
     this.tagsForm = new FormControl(this.tags)
     this.statusForm = new FormControl(this.task.status);
-    this.dueDateForm = new FormControl(this.task.datetimeDue);
+    this.dueDateForm = new FormControl(dueDateObject);
     this.taskForm = new FormGroup({
       title: this.titleForm,
       description: this.descriptionForm,

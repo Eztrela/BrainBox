@@ -2,33 +2,36 @@ import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { MemoryBox, Task} from 'src/app/shared/models';
 import { MatTableDataSource} from '@angular/material/table'
 import { ITask } from 'src/app/shared/interfaces/itask';
-import { TagService } from 'src/app/shared/services/tag.service';
-import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
 import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
-import { FormGroup } from '@angular/forms';
-import {JsonDTOPipe} from "../../../shared/pipes/jsondto.pipe";
 import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
+import { DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-task-listing',
   templateUrl: './task-listing.component.html',
-  styleUrls: ['./task-listing.component.css']
+  styleUrls: ['./task-listing.component.css'],
+  providers: [DatePipe]
 })
 export class TaskListingComponent implements OnInit{
   @Input() memorybox: MemoryBox = new MemoryBox("0","",0);
   public datasource: MatTableDataSource<Task> = new MatTableDataSource<Task>();
   @Output() newItemEvent = new EventEmitter<Task>();
-  constructor(private dialog:MatDialog, private tagService:TagService, private memoryBoxService: MemoryboxFirestoreService){
+  constructor(private dialog:MatDialog, private memoryBoxService: MemoryboxFirestoreService, private datePipe: DatePipe){
   }
 
   ngOnInit(): void {
     this.datasource = new MatTableDataSource<Task>(this.memorybox.tasks);
   }
 
-  addNewItem(value: Task) {
-    this.newItemEvent.emit(value);
+  formatDatetime(datetimeDue: any): string {
+    if (datetimeDue instanceof Date) {
+      return this.datePipe.transform(datetimeDue, 'dd/MM/yyyy') || '';
+    } else {
+      const dateObject = new Date(datetimeDue.seconds * 1000);
+      return this.datePipe.transform(dateObject, 'dd/MM/yyyy') || '';
+    }
   }
 
   opencreateDialog() {

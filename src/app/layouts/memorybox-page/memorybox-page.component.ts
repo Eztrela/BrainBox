@@ -37,6 +37,7 @@ export class MemoryboxPageComponent implements OnInit {
           Validators.required,
           Validators.minLength(4)
         ]);
+        console.log(this.memorybox);
       })
     })
   }
@@ -83,18 +84,11 @@ export class MemoryboxPageComponent implements OnInit {
       })
 
       if (idx !== -1) {
-
         this.memorybox.tags.splice(idx, 1)[0];
-
-
         this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe()
       }
 
     }
-  }
-
-
-  editTag() {
   }
 
   openAddTagDialog() {
