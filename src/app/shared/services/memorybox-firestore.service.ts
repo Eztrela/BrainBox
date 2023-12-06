@@ -11,7 +11,7 @@ export class MemoryboxFirestoreService {
   public colecaoMemoryboxes: AngularFirestoreCollection<MemoryBox>;
   NOME_COLECAO = 'memoryboxes'
 
-  constructor(private afs:AngularFirestore) { 
+  constructor(private afs:AngularFirestore) {
     this.colecaoMemoryboxes = this.afs.collection(this.NOME_COLECAO);
   }
 
@@ -53,8 +53,12 @@ export class MemoryboxFirestoreService {
   }
 
   update(id: string, memorybox: MemoryBox): Observable<any> {
-    console.log(memorybox)
-    return from(this.colecaoMemoryboxes.doc(id).update({...memorybox}));
+    const updatedMemoryBox = {
+      ...memorybox,
+      notes: memorybox.notes.map(note => ({ ...note })),
+      tasks: memorybox.tasks.map(task => ({ ...task}))
+    };
+    return from(this.colecaoMemoryboxes.doc(id).update({...updatedMemoryBox}));
   }
 
 
