@@ -46,8 +46,7 @@ export class TaskListingComponent implements OnInit{
           let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
           task.id = idx;
           this.memorybox.tasks.push(task);
-          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-            this.memorybox = obj;
+          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(res => {
             this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
           });
         }
@@ -70,8 +69,7 @@ export class TaskListingComponent implements OnInit{
           let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
           task.id = idx+1;
           this.memorybox.tasks[idx] = task;
-          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
-            this.memorybox = obj;
+          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(res => {
             this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
           });
         }
@@ -90,8 +88,7 @@ export class TaskListingComponent implements OnInit{
 
         this.memorybox.tasks.splice(idx, 1)[0];
 
-        this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(memoryBoxAtualizado =>{
-          this.memorybox = memoryBoxAtualizado;
+        this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(res =>{
           this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
         })
       }

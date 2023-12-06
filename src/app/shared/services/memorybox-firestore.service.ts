@@ -47,11 +47,11 @@ export class MemoryboxFirestoreService {
     }));
   }
 
-  delete(id: string): Observable<any> {
+  delete(id: string): Observable<void> {
     return from(this.colecaoMemoryboxes.doc(id).delete());
   }
 
-  update(id: string, memorybox: MemoryBox): Observable<any> {
+  update(id: string, memorybox: MemoryBox): Observable<void> {
     const updatedMemoryBox = {
       ...memorybox,
       notes: memorybox.notes.map(note => ({ ...note })),

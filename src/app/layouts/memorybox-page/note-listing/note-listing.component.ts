@@ -44,7 +44,7 @@ export class NoteListingComponent implements OnInit{
           let note = new Note(idx, {content:content})
           note.id = idx
           this.memorybox.notes.push(note)
-          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((obj: MemoryBox) => {
+          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(res => {
             this.notes = this.memorybox.notes ? this.memorybox.notes : [];
           });
         }
@@ -58,8 +58,7 @@ export class NoteListingComponent implements OnInit{
       })
       this.memorybox.notes.splice(idx, 1);
       this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(
-          (memoryBoxAtualizado:MemoryBox) =>{
-            this.memorybox = memoryBoxAtualizado;
+          res => {
             this.notes = this.memorybox.notes ? [...this.memorybox.notes] : [];
           })
     }
@@ -72,8 +71,7 @@ export class NoteListingComponent implements OnInit{
       })
       this.memorybox.notes[idx] = noteAEditar;
       this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(
-          (memoryBoxAtualizado:MemoryBox) =>{
-            this.memorybox = memoryBoxAtualizado;
+          res => {
             this.notes = this.memorybox.notes ? [...this.memorybox.notes] : [];
           })
     }
