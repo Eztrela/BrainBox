@@ -15,7 +15,8 @@ import { DatePipe} from "@angular/common";
   providers: [DatePipe]
 })
 export class TaskListingComponent implements OnInit{
-  @Input() memorybox: MemoryBox = new MemoryBox("0","",0);
+  @Input() id!:string;
+  @Input() memorybox!: MemoryBox;
   public datasource: MatTableDataSource<Task> = new MatTableDataSource<Task>();
   @Output() newItemEvent = new EventEmitter<Task>();
   constructor(private dialog:MatDialog, private memoryBoxService: MemoryboxFirestoreService, private datePipe: DatePipe){
@@ -42,14 +43,14 @@ export class TaskListingComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        if (this.memorybox.tasks && this.memorybox.id) {
+        if (this.memorybox) {
           let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
             return task.id ? task.id : 0
           })) + 1 : 1;
           let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
           task.id = idx;
           this.memorybox.tasks.push(task);
-          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(res => {
+          this.memoryBoxService.update(this.id, this.memorybox).subscribe(res => {
             this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
           });
         }
@@ -65,14 +66,14 @@ export class TaskListingComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        if (this.memorybox.tasks && this.memorybox.id) {
+        if (this.memorybox) {
           let idx = this.memorybox.tasks.findIndex((task)=>{
             return task.id === taskAEditar.id
           })
           let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
           task.id = idx+1;
           this.memorybox.tasks[idx] = task;
-          this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(res => {
+          this.memoryBoxService.update(this.id, this.memorybox).subscribe(res => {
             this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
           });
         }
@@ -81,7 +82,7 @@ export class TaskListingComponent implements OnInit{
   }
 
   deleteTask(taskARemover: ITask){
-    if (this.memorybox.tasks && this.memorybox.id) {
+    if (this.memorybox) {
 
       const idx = this.memorybox.tasks.findIndex((task)=>{
         return task.id === taskARemover.id
@@ -91,7 +92,7 @@ export class TaskListingComponent implements OnInit{
 
         this.memorybox.tasks.splice(idx, 1)[0];
 
-        this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe(res =>{
+        this.memoryBoxService.update(this.id, this.memorybox).subscribe(res =>{
           this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
         })
       }

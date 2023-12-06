@@ -95,10 +95,14 @@
       </div>
     </div>
     <ng-container>
-      <app-task-listing [memorybox]="memorybox"></app-task-listing>
+      <app-task-listing
+        [id]="id"
+        [memorybox]="memorybox"></app-task-listing>
     </ng-container>
     <ng-container>
-      <app-note-listing [memorybox]="memorybox"></app-note-listing>
+      <app-note-listing
+        [id]="id"
+        [memorybox]="memorybox"></app-note-listing>
     </ng-container>
   </span>
 </app-sidenav>

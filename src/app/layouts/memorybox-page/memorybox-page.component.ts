@@ -47,17 +47,17 @@ export class MemoryboxPageComponent implements OnInit {
   }
 
   deleteMemoryBox() {
-    if (this.memorybox.id) {
-      this.memoryBoxService.delete(this.memorybox.id).subscribe((res) => {
+    if (this.memorybox) {
+      this.memoryBoxService.delete(this.id).subscribe((res) => {
         this.router.navigate(['/home']);
       })
     }
   }
 
   editMemoryBox() {
-    if (this.memorybox.id) {
+    if (this.memorybox) {
       this.memorybox.title = this.titleForm.value;
-      this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe((res)=> {
+      this.memoryBoxService.update(this.id, this.memorybox).subscribe((res)=> {
         this.toggleEditMemoryBox();
       })
     }
@@ -77,7 +77,7 @@ export class MemoryboxPageComponent implements OnInit {
   }
 
   deleteTag(tagARemover: ITag) {
-    if (this.memorybox.tags && this.memorybox.id) {
+    if (this.memorybox.tags) {
 
       const idx = this.memorybox.tags.findIndex((tag)=>{
         return tag.id === tagARemover.id
@@ -85,7 +85,7 @@ export class MemoryboxPageComponent implements OnInit {
 
       if (idx !== -1) {
         this.memorybox.tags.splice(idx, 1)[0];
-        this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe()
+        this.memoryBoxService.update(this.id, this.memorybox).subscribe()
       }
 
     }
@@ -99,14 +99,14 @@ export class MemoryboxPageComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe((data) => {
         if (data) {
-          if (this.memorybox.tags && this.memorybox.id) {
+          if (this.memorybox) {
             let idx = this.memorybox.tags.length > 0 ? Math.max(...this.memorybox.tags.map(tag => {
               return tag.id ? tag.id : 0
             })) + 1 : 1;
             let tag = new Tag(0, {title: data.title, color : data.color})
             tag.id = idx;
             this.memorybox.tags.push(tag);
-            this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe();
+            this.memoryBoxService.update(this.id, this.memorybox).subscribe();
           }
         }
       });
@@ -119,15 +119,14 @@ export class MemoryboxPageComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe((data) => {
         if (data) {
-          console.log(data)
-          if (this.memorybox.tags && this.memorybox.id) {
+          if (this.memorybox) {
             let idx = this.memorybox.tags.findIndex((tag)=>{
               return tag.id === tagAEditar.id
             })
             let tag = new Tag(0, {title: data.title, color : data.color})
             tag.id = idx + 1;
             this.memorybox.tags[idx] = tag;
-            this.memoryBoxService.update(this.memorybox.id, this.memorybox).subscribe();
+            this.memoryBoxService.update(this.id, this.memorybox).subscribe();
           }
         }
       });
