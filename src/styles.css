@@ -279,6 +279,43 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     overflow-y: hidden;
   }
 
+  & .dialog-header {
+    color: azure;
+    text-align: center;
+  }
+
+  & .dialog-form {
+    padding: 2rem 2rem 0 2rem;
+  }
+
+  & .dialog-buttons {
+    align-self: center;
+    display: flex;
+    width: 52%;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  & .cancel-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .confirm-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
   & .content-input {
     color: azure;
     width: 90%;
