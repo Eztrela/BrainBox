@@ -90,7 +90,7 @@ export class MemoryboxPageComponent implements OnInit {
   openAddTagDialog() {
     const dialogRef = this.dialog.open(CreateTagDialogComponent, {
       data:{},
-      panelClass: 'dialog-container'
+      panelClass: 'tag-dialog-container'
    });
 
       dialogRef.afterClosed().subscribe((data) => {
@@ -110,7 +110,7 @@ export class MemoryboxPageComponent implements OnInit {
   openEditTagDialog(tagAEditar: ITag) {
     const dialogRef = this.dialog.open(EditTagDialogComponent, {
       data:{tag: tagAEditar},
-      panelClass: 'dialog-container'
+      panelClass: 'tag-dialog-container'
    });
 
       dialogRef.afterClosed().subscribe((data) => {

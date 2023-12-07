@@ -38,7 +38,7 @@ export class TaskListingComponent implements OnInit{
   opencreateDialog() {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
       data: {memorybox: this.memorybox},
-      panelClass: 'dialog-container'
+      panelClass: 'task-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe((data) => {
@@ -61,7 +61,7 @@ export class TaskListingComponent implements OnInit{
   openeditDialog(taskAEditar: Task) {
     const dialogRef = this.dialog.open(EditTaskDialogComponent, {
       data: {memorybox: this.memorybox,task: taskAEditar},
-      panelClass: 'dialog-container'
+      panelClass: 'task-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe((data) => {
