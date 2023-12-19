@@ -5,17 +5,28 @@ import { NgForOf } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { HomeComponent } from "./layouts/home/home.component";
 import { MemoryboxPageComponent } from "./layouts/memorybox-page/memorybox-page.component";
+import {UserSigninComponent} from "./layouts/login/user-signin/user-signin.component";
+import {UserSignupComponent} from "./layouts/login/user-signup/user-signup.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    component: UserSigninComponent,
+    title: 'Login'
+  },
+  {
+    path: 'signup',
+    component: UserSignupComponent,
+    title: 'Cadastre-se'
+  },
+  {
     path: 'home',
-    component: HomeComponent,
-    title: "Memorybox"
+    component: HomeComponent
   },
   {
     path: 'memorybox/:id',

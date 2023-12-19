@@ -1,0 +1,30 @@
+<div id="container">
+  <div id="page-banner">
+  </div>
+  <div id="page-container">
+    <a class="sidenav-logo" [routerLink]="['/']">
+      <img ngSrc="assets/img/brainbox.svg" alt="brainbox-logo" height="100" width="100" priority=""/>
+    </a>
+    <div  class="signup-container">
+      <div class="signup-form" [formGroup]="userSignup">
+        <mat-form-field appearance="outline">
+          <mat-label>Usuário</mat-label>
+          <input matInput formControlName="username" required />
+          <mat-error *ngIf="userForm.invalid">{{getUserErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input matInput formControlName="email" required />
+          <mat-error *ngIf="emailForm.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password" required />
+          <mat-error *ngIf="passForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <button mat-flat-button color="primary" class="signup-button" [disabled]="userSignup.invalid" (click)="onSubmitUser()">Cadastrar</button>
+      </div>
+    </div>
+    <div></div>
+  </div>
+</div>

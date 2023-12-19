@@ -14,6 +14,7 @@ import {RouterLink} from "@angular/router";
 import {HomeModule} from "./home/home.module";
 import { MemoryboxPageModule } from './memorybox-page/memorybox-page.module';
 import { MatSelectModule } from '@angular/material/select';
+import { LoginModule } from "./login/login.module";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatSelectModule } from '@angular/material/select';
   ],
   exports: [
     HomeModule,
-    MemoryboxPageModule
+    MemoryboxPageModule,
+    LoginModule
   ]
 })
 export class LayoutsModule { }

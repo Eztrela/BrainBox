@@ -1,0 +1,51 @@
+#container {
+  font-family: "Titillium Web", sans-serif;
+  display:flex;
+  flex-direction: row;
+}
+
+#page-container {
+  width: 35%;
+  height: 100vh;
+  background: #1e1e24;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.sidenav-logo {
+  padding-bottom: 3rem;
+}
+
+.sidenav-logo a {
+  text-align: center;
+  background-color: transparent;
+  border-style: none;
+}
+
+#page-banner {
+  background-image: url("https://images.unsplash.com/photo-1568301348261-75decc95a5d1?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  width: 65%;
+}
+
+.login-form {
+  display: flex;
+  gap: 0.3rem;
+  flex-direction: column;
+}
+
+.login-form a {
+  color: azure;
+}
+
+.login-button {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1rem;
+}
