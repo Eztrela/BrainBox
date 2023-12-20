@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../shared/services/user.service";
 import {Router} from "@angular/router";
 import {User} from "../../../shared/models";
+import {SnackbarService} from "../../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-user-signup',
@@ -16,7 +17,7 @@ export class UserSignupComponent implements OnInit{
   emailForm = new FormControl();
   passForm = new FormControl();
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private snackBarService:SnackbarService) {
   }
 
   ngOnInit() {
@@ -70,15 +71,21 @@ export class UserSignupComponent implements OnInit{
   onSubmitUser() {
     this.userService.validate(this.userForm.value, this.emailForm.value).subscribe(res => {
       if (res) {
-        this.userService.create(
-          this.userForm.value,
-          this.emailForm.value,
-          this.passForm.value)
-          .subscribe(newUser => {
-            this.router.navigateByUrl('login')
+        if (res.username) {
+          this.snackBarService.erro("Nome de usuário já cadastrado!");
+        } else if (res.email) {
+          this.snackBarService.erro("Endereço de e-mail já cadastrado!")
+        } else {
+          this.userService.create(
+            this.userForm.value,
+            this.emailForm.value,
+            this.passForm.value)
+            .subscribe(newUser => {
+              this.router.navigateByUrl('login').then(res => {
+                this.snackBarService.sucesso("Cadastro realizado com sucesso!")
+              })
         })
-      } else {
-         console.log("BAD USERNAME/EMAIL");
+        }
       }
     })
   }

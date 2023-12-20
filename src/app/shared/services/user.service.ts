@@ -3,6 +3,7 @@ import {User, Tag} from '../models';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError, map} from "rxjs";
 import { catchError } from "rxjs/operators";
+import {UserValidateReturnDTO} from "../dtos/uservalidatereturndto";
 
 @Injectable({
   providedIn: 'root'
@@ -73,14 +74,10 @@ export class UserService {
 
   validate(username: string, email: string) {
     const url_resource: string = `${this._url}/${this._resource}/validate`;
-    return this.httpClient.post<boolean>(
+    const user: UserValidateReturnDTO = new UserValidateReturnDTO(username, email);
+    return this.httpClient.post<UserValidateReturnDTO>(
       url_resource,
-      JSON.stringify(
-        {
-          username: username,
-          email: email
-        }
-      ),
+      JSON.stringify(user),
       this.httpOptions
     );
   }
