@@ -39,7 +39,7 @@ export class UserSigninComponent implements OnInit {
       if (ref) {
         this.userService.validatePassword(ref.username, this.passForm.value).subscribe(res => {
           if (res) {
-            localStorage.setItem("userid", ref.id.toString());
+            localStorage.setItem("currentUser", ref.id.toString());
             this.router.navigate(['/home']).then(res => {
               this.snackBarService.sucesso("Login realizado com sucesso!");
             })

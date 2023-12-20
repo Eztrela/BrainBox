@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from "@angular/material/card";
 import { NgForOf } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
+import { AuthGuard } from "./shared/services/auth.guard";
 import { HomeComponent } from "./layouts/home/home.component";
 import { MemoryboxPageComponent } from "./layouts/memorybox-page/memorybox-page.component";
 import {UserSigninComponent} from "./layouts/login/user-signin/user-signin.component";
@@ -26,11 +27,13 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'memorybox/:id',
-    component: MemoryboxPageComponent
+    component: MemoryboxPageComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
