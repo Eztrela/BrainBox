@@ -8,6 +8,7 @@ import { HomeComponent } from "./layouts/home/home.component";
 import { MemoryboxPageComponent } from "./layouts/memorybox-page/memorybox-page.component";
 import {UserSigninComponent} from "./layouts/login/user-signin/user-signin.component";
 import {UserSignupComponent} from "./layouts/login/user-signup/user-signup.component";
+import {LoginGuard} from "./shared/services/login.guard";
 
 const routes: Routes = [
   {
@@ -18,12 +19,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: UserSigninComponent,
-    title: 'Login'
+    title: 'Login',
+    canActivate: [LoginGuard]
   },
   {
     path: 'signup',
     component: UserSignupComponent,
-    title: 'Cadastre-se'
+    title: 'Cadastre-se',
+    canActivate: [LoginGuard]
   },
   {
     path: 'home',
