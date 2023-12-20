@@ -23,7 +23,7 @@ export class EditUserDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    const StrongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{6,12}$/;
+    const StrongPasswordRegx: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,24}$/;
     this.userForm = new FormControl(this.username, [
       Validators.minLength(3),
       Validators.maxLength(15),
