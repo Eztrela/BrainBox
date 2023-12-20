@@ -18,6 +18,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
 import { EditTagDialogComponent } from './sidenav/edit-tag-dialog/edit-tag-dialog.component';
+import {MatMenuModule} from "@angular/material/menu";
+import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.component';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { EditTagDialogComponent } from './sidenav/edit-tag-dialog/edit-tag-dialo
     SidenavComponent,
     SnackbarComponent,
     CreateTagDialogComponent,
-    EditTagDialogComponent
+    EditTagDialogComponent,
+    EditUserDialogComponent
   ],
     imports: [
         CommonModule,
@@ -45,6 +48,7 @@ import { EditTagDialogComponent } from './sidenav/edit-tag-dialog/edit-tag-dialo
         MatFormFieldModule,
         MatInputModule,
         MatDialogModule,
+        MatMenuModule,
     ],
   exports: [
     ToolbarComponent,

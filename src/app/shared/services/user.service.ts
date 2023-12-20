@@ -4,6 +4,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError, map} from "rxjs";
 import { catchError } from "rxjs/operators";
 import {UserValidateReturnDTO} from "../dtos/uservalidatereturndto";
+import {UserInsertDTO} from "../dtos/userinsertdto";
 
 @Injectable({
   providedIn: 'root'
@@ -56,11 +57,12 @@ export class UserService {
     );
   }
 
-  update(id:number, data:User): Observable<User> {
+  update(username:string, email:string, password:string, id:number): Observable<User> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    const userUpdateDTO: UserInsertDTO =  new UserInsertDTO(username, email, password);
     return this.httpClient.put<User>(
       url_resource,
-      JSON.stringify(data),
+      JSON.stringify(userUpdateDTO),
       this.httpOptions
     );
   }
