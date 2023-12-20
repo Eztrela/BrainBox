@@ -14,7 +14,10 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
-          <input matInput formControlName="password" required />
+          <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" required />
+          <button mat-icon-button color="accent" matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-error *ngIf="passForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
         <a href="signup">Não possui conta? cadastre-se aqui.</a>

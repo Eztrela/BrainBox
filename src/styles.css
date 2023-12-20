@@ -427,3 +427,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding: 1rem 1rem 1rem 1rem;
   }
 }
+
+
+.mat-mdc-snack-bar-container {
+  font-family: "Titillium Web", sans-serif;
+  --mat-mdc-snack-bar-button-color: azure;
+  --mdc-snackbar-supporting-text-color: azure;
+
+  .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    color: white!important;
+  }
+
+  &.success {
+    --mdc-snackbar-container-color: mediumseagreen;
+  }
+  &.error {
+    --mdc-snackbar-container-color: #a83e32;
+  }
+  &.info {
+    --mdc-snackbar-container-color: #30343F;
+  }
+  &.warning {
+    --mdc-snackbar-container-color: #30343F;
+  }
+}

@@ -5,6 +5,7 @@ import {CreateDialogComponent} from "./create-dialog/create-dialog.component";
 import {SnackbarComponent} from "../../components/snackbar/snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
+import {SnackbarService} from "../../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-memorybox-listing',
@@ -16,7 +17,7 @@ export class MemoryboxListingComponent implements OnInit {
   @Input() memoryboxes: Array<MemoryBox> = new Array<MemoryBox>();
   @Output() newItemEvent = new EventEmitter<MemoryBox>();
 
-  constructor(private dialog: MatDialog, private _snackbar: MatSnackBar, private memoryboxService:MemoryboxFirestoreService) {}
+  constructor(private dialog: MatDialog, private snackBarService: SnackbarService, private memoryboxService:MemoryboxFirestoreService) {}
 
   ngOnInit(): void {}
 
@@ -35,13 +36,7 @@ export class MemoryboxListingComponent implements OnInit {
           let memorybox = new MemoryBox( "0",res.banner, {title: res.title, user: 1})
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
             // this.addNewItem(obj);
-            this._snackbar.openFromComponent(SnackbarComponent, {
-              data: {
-                message: `Memory Box "${obj.title}" criada com êxito!`,
-              },
-              panelClass: ['mat-primary'],
-              duration: 3000
-            })
+            this.snackBarService.sucesso(`Memorybox ${obj.title} inserida com êxito!`)
           });
       }
     });

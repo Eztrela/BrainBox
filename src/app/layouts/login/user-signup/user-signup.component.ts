@@ -10,6 +10,7 @@ import {User} from "../../../shared/models";
   styleUrls: ['./user-signup.component.css']
 })
 export class UserSignupComponent implements OnInit{
+  hide = true;
   userSignup!: FormGroup;
   userForm = new FormControl;
   emailForm = new FormControl();
@@ -21,7 +22,8 @@ export class UserSignupComponent implements OnInit{
   ngOnInit() {
     const StrongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{6,12}$/;
     this.userForm = new FormControl("", [
-      Validators.min(3),
+      Validators.minLength(3),
+      Validators.maxLength(15),
       Validators.required
     ])
     this.emailForm = new FormControl("", [
@@ -29,7 +31,7 @@ export class UserSignupComponent implements OnInit{
       Validators.required
     ])
     this.passForm = new FormControl("", [
-      //Validators.pattern(StrongPasswordRegx),
+      Validators.pattern(StrongPasswordRegx),
       Validators.required
     ])
     this.userSignup = new FormGroup({
@@ -42,10 +44,11 @@ export class UserSignupComponent implements OnInit{
   getUserErrorMessage() {
     if (this.userForm.hasError('required')) {
       return 'Usuário é obrigatório!'
-    } else if (this.userForm.hasError('min')) {
-      return 'Usuário tem que ter no mínimo 3 carácteres!';
+    } else if (this.userForm.hasError('minlength')) {
+      return 'Mínimo de 3 carácteres!';
+    } else if (this.userForm.hasError('maxlength')) {
+      return 'Máximo de 15 carácteres!';
     } else {return ''}
-
   }
 
   getEmailErrorMessage() {

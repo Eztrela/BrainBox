@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {RouterLink} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -14,13 +15,14 @@ import {MatButtonModule} from "@angular/material/button";
     UserSignupComponent,
     UserSigninComponent
   ],
-  imports: [
-    CommonModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    MatInputModule,
-    RouterLink,
-    MatButtonModule,
-  ]
+    imports: [
+        CommonModule,
+        NgOptimizedImage,
+        ReactiveFormsModule,
+        MatInputModule,
+        RouterLink,
+        MatButtonModule,
+        MatIconModule,
+    ]
 })
 export class LoginModule { }

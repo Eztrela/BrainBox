@@ -14,14 +14,18 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>E-mail</mat-label>
-          <input matInput formControlName="email" required />
+          <input type="email" matInput formControlName="email" required />
           <mat-error *ngIf="emailForm.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
-          <input matInput formControlName="password" required />
+          <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" required />
+          <button mat-icon-button color="accent" matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-error *ngIf="passForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
+        <a href="login">Voltar a página de login</a>
         <button mat-flat-button color="primary" class="signup-button" [disabled]="userSignup.invalid" (click)="onSubmitUser()">Cadastrar</button>
       </div>
     </div>

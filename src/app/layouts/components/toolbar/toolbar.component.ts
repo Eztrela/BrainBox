@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SnackbarComponent} from "../snackbar/snackbar.component";
 import {MemoryboxFirestoreService} from "../../../shared/services/memorybox-firestore.service";
+import {SnackbarService} from "../../../shared/services/snackbar.service";
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
@@ -18,7 +19,7 @@ export class ToolbarComponent implements OnInit {
   public firstoption: string = "Memory Boxes";
   public CSSClasses: string | string[] = 'search-autocomplete';
 
-  constructor(private memoryBoxService: MemoryboxFirestoreService, private router: Router, private _snackbar: MatSnackBar, private elementRef: ElementRef) {
+  constructor(private memoryBoxService: MemoryboxFirestoreService, private router: Router, private snackBarService: SnackbarService, private elementRef: ElementRef) {
   }
 
   ngOnInit() {
@@ -42,14 +43,8 @@ export class ToolbarComponent implements OnInit {
     let res = this.memoryBoxes.find((memoryBox) => {
       return memoryBox.title === title
     })
-    if (res) this.router.navigateByUrl(`/memorybox/${res.id}`)
-    else this._snackbar.openFromComponent(SnackbarComponent, {
-      data: {
-        message: `Memory Box ou Task ${title} não encontrada!`,
-      },
-      panelClass: ['mat-warn'],
-      duration: 3000
-    })
+    if (res) this.router.navigateByUrl(`/memorybox/${res.id}`);
+    else this.snackBarService.alerta(`Memory box ${title} não encontrada!`);
   }
 
 
