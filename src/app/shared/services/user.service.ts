@@ -3,13 +3,15 @@ import {User, Tag} from '../models';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError, map} from "rxjs";
 import { catchError } from "rxjs/operators";
+import {UserValidateReturnDTO} from "../dtos/uservalidatereturndto";
+import {UserInsertDTO} from "../dtos/userinsertdto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private _url = `http://localhost:3000`;
+  private _url = `http://localhost:8080`;
   private _resource: string = "users";
 
   httpOptions = {
@@ -19,32 +21,30 @@ export class UserService {
   }
   constructor(private httpClient: HttpClient) {}
 
-  generateID(): Observable<number> {
-    return this.getAll().pipe(
-      map((res: User[]) => {
-        if (res && res.length > 0) {
-          const maxId = Math.max(...res.map(user => {
-            return user.id ? user.id : 0
-          }));
-          return maxId + 1;
-        } else {
-          return 1;
-        }
-      })
-    );
-  }
-
-  create(user:User): Observable<User> {
+  create(username: string, email: string, password:string): Observable<User> {
     const url_resource: string = `${this._url}/${this._resource}`;
     return this.httpClient.post<User>(
       url_resource,
-      JSON.stringify(user),
+      JSON.stringify(
+        {
+          username: username,
+          email: email,
+          password: password
+        }
+      ),
       this.httpOptions
     );
   }
 
   getById(id:number): Observable<User> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    return this.httpClient.get<User>(
+      url_resource
+    );
+  }
+
+  getByEmail(email:string): Observable<User> {
+    const url_resource: string = `${this._url}/${this._resource}/email/${email}`;
     return this.httpClient.get<User>(
       url_resource
     );
@@ -57,11 +57,12 @@ export class UserService {
     );
   }
 
-  update(id:number, data:User): Observable<User> {
+  update(username:string, email:string, password:string, id:number): Observable<User> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
+    const userUpdateDTO: UserInsertDTO =  new UserInsertDTO(username, email, password);
     return this.httpClient.put<User>(
       url_resource,
-      JSON.stringify(data),
+      JSON.stringify(userUpdateDTO),
       this.httpOptions
     );
   }
@@ -73,4 +74,27 @@ export class UserService {
     );
   }
 
+  validate(username: string, email: string) {
+    const url_resource: string = `${this._url}/${this._resource}/validate`;
+    const user: UserValidateReturnDTO = new UserValidateReturnDTO(username, email);
+    return this.httpClient.post<UserValidateReturnDTO>(
+      url_resource,
+      JSON.stringify(user),
+      this.httpOptions
+    );
+  }
+
+  validatePassword(username: string, password: string) {
+    const url_resource: string = `${this._url}/${this._resource}/auth`;
+    return this.httpClient.post<boolean>(
+      url_resource,
+      JSON.stringify(
+        {
+          username: username,
+          password: password
+        }
+      ),
+      this.httpOptions
+    );
+  }
 }
