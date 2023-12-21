@@ -6,7 +6,8 @@ import {MemoryBox} from "../../../shared/models";
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-  @Input() memoryBoxes:Array<MemoryBox> = new Array<MemoryBox>();
+  @Input() userId!: number;
+  @Input() memoryBoxes!:Array<MemoryBox>;
   constructor() {}
   ngOnInit() {}
 }

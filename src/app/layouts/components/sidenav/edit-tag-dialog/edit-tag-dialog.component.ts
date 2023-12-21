@@ -9,7 +9,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./edit-tag-dialog.component.css']
 })
 export class EditTagDialogComponent {
-  tag: Tag;;
+  tag: Tag;
 
   public titleForm = new FormControl();
   public colorForm = new FormControl();

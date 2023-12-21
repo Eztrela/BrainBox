@@ -1,4 +1,4 @@
-<app-sidenav>
+<app-sidenav [userId]="userId">
   <span slot="list" *ngIf="memorybox">
     <mat-nav-list class="tags-list">
       <div mat-subheader class="tags-header">
@@ -95,10 +95,15 @@
       </div>
     </div>
     <ng-container>
-      <app-task-listing [memorybox]="memorybox"></app-task-listing>
+      <app-task-listing
+        [id]="id"
+        [userId]="userId"
+        [memorybox]="memorybox"></app-task-listing>
     </ng-container>
     <ng-container>
-      <app-note-listing [memorybox]="memorybox"></app-note-listing>
+      <app-note-listing
+        [id]="id"
+        [memorybox]="memorybox"></app-note-listing>
     </ng-container>
   </span>
 </app-sidenav>

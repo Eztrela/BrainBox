@@ -8,21 +8,26 @@
     </button>
     <input class="search-input"
            type="text"
-           placeholder="Pesquise por suas Memory Boxes ou tarefas aqui!"
+           placeholder="Pesquise por suas Memory Boxes aqui!"
            [formControl]="pesquisaControl"
            [matAutocomplete]="auto">
   </form>
   <div>
-    <button mat-icon-button>
-      <mat-icon>
-        notifications_none
-      </mat-icon>
-    </button>
-    <button mat-icon-button>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>
         person_outline
       </mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <button id="edit" mat-menu-item (click)="openEditDialog()">
+        <mat-icon>build</mat-icon>
+        <span>Alterar dados</span>
+      </button>
+      <button id="logout" mat-menu-item (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+        <span>Sair</span>
+      </button>
+    </mat-menu>
   </div>
 
 </mat-toolbar>

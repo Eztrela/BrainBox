@@ -3,28 +3,43 @@ import {MemoryBox} from "../../../shared/models";
 import {FormControl} from "@angular/forms";
 import {map, Observable, startWith} from "rxjs";
 import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {SnackbarComponent} from "../snackbar/snackbar.component";
+import {MemoryboxService} from "../../../shared/services/memorybox.service";
+import {SnackbarService} from "../../../shared/services/snackbar.service";
+import {MatDialog} from "@angular/material/dialog";
+import {UserService} from "../../../shared/services/user.service";
+import {UserInsertDTO} from "../../../shared/dtos/userinsertdto";
+import {EditUserDialogComponent} from "../edit-user-dialog/edit-user-dialog.component";
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  @Input() memoryBoxes: Array<MemoryBox> = new Array<MemoryBox>();
+  @Input() userId!: number;
+  public memoryBoxes!: Array<MemoryBox>;
   public filteredMemoryBoxes: Observable<MemoryBox[]> = new Observable<MemoryBox[]>();
   public pesquisaControl = new FormControl('');
   public firstoption: string = "Memory Boxes";
   public CSSClasses: string | string[] = 'search-autocomplete';
 
-  constructor(private router: Router, private _snackbar: MatSnackBar, private elementRef: ElementRef) {
+  constructor(
+    private userService: UserService,
+    private memoryBoxService: MemoryboxService,
+    private router: Router,
+    private snackBarService: SnackbarService,
+    private elementRef: ElementRef,
+    private dialog:MatDialog
+  ) {
   }
 
   ngOnInit() {
-    this.filteredMemoryBoxes = this.pesquisaControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+    this.memoryBoxService.getAll(this.userId).subscribe((getAllRes) => {
+      this.memoryBoxes = getAllRes;
+      this.filteredMemoryBoxes = this.pesquisaControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value || '')),
+      );
+    })
   }
 
   onOpened() {
@@ -38,14 +53,8 @@ export class ToolbarComponent implements OnInit {
     let res = this.memoryBoxes.find((memoryBox) => {
       return memoryBox.title === title
     })
-    if (res) this.router.navigateByUrl(`/memorybox/${res.id}`)
-    else this._snackbar.openFromComponent(SnackbarComponent, {
-      data: {
-        message: `Memory Box ou Task ${title} não encontrada!`,
-      },
-      panelClass: ['mat-warn'],
-      duration: 3000
-    })
+    if (res) this.router.navigateByUrl(`/memorybox/${res.id}`);
+    else this.snackBarService.alerta(`Memory box ${title} não encontrada!`);
   }
 
 
@@ -58,4 +67,30 @@ export class ToolbarComponent implements OnInit {
     });
   }
 
+  onLogout() {
+    localStorage.removeItem('currentUser');
+    this.router.navigateByUrl('/login').then(res => {
+        this.snackBarService.info("Logout efetuado com sucesso")
+      }
+    )
+  }
+
+  openEditDialog() {
+      this.userService.getById(this.userId).subscribe( userInfo => {
+        if (userInfo) {
+          const dialogRef = this.dialog.open(EditUserDialogComponent, {
+            data: {username: userInfo.username, email: userInfo.email},
+            panelClass: 'user-dialog-container'
+          });
+
+          dialogRef.afterClosed().subscribe((data) => {
+            if (data) {
+              this.userService.update(data.username, data.email, data.password, this.userId).subscribe(res => {
+                this.snackBarService.sucesso("Dados atualizados com sucesso!");
+              });
+            }
+          });
+        }
+      })
+  }
 }

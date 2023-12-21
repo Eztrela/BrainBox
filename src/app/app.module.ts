@@ -9,6 +9,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
+import { InterceptorModule } from "./shared/interceptor/interceptor.module";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    InterceptorModule,
     LayoutsModule,
     MatDialogModule,
     MatSnackBarModule,

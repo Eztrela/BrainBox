@@ -2,9 +2,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MemoryBox} from "../../../shared/models";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateDialogComponent} from "./create-dialog/create-dialog.component";
-import {MemoryboxService} from "../../../shared/services/memorybox.service";
 import {SnackbarComponent} from "../../components/snackbar/snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
+import {SnackbarService} from "../../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-memorybox-listing',
@@ -15,8 +16,9 @@ export class MemoryboxListingComponent implements OnInit {
 
   @Input() memoryboxes: Array<MemoryBox> = new Array<MemoryBox>();
   @Output() newItemEvent = new EventEmitter<MemoryBox>();
+  @Input() userId!: number;
 
-  constructor(private dialog: MatDialog, private _snackbar: MatSnackBar, private memoryboxService:MemoryboxService) {}
+  constructor(private dialog: MatDialog, private snackBarService: SnackbarService, private memoryboxService:MemoryboxService) {}
 
   ngOnInit(): void {}
 
@@ -32,19 +34,11 @@ export class MemoryboxListingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        this.memoryboxService.generateID().subscribe((id: number) => {
-          let memorybox = new MemoryBox(id, res.banner, {title: res.title})
+          let memorybox = {title: res.title, user: this.userId, banner: res.banner, userId: this.userId}
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
             this.addNewItem(obj);
-            this._snackbar.openFromComponent(SnackbarComponent, {
-              data: {
-                message: `Memory Box "${obj.title}" criada com êxito!`,
-              },
-              panelClass: ['mat-primary'],
-              duration: 3000
-            })
+            this.snackBarService.sucesso(`Memorybox ${obj.title} inserida com êxito!`)
           });
-        });
       }
     });
   }

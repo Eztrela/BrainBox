@@ -19,3 +19,561 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: 4px;
   background-color: #AEB0BF;
 }
+
+.memorybox-dialog-container {
+  & .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: transparent;
+    background-color: #30343F;
+    border-radius: 0.44rem;
+
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    width: 27rem;
+    height: 28rem;
+  }
+
+  & .memorybox-dialog-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .dialog-header {
+    color: azure;
+    text-align: center;
+  }
+
+  & .dialog-form {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  & .dialog-buttons {
+    align-self: center;
+    display: flex;
+    width: 52%;
+    justify-content: space-between;
+  }
+
+  & .cancel-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .confirm-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .title-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1E1E24;
+    transition-duration: 0.4s;
+  }
+
+  & .title-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  & .banner-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1E1E24;
+    transition-duration: 0.4s;
+  }
+
+  & .banner-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+}
+
+.task-dialog-container {
+  & .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: transparent;
+    background-color: #30343f;
+    border-radius: 0.44rem;
+
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    height: 47rem;
+    width: 27rem;
+  }
+
+  & .task-dialog-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+  }
+
+  & .dialog-header {
+    color: azure;
+    text-align: center;
+  }
+
+  & .dialog-form {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  & .dialog-buttons {
+    align-self: center;
+    display: flex;
+    width: 52%;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  & .cancel-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .confirm-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .title-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .description-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .status-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .priority-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .date-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .tags-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1e1e24;
+    transition-duration: 0.4s;
+  }
+
+  & .title-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 2rem 1rem;
+  }
+
+  & .description-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 2rem 1rem;
+  }
+}
+
+.note-dialog-container {
+  & .mat-mdc-dialog-container  {
+    --mdc-dialog-container-color: transparent;
+    background-color: #30343F;
+    border-radius: 0.44rem;
+
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    width: 27rem;
+  }
+
+  & .note-dialog-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+  }
+
+  & .dialog-header {
+    color: azure;
+    text-align: center;
+  }
+
+  & .dialog-form {
+    padding: 2rem 2rem 0 2rem;
+  }
+
+  & .dialog-buttons {
+    align-self: center;
+    display: flex;
+    width: 52%;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  & .cancel-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .confirm-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .content-input {
+    color: azure;
+    width: 90%;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1E1E24;
+    transition-duration: 0.4s;
+  }
+
+  & .content-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 2rem 1rem;
+  }
+}
+
+.tag-dialog-container {
+  & .mat-mdc-dialog-container  {
+    --mdc-dialog-container-color: transparent;
+    background-color: #30343F;
+    border-radius: 0.44rem;
+
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    width: 27rem;
+    height: 28rem;
+  }
+
+  & .tag-dialog-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .dialog-header {
+    color: azure;
+    text-align: center;
+  }
+
+  & .dialog-form {
+    padding: 2rem;
+    display:flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  & .dialog-buttons {
+    align-self: center;
+    display: flex;
+    width: 52%;
+    justify-content: space-between;
+  }
+
+  & .cancel-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .confirm-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .title-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1E1E24;
+    transition-duration: 0.4s;
+  }
+
+  & .title-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 2rem 1rem;
+  }
+
+  & .color-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1E1E24;
+    transition-duration: 0.4s;
+  }
+
+  & .color-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+}
+
+.user-dialog-container {
+  & .mat-mdc-dialog-container  {
+    --mdc-dialog-container-color: transparent;
+    background-color: #30343F;
+    border-radius: 0.44rem;
+
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    width: 27rem;
+    height: 35rem;
+  }
+
+  & .user-dialog-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .dialog-header {
+    color: azure;
+    text-align: center;
+  }
+
+  & .dialog-form {
+    padding: 2rem;
+    display:flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  & .dialog-buttons {
+    align-self: center;
+    display: flex;
+    width: 52%;
+    justify-content: space-between;
+  }
+
+  & .cancel-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .confirm-button {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.8rem;
+  }
+
+  & .username-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1E1E24;
+    transition-duration: 0.4s;
+  }
+
+  & .username-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  & .email-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1E1E24;
+    transition-duration: 0.4s;
+  }
+
+  & .email-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  & .password-input {
+    color: azure;
+    font-family: "Titillium Web", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.8rem;
+    background: #1E1E24;
+    transition-duration: 0.4s;
+  }
+
+  & .password-input.ng-touched.ng-invalid {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+}
+
+
+.mat-mdc-snack-bar-container {
+  font-family: "Titillium Web", sans-serif;
+  --mat-mdc-snack-bar-button-color: azure;
+  --mdc-snackbar-supporting-text-color: azure;
+
+  .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    color: white!important;
+  }
+
+  &.success {
+    --mdc-snackbar-container-color: mediumseagreen;
+  }
+  &.error {
+    --mdc-snackbar-container-color: #a83e32;
+  }
+  &.info {
+    --mdc-snackbar-container-color: #30343F;
+  }
+  &.warning {
+    --mdc-snackbar-container-color: #30343F;
+  }
+}
+
+.mat-mdc-menu-panel {
+  color: azure!important;
+  padding: 0.2rem!important;
+
+  margin-top: 0.5rem!important;
+
+  border-style: none!important;
+  border-radius: 0 0 1.2rem 1.2rem!important;
+
+  background: #1E1E24!important;
+
+  & .mat-mdc-menu-item-text {
+    font-family: "Titillium Web", sans-serif!important;
+  }
+}

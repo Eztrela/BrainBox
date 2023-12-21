@@ -35,7 +35,6 @@ export class CreateTaskDialogComponent {
   ]
 
   ngOnInit() {
-    console.log(this.tags)
     this.titleForm = new FormControl(this.task.title, [
       Validators.required,
       Validators.minLength(4)
@@ -44,16 +43,24 @@ export class CreateTaskDialogComponent {
       Validators.required,
       Validators.minLength(4)
     ])
-    this.statusForm = new FormControl(this.task.status)
-    this.priorityForm = new FormControl(this.task.priority)
-    this.tagsForm = new FormControl(this.tags)
-    this.dueDateForm = new FormControl(this.task.datetimeDue);
+    this.statusForm = new FormControl(this.task.status, [
+      Validators.required
+    ])
+    this.priorityForm = new FormControl(this.task.priority, [
+      Validators.required
+    ])
+    this.tagsForm = new FormControl(this.tags, [
+      Validators.required
+    ])
+    this.dueDateForm = new FormControl(new Date(), [
+      Validators.required
+    ]);
     this.taskForm = new FormGroup({
       title: this.titleForm,
       description: this.descriptionForm,
       status: this.statusForm,
       priority: this.priorityForm,
-      tags: this.tagsForm,
+      tag: this.tagsForm,
       datetimeDue: this.dueDateForm
     })
   }

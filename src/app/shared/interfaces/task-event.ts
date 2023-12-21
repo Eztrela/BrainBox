@@ -2,6 +2,6 @@ import {Task} from "../models";
 
 export interface TaskEvent {
   task: Task;
-  idBox: number;
+  idBox: string;
   color: string;
 }

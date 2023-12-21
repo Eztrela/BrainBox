@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MemoryBox} from "../../shared/models";
-import {MemoryboxService} from "../../shared/services/memorybox.service";
+import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
 
   memoryboxes:Array<MemoryBox> = new Array<MemoryBox>();
   isMemoryBoxesCollapsed: boolean = true;
+  protected userId!: number;
   constructor(private memoryBoxService: MemoryboxService) {
   }
 
@@ -21,8 +22,13 @@ export class HomeComponent implements OnInit {
     this.isMemoryBoxesCollapsed = !this.isMemoryBoxesCollapsed;
   }
   ngOnInit() {
-    this.memoryBoxService.getAll().subscribe((arrayMemoryBoxes:Array<MemoryBox>) => {
-      this.memoryboxes = arrayMemoryBoxes;
-    });
+    const currentUser = localStorage.getItem("currentUser")
+    if(currentUser){
+      this.userId = parseInt(currentUser)
+      this.memoryBoxService.getAll(this.userId).subscribe((getAllRes) => {
+        this.memoryboxes = getAllRes;
+      });
+    }
+
   }
 }

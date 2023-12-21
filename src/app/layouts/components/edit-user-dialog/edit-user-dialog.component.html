@@ -1,0 +1,39 @@
+<div class="user-dialog-container">
+
+  <div class="dialog-header">
+    <p>Edite suas informações pessoais</p>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="dialog-form" [formGroup]="userEdit">
+    <mat-form-field appearance="outline" class="username-input">
+      <mat-label>Usuário</mat-label>
+      <input matInput formControlName="username" required>
+      <mat-error *ngIf="userForm.invalid">{{getUserErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="email-input">
+      <mat-label>E-mail</mat-label>
+      <input type="email" matInput formControlName="email" required>
+      <mat-error *ngIf="emailForm.invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="password-input">
+      <mat-label>Senha</mat-label>
+      <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" required />
+      <button mat-icon-button color="accent" matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="passForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-buttons">
+    <button class="cancel-button" mat-stroked-button color="warn" (click)="onNoClick()">Cancelar</button>
+    <button class="confirm-button" mat-raised-button color="primary"
+            [mat-dialog-close]="userEdit.value"
+            [disabled]="userEdit.invalid">Atualizar</button>
+  </div>
+
+</div>

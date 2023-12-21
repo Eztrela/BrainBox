@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Tag } from "../models";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import {TagInsertDTO} from "../dtos/taginsertdto";
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Observable } from "rxjs";
 export class TagService {
   /* Class for handling tag CRUD logic */
 
-  private _url = `http://localhost:3000`;
+  private _url = `http://localhost:4000`;
   private _resource: string = "tags";
 
   httpOptions = {
@@ -21,7 +22,7 @@ export class TagService {
 
   constructor(private httpClient: HttpClient) {}
 
-  create(data:Tag): Observable<Tag> {
+  create(data: any): Observable<Tag> {
     const url_resource: string = `${this._url}/${this._resource}`;
     return this.httpClient.post<Tag>(
       url_resource,
@@ -44,7 +45,7 @@ export class TagService {
     );
   }
 
-  update(id:number, data:Tag): Observable<Tag> {
+  update(id:number, data:TagInsertDTO): Observable<Tag> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
     return this.httpClient.put<Tag>(
       url_resource,
@@ -53,9 +54,9 @@ export class TagService {
     );
   }
 
-  delete(id:number): Observable<Tag> {
+  delete(id:number): Observable<void> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
-    return this.httpClient.delete<Tag>(
+    return this.httpClient.delete<void>(
       url_resource
     );
   }

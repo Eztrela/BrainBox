@@ -1,4 +1,4 @@
-<div class="dialog-container">
+<div class="task-dialog-container">
   <div class="dialog-header">
     <p>Insira o título da nova Task</p>
   </div>
@@ -55,8 +55,8 @@
     </mat-form-field>
     <mat-form-field appearance="outline" class="tags-input">
       <mat-label>Tag</mat-label>
-      <mat-select formControlName="tags">
-        <mat-option *ngFor="let tag of tags" [value]="[tag.id]">
+      <mat-select formControlName="tag">
+        <mat-option *ngFor="let tag of tags" [value]="[tag]">
           {{ tag.title }}
         </mat-option>
       </mat-select>
