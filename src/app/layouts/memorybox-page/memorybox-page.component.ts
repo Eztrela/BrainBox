@@ -9,7 +9,6 @@ import { EditTagDialogComponent } from '../components/sidenav/edit-tag-dialog/ed
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import {TagService} from "../../shared/services/tag.service";
 import {SnackbarService} from "../../shared/services/snackbar.service";
-import {user} from "@angular/fire/auth";
 import {TaskService} from "../../shared/services/task.service";
 
 
@@ -59,7 +58,7 @@ export class MemoryboxPageComponent implements OnInit {
       this.memoryBoxService.delete(this.id).subscribe((deleteRes) => {
         this.router.navigate(['/home']).then(
           navigateRes => {
-            this.snackBarService.info(`Memorybox ${this.memorybox.title} excluída com sucesso!`);
+            this.snackBarService.info(`Memorybox ${this.memorybox.title} excluída com sucesso`);
           }
         );
       })
@@ -71,6 +70,7 @@ export class MemoryboxPageComponent implements OnInit {
       this.memorybox.title = this.titleForm.value;
       this.memoryBoxService.update(this.id, this.memorybox).subscribe((res)=> {
         this.toggleEditMemoryBox();
+        this.snackBarService.info(`Memorybox ${this.memorybox.title} alterada com sucesso`);
       })
     }
   }
@@ -90,19 +90,44 @@ export class MemoryboxPageComponent implements OnInit {
 
   deleteTag(tagARemover: ITag) {
 
-    const idx = this.memorybox.tags.findIndex((tag)=>{
-      return tag.id === tagARemover.id;
-    })
-    this.memorybox.tags.splice(idx, 1);
-    this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
-      this.taskService.getAll().subscribe(getAllRef => {
-        getAllRef.forEach((task) => {
-          this.taskService.delete(task.id).subscribe()
+    this.taskService.getAllByTagId(tagARemover.id).subscribe(getAllRes => {
+      if (getAllRes.length > 0) {
+      getAllRes.forEach((taskARemover) => {
+        const taskIdx = this.memorybox.tasks.findIndex((task) => {
+          return task.id === taskARemover.id;
         })
-        this.tagService.delete(tagARemover.id).subscribe()
-      })
-    })
+        this.memorybox.tasks.splice(taskIdx,1);
+        this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
+          this.taskService.delete(taskARemover.id).subscribe()
 
+          const tagIdx = this.memorybox.tags.findIndex((tag)=>{
+            return tag.id === tagARemover.id;
+          })
+          this.memorybox.tags.splice(tagIdx, 1);
+          this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
+              this.memorybox = updateRes;
+              this.tagService.delete(tagARemover.id).subscribe(delRes => {
+                window.location.reload();
+                this.snackBarService.info(`Tag ${tagARemover.title} removida com sucesso`);
+              });
+            }
+          )
+        })
+      })
+      } else {
+        const tagIdx = this.memorybox.tags.findIndex((tag)=>{
+          return tag.id === tagARemover.id;
+        })
+        this.memorybox.tags.splice(tagIdx, 1);
+        this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
+            this.tagService.delete(tagARemover.id).subscribe(delRes => {
+              window.location.reload();
+              this.snackBarService.info(`Tag ${tagARemover.title} removida com sucesso`);
+            });
+          }
+        )
+      }
+      })
   }
 
   openAddTagDialog() {
@@ -115,9 +140,12 @@ export class MemoryboxPageComponent implements OnInit {
         if (data) {
           if (this.memorybox) {
             let tag = {title: data.title, color : data.color};
-            this.tagService.create(data).subscribe(res => {
-              this.memorybox.tags.push(res);
-              this.memoryBoxService.update(this.id, this.memorybox).subscribe();
+            this.tagService.create(data).subscribe(createRes => {
+              this.memorybox.tags.push(createRes);
+              this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
+                this.memorybox = updateRes;
+                this.snackBarService.sucesso(`Tag ${createRes.title} criada com sucesso`);
+              });
             })
           }
         }
@@ -137,12 +165,13 @@ export class MemoryboxPageComponent implements OnInit {
           if (this.memorybox) {
             this.tagService.update(tagAEditar.id, data).subscribe(updateRes => {
               this.memorybox.tags[idx] = updateRes;
-              this.memoryBoxService.update(this.id, this.memorybox).subscribe();
+              this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateBoxRes => {
+                this.memorybox = updateBoxRes;
+                this.snackBarService.info(`Tag ${updateRes.title} alterada com sucesso`);
+              });
             })
           }
         }
       });
   }
-
-  protected readonly user = user;
 }

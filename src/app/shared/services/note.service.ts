@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
 export class NoteService {
 
 
-  private _url = `http://localhost:8080`;
+  private _url = `http://localhost:4000`;
   private _resource: string = "notes";
 
   httpOptions = {

@@ -12,7 +12,7 @@ import {TaskEvent} from "../interfaces/task-event";
 export class MemoryboxService {
 
 
-  private _url = `http://localhost:8080`;
+  private _url = `http://localhost:4000`;
   private _resource: string = "memoryboxes";
 
   httpOptions = {
@@ -40,11 +40,12 @@ export class MemoryboxService {
     );
   }
 
-  getAll( id: number): Observable<MemoryBox[]> {
+  getAll(id: number): Observable<MemoryBox[]> {
     const url_resource: string = `${this._url}/${this._resource}/user`;
+    const data = { id: id }
     return this.httpClient.post<MemoryBox[]>(
       url_resource,
-      JSON.stringify({id:id}),
+      JSON.stringify(data),
       this.httpOptions
     );
   }
