@@ -5,7 +5,7 @@ import { ITask } from 'src/app/shared/interfaces/itask';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
 import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
-import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
+import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { DatePipe} from "@angular/common";
 
 @Component({
@@ -19,7 +19,7 @@ export class TaskListingComponent implements OnInit{
   @Input() memorybox!: MemoryBox;
   public datasource: MatTableDataSource<Task> = new MatTableDataSource<Task>();
   @Output() newItemEvent = new EventEmitter<Task>();
-  constructor(private dialog:MatDialog, private memoryBoxService: MemoryboxFirestoreService, private datePipe: DatePipe){
+  constructor(private dialog:MatDialog, private memoryBoxService: MemoryboxService, private datePipe: DatePipe){
   }
 
   ngOnInit(): void {

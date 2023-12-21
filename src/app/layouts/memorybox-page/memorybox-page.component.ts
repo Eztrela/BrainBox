@@ -6,7 +6,7 @@ import {CreateTagDialogComponent} from "../components/sidenav/create-tag-dialog/
 import { MatDialog } from '@angular/material/dialog';
 import { ITag } from 'src/app/shared/interfaces/itag';
 import { EditTagDialogComponent } from '../components/sidenav/edit-tag-dialog/edit-tag-dialog.component';
-import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
+import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class MemoryboxPageComponent implements OnInit {
   public isTagsCollapsed: boolean = false;
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private memoryBoxService: MemoryboxFirestoreService,
+              private memoryBoxService: MemoryboxService,
               private dialog:MatDialog) { }
 
   ngOnInit() {

@@ -3,7 +3,7 @@ import {Note, Tag, Task} from "../models";
 export class MemoryBox {
   /* Model class for Task */
 
-  public id?: string;
+  public id: string;
   public user: number;
   public title: string;
   public datetimeCreated: Date;

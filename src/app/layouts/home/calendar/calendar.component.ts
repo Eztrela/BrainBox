@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {Component, ChangeDetectionStrategy, OnInit, Input} from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
 import {ITask} from "../../../shared/interfaces/itask";
 import {TaskEvent} from "../../../shared/interfaces/task-event";
 import {Router} from "@angular/router";
-import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
+import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import {DatePipe} from "@angular/common";
 
 
@@ -46,15 +46,16 @@ export class CalendarComponent implements OnInit {
   events$!: Observable<CalendarEvent<{ taskEvent: TaskEvent }>[]>;
 
   activeDayIsOpen: boolean = false;
+  @Input() userId!: number;
 
-  constructor(private memoryboxService: MemoryboxFirestoreService, private router:Router, private datePipe: DatePipe) {}
+  constructor(private memoryboxService: MemoryboxService, private router:Router, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.fetchEvents();
   }
   fetchEvents(): void {
 
-    this.events$ = this.memoryboxService.getAllTasksWithColor().pipe(
+    this.events$ = this.memoryboxService.getAllTasksWithColor(this.userId).pipe(
       map((taskEvents: TaskEvent[]) =>
         taskEvents.map((event: TaskEvent) => ({
           title: event.task.title,

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MemoryBox, Note } from 'src/app/shared/models';
 import { CreateNoteDialogComponent } from './create-note-dialog/create-note-dialog.component';
-import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-firestore.service';
+import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 
 @Component({
   selector: 'app-note-listing',
@@ -10,7 +10,7 @@ import { MemoryboxFirestoreService } from 'src/app/shared/services/memorybox-fir
   styleUrls: ['./note-listing.component.css'],
 })
 export class NoteListingComponent implements OnInit{
-  constructor(private dialog:MatDialog, private memoryBoxService: MemoryboxFirestoreService){
+  constructor(private dialog:MatDialog, private memoryBoxService: MemoryboxService){
   }
   @Input() id!: string;
   @Input() memorybox!: MemoryBox;

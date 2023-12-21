@@ -3,7 +3,7 @@ import {MemoryBox} from "../../../shared/models";
 import {FormControl} from "@angular/forms";
 import {map, Observable, startWith} from "rxjs";
 import {Router} from "@angular/router";
-import {MemoryboxFirestoreService} from "../../../shared/services/memorybox-firestore.service";
+import {MemoryboxService} from "../../../shared/services/memorybox.service";
 import {SnackbarService} from "../../../shared/services/snackbar.service";
 import {MatDialog} from "@angular/material/dialog";
 import {UserService} from "../../../shared/services/user.service";
@@ -23,7 +23,7 @@ export class ToolbarComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private memoryBoxService: MemoryboxFirestoreService,
+    private memoryBoxService: MemoryboxService,
     private router: Router,
     private snackBarService: SnackbarService,
     private elementRef: ElementRef,
