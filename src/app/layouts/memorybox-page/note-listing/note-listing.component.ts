@@ -33,7 +33,8 @@ export class NoteListingComponent implements OnInit{
           let note = {content:content}
           this.noteService.create(note).subscribe(createRes => {
             this.memorybox.notes.push(createRes)
-            this.memoryBoxService.update(this.id, this.memorybox).subscribe(res => {
+            this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
+              this.memorybox = updateRes;
               this.notes = this.memorybox.notes;
             });
           })

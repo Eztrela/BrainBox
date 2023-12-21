@@ -9,7 +9,6 @@ import { EditTagDialogComponent } from '../components/sidenav/edit-tag-dialog/ed
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import {TagService} from "../../shared/services/tag.service";
 import {SnackbarService} from "../../shared/services/snackbar.service";
-import {user} from "@angular/fire/auth";
 import {TaskService} from "../../shared/services/task.service";
 
 
@@ -95,13 +94,10 @@ export class MemoryboxPageComponent implements OnInit {
     })
     this.memorybox.tags.splice(idx, 1);
     this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
-      this.taskService.getAll().subscribe(getAllRef => {
-        getAllRef.forEach((task) => {
-          this.taskService.delete(task.id).subscribe()
-        })
-        this.tagService.delete(tagARemover.id).subscribe()
-      })
-    })
+        this.memorybox = updateRes;
+        this.tagService.delete(tagARemover.id).subscribe();
+      }
+    )
 
   }
 
@@ -115,8 +111,8 @@ export class MemoryboxPageComponent implements OnInit {
         if (data) {
           if (this.memorybox) {
             let tag = {title: data.title, color : data.color};
-            this.tagService.create(data).subscribe(res => {
-              this.memorybox.tags.push(res);
+            this.tagService.create(data).subscribe(createRes => {
+              this.memorybox.tags.push(createRes);
               this.memoryBoxService.update(this.id, this.memorybox).subscribe();
             })
           }
@@ -143,6 +139,4 @@ export class MemoryboxPageComponent implements OnInit {
         }
       });
   }
-
-  protected readonly user = user;
 }

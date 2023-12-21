@@ -55,8 +55,10 @@ export class TaskListingComponent implements OnInit{
           }
           this.taskService.create(task).subscribe(createRes => {
             this.memorybox.tasks.push(createRes);
-            this.memoryBoxService.update(this.id, this.memorybox).subscribe(res => {
-              this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+            console.log(createRes);
+            this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
+              this.memorybox = updateRes;
+              this.datasource.data = [...this.memorybox.tasks];
             });
           })
         }
@@ -84,10 +86,11 @@ export class TaskListingComponent implements OnInit{
             tag: data.tag[0],
             datetimeDue: data.datetimeDue
           }
-          this.taskService.update(taskAEditar.id, task).subscribe(updateRes => {
-            this.memorybox.tasks[idx] = updateRes;
-            this.memoryBoxService.update(this.id, this.memorybox).subscribe(res => {
-              this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+          this.taskService.update(taskAEditar.id, task).subscribe(updateTaskRes => {
+            this.memorybox.tasks[idx] = updateTaskRes;
+            this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateBoxRes => {
+              this.memorybox = updateBoxRes;
+              this.datasource.data = [...this.memorybox.tasks];
             });
           })
         }
@@ -106,7 +109,8 @@ export class TaskListingComponent implements OnInit{
         this.memorybox.tasks.splice(idx, 1)[0];
         this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
           this.taskService.delete(taskARemover.id).subscribe(deleteRes => {
-            this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+            this.memorybox = updateRes;
+            this.datasource.data = [...this.memorybox.tasks];
           })
         })
 

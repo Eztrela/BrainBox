@@ -11,7 +11,7 @@ import {UserInsertDTO} from "../dtos/userinsertdto";
 })
 export class UserService {
 
-  private _url = `http://localhost:8080`;
+  private _url = `http://localhost:4000`;
   private _resource: string = "users";
 
   httpOptions = {

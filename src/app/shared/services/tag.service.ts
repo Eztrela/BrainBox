@@ -11,7 +11,7 @@ import {TagInsertDTO} from "../dtos/taginsertdto";
 export class TagService {
   /* Class for handling tag CRUD logic */
 
-  private _url = `http://localhost:8080`;
+  private _url = `http://localhost:4000`;
   private _resource: string = "tags";
 
   httpOptions = {
