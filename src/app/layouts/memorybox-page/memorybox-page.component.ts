@@ -9,6 +9,8 @@ import { EditTagDialogComponent } from '../components/sidenav/edit-tag-dialog/ed
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import {TagService} from "../../shared/services/tag.service";
 import {SnackbarService} from "../../shared/services/snackbar.service";
+import {user} from "@angular/fire/auth";
+import {TaskService} from "../../shared/services/task.service";
 
 
 @Component({
@@ -27,6 +29,7 @@ export class MemoryboxPageComponent implements OnInit {
               private route: ActivatedRoute,
               private memoryBoxService: MemoryboxService,
               private tagService: TagService,
+              private taskService: TaskService,
               private snackBarService: SnackbarService,
               private dialog:MatDialog) { }
 
@@ -86,9 +89,20 @@ export class MemoryboxPageComponent implements OnInit {
   }
 
   deleteTag(tagARemover: ITag) {
-    this.tagService.delete(tagARemover.id).subscribe(res => {
-      console.log(res);
+
+    const idx = this.memorybox.tags.findIndex((tag)=>{
+      return tag.id === tagARemover.id;
     })
+    this.memorybox.tags.splice(idx, 1);
+    this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
+      this.taskService.getAll().subscribe(getAllRef => {
+        getAllRef.forEach((task) => {
+          this.taskService.delete(task.id).subscribe()
+        })
+        this.tagService.delete(tagARemover.id).subscribe()
+      })
+    })
+
   }
 
   openAddTagDialog() {
@@ -129,4 +143,6 @@ export class MemoryboxPageComponent implements OnInit {
         }
       });
   }
+
+  protected readonly user = user;
 }

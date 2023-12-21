@@ -19,6 +19,7 @@ export class TaskListingComponent implements OnInit{
   @Input() id!:number;
   @Input() memorybox!: MemoryBox;
   public datasource: MatTableDataSource<Task> = new MatTableDataSource<Task>();
+  @Input() userId!: number;
   @Output() newItemEvent = new EventEmitter<Task>();
   constructor(private dialog:MatDialog,
               private memoryBoxService: MemoryboxService,
@@ -102,10 +103,13 @@ export class TaskListingComponent implements OnInit{
       })
 
       if (idx !== -1) {
-        this.taskService.delete(taskARemover.id).subscribe(deleteRes => {
-          this.memorybox.tasks.splice(idx, 1)[0];
-          this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+        this.memorybox.tasks.splice(idx, 1)[0];
+        this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
+          this.taskService.delete(taskARemover.id).subscribe(deleteRes => {
+            this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+          })
         })
+
       }
 
     }
