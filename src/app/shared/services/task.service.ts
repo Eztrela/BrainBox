@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Task } from '../models';
+import {MemoryBox, Task} from '../models';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 
@@ -57,6 +57,16 @@ export class TaskService {
     const url_resource: string = `${this._url}/${this._resource}`;
     return this.httpClient.get<Task[]>(
       url_resource
+    );
+  }
+
+  getAllByTagId(id: number) {
+    const url_resource: string = `${this._url}/${this._resource}/tag`;
+    const data = { id: id }
+    return this.httpClient.post<Task[]>(
+      url_resource,
+      JSON.stringify(data),
+      this.httpOptions
     );
   }
 }

@@ -4,6 +4,7 @@ import { MemoryBox, Note } from 'src/app/shared/models';
 import { CreateNoteDialogComponent } from './create-note-dialog/create-note-dialog.component';
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import {NoteService} from "../../../shared/services/note.service";
+import {SnackbarService} from "../../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-note-listing',
@@ -11,7 +12,7 @@ import {NoteService} from "../../../shared/services/note.service";
   styleUrls: ['./note-listing.component.css'],
 })
 export class NoteListingComponent implements OnInit{
-  constructor(private dialog:MatDialog, private memoryBoxService: MemoryboxService, private noteService: NoteService){}
+  constructor(private dialog:MatDialog, private memoryBoxService: MemoryboxService, private noteService: NoteService, private snackBarService: SnackbarService){}
   @Input() id!: number;
   @Input() memorybox!: MemoryBox;
   @Output() newItemEvent = new EventEmitter<Note>();
@@ -36,6 +37,7 @@ export class NoteListingComponent implements OnInit{
             this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
               this.memorybox = updateRes;
               this.notes = this.memorybox.notes;
+              this.snackBarService.sucesso(`Note inserida com sucesso`);
             });
           })
 
@@ -52,7 +54,8 @@ export class NoteListingComponent implements OnInit{
       this.memoryBoxService.update(this.id, this.memorybox).subscribe(
         res => {
           this.noteService.delete(noteARemover).subscribe(deleteRes => {
-            this.notes = this.memorybox.notes ? [...this.memorybox.notes] : [];
+            this.notes = [...this.memorybox.notes];
+            this.snackBarService.info(`Note removida com sucesso`);
           })
         })
     }
@@ -67,7 +70,8 @@ export class NoteListingComponent implements OnInit{
       this.memoryBoxService.update(this.id, this.memorybox).subscribe(
           res => {
             this.noteService.update(noteAEditar.id, noteAEditar).subscribe(editRes => {
-              this.notes = this.memorybox.notes ? [...this.memorybox.notes] : [];
+              this.notes = [...this.memorybox.notes];
+              this.snackBarService.info(`Note alterada com sucesso`);
             })
           })
     }

@@ -8,6 +8,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.com
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { DatePipe} from "@angular/common";
 import {TaskService} from "../../../shared/services/task.service";
+import {SnackbarService} from "../../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-task-listing',
@@ -24,6 +25,7 @@ export class TaskListingComponent implements OnInit{
   constructor(private dialog:MatDialog,
               private memoryBoxService: MemoryboxService,
               private taskService: TaskService,
+              private snackBarService: SnackbarService,
               private datePipe: DatePipe){
   }
 
@@ -55,10 +57,10 @@ export class TaskListingComponent implements OnInit{
           }
           this.taskService.create(task).subscribe(createRes => {
             this.memorybox.tasks.push(createRes);
-            console.log(createRes);
             this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateRes => {
               this.memorybox = updateRes;
               this.datasource.data = [...this.memorybox.tasks];
+              this.snackBarService.info(`Task ${createRes.title} criada com sucesso`)
             });
           })
         }
@@ -91,6 +93,7 @@ export class TaskListingComponent implements OnInit{
             this.memoryBoxService.update(this.id, this.memorybox).subscribe(updateBoxRes => {
               this.memorybox = updateBoxRes;
               this.datasource.data = [...this.memorybox.tasks];
+              this.snackBarService.info(`Task ${updateTaskRes.title} alterada com sucesso`)
             });
           })
         }
@@ -111,6 +114,7 @@ export class TaskListingComponent implements OnInit{
           this.taskService.delete(taskARemover.id).subscribe(deleteRes => {
             this.memorybox = updateRes;
             this.datasource.data = [...this.memorybox.tasks];
+            this.snackBarService.sucesso(`Task ${taskARemover.title} removida com sucesso`)
           })
         })
 

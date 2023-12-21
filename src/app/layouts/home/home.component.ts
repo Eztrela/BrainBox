@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
     if(currentUser){
       this.userId = parseInt(currentUser)
       this.memoryBoxService.getAll(this.userId).subscribe((getAllRes) => {
-        console.log(getAllRes)
         this.memoryboxes = getAllRes;
       });
     }

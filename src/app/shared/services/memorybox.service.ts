@@ -43,7 +43,6 @@ export class MemoryboxService {
   getAll(id: number): Observable<MemoryBox[]> {
     const url_resource: string = `${this._url}/${this._resource}/user`;
     const data = { id: id }
-    console.log(data);
     return this.httpClient.post<MemoryBox[]>(
       url_resource,
       JSON.stringify(data),
