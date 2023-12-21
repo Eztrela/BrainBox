@@ -54,12 +54,15 @@ export class CalendarComponent implements OnInit {
     this.fetchEvents();
   }
   fetchEvents(): void {
+    this.memoryboxService.getAllTasksWithColor(this.userId).subscribe(res => {
+      console.log(res);
+    })
 
     this.events$ = this.memoryboxService.getAllTasksWithColor(this.userId).pipe(
       map((taskEvents: TaskEvent[]) =>
         taskEvents.map((event: TaskEvent) => ({
           title: event.task.title,
-           start: new Date((event.task.datetimeDue as any).seconds * 1000),
+           start: new Date(event.task.datetimeDue),
            color: {
              primary: event.color,
              secondary: 'rgba(124, 124, 149, 0.22)'

@@ -1,4 +1,4 @@
-<app-sidenav [memoryBoxes]="memoryboxes">
+<app-sidenav [userId]="userId" [memoryBoxes]="memoryboxes">
   <span slot="list">
     <mat-nav-list class="memorybox-list">
       <div mat-subheader class="list-header">
@@ -31,7 +31,7 @@
     </mat-nav-list>
   </span>
   <span slot="content">
-    <app-memorybox-listing [userId] = "userId" [memoryboxes]="memoryboxes" (newItemEvent)="addItem($event)"></app-memorybox-listing>
-    <app-calendar [userId] = "userId"></app-calendar>
+    <app-memorybox-listing [userId]="userId" [memoryboxes]="memoryboxes" (newItemEvent)="addItem($event)"></app-memorybox-listing>
+    <app-calendar [userId]="userId"></app-calendar>
   </span>
 </app-sidenav>

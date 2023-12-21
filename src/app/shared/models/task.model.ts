@@ -10,7 +10,7 @@ export class Task {
     public datetimeCreated: Date;
     public datetimeDue: Date;
     public priority: number;
-    public tags: Array<Number>;
+    public tag: Tag;
 
 
 
@@ -22,7 +22,7 @@ export class Task {
       this.datetimeCreated = new Date();
       this.datetimeDue = task.datetimeDue;
       this.priority = task.priority;
-      this.tags = task.tags;
+      this.tag = task.tag;
 
     }
 
@@ -34,6 +34,6 @@ export class Task {
       , to deliver at: ${this.datetimeDue}
       , priority: ${this.priority}
       , status: ${this.status}
-      , tags: ${this.tags}`;
+      , tags: ${this.tag}`;
     }
   }

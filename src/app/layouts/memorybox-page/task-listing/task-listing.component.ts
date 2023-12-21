@@ -7,6 +7,7 @@ import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dial
 import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
 import { DatePipe} from "@angular/common";
+import {TaskService} from "../../../shared/services/task.service";
 
 @Component({
   selector: 'app-task-listing',
@@ -15,24 +16,23 @@ import { DatePipe} from "@angular/common";
   providers: [DatePipe]
 })
 export class TaskListingComponent implements OnInit{
-  @Input() id!:string;
+  @Input() id!:number;
   @Input() memorybox!: MemoryBox;
   public datasource: MatTableDataSource<Task> = new MatTableDataSource<Task>();
   @Output() newItemEvent = new EventEmitter<Task>();
-  constructor(private dialog:MatDialog, private memoryBoxService: MemoryboxService, private datePipe: DatePipe){
+  constructor(private dialog:MatDialog,
+              private memoryBoxService: MemoryboxService,
+              private taskService: TaskService,
+              private datePipe: DatePipe){
   }
 
   ngOnInit(): void {
     this.datasource = new MatTableDataSource<Task>(this.memorybox.tasks);
   }
 
-  formatDatetime(datetimeDue: any): string {
-    if (datetimeDue instanceof Date) {
-      return this.datePipe.transform(datetimeDue, 'dd/MM/yyyy') || '';
-    } else {
-      const dateObject = new Date(datetimeDue.seconds * 1000);
+  formatDatetime(datetimeDue: string): string {
+      const dateObject = new Date(datetimeDue);
       return this.datePipe.transform(dateObject, 'dd/MM/yyyy') || '';
-    }
   }
 
   opencreateDialog() {
@@ -44,15 +44,20 @@ export class TaskListingComponent implements OnInit{
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
         if (this.memorybox) {
-          let idx = this.memorybox.tasks.length > 0 ? Math.max(...this.memorybox.tasks.map(task => {
-            return task.id ? task.id : 0
-          })) + 1 : 1;
-          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
-          task.id = idx;
-          this.memorybox.tasks.push(task);
-          this.memoryBoxService.update(this.id, this.memorybox).subscribe(res => {
-            this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
-          });
+          let task = {
+            title: data.title,
+            description : data.description,
+            status: data.status,
+            priority : data.priority,
+            tag: data.tag[0],
+            datetimeDue: data.datetimeDue
+          }
+          this.taskService.create(task).subscribe(createRes => {
+            this.memorybox.tasks.push(createRes);
+            this.memoryBoxService.update(this.id, this.memorybox).subscribe(res => {
+              this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+            });
+          })
         }
       }
     });
@@ -70,12 +75,20 @@ export class TaskListingComponent implements OnInit{
           let idx = this.memorybox.tasks.findIndex((task)=>{
             return task.id === taskAEditar.id
           })
-          let task = new Task(0, {title: data.title, description : data.description, status: data.status, priority : data.priority, tags: data.tags, datetimeDue: data.datetimeDue})
-          task.id = idx+1;
-          this.memorybox.tasks[idx] = task;
-          this.memoryBoxService.update(this.id, this.memorybox).subscribe(res => {
-            this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
-          });
+          let task = {
+            title: data.title,
+            description : data.description,
+            status: data.status,
+            priority : data.priority,
+            tag: data.tag[0],
+            datetimeDue: data.datetimeDue
+          }
+          this.taskService.update(taskAEditar.id, task).subscribe(updateRes => {
+            this.memorybox.tasks[idx] = updateRes;
+            this.memoryBoxService.update(this.id, this.memorybox).subscribe(res => {
+              this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
+            });
+          })
         }
       }
     });
@@ -89,10 +102,8 @@ export class TaskListingComponent implements OnInit{
       })
 
       if (idx !== -1) {
-
-        this.memorybox.tasks.splice(idx, 1)[0];
-
-        this.memoryBoxService.update(this.id, this.memorybox).subscribe(res =>{
+        this.taskService.delete(taskARemover.id).subscribe(deleteRes => {
+          this.memorybox.tasks.splice(idx, 1)[0];
           this.datasource.data = this.memorybox.tasks ? [...this.memorybox.tasks]: [];
         })
       }

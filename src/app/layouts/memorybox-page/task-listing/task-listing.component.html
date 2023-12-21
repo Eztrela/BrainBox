@@ -46,7 +46,7 @@
   <ng-container matColumnDef="dueDatetime">
     <th mat-header-cell *matHeaderCellDef>Datetime Due</th>
     <td mat-cell *matCellDef="let task">
-      {{ task["datetimeDue"] ? formatDatetime(task["datetimeDue"]) : ''}}
+      {{ formatDatetime(task["datetimeDue"]) }}
     </td>
   </ng-container>
 

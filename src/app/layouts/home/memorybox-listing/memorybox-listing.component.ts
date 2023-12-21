@@ -34,7 +34,7 @@ export class MemoryboxListingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-          let memorybox = {title: res.title, user: this.userId, banner: res.banner}
+          let memorybox = {title: res.title, user: this.userId, banner: res.banner, userId: this.userId}
           this.memoryboxService.create(memorybox).subscribe((obj: MemoryBox) => {
             this.addNewItem(obj);
             this.snackBarService.sucesso(`Memorybox ${obj.title} inserida com êxito!`)

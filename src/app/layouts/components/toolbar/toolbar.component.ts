@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {MemoryBox} from "../../../shared/models";
 import {FormControl} from "@angular/forms";
 import {map, Observable, startWith} from "rxjs";
@@ -15,6 +15,7 @@ import {EditUserDialogComponent} from "../edit-user-dialog/edit-user-dialog.comp
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
+  @Input() userId!: number;
   public memoryBoxes!: Array<MemoryBox>;
   public filteredMemoryBoxes: Observable<MemoryBox[]> = new Observable<MemoryBox[]>();
   public pesquisaControl = new FormControl('');
@@ -32,8 +33,8 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.memoryBoxService.getAll().subscribe((arrayMemoryBoxes: MemoryBox[]) => {
-      this.memoryBoxes = arrayMemoryBoxes;
+    this.memoryBoxService.getAll(this.userId).subscribe((getAllRes) => {
+      this.memoryBoxes = getAllRes;
       this.filteredMemoryBoxes = this.pesquisaControl.valueChanges.pipe(
         startWith(''),
         map(value => this._filter(value || '')),
@@ -75,10 +76,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   openEditDialog() {
-    const currentUser = localStorage.getItem('currentUser');
-    if (currentUser) {
-      const userId = parseInt(currentUser)
-      this.userService.getById(userId).subscribe( userInfo => {
+      this.userService.getById(this.userId).subscribe( userInfo => {
         if (userInfo) {
           const dialogRef = this.dialog.open(EditUserDialogComponent, {
             data: {username: userInfo.username, email: userInfo.email},
@@ -87,13 +85,12 @@ export class ToolbarComponent implements OnInit {
 
           dialogRef.afterClosed().subscribe((data) => {
             if (data) {
-              this.userService.update(data.username, data.email, data.password, userId).subscribe(res => {
+              this.userService.update(data.username, data.email, data.password, this.userId).subscribe(res => {
                 this.snackBarService.sucesso("Dados atualizados com sucesso!");
               });
             }
           });
         }
       })
-    }
   }
 }

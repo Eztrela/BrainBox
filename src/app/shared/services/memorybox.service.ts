@@ -58,9 +58,9 @@ export class MemoryboxService {
     );
   }
 
-  delete(id:number): Observable<MemoryBox> {
+  delete(id:number): Observable<void> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
-    return this.httpClient.delete<MemoryBox>(
+    return this.httpClient.delete<void>(
       url_resource
     );
   }
@@ -84,7 +84,7 @@ export class MemoryboxService {
 
         for (let box of res) {
           for (let task of box.tasks) {
-            const matchingTag = box.tags.find(tag => tag.id === task.tags[0]);
+            const matchingTag = box.tags.find(tag => tag.id === task.tag.id);
             const tagColor = matchingTag ? matchingTag.color : '#9593D9';
             tasksWithColor.push({
               task: task,
@@ -97,7 +97,4 @@ export class MemoryboxService {
       })
     );
   }
-
-
-
 }

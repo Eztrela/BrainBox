@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ITag } from 'src/app/shared/interfaces/itag';
 import { EditTagDialogComponent } from '../components/sidenav/edit-tag-dialog/edit-tag-dialog.component';
 import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
+import {TagService} from "../../shared/services/tag.service";
+import {SnackbarService} from "../../shared/services/snackbar.service";
 
 
 @Component({
@@ -15,26 +17,33 @@ import { MemoryboxService } from 'src/app/shared/services/memorybox.service';
   styleUrls: ['./memorybox-page.component.css']
 })
 export class MemoryboxPageComponent implements OnInit {
-  public id!: string;
+  public id!: number;
   public memorybox!: MemoryBox;
   public isEditing: boolean = false;
   public titleForm: FormControl = new FormControl();
   public isTagsCollapsed: boolean = false;
+  protected userId!: number;
   constructor(private router: Router,
               private route: ActivatedRoute,
               private memoryBoxService: MemoryboxService,
+              private tagService: TagService,
+              private snackBarService: SnackbarService,
               private dialog:MatDialog) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = String(params.get('id'));
-      this.memoryBoxService.getById(this.id).subscribe((mymemorybox: any) => {
-        this.memorybox = mymemorybox;
-        this.titleForm = new FormControl(this.memorybox.title, [
-          Validators.required,
-          Validators.minLength(4)
-        ]);
-      })
+      const currentUser = localStorage.getItem("currentUser")
+      if(currentUser) {
+        this.userId = parseInt(currentUser)
+        this.id = parseInt(<string>params.get('id'));
+        this.memoryBoxService.getById(this.id).subscribe((mymemorybox) => {
+          this.memorybox = mymemorybox;
+          this.titleForm = new FormControl(this.memorybox.title, [
+            Validators.required,
+            Validators.minLength(4)
+          ]);
+        })
+      }
     })
   }
 
@@ -44,8 +53,12 @@ export class MemoryboxPageComponent implements OnInit {
 
   deleteMemoryBox() {
     if (this.memorybox) {
-      this.memoryBoxService.delete(this.id).subscribe((res) => {
-        this.router.navigate(['/home']);
+      this.memoryBoxService.delete(this.id).subscribe((deleteRes) => {
+        this.router.navigate(['/home']).then(
+          navigateRes => {
+            this.snackBarService.info(`Memorybox ${this.memorybox.title} excluída com sucesso!`);
+          }
+        );
       })
     }
   }
@@ -73,18 +86,9 @@ export class MemoryboxPageComponent implements OnInit {
   }
 
   deleteTag(tagARemover: ITag) {
-    if (this.memorybox.tags) {
-
-      const idx = this.memorybox.tags.findIndex((tag)=>{
-        return tag.id === tagARemover.id
-      })
-
-      if (idx !== -1) {
-        this.memorybox.tags.splice(idx, 1)[0];
-        this.memoryBoxService.update(this.id, this.memorybox).subscribe()
-      }
-
-    }
+    this.tagService.delete(tagARemover.id).subscribe(res => {
+      console.log(res);
+    })
   }
 
   openAddTagDialog() {
@@ -96,13 +100,11 @@ export class MemoryboxPageComponent implements OnInit {
       dialogRef.afterClosed().subscribe((data) => {
         if (data) {
           if (this.memorybox) {
-            let idx = this.memorybox.tags.length > 0 ? Math.max(...this.memorybox.tags.map(tag => {
-              return tag.id ? tag.id : 0
-            })) + 1 : 1;
-            let tag = new Tag(0, {title: data.title, color : data.color})
-            tag.id = idx;
-            this.memorybox.tags.push(tag);
-            this.memoryBoxService.update(this.id, this.memorybox).subscribe();
+            let tag = {title: data.title, color : data.color};
+            this.tagService.create(data).subscribe(res => {
+              this.memorybox.tags.push(res);
+              this.memoryBoxService.update(this.id, this.memorybox).subscribe();
+            })
           }
         }
       });
@@ -115,14 +117,14 @@ export class MemoryboxPageComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe((data) => {
         if (data) {
+          const idx = this.memorybox.tags.findIndex((tag)=>{
+            return tag.id === tagAEditar.id;
+          })
           if (this.memorybox) {
-            let idx = this.memorybox.tags.findIndex((tag)=>{
-              return tag.id === tagAEditar.id
+            this.tagService.update(tagAEditar.id, data).subscribe(updateRes => {
+              this.memorybox.tags[idx] = updateRes;
+              this.memoryBoxService.update(this.id, this.memorybox).subscribe();
             })
-            let tag = new Tag(0, {title: data.title, color : data.color})
-            tag.id = idx + 1;
-            this.memorybox.tags[idx] = tag;
-            this.memoryBoxService.update(this.id, this.memorybox).subscribe();
           }
         }
       });

@@ -67,9 +67,9 @@ export class UserService {
     );
   }
 
-  delete(id:number): Observable<User> {
+  delete(id:number): Observable<void> {
     const url_resource: string = `${this._url}/${this._resource}/${id}`;
-    return this.httpClient.delete<User>(
+    return this.httpClient.delete<void>(
       url_resource
     );
   }
